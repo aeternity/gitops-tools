@@ -1,0 +1,9 @@
+apiVersion: v2
+name: argo-cd
+description: A Helm chart for ArgoCD, a declarative, GitOps continuous delivery tool for Kubernetes.
+version: 3.11.1
+
+dependencies:
+  - name: argo-cd
+    version: 3.11.1
+    repository: https://argoproj.github.io/argo-helm
