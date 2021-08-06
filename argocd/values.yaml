@@ -59,6 +59,6 @@ applications:
   argocd:
     project: tools
     namespace: argocd
-  # sealed-secrets:
-  #   project: tools
-  #   namespace: sealed-secrets
+  sealed-secrets:
+    project: tools
+    namespace: sealed-secrets
