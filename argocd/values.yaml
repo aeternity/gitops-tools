@@ -54,6 +54,7 @@ defaultTargetRevision: dev
 
 applications:
   argocd:
+    project: tools
     namespace: argocd
   # sealed-secrets:
   #   project: tools
