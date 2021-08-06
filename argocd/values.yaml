@@ -48,3 +48,13 @@ argo-cd:
             server: https://kubernetes.default.svc
           - namespace: sealed-secrets
             server: https://kubernetes.default.svc
+
+defaultRepoUrl: 'https://github.com/aeternity/gitops-tools.git'
+defaultTargetRevision: dev
+
+applications:
+  argocd:
+    namespace: argocd
+  # sealed-secrets:
+  #   project: tools
+  #   namespace: sealed-secrets
