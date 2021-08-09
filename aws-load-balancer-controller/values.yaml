@@ -1,0 +1,5 @@
+aws-load-balancer-controller:
+  clusterName: dev-wgt7
+  serviceAccount:
+    create: false
+    name: aws-load-balancer-controller

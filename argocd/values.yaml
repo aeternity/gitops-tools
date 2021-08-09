@@ -21,6 +21,9 @@ argo-cd:
         - type: helm
           url: https://prometheus-community.github.io/helm-charts
           name: prometheus-community
+        - type: helm
+          url: https://aws.github.io/eks-charts
+          name: eks
       dex.config: |
         connectors:
           - type: github
@@ -68,3 +71,6 @@ applications:
   sealed-secrets:
     project: tools
     namespace: sealed-secrets
+  aws-load-balancer-controller:
+    project: tools
+    namespace: kube-system
