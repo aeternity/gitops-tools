@@ -57,6 +57,8 @@ argo-cd:
             server: https://kubernetes.default.svc
           - namespace: sealed-secrets
             server: https://kubernetes.default.svc
+          - namespace: kube-system
+            server: https://kubernetes.default.svc
         clusterResourceWhitelist:
           - group: '*'
             kind: '*'
