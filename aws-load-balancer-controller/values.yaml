@@ -1,8 +1,10 @@
 aws-load-balancer-controller:
   clusterName: dev-wgt7
-  serviceAccountName: aws-load-balancer-controller
+  rbac:
+    create: true
   serviceAccount:
     create: true
-    automountServiceAccountToken: false
+    name: aws-load-balancer-controller
+    # automountServiceAccountToken: false
     annotations:
       eks.amazonaws.com/role-arn: "arn:aws:iam::106102538874:role/aws-lb-controller"
