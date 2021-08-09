@@ -1,7 +1,8 @@
 aws-load-balancer-controller:
   clusterName: dev-wgt7
+  serviceAccountName: aws-load-balancer-controller
   serviceAccount:
     create: false
-    name: aws-load-balancer-controller
-    annotations:
-      eks.amazonaws.com/role-arn: "arn:aws:iam::106102538874:role/aws-lb-controller"
+    # name: aws-load-balancer-controller
+    # annotations:
+    #   eks.amazonaws.com/role-arn: "arn:aws:iam::106102538874:role/aws-lb-controller"
