@@ -78,6 +78,6 @@ applications:
   aws-load-balancer-controller:
     project: tools
     namespace: kube-system
-  treafik:
+  traefik:
     project: tools
     namespace: traefik
