@@ -5,10 +5,9 @@ argo-cd:
       annotations:
         kubernetes.io/ingress.class: traefik
       hosts:
-        - host: "dev.aeternity.io"
-          paths:
-            - path: "/argocd"
-              pathType: ImplementationSpecific
+        - "dev.aeternity.io"
+      paths:
+        - "/argocd"
     baseHref: "/argocd"
     extraArgs:
       - --insecure
