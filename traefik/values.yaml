@@ -1,0 +1,20 @@
+traefik:
+  globalArguments: []
+  logs:
+    access:
+      enabled: true
+  service:
+    spec:
+      # externalTrafficPolicy: Local
+    annotations:
+      service.beta.kubernetes.io/aws-load-balancer-name: dev-wgt7-traefik-ingress
+      service.beta.kubernetes.io/aws-load-balancer-type: external
+      service.beta.kubernetes.io/aws-load-balancer-scheme: "internet-facing"
+      service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: instance
+
+  # externalTrafficPolicy: Local
+
+  # ssl:
+  #   enabled: true
+  #   enforced: true
+  #   upstream: true
