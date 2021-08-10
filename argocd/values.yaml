@@ -59,6 +59,8 @@ argo-cd:
             server: https://kubernetes.default.svc
           - namespace: kube-system
             server: https://kubernetes.default.svc
+          - namespace: traefik
+            server: https://kubernetes.default.svc
         clusterResourceWhitelist:
           - group: '*'
             kind: '*'
@@ -76,3 +78,6 @@ applications:
   aws-load-balancer-controller:
     project: tools
     namespace: kube-system
+  treafik:
+    project: tools
+    namespace: traefik
