@@ -1,5 +1,15 @@
 argo-cd:
   server:
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: traefik
+      hosts:
+        - host: "dev.aeternity.io"
+          paths:
+            - path: "/argocd"
+              pathType: ImplementationSpecific
+    baseHref: "/argocd"
     extraArgs:
       - --insecure
     config:
