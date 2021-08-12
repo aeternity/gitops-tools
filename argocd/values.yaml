@@ -11,7 +11,8 @@ argo-cd:
         - "/argocd"
     extraArgs:
       - --insecure=true
-      # - --basehref=/argocd
+      - --rootpath
+      - /argocd
     logLevel: debug
     config:
       # Argo CD's externally facing base URL (optional). Required when configuring SSO
