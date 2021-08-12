@@ -10,9 +10,8 @@ argo-cd:
       paths:
         - "/argocd"
     extraArgs:
-      - "--insecure"
-      - "--basehref"
-      - "/argocd"
+      - --insecure=true
+      - --basehref=/argocd
     config:
       # Argo CD's externally facing base URL (optional). Required when configuring SSO
       url: https://dev.aeternity.io/argocd
