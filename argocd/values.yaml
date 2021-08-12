@@ -4,16 +4,17 @@ argo-cd:
       enabled: true
       annotations:
         kubernetes.io/ingress.class: traefik
+      pathType: ImplementationSpecific
       hosts:
         - "dev.aeternity.io"
       paths:
         - "/argocd"
-    baseHref: "/argocd"
     extraArgs:
-      - --insecure
+      - "--insecure"
+      - "--basehref /argocd"
     config:
       # Argo CD's externally facing base URL (optional). Required when configuring SSO
-      # url: https://argocd.example.com
+      url: https://dev.aeternity.io/argocd
       # Argo CD instance label key
       application.instanceLabelKey: argocd.argoproj.io/instance
       repositories: |
