@@ -8,12 +8,8 @@ argo-cd:
       pathType: ImplementationSpecific
       hosts:
         - "argocd.dev.aeternity.io"
-      # paths:
-      #   - "/argocd"
     extraArgs:
       - --insecure=true
-      # - --rootpath
-      # - /argocd
     logLevel: debug
     config:
       # Argo CD's externally facing base URL (optional). Required when configuring SSO
