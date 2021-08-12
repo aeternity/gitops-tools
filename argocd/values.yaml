@@ -23,7 +23,7 @@ applications:
 argo-cd:
   configs:
     secret:
-      createSecret: true
+      createSecret: false
   server:
     ingress:
       enabled: true
