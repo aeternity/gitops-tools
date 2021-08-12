@@ -1,9 +1,27 @@
+encValues:
+  dex.github.clientSecret: "AgBLiQhoTPPxUr0LxA7UznE0iZQZwiwvYNVZLKIjpZ0RjZZN/gd3sUjTzgXJPga3Fwch/k/3ClZ5jUm5vWTbs7b8i7CivIEMbpBqOahjdC5wgxliIcZ3eBfcl138rEq1G7R5e67RejcG2sW7Bi9Y54VAzucoClppX22zBPOc1TjHlCWGY4JBzZubgzRNMd70vXICAMdiQQc8gaB0dWOdCU3X11SK8NadPqSn+zcqikHsc++Ta9LykygYF/YdCq+CwzKCfhmF2aLROoKfIJ/4lTlQ8Z9bcsiHpP52tgt9E/HxDuZj4/cDLd3kN3h9g+LgPI8ZijC5cOvjq+N/7N8APTPEUyR2rFRCNqaVwM7tqYFc/aGJZqglhPpWOxV0C1AEocFxZLhvzOEF7FuGIewBd+BIkUlnSJqF/qOmj6hA56LPbTG/9VFf7e43hH5ViIBX/pMpRafPcA/YYNYq6hVloS87vFRJKzb2JHwyd5byOAPW6/bo30TiNK02laVrXxhrAWHbjCEYymPw1TAAsY9jxw4j8keYxMP/4wuVU8LfS+xZAe1uDYtuPfjxjY0J3SU4UC9kX6QP6VIh9dIcil6jKG76Gtus15vhmaIcr8dLQsJbV71goZ8U5NMQHENye3BlUMBpdsL/QzUrE03pgoxn3vOeRMWQyAeYh2rqcPsuwo/taGPaPy2PZS0YR5MMBICPdzK1UPxtEQ=="
+
+defaultRepoUrl: 'https://github.com/aeternity/gitops-tools.git'
+defaultTargetRevision: dev
+
+applications:
+  argocd:
+    project: tools
+    namespace: argocd
+  sealed-secrets:
+    project: tools
+    namespace: sealed-secrets
+  aws-load-balancer-controller:
+    project: tools
+    namespace: kube-system
+  traefik:
+    project: tools
+    namespace: traefik
+
 argo-cd:
   configs:
     secret:
       createSecret: true
-  encValues:
-    dex.github.clientSecret: "AgBLiQhoTPPxUr0LxA7UznE0iZQZwiwvYNVZLKIjpZ0RjZZN/gd3sUjTzgXJPga3Fwch/k/3ClZ5jUm5vWTbs7b8i7CivIEMbpBqOahjdC5wgxliIcZ3eBfcl138rEq1G7R5e67RejcG2sW7Bi9Y54VAzucoClppX22zBPOc1TjHlCWGY4JBzZubgzRNMd70vXICAMdiQQc8gaB0dWOdCU3X11SK8NadPqSn+zcqikHsc++Ta9LykygYF/YdCq+CwzKCfhmF2aLROoKfIJ/4lTlQ8Z9bcsiHpP52tgt9E/HxDuZj4/cDLd3kN3h9g+LgPI8ZijC5cOvjq+N/7N8APTPEUyR2rFRCNqaVwM7tqYFc/aGJZqglhPpWOxV0C1AEocFxZLhvzOEF7FuGIewBd+BIkUlnSJqF/qOmj6hA56LPbTG/9VFf7e43hH5ViIBX/pMpRafPcA/YYNYq6hVloS87vFRJKzb2JHwyd5byOAPW6/bo30TiNK02laVrXxhrAWHbjCEYymPw1TAAsY9jxw4j8keYxMP/4wuVU8LfS+xZAe1uDYtuPfjxjY0J3SU4UC9kX6QP6VIh9dIcil6jKG76Gtus15vhmaIcr8dLQsJbV71goZ8U5NMQHENye3BlUMBpdsL/QzUrE03pgoxn3vOeRMWQyAeYh2rqcPsuwo/taGPaPy2PZS0YR5MMBICPdzK1UPxtEQ=="
   server:
     ingress:
       enabled: true
@@ -78,20 +96,3 @@ argo-cd:
         clusterResourceWhitelist:
           - group: '*'
             kind: '*'
-
-defaultRepoUrl: 'https://github.com/aeternity/gitops-tools.git'
-defaultTargetRevision: dev
-
-applications:
-  argocd:
-    project: tools
-    namespace: argocd
-  sealed-secrets:
-    project: tools
-    namespace: sealed-secrets
-  aws-load-balancer-controller:
-    project: tools
-    namespace: kube-system
-  traefik:
-    project: tools
-    namespace: traefik
