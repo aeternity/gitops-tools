@@ -7,17 +7,17 @@ argo-cd:
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
       pathType: ImplementationSpecific
       hosts:
-        - "dev.aeternity.io"
-      paths:
-        - "/argocd"
+        - "argocd.dev.aeternity.io"
+      # paths:
+      #   - "/argocd"
     extraArgs:
       - --insecure=true
-      - --rootpath
-      - /argocd
+      # - --rootpath
+      # - /argocd
     logLevel: debug
     config:
       # Argo CD's externally facing base URL (optional). Required when configuring SSO
-      url: https://dev.aeternity.io/argocd
+      url: https://argocd.dev.aeternity.io/
       # Argo CD instance label key
       application.instanceLabelKey: argocd.argoproj.io/instance
       repositories: |
