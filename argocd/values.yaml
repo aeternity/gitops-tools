@@ -1,6 +1,6 @@
 argo-cd:
   encValues:
-    dex.github.clientSecret: "AgBzgY9wxopaRVrEfnllwRn5P9DSOhp2nRo/vNDmxmIag6n2+KqQ5xIlERClomcyOUhBzcjIv3bnYBBm+OoFETZSkzrWXZHWgilf/jXEBwt3CNZLeKmA2Y6cYjdHldDNOSbZ6WJI3MxFpVsLejCV2wel1LSjhFrzBemP0AHwaj3sASbSKWN8RLOpiJGLfsiABrMsO3V5POSRIux7SJFML8taWKniir+BYve4EkxIflvzB2UItZB/t1W/Z1ECscq5h8J1Ct5QMnyg7ssf6s4DHfgvogcDHcSNIh4doIaVXJvFI0Nh8WaFvniCgg9suxHvxiUmNZaF+Nov4/rzDVHhVbdis/qUDbLagcFeS8uKWyWHroU2YSYZRUMjcPUbHhhC2ffceFnewhOyECxNPmfJXwL3UN65tDZ6aWYLxerSbUyzeYbnmBe9H2AdbxAZueGDnFc6UIV4KN6Efi6Jt4hVj5NzS/0Jx+TpjVY2edWChjSryTaUTHGBfAeQQEXveRpEC+wxCTz91m6vOQ0VbD4bZLwphiOmLX/jVwo/v/n3XBxgpadHGpRm2si63zVZeiBa7YTlgh1WotBYbKOFUHcsLZUqVDWQBX42Dxb3qUcK7GZ8YESOpMRLqHevEFqHTnFtOEEhUYUOUBqpCnr47iHXxynei/q0tIQRJXlY6Tph0YjpUwurvD4xXThZl8J6NvXXRvgcz8OgUQ=="
+    dex.github.clientSecret: "AgBLiQhoTPPxUr0LxA7UznE0iZQZwiwvYNVZLKIjpZ0RjZZN/gd3sUjTzgXJPga3Fwch/k/3ClZ5jUm5vWTbs7b8i7CivIEMbpBqOahjdC5wgxliIcZ3eBfcl138rEq1G7R5e67RejcG2sW7Bi9Y54VAzucoClppX22zBPOc1TjHlCWGY4JBzZubgzRNMd70vXICAMdiQQc8gaB0dWOdCU3X11SK8NadPqSn+zcqikHsc++Ta9LykygYF/YdCq+CwzKCfhmF2aLROoKfIJ/4lTlQ8Z9bcsiHpP52tgt9E/HxDuZj4/cDLd3kN3h9g+LgPI8ZijC5cOvjq+N/7N8APTPEUyR2rFRCNqaVwM7tqYFc/aGJZqglhPpWOxV0C1AEocFxZLhvzOEF7FuGIewBd+BIkUlnSJqF/qOmj6hA56LPbTG/9VFf7e43hH5ViIBX/pMpRafPcA/YYNYq6hVloS87vFRJKzb2JHwyd5byOAPW6/bo30TiNK02laVrXxhrAWHbjCEYymPw1TAAsY9jxw4j8keYxMP/4wuVU8LfS+xZAe1uDYtuPfjxjY0J3SU4UC9kX6QP6VIh9dIcil6jKG76Gtus15vhmaIcr8dLQsJbV71goZ8U5NMQHENye3BlUMBpdsL/QzUrE03pgoxn3vOeRMWQyAeYh2rqcPsuwo/taGPaPy2PZS0YR5MMBICPdzK1UPxtEQ=="
   server:
     ingress:
       enabled: true
@@ -14,6 +14,8 @@ argo-cd:
       - --insecure=true
     logLevel: debug
     config:
+      secret:
+        createSecret: true
       # Argo CD's externally facing base URL (optional). Required when configuring SSO
       url: https://argocd.dev.aeternity.io/
       # Argo CD instance label key
