@@ -77,6 +77,10 @@ argo-cd:
       #     - openid
       #     - profile
       #     - email
+    rbacConfig:
+      policy.default: role:readonly
+      policy.csv: |
+        g, aeternity:devops, role:admin
     additionalProjects:
       - name: tools
         namespace: argocd
