@@ -12,6 +12,7 @@ argo-cd:
     extraArgs:
       - --insecure=true
       - --basehref=/argocd
+    logLevel: debug
     config:
       # Argo CD's externally facing base URL (optional). Required when configuring SSO
       url: https://dev.aeternity.io/argocd
