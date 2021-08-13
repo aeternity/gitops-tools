@@ -17,6 +17,9 @@ applications:
   aws-load-balancer-controller:
     project: tools
     namespace: kube-system
+  metrics-server:
+    project: tools
+    namespace: kube-system
   traefik:
     project: tools
     namespace: traefik
@@ -59,6 +62,9 @@ argo-cd:
         - type: helm
           url: https://aws.github.io/eks-charts
           name: eks
+        - type: helm
+          url: https://charts.bitnami.com/bitnami
+          name: bitnami
       dex.config: |
         connectors:
           - type: github
