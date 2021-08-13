@@ -23,6 +23,9 @@ applications:
   traefik:
     project: tools
     namespace: traefik
+  kube-prometheus-stack:
+    project: tools
+    namespace: monitoring
 
 argo-cd:
   configs:
@@ -105,6 +108,8 @@ argo-cd:
           - namespace: kube-system
             server: https://kubernetes.default.svc
           - namespace: traefik
+            server: https://kubernetes.default.svc
+          - namespace: monitoring
             server: https://kubernetes.default.svc
         clusterResourceWhitelist:
           - group: '*'
