@@ -3,5 +3,5 @@ fullnameOverride: ""
 
 service:
   type: ExternalName
-  externalName: traefik.treaefik
+  externalName: traefik.traefik
   port: 80
