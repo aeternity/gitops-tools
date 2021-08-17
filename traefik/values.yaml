@@ -1,7 +1,7 @@
 traefik:
   globalArguments: []
   additionalArguments:
-    - "--entrypoints.web.http.redirections.entrypoint.to=websecure"
+    - "--entrypoints.web.http.redirections.entrypoint.to=:443"
     - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
   logs:
     access:
