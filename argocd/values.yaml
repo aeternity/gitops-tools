@@ -23,6 +23,9 @@ applications:
   traefik:
     project: tools
     namespace: traefik
+  default-http-backend:
+    project: tools
+    namespace: default
   kube-prometheus-stack:
     project: tools
     namespace: monitoring
@@ -99,6 +102,8 @@ argo-cd:
         sourceRepos:
           - 'https://github.com/aeternity/gitops-tools.git'
         destinations:
+          - namespace: default
+            server: https://kubernetes.default.svc
           - namespace: tools
             server: https://kubernetes.default.svc
           - namespace: argocd

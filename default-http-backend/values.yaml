@@ -1,0 +1,7 @@
+nameOverride: ""
+fullnameOverride: ""
+
+service:
+  type: ExternalName
+  externalName: traefik.treaefik
+  port: 80
