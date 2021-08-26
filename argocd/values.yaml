@@ -9,7 +9,7 @@ defaultTargetRevision: dev
 
 namespaces:
   - tools
-  - aerepl
+  - apps
 
 applications:
   argocd:
@@ -35,7 +35,7 @@ applications:
     namespace: monitoring
   aerepl-http:
     project: apps
-    namespace: aerepl-http
+    namespace: apps
 
 argo-cd:
   configs:
@@ -151,7 +151,7 @@ argo-cd:
         sourceRepos:
           - 'https://github.com/aeternity/gitops-apps.git'
         destinations:
-          - namespace: aerepl
+          - namespace: apps
             server: https://kubernetes.default.svc
         clusterResourceWhitelist:
           - group: '*'
