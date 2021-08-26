@@ -26,6 +26,7 @@ kube-prometheus-stack:
     grafana.ini:
       server:
         domain: grafana.dev.aeternity.io
+        root_url: https://grafana.dev.aeternity.io
       plugins:
         enable_alpha: true
       auth.github:
