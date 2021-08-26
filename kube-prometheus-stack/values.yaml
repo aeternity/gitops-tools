@@ -24,8 +24,6 @@ kube-prometheus-stack:
         enabled: true
         folderAnnotation: grafana-dashboard-dir
     grafana.ini:
-      analytics:                                                                                                                                                                                           │
-        check_for_updates: false
       server:
         domain: grafana.dev.aeternity.io
         root_url: https://grafana.dev.aeternity.io
