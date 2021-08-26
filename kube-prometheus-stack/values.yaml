@@ -64,12 +64,12 @@ kube-prometheus-stack:
           gnetId: 11462
           revision: 1
           datasource: Prometheus
-    # extraSecretMounts:
-    #   - name: secrets-mount
-    #     secretName: {{ include "kube-prometheus-stack.fullname" . }}-secret
-    #     defaultMode: 0440
-    #     mountPath: /etc/secrets
-    #     readOnly: true
+    extraSecretMounts:
+    - name: secrets-mount
+      secretName: kube-prometheus-stack-secret
+      defaultMode: 0440
+      mountPath: /etc/secrets
+      readOnly: true
 
   alertmanager:
     alertmanagerSpec:
