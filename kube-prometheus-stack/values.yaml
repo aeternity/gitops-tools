@@ -66,10 +66,10 @@ kube-prometheus-stack:
           datasource: Prometheus
     extraSecretMounts:
       - name: secrets-mount
-       secretName: {{ include "kube-prometheus-stack.fullname" . }}-secret
-       defaultMode: 0440
-       mountPath: /etc/secrets
-       readOnly: true
+        secretName: {{ include "kube-prometheus-stack.fullname" . }}-secret
+        defaultMode: 0440
+        mountPath: /etc/secrets
+        readOnly: true
 
   alertmanager:
     alertmanagerSpec:
