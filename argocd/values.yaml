@@ -36,6 +36,7 @@ applications:
   aerepl-http:
     project: apps
     namespace: apps
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
 
 argo-cd:
   configs:
@@ -145,7 +146,6 @@ argo-cd:
             kind: '*' 
       - name: apps
         namespace: argocd
-        repoUrl: 'https://github.com/aeternity/gitops-apps.git'
         additionalLabels: {}
         additionalAnnotations: {}
         description: Applications deployed on EKS
