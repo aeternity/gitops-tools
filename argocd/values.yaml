@@ -142,9 +142,10 @@ argo-cd:
             server: https://kubernetes.default.svc
         clusterResourceWhitelist:
           - group: '*'
-            kind: '*'
+            kind: '*' 
       - name: apps
         namespace: argocd
+        repoUrl: 'https://github.com/aeternity/gitops-apps.git'
         additionalLabels: {}
         additionalAnnotations: {}
         description: Applications deployed on EKS
