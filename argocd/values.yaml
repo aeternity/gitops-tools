@@ -7,6 +7,10 @@ encValues:
 defaultRepoUrl: 'https://github.com/aeternity/gitops-tools.git'
 defaultTargetRevision: dev
 
+namespaces:
+  - tools
+  - apps
+
 applications:
   argocd:
     project: tools
@@ -29,6 +33,9 @@ applications:
   kube-prometheus-stack:
     project: tools
     namespace: monitoring
+  aerepl-http:
+    project: apps
+    namespace: apps
 
 argo-cd:
   configs:
@@ -53,6 +60,7 @@ argo-cd:
       application.instanceLabelKey: argocd.argoproj.io/instance
       repositories: |
         - url: https://github.com/aeternity/gitops-tools.git
+        - url: https://github.com/aeternity/gitops-apps.git
         - type: helm
           url: https://argoproj.github.io/argo-helm
           name: argo
@@ -135,3 +143,16 @@ argo-cd:
         clusterResourceWhitelist:
           - group: '*'
             kind: '*'
+      - name: apps
+        namespace: argocd
+        additionalLabels: {}
+        additionalAnnotations: {}
+        description: Applications deployed on EKS
+        sourceRepos:
+          - 'https://github.com/aeternity/gitops-apps.git'
+        destinations:
+          - namespace: apps
+            server: https://kubernetes.default.svc
+        clusterResourceWhitelist:
+          - group: '*'
+            kind: '*'    
