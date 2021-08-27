@@ -70,6 +70,10 @@ kube-prometheus-stack:
           gnetId: 11462
           revision: 1
           datasource: Prometheus
+        argocd:
+          gnetid: 14584
+          revision: 1
+          datasource: Prometheus
     extraSecretMounts:
     - name: secrets-mount
       secretName: kube-prometheus-stack-secret
