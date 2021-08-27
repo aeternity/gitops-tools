@@ -33,7 +33,7 @@ applications:
   kube-prometheus-stack:
     project: tools
     namespace: monitoring
-  aerepl_http:
+  aerepl-http:
     project: apps
     namespace: apps
     repoUrl: 'https://github.com/aeternity/gitops-apps.git'
