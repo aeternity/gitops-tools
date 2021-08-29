@@ -71,7 +71,7 @@ kube-prometheus-stack:
           revision: 1
           datasource: Prometheus
         argocd:
-          gnetid: 14584
+          gnetId: 14584
           revision: 1
           datasource: Prometheus
     extraSecretMounts:
