@@ -1,7 +1,0 @@
-nameOverride: ""
-fullnameOverride: ""
-
-service:
-  type: ExternalName
-  externalName: traefik.traefik.svc.cluster.local
-  port: 80

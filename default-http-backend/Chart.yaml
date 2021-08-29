@@ -1,5 +1,0 @@
-apiVersion: v2
-name: default-http-backend
-description: Deploy an Ingress default http backend service
-type: application
-version: 0.1.0
