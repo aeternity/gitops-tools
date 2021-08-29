@@ -42,6 +42,21 @@ argo-cd:
   configs:
     secret:
       createSecret: false
+  controller:
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true
+  repoServer:
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true
+  dex:
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true
   server:
     metrics:
       enabled: true
