@@ -71,7 +71,7 @@ argo-cd:
     metrics:
       enabled: true
       serviceMonitor:
-        enabled: true
+        enabled: false
   repoServer:
     metrics:
       enabled: true
