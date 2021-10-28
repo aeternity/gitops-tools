@@ -34,15 +34,7 @@ applications:
     project: apps
     namespace: apps
     repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  aesophia-v6:
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  aesophia-v5:
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  aesophia-v4:
+  aesophia-http:
     project: apps
     namespace: apps
     repoUrl: 'https://github.com/aeternity/gitops-apps.git'
@@ -50,11 +42,7 @@ applications:
     project: apps
     namespace: apps
     repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  mdw-frontend-mainnet:
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  mdw-frontend-testnet:
+  mdw-frontend:
     project: apps
     namespace: apps
     repoUrl: 'https://github.com/aeternity/gitops-apps.git'
