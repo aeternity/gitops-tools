@@ -5,7 +5,7 @@ encValues:
   admin.passwordMtime: "AgBJUJgaGhVAx4b4sqd/SFS0nh/pzpw+qmuEafozA/dsQIQaMSwF6l8LH4czynpNSzIjmOSuKnL58Wfv8arc2mZMLMdDEiFYJaUpsyKNM9HEBMiHuGBMtrXsEEG6/Ionwsm16Gc7IrzKhf6wbjSB1l3yPModgnjM1x27v5uWlN3R5t8UA7DFw4nDOxL9V6bn8QQW9dtwnAGIElI4tlKzgLjKmSUyezZwBr+nzITl7duFpGk36kqF5xZOLjGSl1QkG0Z8cDwCsRY7+cU+POlXImAjKMD9XP9lX29zea7qMSZ80LMHeGeb6S1bgbw1PDkFp/uyYvPZxvyo3W+wqnXtFYOCTcCLGM94Uh81Jci1Wc2qctxDjY2pu5wj9E9ZBQ19UuFzppBpZp9xSVl6M5eh/y0ZzXISZ+GRW4DwE8UlgpPDrh1laSXfwqyCpJYMd2hJuJ7fs9IUVw7laoYak1/HnNNK4HmsDZmrWeTjzZ2/PtkjEWgBeOkFoaSg1nzqw9zth9nja0YMWF75Ohe5uL1TxcLSx2mb2exwMvgE23nUM23lnINEoVO2tYYqMILflklV6PxQBYDbqgW7zub5sW6nGKulNBhRazrw7vHKWoA8Z3XFQfZ51uNCSXWL/PRcduqG5cWCLh/yAfJ0ruYpDIfHCWEXCeTcJsJXTmBWUgacpPa6OW9E7gHdzdz+3ZS1fFfP9lw61CaI4n5SRJMm0bXlWH3riXWvBdo="
   server.secretkey: "AgCu4uodWpAgOHLFlZ6dqihrz40INtJE9p/hhlhOzcgiezqVP4PQpS/G4nAR9gFy0G1IB9JqbHrGHGE99EH9cPXSyKM4x4k7x5BX1GriIW6Stg8926pFe9k0PulQk5zG/Tt82mKAdfnaehK5qvPYxcUUpQ2KSq7J60mBFy6uxovth3n1Ti/gb2Qf5OJW70GCT4wJXZatni6NxkgkLC86qWkNsvRghV0dvvmdzuQ67Qa0Xj7mdG2cbDMl1yn3mvWqZDbVqeod7aKlzqtFea/4htHLoUbTySmeBLpChNoYJlSZfuUTmEd6B6JRk0P5xAq/leOUImRT2qxGPzV7fIkmm+XAqhf7NPEob67CMoMj9+C9aL7ogZl2SIBUV08r8w7SeOrHGODilvm5OSbWEdiPCkLvoQWUGYyaBRPUrcgnw9FXALbja+TAIT9gL6MoVNLMWbqn0Z4b40kP6GM0kb5/HPe7H1rx/mZL+obNR4LLrCVSSI2Z2ofri9LG6P3fKJuJ6AEve4O9hviKTvRcohxc5nczm9Mky5gIaMCGlZoNP3F+36xufS/gDWHDfLUpe3Pp9EFvU4FpLGyOlYs5Rt1x0Djxg90sRN237OClV29e1fVnztOWUWxyqiB5BalTBTWcriFzOtlunNceS2o62l1zs8ih8kjlR16ow2zIlRdmEQ7yvR7tLJIc9/3FGkVl/Mqi0GOvxGd13HVYnqKdCpo1vExp/gdgvmjPK8Pv"
 defaultRepoUrl: 'https://github.com/aeternity/gitops-tools.git'
-defaultTargetRevision: dev
+defaultTargetRevision: staging
 
 namespaces:
   - tools
@@ -94,13 +94,13 @@ argo-cd:
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
       pathType: ImplementationSpecific
       hosts:
-        - "argocd.dev.aeternity.io"
+        - "argocd.staging.aeternity.io"
     extraArgs:
       - --insecure=true
     logLevel: debug
     config:
       # Argo CD's externally facing base URL (optional). Required when configuring SSO
-      url: https://argocd.dev.aeternity.io
+      url: https://argocd.staging.aeternity.io
       # Argo CD instance label key
       application.instanceLabelKey: argocd.argoproj.io/instance
       repositories: |
@@ -185,6 +185,7 @@ argo-cd:
             server: https://kubernetes.default.svc
           - namespace: monitoring
             server: https://kubernetes.default.svc
+           # server: staging-cluster how to deploy 
         clusterResourceWhitelist:
           - group: '*'
             kind: '*' 
