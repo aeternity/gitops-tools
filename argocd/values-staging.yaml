@@ -29,6 +29,16 @@ argo-cd:
         - type: helm
           url: https://bitnami-labs.github.io/sealed-secrets
           name: sealed-secrets
+      dex.config: |
+        connectors:
+          - type: github
+            id: github
+            name: GitHub
+            config:
+              clientID: $dex.github.clientID
+              clientSecret: $dex.github.clientSecret
+              orgs:
+              - name: aeternity
     additionalProjects:
       - name: tools
         namespace: argocd
