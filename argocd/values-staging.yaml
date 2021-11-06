@@ -53,7 +53,7 @@ argo-cd:
             kind: '*'
 
 defaultRepoUrl: 'https://github.com/aeternity/gitops-tools.git'
-defaultTargetRevision: dev
+defaultTargetRevision: staging
 
 applications:
   argocd:
