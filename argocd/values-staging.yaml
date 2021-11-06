@@ -1,10 +1,24 @@
+defaultRepoUrl: 'https://github.com/aeternity/gitops-tools.git'
+defaultTargetRevision: staging
+
+namespaces:
+  - tools
+applications:
+  argocd:
+    project: tools
+    namespace: argocd
+  sealed-secrets:
+    project: tools
+    namespace: sealed-secrets
 argo-cd:
+  configs:
+    secret:
+      createSecret: true
   server:
     extraArgs:
       - --insecure
     config:
       # Argo CD's externally facing base URL (optional). Required when configuring SSO
-      # url: https://argocd.example.com
       # Argo CD instance label key
       application.instanceLabelKey: argocd.argoproj.io/instance
       repositories: |
@@ -15,24 +29,10 @@ argo-cd:
         - type: helm
           url: https://bitnami-labs.github.io/sealed-secrets
           name: sealed-secrets
-      dex.config: |
-        connectors:
-          - type: github
-            id: github
-            name: GitHub
-            config:
-              clientID: aabbccddeeff00112233
-              clientSecret: $dex.github.clientSecret
-              orgs:
-              - name: aeternity
-      # oidc.config: |
-      #   requestedIDTokenClaims:
-      #     groups:
-      #       essential: true
-      #   requestedScopes:
-      #     - openid
-      #     - profile
-      #     - email
+    rbacConfig:
+      policy.default: role:readonly
+      policy.csv: |
+        g, aeternity:devops, role:admin
     additionalProjects:
       - name: tools
         namespace: argocd
@@ -42,6 +42,8 @@ argo-cd:
         sourceRepos:
           - 'https://github.com/aeternity/gitops-tools.git'
         destinations:
+          - namespace: default
+            server: https://kubernetes.default.svc
           - namespace: tools
             server: https://kubernetes.default.svc
           - namespace: argocd
@@ -51,14 +53,3 @@ argo-cd:
         clusterResourceWhitelist:
           - group: '*'
             kind: '*'
-
-defaultRepoUrl: 'https://github.com/aeternity/gitops-tools.git'
-defaultTargetRevision: staging
-
-applications:
-  argocd:
-    project: tools
-    namespace: argocd
-  # sealed-secrets:
-  #   project: tools
-  #   namespace: sealed-secrets
