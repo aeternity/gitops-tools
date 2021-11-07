@@ -41,6 +41,9 @@ argo-cd:
         - type: helm
           url: https://aws.github.io/eks-charts
           name: eks
+        - type: helm
+          url: https://helm.traefik.io/traefik
+          name: traefik
     rbacConfig:
       policy.default: role:readonly
       policy.csv: |
