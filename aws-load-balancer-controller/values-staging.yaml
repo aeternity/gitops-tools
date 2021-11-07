@@ -1,0 +1,10 @@
+aws-load-balancer-controller:
+  clusterName: staging-mri0
+  rbac:
+    create: true
+  serviceAccount:
+    create: true
+    name: aws-load-balancer-controller-staging
+    # automountServiceAccountToken: false
+    annotations:
+      eks.amazonaws.com/role-arn: "arn:aws:iam::106102538874:role/aws-lb-controller-staging"
