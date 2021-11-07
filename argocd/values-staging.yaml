@@ -7,18 +7,6 @@ applications:
   argocd:
     project: tools
     namespace: argocd
-  sealed-secrets:
-    project: tools
-    namespace: sealed-secrets
-  aws-load-balancer-controller:
-    project: tools
-    namespace: kube-system
-  metrics-server:
-    project: tools
-    namespace: kube-system
-  traefik:
-    project: tools
-    namespace: traefik
 argo-cd:
   configs:
     secret:
@@ -35,15 +23,6 @@ argo-cd:
         - type: helm
           url: https://argoproj.github.io/argo-helm
           name: argo
-        - type: helm
-          url: https://bitnami-labs.github.io/sealed-secrets
-          name: sealed-secrets
-        - type: helm
-          url: https://aws.github.io/eks-charts
-          name: eks
-        - type: helm
-          url: https://helm.traefik.io/traefik
-          name: traefik
     rbacConfig:
       policy.default: role:readonly
       policy.csv: |
@@ -62,12 +41,6 @@ argo-cd:
           - namespace: tools
             server: https://kubernetes.default.svc
           - namespace: argocd
-            server: https://kubernetes.default.svc
-          - namespace: sealed-secrets
-            server: https://kubernetes.default.svc
-          - namespace: kube-system
-            server: https://kubernetes.default.svc
-          - namespace: traefik
             server: https://kubernetes.default.svc
         clusterResourceWhitelist:
           - group: '*'
