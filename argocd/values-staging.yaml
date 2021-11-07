@@ -5,7 +5,6 @@ namespaces:
   - tools
 applications:
   argocd:
-    project: tools
     namespace: argocd
 argo-cd:
   configs:
