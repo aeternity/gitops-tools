@@ -17,6 +17,9 @@ applications:
   traefik:
     project: tools
     namespace: traefik
+  kube-prometheus-stack:
+    project: tools
+    namespace: monitoring
 
 namespaces:
   - tools
@@ -44,6 +47,12 @@ argo-cd:
         - type: helm
           url: https://helm.traefik.io/traefik
           name: traefik
+        - type: helm
+          url: https://prometheus-community.github.io/helm-charts
+          name: prometheus-community
+        - type: helm
+          url: https://charts.bitnami.com/bitnami
+          name: bitnami
     additionalProjects:
       - name: tools
         namespace: argocd
@@ -62,7 +71,9 @@ argo-cd:
           - namespace: kube-system
             server: https://kubernetes.default.svc
           - namespace: traefik
-            server: https://kubernetes.default.svc        
+            server: https://kubernetes.default.svc
+          - namespace: monitoring
+            server: https://kubernetes.default.svc     
         clusterResourceWhitelist:
           - group: '*'
             kind: '*'
