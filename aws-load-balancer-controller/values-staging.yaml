@@ -1,10 +1,10 @@
 aws-load-balancer-controller:
-  clusterName: staging-mri0
+  clusterName: stg-g2ml
   rbac:
     create: true
   serviceAccount:
     create: true
-    name: aws-load-balancer-controller-staging
+    name: aws-load-balancer-controller-stg
     # automountServiceAccountToken: false
     annotations:
-      eks.amazonaws.com/role-arn: "arn:aws:iam::106102538874:role/aws-lb-controller-staging"
+      eks.amazonaws.com/role-arn: "arn:aws:iam::106102538874:role/aws-lb-controller-stg"
