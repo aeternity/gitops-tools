@@ -8,3 +8,4 @@ aws-load-balancer-controller:
     # automountServiceAccountToken: false
     annotations:
       eks.amazonaws.com/role-arn: "arn:aws:iam::106102538874:role/aws-lb-controller-stg"
+ 
