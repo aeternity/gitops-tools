@@ -9,9 +9,6 @@ applications:
     project: tools
     namespace: sealed-secrets
 
-namespaces:
-  - tools
-
 argo-cd:
   server:
     extraArgs:
