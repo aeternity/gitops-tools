@@ -67,7 +67,7 @@ argo-cd:
     logLevel: debug
     config:
       # Argo CD's externally facing base URL (optional). Required when configuring SSO
-      # url: https://argocd.example.com
+      url: https://argocd.stg.aeternity.io/
       # Argo CD instance label key
       application.instanceLabelKey: argocd.argoproj.io/instance
       repositories: |
