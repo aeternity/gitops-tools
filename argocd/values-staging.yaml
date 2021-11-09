@@ -26,9 +26,14 @@ applications:
   kube-prometheus-stack:
     project: tools
     namespace: monitoring
+  superhero-ui:
+    project: apps
+    namespace: apps
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
 
 namespaces:
   - tools
+  - apps
 
 argo-cd:
   configs:
@@ -100,6 +105,20 @@ argo-cd:
               clientSecret: $dex.github.clientSecret
               orgs:
               - name: aeternity
+      resource.customizations: |
+          networking.k8s.io/Ingress:
+            health.lua: |
+              hs = {}
+              hs.status = "Healthy"
+              return hs
+          admissionregistration.k8s.io/MutatingWebhookConfiguration:
+            ignoreDifferences: |
+              jsonPointers:
+              - /webhooks/0/failurePolicy
+          admissionregistration.k8s.io/ValidatingWebhookConfiguration:
+            ignoreDifferences: |
+              jsonPointers:
+              - /webhooks/0/failurePolicy
     rbacConfig:
       policy.default: role:readonly
       policy.csv: |
@@ -113,6 +132,8 @@ argo-cd:
         sourceRepos:
           - 'https://github.com/aeternity/gitops-tools.git'
         destinations:
+          - namespace: default
+            server: https://kubernetes.default.svc
           - namespace: tools
             server: https://kubernetes.default.svc
           - namespace: argocd
@@ -125,6 +146,19 @@ argo-cd:
             server: https://kubernetes.default.svc
           - namespace: monitoring
             server: https://kubernetes.default.svc     
+        clusterResourceWhitelist:
+          - group: '*'
+            kind: '*'
+      - name: apps
+        namespace: argocd
+        additionalLabels: {}
+        additionalAnnotations: {}
+        description: Applications deployed on EKS
+        sourceRepos:
+          - 'https://github.com/aeternity/gitops-apps.git'
+        destinations:
+          - namespace: apps
+            server: https://kubernetes.default.svc
         clusterResourceWhitelist:
           - group: '*'
             kind: '*'
