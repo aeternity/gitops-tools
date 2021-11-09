@@ -100,27 +100,27 @@ argo-cd:
               clientSecret: $dex.github.clientSecret
               orgs:
               - name: aeternity
-    additionalProjects:
-      - name: tools
-        namespace: argocd
-        additionalLabels: {}
-        additionalAnnotations: {}
-        description: Tools used to run the environment
-        sourceRepos:
-          - 'https://github.com/aeternity/gitops-tools.git'
-        destinations:
-          - namespace: tools
-            server: https://kubernetes.default.svc
-          - namespace: argocd
-            server: https://kubernetes.default.svc
-          - namespace: sealed-secrets
-            server: https://kubernetes.default.svc
-          - namespace: kube-system
-            server: https://kubernetes.default.svc
-          - namespace: traefik
-            server: https://kubernetes.default.svc
-          - namespace: monitoring
-            server: https://kubernetes.default.svc     
-        clusterResourceWhitelist:
-          - group: '*'
-            kind: '*'
+      additionalProjects:
+        - name: tools
+          namespace: argocd
+          additionalLabels: {}
+          additionalAnnotations: {}
+          description: Tools used to run the environment
+          sourceRepos:
+            - 'https://github.com/aeternity/gitops-tools.git'
+          destinations:
+            - namespace: tools
+              server: https://kubernetes.default.svc
+            - namespace: argocd
+              server: https://kubernetes.default.svc
+            - namespace: sealed-secrets
+              server: https://kubernetes.default.svc
+            - namespace: kube-system
+              server: https://kubernetes.default.svc
+            - namespace: traefik
+              server: https://kubernetes.default.svc
+            - namespace: monitoring
+              server: https://kubernetes.default.svc     
+          clusterResourceWhitelist:
+            - group: '*'
+              kind: '*'
