@@ -7,4 +7,4 @@ version: 10.1.1
 dependencies:
   - name: traefik
     version: 10.1.1
-    repository: https://traefik.github.io/traefik-helm-chart
+    repository: https://helm.traefik.io/traefik
