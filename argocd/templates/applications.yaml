@@ -18,7 +18,7 @@ spec:
     targetRevision: {{ $value.targetRevision | default $root.Values.defaultTargetRevision }}
     helm:
       valueFiles:
-        - values-staging.yaml
+        - values-stg.yaml
   destination:
     namespace: {{ $value.namespace }}
     server: 'https://kubernetes.default.svc'
