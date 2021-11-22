@@ -1,4 +1,4 @@
-encValues:
+  encValues:
   dex.github.clientID: "AgBX/BevFyMJ6Ds+cC6a+OQxpjuqqn2R+E3rdL4FVQkxXgsQvDNIv6YtC/K2psx/vZJNjhtkoxUsPBGZPd4b1ZcsmcxRpsHOoGeXvMXBez+N4xkSA/3JX8ZYSe9OllsFCBiL/L+qAkhpszGe7AoGzdHL+XjdOd8sPbgULm82pzS796SdVh/td15h6F9c8FjA1e4COUi4F5ExZnlOrIkb4itxsuPArtPvfFjcTylQmkY9VRpWXVEgSOUyB0IOUjMvb8I6HT488PId4cQ4hDz2NtBT1AYMK+bJwkJjo1Bu3J1npGbOfZfWgPO/+3fimIuJv0+Rs6+YrZALhdzQa0nBzaaqO//qmfUWMhFO7ygv0F7HsHQHlJQFTyfMEEkWHQyr0kwXj9KCM8lqql9Mj0IJsA7YDSYOveEVKf/NpZYXqIfU4rKVLi+CRUc4AkaOUvTOAZbP0iMH0OXk4d32xyVXqCO8ZEUcxfAd51f5Or9zfTjWVP9qSxNrUwx+bkKIUiY7rR+SQr3AfGgRRQRU5vlzpJgmL+2io0toXhrg6mJAaz+j+GMKfbC8mEKn6Kt277uKsXiV8xiCBVnZFWRO+nqmbWOWn4mc/AW84axCt5ogreSt32f8pmioYcfNsDGlZwDZlcNjmPPn+FoaVozuGPz0eJMl9k89QhztDNs4PwzVDxIFdECEEBDsGX3ZacpBYufcY9pGPTd6CgrXZLZ6mTZnUhxjdbG8xw=="
   dex.github.clientSecret: "AgAjAVdsPz/XMb3rpapcumYMGWAFC82JDTnXdMbeEy1toh6dGa4dhHXrv59myUCem7MxyS7r++y6BLNsCwp4UJClaCkpfyfpGQt6b4urd6RO2PX/93olq6Keyz8SyfJYhYoGiZUGbZveIZScMrQBaIaGaVZBy9/jfCt/O8VI9oyTMqML3W68621r4zyGN4D2bAfzyNXaJX4IWp/jA+DD+GT6Nbg6C3zE8d9g19+y5x479xt2Fkb8v86nBOu8fWcyL8XqgaxnmmF8yHhlaft9k/p2oWJxGS4+S9KRnQIyIPI7Kb3A8kXf1FtE/q2rtZDN4Qc++SEyOnzOgfWwzEqK0ktARJFHeVUeAGT5gYORepGGN1nhXcEUFtulgUrCeniWWFK69cg1nuXqGsReMucGMYgHqCB282FL+Aw+o6c5Q2mEcQGJlouwgIBHOl8EHBOgSg8ZYVByObCE7JxrzeL/EIyjwjAvQ6ogZyCoRIKLDqQQYabnzpjlY9QLky1nxg9df9n+8Vfz9Z307/Sr/YfHlEbpYY0LxE2y/zi1WSkVOmeHVSZ+U3sGVaDjrRZylHMw4Iuf8zVp287WnUaEFAYn1PJIHeBjjhoXlhb3RMZhpS6tfNeiZWxDqwThP8XRsA2JpDLnf9e6YYx2rIbRKuy9mAyVRa5lem70yfQooSJA1DrGIsClAzFwPO8RKAm6oswOMr70auA0xUGbGrP0CUXmUk9KejEjldVJbYpOlHg85z6MiT9ypH+vi028"
   admin.password: "AgBAWHQrXJJgQRFodXVOGyQjk0NhLEKnsuo10H005jGqyK0DbJ+HjBd/aXEChMPNQ8MAiZ5rtnNGmHIXA3MjcPM/EyUH4q7JtNXmgjvwZF0kpbdBnd9Nq3f5K0z1IGZv701N4IAjQIvV8Y3VO0rUTfZb5Q1MJf+nmQKsmfQBn5vw1zk6ISq2dqpbRXvUJQfCMmcgQKlqtRB/IV6uH+mge6oif3XkaVDPfhaDVWh1CTDyxJqQCkYRWNosXvyXEKpsiLK44ySwVC1NiydL6y3GpSSvlwvrh/CJQ7LoOAo4SynCdhRfGiIMieNBsmAsRLufCD3ioUE1xR20bQ7cPGA7B0E9Vxb+H3Mf2HaWzN6RgkjG0ximhKYbqSa982iu5YebnObG68qejH8hliCAqsCBJjb2HnBmeGQaL2wVpcqv4f457XLF5e2o0NmRDff1c9lsaLipqt00jYYlexUIHmN9ktn101JgT2oRPt1ZlrRk3N/jXZwl3OvnEiNOrL++PdC9YpwuTWec6ke76AoHQP8iR2UHgqM/A+KgEXg3I0AVonS5ladl923yIR4ZVg4eLbb4WredZZ5rsSXCbCJWHBQnGAdZJaAOWobZ2sO+LTz1Qqo9wFRU7CKvFMesrXXqufiFhOXAIjcEtzDsGynZxsGMUYS5+vz+GJmfHKg2bQlRkI6RA3Zyt3awqHKFdRUi1BYw2kYVX46Bs2UWtB150eaE"
@@ -26,7 +26,31 @@ applications:
   kube-prometheus-stack:
     project: tools
     namespace: monitoring
+  aepp-base:
+    project: apps
+    namespace: apps
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
   superhero-ui:
+    project: apps
+    namespace: apps
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+  aepp-faucet:
+    project: apps
+    namespace: apps
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+  aerepl-http:
+    project: apps
+    namespace: apps
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+  aesophia-http:
+    project: apps
+    namespace: apps
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+  mdw-frontend:
+    project: apps
+    namespace: apps
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+  superhero-wallet:
     project: apps
     namespace: apps
     repoUrl: 'https://github.com/aeternity/gitops-apps.git'
