@@ -1,9 +1,3 @@
-encValues:
-  dex.github.clientID: "AgCyWmQklwHv36YgLTm4YCfFcXrYL0XkdAjpGXunGBPea+b4K6sJat+jysuuNHhxLb/zzy4PegMeiHH11VipOpeme/yjSgW/ci9/YfVsev+IQbQSaGL8HfBR7fkoP1L5Gjzw6MR0Q+UPRgSIlsMDTNhcVX9hbAWV+O2UuC14iQgpMrXbMJJzL1+wD7WSNq+nEj/e+/poKih6t2B4+jEFvGBMaE3g70/+XE4BPjS1L55eRFE1LPfpa5JQvoFWNfy9X4hxSjcFDy79mG1JXfwrRjpw1Yrr2bL4hEwgBrZ+URVzMqL5tD+CWvZ9OuNNbcCOKu44hW35DXCGLVPMOi5CFYkrZuaU2dB13eXHx9JSUSxcBR32BqmwgK5AeWTi6uV/pO2Yll0rZrD0+JHa2fJY0Y/W3boEi63SCedQMdX4f32ZTYDm4QVSshBqmvnByRjTxpGK+42rimKk0ZdATSSGFitz5XU0pmTlsCZrUc1n6/HWHC/L5/dNkJ6NYsqex/neENZSwQZ4fAXaCovkXB3HVGRNMsaQm3qQaMPdjJ3ZDbv0gtagr7puT7FoWVJJNE3mn9zJL6r3CUPrTXRtNOfhpcBkov8JN+SewHSOi2vwDFs4MzpsP3g5ojIsTfj1iiDV5PDaTe4VCb0SoCxD6e+CpzPGj05yKKZMTho/Jup+eT7b6JyOaHJiHshk9iXRWTH7LU2itA+IoiM+sjyKtxT0zJ7Y2HJcmA=="
-  dex.github.clientSecret: "AgBrEB0fse95xaupzwRHyiZBCC9BzZJ7MXvZwaLrZgXhrr8t3lKrmvFjaydft9dHaBKRpIApzY5cwmsUGOVMZWfjWYrlbN9lPsGMtcJujOnAil1E6sl+dHSwGTIOXJvGCYGDYBu2WqHbO1Pb40N8zvuEKX+XwN2U9+14i9rqBxVg+3kbK8YCDN+OydgIUNAqYloF6sCXiDcr2W5/ivhyepyL02CoYaTcHun+29AyVw3eVGEmGe0+BtyA2pXzxkSrpXjrlI0+jH5u6UesMCvNk8xVIGY6nejCJKHAE1KmFm3id65kh8Sxs2utmOl7hmKzQ9ADQf6HLhiziC4988fgFBBelB6vl50MtkHg/gtNXBoT6Q3aX5/RsYzZg9He+xS9J8xIN66SNwMoZ0J5R4V/lDCidrxDCq9YwDm1sotx2WXAMldRenuz1SpGbeWG2xrsccZY51hpCKbhe2rrYcntnwPtxkYUq59hFRVU4Per9wPuyQ5nrhswmzdmH8YIQ0m902S7KjZID0FiTgIYX9jTNteHkLXU4uCEB1XpjrTIUg/sdBf0PWJruq5OFxiuVIpnllVplsF+IWyXKLQQMqZNWFdlQffBpEi8Abbw+gEIyx74W5mNAlhDXmc0akCkLj3ms/Vc97MeHaa2kP5abhMRr7mszVv1j0yF6lUfJyBnlZ8HcKajc5qkKyeIefCl+ZOLmCM4QibPv/Qrc94tLXIDI5rPN0o5S3TCEzIkeOnLRMWKRAQLECO8VwXx"
-  admin.password: "AgAASsZDZ6IQoZNGhO7S+KDKp9dfajrwa1LRc+B5bbRmb/Ur7rgX5AO5jea5MBK+jbsc++crTAuQpY1gvvZxdyShcSFtqSuBVphaYUH7nRw8Awyx3Wwn4W2v7gCh6ORCGaLqg1U4roH5M58svAQ6xU8SYrwbATS60q5pjududwBjHdZtjX5ybJtrxn+yANdHSUxUkSw+9XkVY1lgIX8LNidX/xeTGZsNdXfzhaJhQFUduavULt1yMu1raO0eajajXs58xdJD1UC3hE6I1wNhT6i341QfN4NqkK+sYx31y+ujb9jzUd7FygZW/Wv1SMymDjEy3BRR1s/dLhkFu1k/yvoQ60F7iJ3Qf03tZlpOMhvZ4gEV3PiK7UJ+4B2cmKI77gPW0r2N8g6o2z7cVXwTD4+AK3+vsorq8/WNAbHVlJr4DI4XdCbWIu2ZJ4R0B5BZqpJzSx09odCg6th7IbSj0jf83hmF3cMilL9DbB0Nz+h+EP5Ngqg9rRP6MSVrOZAdOLC94OReBy07tY1e2B3LnfFwowBwckuYlxzfAAuiKPfmKlObhtA/2wIqYYD+5V0YHoQaupdvfEhT3ussN2kKcPF/FSTfcojUgRQbujc2s6sMAfxHyaEG35bWL8HVE8Ot82GOxqProW+RrLdq0sRRU7YasqkIp/sNZqZ6CeLhIgeEqOZtmmmdjAfuFP1b/XtCbORyxSmB5xriNhXM2ldx"
-  admin.passwordMtime: "AgBiw/MJQnAEdhMlTYDYXL0rFcP+RB8Cb+O3ZrGpT1f8OHP8lAzZw4kedr/gMiK7focbEN+T5pswt1X9uDo2N6cjyNfKj9WSfHjrDtS3xskX6FMJw/ivJsFoqLTWOlKI10N/phjmNNnsJ6oHce7TntzDTWrwjkX4PA+d7Sgr82BKzrLvmJyvgwVEphIYi7CqHgSBEuS3W9ojt2WpalSe98MgyleSOKujzUW7coeExE8O9UPprDleuDB1Z8arZw+kRdlqK1PZkL9q9RsWREq+bNppLuH2j37TBWAjeBIKIvVsGNMU+JIMci9xHGDpttrvyh/YdStSlkP/VRPCalvRiFm/o/TbeZbwZvKoLgZ7EPjFj/0yhc0/eBfB3Y/4Ih0mqWXK5jBtUaC8tM6Ps3x5Q+SZbUNDLESa/bkwQHk3GsBvcpdI57xD3Ek390r+z72sxAA4PCc2jvObXfyx4mMpfi1IEplaIYmxuUCn8O4xrjjAlwDd+wxv/nU0EhbNOd2lMXHC7kRpHrnykjDtMZmJVlJ8R4cZvHD2fIgR0F5gC6pANNT0IVqbkXgRJOBVZLgqp5QnbTDUETZyxTWZQjPeZz4PQAN8zLsuSMnw5wDAp0fMaXTGXDoRmj5/00CLfHIqMdYkuXg4znMzaU7KOTdomskKh6Rf8+HqOpoHXd6Lqt1vyYBJzU4leo3SiBHK+kO1cAI+kMVd+jsQjViE5gLoDZq/TN9KwLbj"
-  server.secretkey: "AgAWNToc5gv2QgQ2lhzqHb9tO0M6LoHVGoYk8ogxgNLJeq5gwqISxhgCG0qLvXIpsftx4TIGP8MfQBbfXb49QbiH6CRWCStRDl4h4HOz5SuuSc1kcK8L2iuqINicR+fvc6xdWnOtgdktCQHHEYdoUNqncW5703roqB4OL9jpkJbPnCaeXaoO8wydGJ+u7q9foDSFepeLilaxwxdVU339i8+8ffDwp06fx7vKof+xTfj6IExQC3ypzstdvUrBJtAqoeFpFwCRE93NtXtKK6PFCWzjeHJZZUjsLvLcaGziTSZY5/B2mzKIjlhII9QJH2+IaUEouJtoN1q6oO9LreYlo9cOM8w2VCl5f5TdFBspXi6FuxbUPmGrTxC/E/WfEi2TbylxZFLBATPS3cWwdQwZNj97lA2NK40lWJ76XZO4PsVJk/JUPd+Odaia+fzle1K3lQCU7JjyfrDlm2J3EOfCYwx8vbMg1uQPj5+eB8hlo+pO9VO9dfg8kck0xCzdQrzTRV4mNFStzWoDP7bKdndt3fnyAGrOPd6UVA3rWapOYheoRBBi47Z6w2xTwh060g0/FLIYxMYRxWhZVEJaCE5rrlx0o/EbzauLKI25KX2xtD1DiPgHUGDLBtNnCGRrqjqYL9ryyqvwACWKzud0kOSufQkNXHI5GYCendKlW3kASP9sJ9VkgNncMsFTFKH9NJ3seTLMg7NDgUo0Zcg9+Bpv4QrkF0SNYxNfILI="
 defaultRepoUrl: 'https://github.com/aeternity/gitops-tools.git'
 defaultTargetRevision: staging
 
@@ -14,65 +8,17 @@ applications:
   sealed-secrets:
     project: tools
     namespace: sealed-secrets
-  aws-load-balancer-controller:
-    project: tools
-    namespace: kube-system
-  metrics-server:
-    project: tools
-    namespace: kube-system
-  traefik:
-    project: tools
-    namespace: traefik
-  kube-prometheus-stack:
-    project: tools
-    namespace: monitoring
-  superhero-ui:
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
 
 namespaces:
   - tools
-  - apps
 
 argo-cd:
-  configs:
-    secret:
-      createSecret: false
-  controller:
-    metrics:
-      enabled: true
-      serviceMonitor:
-        enabled: true
-  repoServer:
-    metrics:
-      enabled: true
-      serviceMonitor:
-        enabled: true
-  dex:
-    metrics:
-      enabled: true
-      serviceMonitor:
-        enabled: true
   server:
-    metrics:
-      enabled: true
-      serviceMonitor:
-        enabled: true
-    ingress:
-      enabled: true
-      annotations:
-        kubernetes.io/ingress.class: traefik
-        traefik.ingress.kubernetes.io/router.entrypoints: websecure
-      pathType: ImplementationSpecific
-      hosts:
-        - "argocd.stg.aeternity.io"
     extraArgs:
-      - --insecure=true
-    logLevel: debug
+      - --insecure
     config:
       # Argo CD's externally facing base URL (optional). Required when configuring SSO
-      url: https://argocd.stg.aeternity.io
+      # url: https://argocd.example.com
       # Argo CD instance label key
       application.instanceLabelKey: argocd.argoproj.io/instance
       repositories: |
@@ -81,48 +27,8 @@ argo-cd:
           url: https://argoproj.github.io/argo-helm
           name: argo
         - type: helm
-          url: https://bitnami-labs.github.io/sealed-secrets
-          name: sealed-secrets
-        - type: helm
-          url: https://aws.github.io/eks-charts
-          name: eks
-        - type: helm
-          url: https://helm.traefik.io/traefik
-          name: traefik
-        - type: helm
-          url: https://prometheus-community.github.io/helm-charts
-          name: prometheus-community
-        - type: helm
-          url: https://charts.bitnami.com/bitnami
-          name: bitnami
-      dex.config: |
-        connectors:
-          - type: github
-            id: github
-            name: GitHub
-            config:
-              clientID: $dex.github.clientID
-              clientSecret: $dex.github.clientSecret
-              orgs:
-              - name: aeternity
-      resource.customizations: |
-          networking.k8s.io/Ingress:
-            health.lua: |
-              hs = {}
-              hs.status = "Healthy"
-              return hs
-          admissionregistration.k8s.io/MutatingWebhookConfiguration:
-            ignoreDifferences: |
-              jsonPointers:
-              - /webhooks/0/failurePolicy
-          admissionregistration.k8s.io/ValidatingWebhookConfiguration:
-            ignoreDifferences: |
-              jsonPointers:
-              - /webhooks/0/failurePolicy
-    rbacConfig:
-      policy.default: role:readonly
-      policy.csv: |
-        g, aeternity:devops, role:admin
+            url: https://bitnami-labs.github.io/sealed-secrets
+            name: sealed-secrets
     additionalProjects:
       - name: tools
         namespace: argocd
@@ -132,33 +38,12 @@ argo-cd:
         sourceRepos:
           - 'https://github.com/aeternity/gitops-tools.git'
         destinations:
-          - namespace: default
-            server: https://kubernetes.default.svc
           - namespace: tools
             server: https://kubernetes.default.svc
           - namespace: argocd
             server: https://kubernetes.default.svc
           - namespace: sealed-secrets
-            server: https://kubernetes.default.svc
-          - namespace: kube-system
-            server: https://kubernetes.default.svc
-          - namespace: traefik
-            server: https://kubernetes.default.svc
-          - namespace: monitoring
-            server: https://kubernetes.default.svc     
-        clusterResourceWhitelist:
-          - group: '*'
-            kind: '*'
-      - name: apps
-        namespace: argocd
-        additionalLabels: {}
-        additionalAnnotations: {}
-        description: Applications deployed on EKS
-        sourceRepos:
-          - 'https://github.com/aeternity/gitops-apps.git'
-        destinations:
-          - namespace: apps
-            server: https://kubernetes.default.svc
+            server: https://kubernetes.default.svc          
         clusterResourceWhitelist:
           - group: '*'
             kind: '*'
