@@ -11,14 +11,54 @@ applications:
   aws-load-balancer-controller:
     project: tools
     namespace: kube-system
+  metrics-server:
+    project: tools
+    namespace: kube-system
+  traefik:
+    project: tools
+    namespace: traefik
+  kube-prometheus-stack:
+    project: tools
+    namespace: monitoring
 
 namespaces:
   - tools
 
 argo-cd:
+  configs:
+    secret:
+      createSecret: false
+  controller:
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true
+  repoServer:
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true
+  dex:
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true
   server:
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: traefik
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      pathType: ImplementationSpecific
+      hosts:
+        - "argocd.stg.aeternity.io"
     extraArgs:
-      - --insecure
+      - --insecure=true
+    logLevel: debug
     config:
       # Argo CD's externally facing base URL (optional). Required when configuring SSO
       # url: https://argocd.example.com
@@ -35,6 +75,25 @@ argo-cd:
         - type: helm
           url: https://aws.github.io/eks-charts
           name: eks
+        - type: helm
+          url: https://helm.traefik.io/traefik
+          name: traefik
+        - type: helm
+          url: https://prometheus-community.github.io/helm-charts
+          name: prometheus-community
+        - type: helm
+          url: https://charts.bitnami.com/bitnami
+          name: bitnami
+      dex.config: |
+        connectors:
+          - type: github
+            id: github
+            name: GitHub
+            config:
+              clientID: $dex.github.clientID
+              clientSecret: $dex.github.clientSecret
+              orgs:
+              - name: aeternity
     additionalProjects:
       - name: tools
         namespace: argocd
@@ -51,7 +110,11 @@ argo-cd:
           - namespace: sealed-secrets
             server: https://kubernetes.default.svc
           - namespace: kube-system
-            server: https://kubernetes.default.svc        
+            server: https://kubernetes.default.svc
+          - namespace: traefik
+            server: https://kubernetes.default.svc
+          - namespace: monitoring
+            server: https://kubernetes.default.svc     
         clusterResourceWhitelist:
           - group: '*'
             kind: '*'
