@@ -93,6 +93,19 @@ argo-cd:
         clusterResourceWhitelist:
           - group: '*'
             kind: '*'
+      - name: apps
+        namespace: argocd
+        additionalLabels: {}
+        additionalAnnotations: {}
+        description: Applications deployed on EKS
+        sourceRepos:
+          - 'https://github.com/aeternity/gitops-apps.git'
+        destinations:
+          - namespace: apps
+            server: https://kubernetes.default.svc
+        clusterResourceWhitelist:
+          - group: '*'
+            kind: '*'
 
 defaultRepoUrl: 'https://github.com/aeternity/gitops-tools.git'
 defaultTargetRevision: staging
