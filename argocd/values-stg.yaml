@@ -6,6 +6,14 @@ encValues:
   admin.passwordMtime: "AgBXOGnvRyAG+N54/vdbe11Jjx1/YkzxBHY1RXSZ4v63KLpPPN6iCi7YlqLqetKeVW2T0HpSJR6WQFzL4QNL0/kT0CF7H6lcXneyhseas4GOwX1CDHTdsQZeK7rpckmfyfQobJrVewpGvE5PFQjaZeKRcNwI+jkqlw/GFK5ZaZWSisydNU14AD6PDvWIVWMo5aYv6232DaRxYxbQHOIVT/7hmiAd4kGtIBtvhAiKdnWPXJW6bx4y2Rg4GwdKybu6s0kCmjrn/kd5MoZVUyk7s5BD8BFnov39vwq8v+WnKE4jP4wCAEB4fGoGYroXrTxRGJ5cG+0CXspzw4CAmgfPAgveuJjbbCbRKAw2pQKmkPJBEILozH63WNddnQRkiROkSOt0eT7boB6d25pykympkRGeY5OYf0LT89/TSr14vfQt7uoXG87Yo6qkNA50fdliszie3lzxZuZ8QgMHlLzL4TaW4GeEltR0V17TMYTPWoL/mQjhBl+lp0wQYM2aoD2R92Ar+qLk7XUVRqZYzCrKFZBJNUfZpus4DbG+Le3hGdrSWCZewwy2j/XiCQPONUWTFkWFetcA5FUQlPADXwqfJoWjX5jv1ukrVMuhVGEnLoUbQi1I9UjQ1pWUx0pISdfP3rt3B7zqAknMnYMe7/DjGUCpX7bp3bR+wJpej02QKFl1NuKKCshzeKw4jco57NcFb2ldTgL6Jm4XCezFCp2ng4qcnzWWwR7O"
 argo-cd:
   server:
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: traefik
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      pathType: ImplementationSpecific
+      hosts:
+        - "argocd.stg.aeternity.io"
     extraArgs:
       - --insecure
     config:
@@ -24,6 +32,9 @@ argo-cd:
         - type: helm
           url: https://aws.github.io/eks-charts
           name: eks
+        - type: helm
+          url: https://helm.traefik.io/traefik
+          name: traefik
       dex.config: |
         connectors:
           - type: github
@@ -68,3 +79,6 @@ applications:
   aws-load-balancer-controller:
     project: tools
     namespace: kube-system
+  traefik:
+    project: tools
+    namespace: traefik

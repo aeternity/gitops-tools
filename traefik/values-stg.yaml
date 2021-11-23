@@ -14,5 +14,5 @@ traefik:
       service.beta.kubernetes.io/aws-load-balancer-type: external
       service.beta.kubernetes.io/aws-load-balancer-scheme: "internet-facing"
       service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: instance
-      service.beta.kubernetes.io/aws-load-balancer-ssl-cert: "arn:aws:acm:eu-central-1:106102538874:certificate/604a0c23-94a0-4c63-ae50-869ed1e39c9f"
+      service.beta.kubernetes.io/aws-load-balancer-ssl-cert: "arn:aws:acm:eu-central-1:106102538874:certificate/dda12c43-7b31-4b75-9d2b-172d254726de"
       service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "443"
