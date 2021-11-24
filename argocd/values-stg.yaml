@@ -3,7 +3,29 @@ encValues:
   dex.github.clientSecret: "AgBJKr4v8Zg0f3AoivLe4YgLoLOncFcrFWK5pJhGtByO+Gt0MAYN/aDi58NsHoj/YOaiUMEpt0I+GARMH2VBAmMoJFvYcHoM8+VXT0nAPJ6S7Fdun4LVrBFrM2e1IAHzdF2j3+r9/MkoJbQpXFJLIPtvxZSXcWJUiB+iid0Bbw4NnzGTJ3jjx24smhEfz75mQHhkBEVrMZaq7WOd7nPHhC/oazoTfbweFdsNfb1nsLNJ6HkptwcTV9L8hLKh8jvEFJzdwxdjUWUDqaDyZyxr+1h5fxK5fL/ZHbQCsHyq4hF/U7fbr0sbf3SOFxpDwB0PbWuFLbL82xTfF6Y5b2V9rbxXa1a4Pqrk+ATNWriGCWmPG1JVZzwdqHcze3Ru2+zt5B0bNFCG+NcYBDKZUJ8vrFUXRm2TPtWoaG2JXD6ZEDPvOHa7bsmfX/BSaasPd3Lh3qta+l+3M5UFfShn1d+oo6unikStxBLorSaHOw2B64zlemtnTHEXDf+sP8UoN246tsLRC9+ycxShLdlh3NYGLSKVgM6llFH/Jl6bBlW6cr2dIm3j7MHbI8c4DpLFx0JDyQ4/ygvRfTaUQkT3VhKQFeqgBb3QY3PWGRX/mlSHPT6iVOThUKqNOLkBp934X8Vi3YkbK+6K7NUOR76qH4toviNw2+IFl9D7i6K64z2DZ+05tDcyWE2NKUwvBuQ4McSCIqFEve4aJKVaWrj5SpizdNVz0eaQZF3/X4ejL7UwFUcuZVAOlZdBKd+P"
   server.secretkey: "AgAsRw0ElnUtVAEF5OpM2f72K0xBkMFVadn7n6bUzKieh5C8FfNZWGwMhCr9ODSpVKZFx4qiLPvv9vT+3jJjKre8jc87tp0aMxeynTINjKaSz2QtRw7UOt7Y4Kp7c3ppQxLZ7o1f4DhFqmcqSy3q/sI/IpHItaPsMfWGO85Mzu0odRAre9UooDzHc302LSuiftwzB4OfTv2R2JFduGd/KXZgGVujqjFnGOly/ip0kNjeLcIkw2hGQ3j1V73Qewu/HVfKbywzRxQrsUEH3Yv80HubCn+neU5opWnSSc9D/v7e23sxSvaiMJLS6T1uFoG/Pfo8Lhy/IQcY7k1X662aOPOjmghWqCjjXTbhZViUhw+03LoXc24n0iNnB8sGv1kKhXgWL0xa1ga4JPkPPFhLJWppkg2wK4XRuumGAUI6SIQZ4QGku49uIBaSZ2oJwy5E8wpa6aovbb4gJXmcVKob69QM3oygUGIijhBKo2yRgduPGif/RAoIIVWKhcH1tLWnNcBB1ZvOp82111Kphufr+b7JOiGGDvleb7+cM/A+9UcKrEzEDJ0vakvaGpYhGeyMyumexN3y2BVRC+oQH0pkfeiTg5PGffcsSokHpuP+nhZERzPP/Ow/vN6+o9d30LO44fgn77uurgvGNQeyZ5WtZF88DDxv7S37OSiOiKOZVjNjCFh54y0sOWVfhA0pQsAWe1vZShdR4w/ApnwjnYqBnmyGTwYsWM0mV6Y="
 argo-cd:
+  configs:
+    secret:
+      createSecret: false
+  controller:
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true
+  repoServer:
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true
+  dex:
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true
   server:
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true
     ingress:
       enabled: true
       annotations:
