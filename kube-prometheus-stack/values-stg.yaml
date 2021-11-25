@@ -92,7 +92,7 @@ kube-prometheus-stack:
         - "alertmanager.stg.aeternity.io"
       pathType: ImplementationSpecific
   
-  blackbox-exporter:
+  prometheus-blackbox-exporter:
     config:
       modules:
         http_2xx:
@@ -104,5 +104,3 @@ kube-prometheus-stack:
   defaultRules:
     rules:
       kubeScheduler: false
-
-    
