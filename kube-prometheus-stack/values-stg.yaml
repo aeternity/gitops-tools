@@ -5,6 +5,8 @@ encValues:
   grafana_admin_password: 'AgAkiIIwvDfkiUGRHfzK3QS1/tWh01ox+LqKeFVS/kMd+91c+jdt3P3JJZv5PfSqA5detUiFDPtYJRC+Ew+lHQdtjPZwyc1yDQgly2ImN8k6tSeiSsgM3oV/WV9y3Xi2Wia6XlpJ053SEB+aeD43JxuC7N1ZmCWj8MabccdNyCp0uOOOES0JttSUhWo+DxM435Gafh7up5EZxlKBTDIUYHfr4E4EVMObk+ZoRy5px75GNWPOFYFVMPHuYc2WQOqTUulEPcxepTSpo7xZayE6IA5bPP4F/g+ZcaomIa+spB0XtrG+ntj6O0TTKILbmo0J9y0MBR2QGuu9SNxL5AIoIrYniW7ELFmflKp/fjSkj0FtN0yp8c6jSoLah5ZVx5WDF4sF6KddJWrGoKOFrVSbqhfUisKpCkqjJ+vCVW1NuLv7kMGrZ16QMpoQX49HOSFdQkPl7VVC7u0IOlWoXDGatMFlBwshmjWQPtG8colIANEnpYxTWe4KtgfLJKVNueUVHmMqqGNFicZQygSNim9jeHypOzWEqrzhs7qHMmRx3BwTJCyo3Hy+d4BeGloi7OEjXqALAS6dHrYcW/DZwvzxsG2idrTaNC9DZreK1g283x128drxj97Wbhc5A4ezccp/TkCdY95hNCBuCQhPaaNtKqhwddYMD/ZnFGPditkP+3iWpD6eT49lj1gAm4U5dO4+9SOm1N1Ev0wKnDxfRo4QCJF5'
 
 kube-prometheus-stack:
+  prometheus-blackbox-exporter:
+  
   prometheus:
     prometheusSpec:
       serviceMonitorSelectorNilUsesHelmValues: false
@@ -90,16 +92,7 @@ kube-prometheus-stack:
         kubernetes.io/ingress.class: traefik
       hosts:
         - "alertmanager.stg.aeternity.io"
-      pathType: ImplementationSpecific
-  
-  prometheus-blackbox-exporter:
-    config:
-      modules:
-        http_2xx:
-        prober: http
-        timeout: 2s
-        http:
-          follow_redirects: true
+      pathType: ImplementationSpecific 
 
   defaultRules:
     rules:
