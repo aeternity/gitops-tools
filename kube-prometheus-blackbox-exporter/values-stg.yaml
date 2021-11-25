@@ -4,5 +4,4 @@ prometheus-blackbox-exporter:
       http_2xx:
       prober: http
       timeout: 2s
-      http:
-        follow_redirects: true
+
