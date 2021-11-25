@@ -91,7 +91,18 @@ kube-prometheus-stack:
       hosts:
         - "alertmanager.stg.aeternity.io"
       pathType: ImplementationSpecific
+  
+  blackbox-exporter:
+    config:
+      modules:
+        http_2xx:
+        prober: http
+        timeout: 2s
+        http:
+          follow_redirects: true
 
   defaultRules:
     rules:
       kubeScheduler: false
+
+    
