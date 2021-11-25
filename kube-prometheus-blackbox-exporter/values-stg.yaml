@@ -1,0 +1,8 @@
+prometheus-blackbox-exporter:
+  config:
+    modules:
+      http_2xx:
+      prober: http
+      timeout: 2s
+      http:
+        follow_redirects: true
