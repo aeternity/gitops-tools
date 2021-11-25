@@ -151,7 +151,7 @@ applications:
   kube-prometheus-stack:
     project: tools
     namespace: monitoring
-  prometheus-blackbox-exporter:
+  kube-prometheus-blackbox-exporter:
     project: tools
     namespace: monitoring
   superhero-ui:
