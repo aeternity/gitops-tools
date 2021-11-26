@@ -24,7 +24,7 @@ prometheus-blackbox-exporter:
 
     targets:
       - name: google
-        url: http://google.com/
+        url: https://google.com
         interval: 60s
         scrapeTimeout: 60s
         module: http_2xx
