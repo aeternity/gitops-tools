@@ -10,7 +10,7 @@ prometheus-blackbox-exporter:
           preferred_ip_protocol: "ip4"
   serviceMonitor:
     enabled: true
-  
+
     defaults:
       additionalMetricsRelabels: {}
       labels: {}
@@ -18,13 +18,13 @@ prometheus-blackbox-exporter:
       scrapeTimeout: 30s
       module: http_2xx
     scheme: http
-  
+
     tlsConfig: {}
     bearerTokenFile:
-  
+
     targets:
       - name: google
-        url: http://google.trendyol.com/
+        url: http://google.com/
         interval: 60s
         scrapeTimeout: 60s
         module: http_2xx
