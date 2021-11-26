@@ -170,6 +170,10 @@ applications:
     project: apps
     namespace: apps
     repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+  aesophia-http:
+    project: apps
+    namespace: apps
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
   mdw-frontend:
     project: apps
     namespace: apps
