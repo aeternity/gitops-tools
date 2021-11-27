@@ -104,18 +104,24 @@ kube-prometheus-stack:
         - '/etc/alertmanager/*.tmpl'
 
       receivers:
+        - name: 'null'
         - name: 'slack-notifications'
           slack_configs:
           - channel: '#monitoring'
             send_resolved: true
 
       route:
-        group_wait: 10s
+        group_by: ['job']
+        group_wait: 30s
         group_interval: 5m
-        receiver: 'slack-notifications'
-        repeat_interval: 3h
+        receiver: 'null'
+        routes:
+        - match:
+            alertname: Watchdog
+          receiver: 'null'
+        - receiver: 'slack-notifications'
+          continue: true
 
   defaultRules:
     rules:
       kubeScheduler: false
-
