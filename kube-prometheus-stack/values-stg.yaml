@@ -115,7 +115,7 @@ kube-prometheus-stack:
             alertname: Watchdog
           receiver: 'null'
         - match:
-            alertname: Watchdog
+            alertname: BlackboxProbeHttpFailure
           receiver: 'slack-notifications'
       receivers:
       - name: 'null'
