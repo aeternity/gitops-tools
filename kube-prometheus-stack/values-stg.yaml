@@ -103,9 +103,6 @@ kube-prometheus-stack:
         slack_api_url: 'https://hooks.slack.com/services/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'
       route:
         group_by: ['job']
-        group_wait: 30s
-        group_interval: 5m
-        repeat_interval: 12h
         receiver: slack-notifications
         
         routes:
