@@ -113,9 +113,6 @@ kube-prometheus-stack:
         
         routes:
         - match:
-            alertname: Watchdog
-          receiver: 'null'
-        - match:
             alertname: BlackboxProbeHttpFailure
           receiver: 'slack-notifications'
       receivers:
