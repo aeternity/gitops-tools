@@ -130,7 +130,7 @@ kube-prometheus-stack:
       kubeScheduler: false
   
   additionalPrometheusRulesMap:
-  rule-name:
+  - name: blackbox
     groups:
     - name: blackbox
       rules:
