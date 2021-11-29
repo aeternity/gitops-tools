@@ -106,17 +106,12 @@ kube-prometheus-stack:
         group_wait: 30s
         group_interval: 5m
         repeat_interval: 12h
-        receiver: 'null'
         
         routes:
-        - match:
-            alertname: Watchdog
-          receiver: 'null'
         - match:
             alertname: BlackboxProbeHttpFailure
           receiver: 'slack-notifications'
       receivers:
-      - name: 'null'
       - name: 'slack-notifications'
         slack_configs:
           - channel: '#monitoring'
