@@ -116,7 +116,6 @@ kube-prometheus-stack:
             alertname: BlackboxProbeHttpFailure
           receiver: 'slack-notifications'
       receivers:
-      - name: 'null'
       - name: 'slack-notifications'
         slack_configs:
           - channel: '#monitoring'
