@@ -100,7 +100,7 @@ kube-prometheus-stack:
     config:
       global:
         resolve_timeout: 5m
-        slack_api_url: 'https://hooks.slack.com/services/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'
+        slack_api_url: https://hooks.slack.com/services/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
       route:
         group_by: ['job']
         receiver: slack-notifications
