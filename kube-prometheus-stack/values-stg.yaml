@@ -119,7 +119,7 @@ kube-prometheus-stack:
       - '/etc/alertmanager/config/*.tmpl'
     
     secrets:
-      - slack-secret
+      - kube-prometheus-stack-secret
 
   defaultRules:
     rules:
