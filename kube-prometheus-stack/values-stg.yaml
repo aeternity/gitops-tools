@@ -89,6 +89,8 @@ kube-prometheus-stack:
   alertmanager:
     alertmanagerSpec:
       externalUrl: "https://alertmanager.stg.aeternity.io"
+      secrets:
+      - kube-prometheus-stack-secret
     ingress:
       enabled: true
       annotations:
@@ -117,9 +119,6 @@ kube-prometheus-stack:
             send_resolved: true
       templates:
       - '/etc/alertmanager/config/*.tmpl'
-    
-    secrets:
-      - kube-prometheus-stack-secret
 
   defaultRules:
     rules:
