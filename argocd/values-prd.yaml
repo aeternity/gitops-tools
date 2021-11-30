@@ -12,6 +12,9 @@ argo-cd:
         - type: helm
           url: https://argoproj.github.io/argo-helm
           name: argo
+        - type: helm
+          url: https://bitnami-labs.github.io/sealed-secrets
+          name: sealed-secrets
     additionalProjects:
       - name: tools
         namespace: argocd
@@ -25,6 +28,8 @@ argo-cd:
             server: https://kubernetes.default.svc
           - namespace: argocd
             server: https://kubernetes.default.svc
+          - namespace: sealed-secrets
+            server: https://kubernetes.default.svc 
         clusterResourceWhitelist:
           - group: '*'
             kind: '*'
@@ -36,3 +41,7 @@ applications:
   argocd:
     project: tools
     namespace: argocd
+  sealed-secrets:
+    project: tools
+    namespace: sealed-secrets
+
