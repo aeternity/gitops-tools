@@ -95,18 +95,6 @@ kube-prometheus-stack:
             apiURL:
               key: 'webhookURL'
               name: 'slack-secret'
-    ingress:
-      enabled: true
-      annotations:
-        kubernetes.io/ingress.class: traefik
-      hosts:
-        - "alertmanager.stg.aeternity.io"
-      pathType: ImplementationSpecific
-
-
-    config:
-      global:
-        resolve_timeout: 5m
       route:
         group_by: ['job']
         receiver: slack-notifications
@@ -114,10 +102,13 @@ kube-prometheus-stack:
         - match:
             alertname: BlackboxProbeHttpFailure
           receiver: slack-notifications
-      receivers:
-      - name: slack-notifications
-      templates:
-      - '/etc/alertmanager/config/*.tmpl'
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: traefik
+      hosts:
+        - "alertmanager.stg.aeternity.io"
+      pathType: ImplementationSpecific
 
   defaultRules:
     rules:
