@@ -35,6 +35,12 @@ argo-cd:
         - type: helm
           url: https://helm.traefik.io/traefik
           name: traefik
+        - type: helm
+          url: https://prometheus-community.github.io/helm-charts
+          name: prometheus-community
+        - type: helm
+          url: https://charts.bitnami.com/bitnami
+          name: bitnami
       dex.config: |
         connectors:
           - type: github
@@ -68,6 +74,8 @@ argo-cd:
             server: https://kubernetes.default.svc
           - namespace: traefik
             server: https://kubernetes.default.svc
+          - namespace: monitoring
+            server: https://kubernetes.default.svc
         clusterResourceWhitelist:
           - group: '*'
             kind: '*'
@@ -91,3 +99,7 @@ applications:
   metrics-server:
     project: tools
     namespace: kube-system
+  kube-prometheus-stack:
+    project: tools
+    namespace: monitoring
+  
