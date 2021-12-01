@@ -51,6 +51,20 @@ argo-cd:
               clientSecret: $dex.github.clientSecret
               orgs:
               - name: aeternity
+      resource.customizations: |
+          networking.k8s.io/Ingress:
+            health.lua: |
+              hs = {}
+              hs.status = "Healthy"
+              return hs
+          admissionregistration.k8s.io/MutatingWebhookConfiguration:
+            ignoreDifferences: |
+              jsonPointers:
+              - /webhooks/0/failurePolicy
+          admissionregistration.k8s.io/ValidatingWebhookConfiguration:
+            ignoreDifferences: |
+              jsonPointers:
+              - /webhooks/0/failurePolicy
     rbacConfig:
       policy.default: role:readonly
       policy.csv: |
@@ -102,4 +116,3 @@ applications:
   kube-prometheus-stack:
     project: tools
     namespace: monitoring
-  
