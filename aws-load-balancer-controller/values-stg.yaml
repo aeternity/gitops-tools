@@ -1,10 +1,10 @@
 aws-load-balancer-controller:
-  clusterName: stg-g2ml
+  clusterName: prd-0e9c
   rbac:
     create: true
   serviceAccount:
     create: true
-    name: aws-load-balancer-controller-stg
+    name: aws-load-balancer-controller-prd
     # automountServiceAccountToken: false
     annotations:
-      eks.amazonaws.com/role-arn: "arn:aws:iam::106102538874:role/aws-lb-controller-stg"
+      eks.amazonaws.com/role-arn: "arn:aws:iam::106102538874:role/aws-lb-controller-prd"

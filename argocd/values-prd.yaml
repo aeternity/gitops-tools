@@ -15,6 +15,9 @@ argo-cd:
         - type: helm
           url: https://bitnami-labs.github.io/sealed-secrets
           name: sealed-secrets
+        - type: helm
+          url: https://aws.github.io/eks-charts
+          name: eks
     additionalProjects:
       - name: tools
         namespace: argocd
@@ -29,7 +32,9 @@ argo-cd:
           - namespace: argocd
             server: https://kubernetes.default.svc
           - namespace: sealed-secrets
-            server: https://kubernetes.default.svc 
+            server: https://kubernetes.default.svc
+          - namespace: kube-system
+            server: https://kubernetes.default.svc
         clusterResourceWhitelist:
           - group: '*'
             kind: '*'
@@ -44,4 +49,6 @@ applications:
   sealed-secrets:
     project: tools
     namespace: sealed-secrets
-
+  aws-load-balancer-controller:
+    project: tools
+    namespace: kube-system  
