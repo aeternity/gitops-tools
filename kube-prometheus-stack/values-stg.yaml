@@ -101,10 +101,6 @@ kube-prometheus-stack:
         groupWait: 1m
         groupInterval: 1m
         repeatInterval: 1m
-        routes:
-        - match:
-            alertname: BlackboxProbeHttpFailure
-          receiver: slack-notifications
     ingress:
       enabled: true
       annotations:
