@@ -98,6 +98,9 @@ kube-prometheus-stack:
       route:
         group_by: ['job']
         receiver: slack-notifications
+        groupWait: 1m
+        groupInterval: 1m
+        repeatInterval: 1m
         routes:
         - match:
             alertname: BlackboxProbeHttpFailure
