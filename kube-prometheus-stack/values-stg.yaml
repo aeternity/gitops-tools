@@ -88,19 +88,31 @@ kube-prometheus-stack:
   alertmanager:
     alertmanagerSpec:
       externalUrl: "https://alertmanager.stg.aeternity.io"
+      global:
+        resolve_timeout: 5m
+      route:
+        receiver: "null"
+        group_by:
+        - job
+        routes:
+        - receiver: "null"
+          match:
+            alertname: Watchdog
+        - receiver: slack-notifications
+        group_wait: 30s
+        group_interval: 5m
+        repeat_interval: 12h
       receivers:
-      - name: 'slack-notifications'
-        slackConfigs:
+        - name: "null"
+        - name: 'slack-notifications'
+          slackConfigs:
           - channel: '#monitoring'
             apiURL:
               key: 'webhookURL'
               name: 'slack-secret'
-      route:
-        group_by: ['job']
-        receiver: slack-notifications
-        groupWait: 1m
-        groupInterval: 1m
-        repeatInterval: 1m
+      templates:
+        - /etc/alertmanager/config/*.tmpl
+
     ingress:
       enabled: true
       annotations:
