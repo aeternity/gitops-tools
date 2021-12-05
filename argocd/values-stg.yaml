@@ -18,6 +18,9 @@ argo-cd:
         - type: helm
           url: https://aws.github.io/eks-charts
           name: eks
+        - type: helm
+          url: https://helm.traefik.io/traefik
+          name: traefik
     additionalProjects:
       - name: tools
         namespace: argocd
@@ -34,6 +37,8 @@ argo-cd:
           - namespace: sealed-secrets
             server: https://kubernetes.default.svc
           - namespace: kube-system
+            server: https://kubernetes.default.svc
+          - namespace: traefik
             server: https://kubernetes.default.svc
         clusterResourceWhitelist:
           - group: '*'
@@ -52,5 +57,6 @@ applications:
   aws-load-balancer-controller:
     project: tools
     namespace: kube-system
-
-
+  traefik:
+    project: tools
+    namespace: traefik

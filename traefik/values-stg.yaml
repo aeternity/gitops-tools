@@ -10,9 +10,9 @@ traefik:
     spec:
       # externalTrafficPolicy: Local
     annotations:
-      service.beta.kubernetes.io/aws-load-balancer-name: prd-0e9c-traefik-ingress
+      service.beta.kubernetes.io/aws-load-balancer-name: stg-vvup-traefik-ingress
       service.beta.kubernetes.io/aws-load-balancer-type: external
       service.beta.kubernetes.io/aws-load-balancer-scheme: "internet-facing"
       service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: instance
-      service.beta.kubernetes.io/aws-load-balancer-ssl-cert: "arn:aws:acm:eu-central-1:106102538874:certificate/2fce6e1d-0d21-4cd8-85b5-076fc9b77e7e"
+      service.beta.kubernetes.io/aws-load-balancer-ssl-cert: "arn:aws:acm:eu-central-1:106102538874:certificate/ea9a6f4f-b55a-46c1-9ded-0e0dc6920fdb"
       service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "443"
