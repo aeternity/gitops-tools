@@ -1,5 +1,18 @@
+encValues:
+  dex.github.clientID: "AgCc8CRj6VlO9Bi9A+3ggL6rAk99DTPtRJWbX1v14MgDgMNknYO+srHqWA8BtvqlBeVdoLKdYq2v0vBkcXVv/8r7/Bn59J9bg1VXlL/5w6eksh4TYYoCgnJe/hgBNJbOln74zWF49Ipo0u/pmCflnCXlcKB28f/y4sSfJYvFN0rLewV5OUdo/J/G0oECtsWG4IMlXLTYeYLzPF4l0n1mrMaFPToR6vdCnRPx+lDQNZrRoCjEcqr/SSHZa9e1GPbFxhIuIMHmJJ3ruemdjtBkoHjSTGR44+D0AtikTcmWQHiGaApxNTaMAUZn6uIqMUhhNGfuiGQ1xYgM1hj3B+3KN7OWIu9ZxnlLR0WstRVndoEafu1n6Wp+rrqShFKOoFcriwN9LS3JbK778ht02CD1Sb55vbz7wGIkfbzbm+metLSXDo5PxRRI8MtSOR4rroOJH4B6Q17TihT1IIaNQoKoKH3l/yIC+7SkxmU7Dq/gOw1jYV6u5Sb9oEgqvqRZlHpS+44HytAkQwgEoY/G/TPs95tF4UT1uMwVW8VrLUwaJ0o8VDDOWwxtC41LW4yv59iSJWZEt/AMtvOBXtfF2nO5G77yMmaQpt1YOIhLTV+A+oPHVVPeU9WJVu8FotdE+JK7Hv37nmgiiDTln3+fOGnynTPBVe7CcepWQNgkZiWrIl2tTUKVrtph8iMB+jnLb31NxqYeIBa6Osvx/TfrfJfcf9RyQw1kPw=="
+  dex.github.clientSecret: "AgBj/86SY5JTlc2N5zAjiJTFCvDjfOUeYK+808j+7vZfUnyc2eEIEW7rOMO6nHRTx5Vfm3gWRxKOcoUD43u/uBfQHv04KOvt3J4NJmuMrbntuE36xNJvD9GVDfJTj6pmrybdtEXHSsiAVTu464hE/RQnDc6vJG7cZz1qlkCQj21rvGkoQDCVlT2DbTBcsSGrZahCPKEcpiJtaSGkDcI/PKUQ2WZYCqHmLbSyQ2eSzPz6mmNByi/UO4s4PFCY890znucjAZVeT2i4eSNCftDETA6NCjd+c0nY6DmCkQ08EptTiu/wN6lmhDQds+k5uH9MSFkLq5G6P7mmrqlOwb05ghMShYxASRPd24zNo6YgjglMADXmvS15fcO6JGSbaKYhQms2q0ERFkv19hOq0cexhaiqDqhc2ur3WEZcCH54bzbrz0/b1XMt7O1sruOsfjCcmj658aRIuOR5vv19/7oFuzXmJYN7FEk+llbCt4XO1Qd0uL2aK/sE4CC2r5bpQwJjhyEDP0zJOoAatmSIc04qZwkuWmPazw/mwChpCXKSJDcm3lqjZ6lavj50dmJ8rLYKo4OhIAuCvujkftNSrN2mmP0AOgms7egOYDVIUJr7eBUdIUXmZDe9a52OY83k31hX2mUqcNU121PUp6DOP+YN8VWAKhoPZuMIgWuMkEPFyjPnx7cLlqh4hbLUW9I9KzvcIs41M+l9EBwNXertvUl6VIP4XTUeyiG+B8sB+YkzUcx5uspj9zhzkTex"
+  server.secretkey: "AgBbh1/ztT7C5nZOdrvMOwlm7zk9YrdaETY3iZ4vVFgIeGqUDCeWBbCc/lofyGXi7bC0+DHm0aLPVnFh38V87PTbF0MzcX0mbP0nE2dBqlMdz+rzN/VSX+f9zKYQDdKGhjGuYDaM0moncqznFTpncCe3JG5go5xsSB0K1oKBvSFVyIOXSXgzm6QQ03kReNVZ+d1FSzeFCZpAGTSJrzVl50mW8QsV/aAoTjcJgElcPquT+xCYR2VUiQ3ubhyKzK5Huh4z1fe04IqFcDzht29c0WwbcEg9xCSaI0OvlwXzrjLlUa//iF+tYfG7AseQvyr4WkY5kus5WUkAEz9hRkUaNqh5AJkV7ZsMQrC8e8+59XzCD+ORlNjqjaPWLOikeK1+4Nmr2tnWeRUv9sWKkn+LVM2j6Xyh9euxBpRgSmweancqJNRhqn+E3om74IAznZvKgBj12ywaHPvw23n/tx25qyB9GumMATRBgXzttjXDHSd6UnSLQO20VlLcnCikd9PPdD9LlbMPHGhwIh4IVPQwv+GenjjeVqL2qyVz4AlGNXXa6zWu2RzYW3X/pQWJL46Pw3GdarY6/oxjj9cxkat+QpbNGIyeHRuKUJ6VsV8S07RsXwqVM2PrsKeKQcgvQxTFl+ets4zxAppiQv8604sKw06N9hw2C4z9wnrGMsO2vsmx38+LlcRNZb3YSvUvq7ubHW0tO6NWNL0cPcU6r715a61cReAAho/QHUQ="
+
 argo-cd:
   server:
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: traefik
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      pathType: ImplementationSpecific
+      hosts:
+        - "argocd.stg.aeternity.io"
     extraArgs:
       - --insecure
     config:
@@ -21,6 +34,16 @@ argo-cd:
         - type: helm
           url: https://helm.traefik.io/traefik
           name: traefik
+    dex.config: |
+        connectors:
+          - type: github
+            id: github
+            name: GitHub
+            config:
+              clientID: $dex.github.clientID
+              clientSecret: $dex.github.clientSecret
+              orgs:
+              - name: aeternity
     additionalProjects:
       - name: tools
         namespace: argocd
