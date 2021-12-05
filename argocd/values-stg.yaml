@@ -19,7 +19,7 @@ argo-cd:
       # Argo CD's externally facing base URL (optional). Required when configuring SSO
       # url: https://argocd.example.com
       # Argo CD instance label key
-      url: https://argocd.stg.aeternity.io
+      #url: https://argocd.stg.aeternity.io
       application.instanceLabelKey: argocd.argoproj.io/instance
       repositories: |
         - url: https://github.com/aeternity/gitops-tools.git
