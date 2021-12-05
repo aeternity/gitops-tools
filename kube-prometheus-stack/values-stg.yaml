@@ -1,0 +1,115 @@
+encValues:
+  github_client_id: 'AgBZce+h7zoq7lLaI9mBCW7awXKY+Z4RILH7jkPYOQACnXpT55j9cKoLI6Xi6RDxDEqDatYkLdaS9x9y/5jZeWNz4Rf5BUZiO1SjIriMJU6Ev9zXjKZLLnaYigPf/OE7HHOpBUafhcGUHYeJdrleC8z7xr5buB4NDfsgu0boYfNq/SPE66SF2YnPcKeSmDvTd5wKK1O3xeZpCHwR6fsmLo8Oi+WDkf6xpn5XKnsq2WO8WbfJSzaU8i9suVY8ru38AgnTz9tWN9vmnogtOhymUe1zAPEU1YEsPwOyDtslC4TU812j09h4pLokmFV1PqbtcLUxXofSnBTi5AepAZRmWn6/OpI7ur76Gmi7dy//01Z8DSCCfojBX1Z3+fij0KAMIj1IKMSn6oL9+Ltaek93xnGz/YVxenVRS4IJS9SQQgKJpRF9z0p/aVjyjL/DzdeWT5j+WHOtugTRcSrZpfcwj2ZTxYPJTbS8prffxJQw4evc390e1PGE3zR94JRo7lHhf0U13wpnFbVMROUahRV7c31+GMKAHnLiNET5xzYFyKIcfL/k+DKksg6fCdsqGPs24T/COxGuT6mxdiFMEHD2QsIgPvMLQl458zPqgVeybSbQCTh7JVbNN55YNhnxtyPugSSCnu8D/o5X625rx9YIxihaq+WMP7q2VUyYD4ljQTyvMeZwrRvHT+PQvlmxtpM8tcUg/sfXkV0IAuch9ikBNzmVNRsg2w=='
+  github_client_secret: 'AgA609FjqnN3FE5YMiLrAtl8aqemJ8YPZ07yjmjZgcKSRNQr4JIg/qxjo+O2eD/VO+BqpyWv6zwmUO/yeLDgfhiT86JdArlJ2khNU4rOJOdYVGkhevCZfi9frenDOkYDOJlHFASKf58IpUa9SC4Jn8N8AM0Ahatmc5+AeYXsb5arLQX4QPzxHiQo7O3DmGnWds9dzsH1qrLTwjZ0ac19rzTsB/ttr7rpCp7hWyw9oWawO0R4yf+2+YCdi6Yhij/DqqruNjkv/P/SCei+V77wKTEjavf6xDoftvGvqwapQJ4FZpa+HQovEeMDYpd4UxVoNuQOZGnBZ2aM9lsC8XV3stja1RM+eTBvOFMchD3U8zUVgGHYGkYI8n2QLxvnxTNU6tVFHVXJTZJKXB35HIrH2r34K2fAGnZ3WRw6q0L8BQAyhxeAXYeaxqrgn+j/JFDQ1xa2r1YyrNBLHsCb+5fKOWxikq6jjE1BTlpqOPP9hv48a1ZbMoUOP0rB+5QeA3TWgT2SRRDda4p/LGStnwDnM3G8MJf2E0AMHXseMcOsUxvfDjZJg6jAGgKW9aKYoLAaJkREglxSfJ+LHX21cO9mMM/EE34Mvvbx/jsQvaMcPQM5QcFRgdVhY9D1d25lbxA8qLKHV5xhHfWIFpxfKY45xqLvThW5CQkq+IoJ5NKJxP8N0qaXojC8rwlW14oA08O4cuCMkwXMqLWyyeO/RiL1McWOLrXZpcSdxi9VL2kE00GsBKL5Z63dzvoB'
+  grafana_admin_user: 'AgCi7bnbBYHDIiIGkYhYsxxQMRFdk1Mm+TybE6Uj+N85QpEmb8fd1qL3tLBa0IbXCgwO4DZXx/Br5VtMx530g6cMdPU5w0NwpfQDpuL9zCW5YXEXkJRDv2nSkst0cIWRy94Csv3aTc+Uo0PsOXjFGPpbMWOgFG0J23A8DDOziA2xG8c4ehysvpZWtyPQ0RqQIlq1LjG8UsTDfwPGn829AajvIJ5yfmBQffdjvRnumsT2cJx3LxXl2+ibgWcvnCew709vjwOOauoL3Y72jHIdf1V/treTHcnwzyQhi/olvp/4S0mMnaEwQovyuQ5P7PlVnd/qvbViBPPUFK0mjUNSFsJXjP5bgfKUUu6INk11WEQoOGNfqd8F975OnFkVt9lRpB1fvGFtPrSsqPI/Pzlc4bKMWHQERwWUBfX4QXXYMC+PZq8C16W+O524q7d1dqWDpxd/rlhpSNZK+RwdawZrQqVnLI7iM9otErPIOTTtcbf4DhUnzBS+bGT5AZBSwi7qztUNLKPMoY9973xWCZrLXg2hb3LNpt77hJk1bI3uK7dVZwW2f1Kv2+rMqlaGi0kZVaHN9Rs7GnTnaJzqzXkheA8lHh8f9pBnN8JKxn/GM0bK2tQ+Yd2lzqMf+1IuUqDE3L9tvJNggWkHCE7SOhkdI1ogETO8ghs+cxagjo4o6mf9gN7FcX6L0EGTjN5IKeByLuLsUNouAQ=='
+  grafana_admin_password: 'AgAVnXDigbgadQsrR6AZCtETUxSScAlXSo1F9wUyFsjE/73p8tKhivNTpil6h2nv2ldg+aHW/5lFFPB9KXZ+LE2O044+r+8rOR5tzkBCjqlanOTZObUR1GkbwwtLqFwO+NhogI+uIVujuR6aFX0BgPACdnRS7vSDVNP1Z53MU+KauIvTiDf6XJ7S+G5K51g80vwgZ8vsFODumpfNVP5S6rYNAgfzJm6xYbx6BnR1X13GNHXfiea94EYbuWhkOnlOK74r5tseaKv24yfDUZNwvKd44wqinR6bEKzePAe9N7UnvkxjZ64kD1O0ILxJ8aTbz2euFMoCwriCKxJ5v3C2lvcH/KPJ9QOaVQ8MP4G8g/JcGn1iUnfyYC4QbcpqIO34Yj84an0Q1hfskcooAjifTLzOKsdv9qOMnwpZ6bEFp0Uzcv/s/m++6DqW2WXgPMskcHq6lsoCvx29Mw3W0cLuBr/rpVf3fQZ+qTREvyZKuSjUqNo+8sgFKCeQnFus7ekG0sHtfrfUTzY3znsrOkM6xw8J5or9fmeNG/SccyLVxMqpJuwLiTq6WxbwHAXVu0TnwvgmhYXAqMavXqaCxgraqsNT317J93zftCzLsbDUBIMBBMKPu/XFVXBLoa3baYvpjWOBncjdqIFbpnskks8lpqXx6ns/XfS3i54eZY6AETALyiiELfz8Dum5pof7FgxzV4ajIcDIMH1jtw1d1WuA'
+
+kube-prometheus-stack:
+  prometheus:
+    prometheusSpec:
+      serviceMonitorSelectorNilUsesHelmValues: false
+      ruleSelectorNilUsesHelmValues: false
+      additionalScrapeConfigs: []
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: traefik
+      hosts:
+        - "prometheus.stg.aeternity.io"
+      pathType: ImplementationSpecific
+
+  grafana:
+    admin:
+      existingSecret: kube-prometheus-stack-secret
+      userKey: grafana_admin_user
+      passwordKey: grafana_admin_password
+    sidecar:
+      dashboards:
+        enabled: true
+        folderAnnotation: grafana-dashboard-dir
+    grafana.ini:
+      server:
+        domain: grafana.stg.aeternity.io
+        root_url: https://grafana.stg.aeternity.io
+      plugins:
+        enable_alpha: true
+      auth.github:
+        enabled: true
+        client_id: $__file{/etc/secrets/github_client_id}
+        client_secret: $__file{/etc/secrets/github_client_secret}
+        scopes: user:email,read:org
+        auth_url: https://github.com/login/oauth/authorize
+        token_url: https://github.com/login/oauth/access_token
+        api_url: https://api.github.com/user
+        allow_sign_up: true
+        allowed_organizations: aeternity
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: traefik
+      hosts:
+        - "grafana.stg.aeternity.io"
+      pathType: ImplementationSpecific
+    plugins:
+      - grafana-piechart-panel
+    dashboardProviders:
+     dashboardproviders.yaml:
+       apiVersion: 1
+       providers:
+       - name: 'tools'
+         orgId: 1
+         folder: 'Tools'
+         type: file
+         disableDeletion: true
+         editable: true
+         options:
+           path: /var/lib/grafana/dashboards/tools
+    dashboards:
+      tools:
+        traefik2:
+          gnetId: 11462
+          revision: 1
+          datasource: Prometheus
+        argocd:
+          gnetId: 14584
+          revision: 1
+          datasource: Prometheus
+        websites:
+          gnetId: 13659
+          revision: 1
+          datasource: Prometheus
+    extraSecretMounts:
+    - name: secrets-mount
+      secretName: kube-prometheus-stack-secret
+      defaultMode: 0440
+      mountPath: /etc/secrets
+      readOnly: true
+
+  alertmanager:
+    alertmanagerSpec:
+      externalUrl: "https://alertmanager.stg.aeternity.io"
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: traefik
+      hosts:
+        - "alertmanager.stg.aeternity.io"
+      pathType: ImplementationSpecific
+
+  defaultRules:
+    rules:
+      kubeScheduler: false
+  
+  additionalPrometheusRulesMap:
+  - name: blackbox
+    groups:
+    - name: blackbox
+      rules:
+        - alert: BlackboxProbeHttpFailure
+          expr: probe_http_status_code <= 199 OR probe_http_status_code >= 400
+          for: 0m
+          labels:
+            severity: critical
+          annotations:
+            summary: Blackbox probe HTTP failure (instance {{ $labels.instance }})
+            description: "HTTP status code is not 200-399\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
