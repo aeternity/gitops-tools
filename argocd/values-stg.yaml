@@ -1,0 +1,39 @@
+argo-cd:
+  server:
+    extraArgs:
+      - --insecure
+    config:
+      # Argo CD's externally facing base URL (optional). Required when configuring SSO
+      # url: https://argocd.example.com
+      # Argo CD instance label key
+      application.instanceLabelKey: argocd.argoproj.io/instance
+      repositories: |
+        - url: https://github.com/aeternity/gitops-tools.git
+        - type: helm
+          url: https://argoproj.github.io/argo-helm
+          name: argo
+    additionalProjects:
+      - name: tools
+        namespace: argocd
+        additionalLabels: {}
+        additionalAnnotations: {}
+        description: Tools used to run the environment
+        sourceRepos:
+          - 'https://github.com/aeternity/gitops-tools.git'
+        destinations:
+          - namespace: tools
+            server: https://kubernetes.default.svc
+          - namespace: argocd
+            server: https://kubernetes.default.svc
+        clusterResourceWhitelist:
+          - group: '*'
+            kind: '*'
+
+defaultRepoUrl: 'https://github.com/aeternity/gitops-tools.git'
+defaultTargetRevision: stg
+
+applications:
+  argocd:
+    project: tools
+    namespace: argocd
+
