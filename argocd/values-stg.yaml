@@ -136,6 +136,9 @@ applications:
   argocd:
     project: tools
     namespace: argocd
+  sealed-secrets:
+    project: tools
+    namespace: sealed-secrets
   aws-load-balancer-controller:
     project: tools
     namespace: kube-system
