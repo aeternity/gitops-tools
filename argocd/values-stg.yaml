@@ -49,20 +49,11 @@ argo-cd:
           url: https://argoproj.github.io/argo-helm
           name: argo
         - type: helm
-          url: https://bitnami-labs.github.io/sealed-secrets
-          name: sealed-secrets
-        - type: helm
           url: https://aws.github.io/eks-charts
           name: eks
         - type: helm
           url: https://helm.traefik.io/traefik
           name: traefik
-        - type: helm
-          url: https://prometheus-community.github.io/helm-charts
-          name: prometheus-community
-        - type: helm
-          url: https://charts.bitnami.com/bitnami
-          name: bitnami
       dex.config: |
         connectors:
           - type: github
@@ -136,9 +127,6 @@ applications:
   argocd:
     project: tools
     namespace: argocd
-  sealed-secrets:
-    project: tools
-    namespace: sealed-secrets
   aws-load-balancer-controller:
     project: tools
     namespace: kube-system
@@ -148,12 +136,6 @@ applications:
   metrics-server:
     project: tools
     namespace: kube-system
-  kube-prometheus-stack:
-    project: tools
-    namespace: monitoring
-  kube-prometheus-blackbox-exporter:
-    project: tools
-    namespace: monitoring
   superhero-ui:
     project: apps
     namespace: apps
