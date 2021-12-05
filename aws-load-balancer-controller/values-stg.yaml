@@ -1,0 +1,10 @@
+aws-load-balancer-controller:
+  clusterName: stg-vvup
+  rbac:
+    create: true
+  serviceAccount:
+    create: true
+    name: aws-load-balancer-controller-stg
+    # automountServiceAccountToken: false
+    annotations:
+      eks.amazonaws.com/role-arn: "arn:aws:iam::106102538874:role/aws-lb-controller-stg"
