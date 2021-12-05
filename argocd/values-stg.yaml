@@ -35,16 +35,16 @@ argo-cd:
         - type: helm
           url: https://helm.traefik.io/traefik
           name: traefik
-    dex.config: |
-      connectors:
-        - type: github
-          id: github
-          name: GitHub
-          config:
-            clientID: $dex.github.clientID
-            clientSecret: $dex.github.clientSecret
-            orgs:
-            - name: aeternity
+      dex.config: |
+        connectors:
+          - type: github
+            id: github
+            name: GitHub
+            config:
+              clientID: $dex.github.clientID
+              clientSecret: $dex.github.clientSecret
+              orgs:
+              - name: aeternity
     rbacConfig:
       policy.default: role:readonly
       policy.csv: |
