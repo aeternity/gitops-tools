@@ -45,6 +45,10 @@ argo-cd:
               clientSecret: $dex.github.clientSecret
               orgs:
               - name: aeternity
+    rbacConfig:
+      policy.default: role:readonly
+      policy.csv: |
+        g, aeternity:devops, role:admin
     additionalProjects:
       - name: tools
         namespace: argocd
