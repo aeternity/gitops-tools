@@ -90,7 +90,19 @@ argo-cd:
         clusterResourceWhitelist:
           - group: '*'
             kind: '*'
-
+      - name: apps
+        namespace: argocd
+        additionalLabels: {}
+        additionalAnnotations: {}
+        description: Applications deployed on EKS
+        sourceRepos:
+          - 'https://github.com/aeternity/gitops-apps.git'
+        destinations:
+          - namespace: apps
+            server: https://kubernetes.default.svc
+        clusterResourceWhitelist:
+          - group: '*'
+            kind: '*'
 defaultRepoUrl: 'https://github.com/aeternity/gitops-tools.git'
 defaultTargetRevision: stg
 
@@ -113,4 +125,43 @@ applications:
   kube-prometheus-stack:
     project: tools
     namespace: monitoring
+  superhero-ui:
+    project: apps
+    namespace: apps
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+  superhero-wallet:
+    project: apps
+    namespace: apps
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+  aepp-base:
+    project: apps
+    namespace: apps
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+  aerepl-http:
+    project: apps
+    namespace: apps
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+  aesophia-http:
+    project: apps
+    namespace: apps
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+  mdw-frontend:
+    project: apps
+    namespace: apps
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+  superhero-backend:
+    project: apps
+    namespace: apps
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+  dex-ui:
+    project: apps
+    namespace: apps
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+  aepp-faucet:
+    project: apps
+    namespace: apps
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
 
+namespaces:
+  - tools
+  - apps
