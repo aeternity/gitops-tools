@@ -148,9 +148,6 @@ applications:
   metrics-server:
     project: tools
     namespace: kube-system
-  kube-prometheus-stack:
-    project: tools
-    namespace: monitoring
   kube-prometheus-blackbox-exporter:
     project: tools
     namespace: monitoring
