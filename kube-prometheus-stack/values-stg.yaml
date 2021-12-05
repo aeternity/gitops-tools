@@ -101,7 +101,7 @@ kube-prometheus-stack:
     config:
       global:
         resolve_timeout: 5m
-        slack_api_url_file: '/etc/alertmanager/secrets/slack' 
+        slack_api_url: '/etc/alertmanager/secrets/slack' 
       route:
         group_by: ['job']
         receiver: slack-notifications
