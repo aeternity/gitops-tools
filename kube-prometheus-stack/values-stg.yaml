@@ -88,6 +88,8 @@ kube-prometheus-stack:
   alertmanager:
     alertmanagerSpec:
       externalUrl: "https://alertmanager.stg.aeternity.io"
+      secrets: 
+        - slack-uri-secret
     ingress:
       enabled: true
       annotations:
@@ -95,6 +97,25 @@ kube-prometheus-stack:
       hosts:
         - "alertmanager.stg.aeternity.io"
       pathType: ImplementationSpecific
+    config:
+      global:
+        resolve_timeout: 5m
+        slack_api_url: '/etc/alertmanager/secrets/slack' 
+      route:
+        group_by: ['job']
+        receiver: slack-notifications
+        
+        routes:
+        - match:
+            alertname: BlackboxProbeHttpFailure
+          receiver: slack-notifications
+      receivers:
+      - name: slack-notifications
+        slack_configs:
+          - channel: '#monitoring'
+            send_resolved: true
+      templates:
+      - '/etc/alertmanager/config/*.tmpl'
 
   defaultRules:
     rules:
