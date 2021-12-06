@@ -97,29 +97,11 @@ kube-prometheus-stack:
       hosts:
         - "alertmanager.stg.aeternity.io"
       pathType: ImplementationSpecific
-    config:
-      global:
-        resolve_timeout: 5m
-        slack_api_url: "/etc/alertmanager/secrets/slack-uri-secret/slack"
-      route:
-        group_by: ['job']
-        group_wait: 30s
-        group_interval: 5m
-        repeat_interval: 12h
-        #receiver: 'slack'
-        routes:
-        - match:
-            alertname: DeadMansSwitch
-          receiver: 'null'
-        - match:
-          receiver: 'slack'
-          continue: true
-      receivers:
-      - name: 'null'
-      - name: 'slack'
-        slack_configs:
-        - channel: '#monitoring'
-          send_resolved: false    
+    slackConfig:
+      apiURL: "/etc/alertmanager/secrets/slack-uri-secret/slack"
+      channel: "#monitoring"
+      sendResolved: "true"
+    
   defaultRules:
     rules:
       kubeScheduler: false
