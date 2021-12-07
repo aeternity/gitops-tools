@@ -96,11 +96,7 @@ kube-prometheus-stack:
         kubernetes.io/ingress.class: traefik
       hosts:
         - "alertmanager.stg.aeternity.io"
-      pathType: ImplementationSpecific
-  slackConfig:
-      apiURL: "/etc/alertmanager/secrets/slack-uri-secret/slack"
-      channel: "#monitoring"
-      sendResolved: "true"  
+      pathType: ImplementationSpecific  
   defaultRules:
     rules:
       kubeScheduler: false
