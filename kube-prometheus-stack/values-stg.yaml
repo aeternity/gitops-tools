@@ -90,10 +90,10 @@ kube-prometheus-stack:
       externalUrl: "https://alertmanager.stg.aeternity.io"
       secrets: 
         - slack-uri-secret
-      slackConfig:
-        apiURL: "/etc/alertmanager/secrets/slack-uri-secret/slack"
-        channel: "#monitoring"
-        sendResolved: "true"
+    slackConfig:
+      apiURL: "/etc/alertmanager/secrets/slack-uri-secret/slack"
+      channel: "#monitoring"
+      sendResolved: "true"
     ingress:
       enabled: true
       annotations:
