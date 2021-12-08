@@ -86,15 +86,6 @@ kube-prometheus-stack:
       readOnly: true
 
   alertmanager:
-    config:
-      templates: ["*.tmpl"]
-    templateFiles:
-      slack.tmpl: |-
-        {{ range .Alerts }}{{ .Annotations.summary }}
-        Summary: {{ .Annotations.summary }}
-        Description: {{ .Annotations.description }}
-        Message: {{ .Annotations.message }}
-        {{ end }}
     alertmanagerSpec:
       externalUrl: "https://alertmanager.stg.aeternity.io"
     ingress:

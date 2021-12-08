@@ -7,6 +7,15 @@ metadata:
     alertmanagerConfig: {{- include "kube-prometheus-stack.labels" . | nindent 4 }}
   namespace: {{ .Release.Namespace }}
 spec:
+  config:
+      templates: ["*.tmpl"]
+  templateFiles:
+      slack.tmpl: |-
+        {{ range .Alerts }}{{ .Annotations.summary }}
+        Summary: {{ .Annotations.summary }}
+        Description: {{ .Annotations.description }}
+        Message: {{ .Annotations.message }}
+        {{ end }}
   route:
     groupBy: ['job']
     groupWait: 30s
@@ -21,5 +30,5 @@ spec:
         name: alertmanager-slack-secret
         key: url
       channel: '#monitoring'
-      
 
+      
