@@ -97,8 +97,6 @@ kube-prometheus-stack:
         {{ end }}
     alertmanagerSpec:
       externalUrl: "https://alertmanager.stg.aeternity.io"
-      secrets: 
-        - secret-slack-uri-secret
     ingress:
       enabled: true
       annotations:
