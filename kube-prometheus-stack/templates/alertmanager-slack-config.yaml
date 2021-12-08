@@ -23,6 +23,8 @@ spec:
       channel: '#monitoring'
       text: |-
         {{ range .Alerts }}{{ .Annotations.summary }}
-        {{ .Annotations.description }}
-        {{ .Annotations.message }}
+        Summary: {{ .Annotations.summary }}
+        Description: {{ .Annotations.description }}
+        Message: {{ .Annotations.message }}
         {{ end }}
+
