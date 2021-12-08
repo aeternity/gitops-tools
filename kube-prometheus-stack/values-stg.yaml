@@ -110,5 +110,5 @@ kube-prometheus-stack:
           labels:
             severity: critical
           annotations:
-            summary: Blackbox probe HTTP failure (instance {{ $labels.instance }})
-            description: "HTTP status code is not 200-399\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+            summary: "Probe failed (instance {{ $labels.instance }})"
+            description: "Probe failed\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
