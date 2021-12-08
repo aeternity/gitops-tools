@@ -100,15 +100,15 @@ kube-prometheus-stack:
       kubeScheduler: false
   
   additionalPrometheusRulesMap:
-  - name: blackbox-new
+  - name: blackbox
     groups:
     - name: blackbox
       rules:
-        - alert: BlackboxProbeHttpFailureNew
+        - alert: BlackboxProbeHttpFailure
           expr: probe_http_status_code <= 199 OR probe_http_status_code >= 400
           for: 0m
           labels:
             severity: critical
           annotations:
             summary: "Probe failed (instance {{ $labels.instance }})"
-            description: "Probe failed\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
+            description: "Probe failed\n  VALUE = {{ $value }}\n  LABELS: {{ $labels.instance }}"
