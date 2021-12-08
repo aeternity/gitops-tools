@@ -22,4 +22,5 @@ spec:
         key: url
       channel: '#monitoring'
       title: "{{ range .Alerts }}{{ .Annotations.summary.instance }}\n{{ end }}"
+             "\n{{ end }}"
       text: "{{ range .Alerts }}{{ .Annotations.description.service }}\n{{ end }}"
