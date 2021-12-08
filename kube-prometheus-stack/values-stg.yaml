@@ -97,13 +97,6 @@ kube-prometheus-stack:
       hosts:
         - "alertmanager.stg.aeternity.io"
       pathType: ImplementationSpecific
-    templateFiles:
-      slack.tmpl: |-
-        {{ range .Alerts }}{{ .Annotations.summary }}
-        Summary: {{ .Annotations.summary }}
-        Description: {{ .Annotations.description }}
-        Message: {{ .Annotations.message }}
-        {{ end }}
   defaultRules:
     rules:
       kubeScheduler: false

@@ -22,3 +22,10 @@ spec:
         key: url
       channel: '#monitoring'
       text: '{{ template "slack.tmpl" . }}'
+  templateFiles:
+      slack.tmpl: |-
+        {{ range .Alerts }}{{ .Annotations.summary }}
+        Summary: {{ .Annotations.summary }}
+        Description: {{ .Annotations.description }}
+        Message: {{ .Annotations.message }}
+        {{ end }}
