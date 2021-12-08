@@ -96,7 +96,14 @@ kube-prometheus-stack:
         kubernetes.io/ingress.class: traefik
       hosts:
         - "alertmanager.stg.aeternity.io"
-      pathType: ImplementationSpecific  
+      pathType: ImplementationSpecific
+    templateFiles:
+      slack.tmpl: |-
+        {{ range .Alerts }}{{ .Annotations.summary }}
+        Summary: {{ .Annotations.summary }}
+        Description: {{ .Annotations.description }}
+        Message: {{ .Annotations.message }}
+        {{ end }}
   defaultRules:
     rules:
       kubeScheduler: false
