@@ -100,11 +100,11 @@ kube-prometheus-stack:
       kubeScheduler: false
   
   additionalPrometheusRulesMap:
-  - name: blackbox
+  - name: blackbox-new
     groups:
     - name: blackbox
       rules:
-        - alert: BlackboxProbeHttpFailure
+        - alert: BlackboxProbeHttpFailureNew
           expr: probe_http_status_code <= 199 OR probe_http_status_code >= 400
           for: 0m
           labels:
