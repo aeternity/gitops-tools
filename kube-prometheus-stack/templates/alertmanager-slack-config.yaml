@@ -21,5 +21,9 @@ spec:
         name: alertmanager-slack-secret
         key: url
       channel: '#monitoring'
-      title: "{{ range .Alerts }}{{ .Annotations.summary }}\n{{ end }}"
-      text: "{{ range .Alerts }}{{ .Annotations.description }}\n{{ end }}"
+      text: |-
+        {{ range .Alerts }}{{ .Annotations.summary }}
+        {{ .Annotations.description }}
+        {{ .Annotations.message }}
+        {{ end }}
+
