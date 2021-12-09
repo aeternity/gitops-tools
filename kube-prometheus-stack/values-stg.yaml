@@ -95,36 +95,6 @@ kube-prometheus-stack:
       hosts:
         - "alertmanager.stg.aeternity.io"
       pathType: ImplementationSpecific
-    config:
-      global:
-        resolve_timeout: 5m
-      route:
-        group_by: ['job']
-        group_wait: 30s
-        group_interval: 5m
-        repeat_interval: 12h
-        receiver: 
-          - 'null'
-          - 'slack-notifications'
-        routes:
-        - match:
-            alertname: Watchdog
-          receiver: 'null'
-      receivers:
-      - name: 'null'
-      - name: 'slack-notifications'
-        slackConfigs:
-          - channel: '#monitoring'
-            apiURL:
-              key: 'url'
-              name: 'alertmanager-slack-secret'
-      templates:
-      - '/etc/alertmanager/config/*.tmpl'    
-    templateFiles:                                                                                                                                                                                                                                                              
-      slack_title.tmpl: |-
-        "{{ range .Alerts }}{{ .Annotations.summary }}\n{{ end }}"
-      slack_text.tmpl: |-
-        "{{ range .Alerts }}{{ .Annotations.description }}\n{{ end }}"
   defaultRules:
     rules:
       kubeScheduler: false
