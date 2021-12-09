@@ -112,6 +112,10 @@ kube-prometheus-stack:
           annotations:
             summary: "Probe failed (URL: {{ $labels.instance }})"
             description: "Probe failed\n  STATUS_CODE = {{ $value }}\n  URL: {{ $labels.instance }}"
+  - name: pods
+    groups:
+    - name: pods
+      rules:
         - alert: ContainerCpuUsage
           expr: (sum(rate(container_cpu_usage_seconds_total{name!=""}[3m])) BY (instance, name) * 100) > 1
           for: 5m
