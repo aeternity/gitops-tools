@@ -110,8 +110,9 @@ kube-prometheus-stack:
           labels:
             severity: critical
             namespace: monitoring
+            env: stg
           annotations:
-            summary: "Probe failed (URL: {{ $labels.instance }})"
+            summary: "Probe failed (URL: {{ $labels.instance }}\n Environment: {{ $labels.env }})"
             description: "Probe failed\n  STATUS_CODE = {{ $value }}\n  URL: {{ $labels.instance }}"
     - name: pods
       rules:
@@ -121,6 +122,7 @@ kube-prometheus-stack:
           labels:
             severity: critical
             namespace: monitoring
+            env: stg
           annotations:
-            summary: "Container CPU usage (NAME: {{ $labels.name }})"
+            summary: "Container CPU usage (NAME: {{ $labels.name }}\n Environment: {{ $labels.env }})"
             description: "Container CPU usage is above 80%\n  VALUE = {{ $value }}\n  POD_NAME = {{ $labels.name }}"
