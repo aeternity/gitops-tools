@@ -7,16 +7,11 @@ metadata:
     alertmanagerConfig: {{- include "kube-prometheus-stack.labels" . | nindent 4 }}
   namespace: {{ .Release.Namespace }}
 spec:
-  templateFiles: 
-     slack_title.tmpl: |-
-      {{`{{ range .Alerts }}
-        *Alert:* {{ .Annotations.summary }}
-      {{ end }}`}}
   route:
     groupBy: ['job']
     groupWait: 30s
     groupInterval: 5m
-    repeatInterval: 1m
+    repeatInterval: 12h
     receiver: alertmanager-slack
   receivers:
   - name: alertmanager-slack
@@ -26,5 +21,5 @@ spec:
         name: alertmanager-slack-secret
         key: url
       channel: '#monitoring'
-      title: {{`"{{ template 'slack_title.tmpl' .  }}"`}}
-      
+      title: {{`"{{ range .Alerts }}{{ .Annotations.summary }}\n{{ end }}"`}}
+      text: {{`"{{ range .Alerts }}{{ .Annotations.description }}\n{{ end }}"`}}
