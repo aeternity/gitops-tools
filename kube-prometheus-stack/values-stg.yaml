@@ -109,6 +109,7 @@ kube-prometheus-stack:
           for: 0m
           labels:
             severity: critical
+            namespace: monitoring
           annotations:
             summary: "Probe failed (URL: {{ $labels.instance }})"
             description: "Probe failed\n  STATUS_CODE = {{ $value }}\n  URL: {{ $labels.instance }}"
@@ -119,6 +120,7 @@ kube-prometheus-stack:
           for: 5m
           labels:
             severity: critical
+            namespace: monitoring
           annotations:
             summary: Container CPU usage (instance {{ $labels.instance }})
             description: "Container CPU usage is above 80%\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
