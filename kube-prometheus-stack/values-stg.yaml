@@ -123,4 +123,4 @@ kube-prometheus-stack:
             namespace: monitoring
           annotations:
             summary: Container CPU usage (instance {{ $labels.instance }})
-            description: "Container CPU usage is above 80%\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+            description: "Container CPU usage is above 80%\n  VALUE = {{ $value }}\n  LABELS = {{ $labels.name }}"
