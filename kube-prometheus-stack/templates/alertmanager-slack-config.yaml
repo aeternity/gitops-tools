@@ -13,6 +13,10 @@ spec:
     groupInterval: 5m
     repeatInterval: 1m
     receiver: alertmanager-slack
+    routes:
+      - match:
+          alertname: ContainerCpuUsage
+        receiver: 'alertmanager-slack'
   receivers:
   - name: alertmanager-slack
     slackConfigs:
