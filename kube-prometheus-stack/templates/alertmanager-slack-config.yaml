@@ -13,6 +13,10 @@ spec:
     groupInterval: 5m
     repeatInterval: 12h
     receiver: alertmanager-slack
+    routes:
+    - matchers:
+      - severity="critical"
+      receiver: alertmanager-slack
   receivers:
   - name: alertmanager-slack
     slackConfigs:
