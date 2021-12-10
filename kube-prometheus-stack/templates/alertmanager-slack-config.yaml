@@ -7,8 +7,6 @@ metadata:
     alertmanagerConfig: {{- include "kube-prometheus-stack.labels" . | nindent 4 }}
   namespace: {{ .Release.Namespace }}
 spec:
-  templates:
-    - '/etc/alertmanager/config/*.tmpl'
   templateFiles: 
      slack_title.tmpl: |-
       {{`{{ range .Alerts }}
