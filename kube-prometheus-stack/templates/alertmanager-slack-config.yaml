@@ -10,7 +10,7 @@ spec:
   templates:
     - '/etc/alertmanager/config/*.tmpl'
   templateFiles: 
-     slack.tmpl: |-
+     slack_title.tmpl: |-
       {{`{{ range .Alerts }}
         *Alert:* {{ .Annotations.summary }}
       {{ end }}`}}
@@ -28,5 +28,5 @@ spec:
         name: alertmanager-slack-secret
         key: url
       channel: '#monitoring'
-      title: {{`"{{ range .Alerts }}\n{{ .Annotations.summary }}\n{{ end }}"`}}
-      text: {{`"{{ range .Alerts }}\n{{ .Annotations.description }}\n{{ end }}"`}}
+      title: {{`"{{ template 'slack_title.tmpl' .  }}"`}}
+      
