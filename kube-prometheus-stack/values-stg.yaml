@@ -114,6 +114,11 @@ kube-prometheus-stack:
                {{ end }}
            {{ end }}
            {{ end }}
+           {{ define "slack.ae.title" -}}
+              [{{ .Status | toUpper -}}
+              {{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{- end -}}
+              ] {{ .CommonLabels.alertname }}
+            {{- end }}
   defaultRules:
     rules:
       kubeScheduler: false
