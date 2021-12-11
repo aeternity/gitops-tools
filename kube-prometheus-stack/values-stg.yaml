@@ -100,13 +100,13 @@ kube-prometheus-stack:
         - '/etc/alertmanager/config/*.tmpl'
     templateFiles:
       slack_title.tmpl: |-
-        {{`{{ range .Alerts }}
+        {{ range .Alerts }}
           *Alert:* {{ .Annotations.summary }}
-        {{ end }}`}}
+        {{ end }}
       slack_text.tmpl: |-
-        {{`{{ range .Alerts }}
+        {{ range .Alerts }}
           *Alert:* {{ .Annotations.description }}
-        {{ end }}`}}
+        {{ end }}
   defaultRules:
     rules:
       kubeScheduler: false
