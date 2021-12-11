@@ -96,7 +96,8 @@ kube-prometheus-stack:
         - "alertmanager.stg.aeternity.io"
       pathType: ImplementationSpecific
     config:
-      templates: ["*.tmpl"]
+      templates:
+        - '/etc/alertmanager/config/*.tmpl'
     templateFiles:
       slack_title.tmpl: |-
         {{`{{ range .Alerts }}
