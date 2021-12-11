@@ -131,7 +131,7 @@ kube-prometheus-stack:
             namespace: monitoring
             env: stg
           annotations:
-            summary: "Probe failed (URL: {{ $labels.instance }}"
+            summary: "Probe failed (URL: {{ $labels.instance }})"
             description: "Probe failed\n STATUS_CODE = {{ $value }})"
     - name: pods
       rules:
