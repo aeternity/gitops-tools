@@ -16,7 +16,7 @@ prometheus-blackbox-exporter:
           follow_redirects: true
           preferred_ip_protocol: "ip4"
           fail_if_body_not_matches_regexp:
-            - "false"
+            - "\W*((?i)false(?-i))\W*"
   serviceMonitor:
     enabled: true
 
