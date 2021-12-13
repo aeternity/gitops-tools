@@ -139,7 +139,7 @@ kube-prometheus-stack:
             summary: "Probe failed (URL: {{ $labels.instance }})"
             description: "Probe failed\n STATUS_CODE = {{ $value }})"
         - alert: BlackboxProbeBackend
-          expr: probe_failed_due_to_regex != 0
+          expr: probe_failed_due_to_regex != 1
           for: 0m
           labels:
             severity: critical
