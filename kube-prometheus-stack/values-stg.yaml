@@ -168,7 +168,7 @@ kube-prometheus-stack:
             summary: "Container CPU usage"
             description: "Container CPU usage is above 80%\n VALUE = {{ $value }}"
         - alert: RedisDown
-          expr: redis_up == 1
+          expr: redis_up == 0
           for: 0m
           labels:
             severity: critical
