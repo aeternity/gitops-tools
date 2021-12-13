@@ -147,7 +147,7 @@ kube-prometheus-stack:
             env: stg
           annotations:
             summary: "Probe failed (URL: {{ $labels.instance }})"
-            description: "Probe failed regex doesn't match!"
+            description: "Please check status on the following link: https://superhero-backend.stg.aepps.com/health/backend"
     - name: pods
       rules:
         - alert: ContainerCpuUsage
