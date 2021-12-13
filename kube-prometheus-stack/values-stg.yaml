@@ -138,6 +138,16 @@ kube-prometheus-stack:
           annotations:
             summary: "Probe failed (URL: {{ $labels.instance }})"
             description: "Probe failed\n STATUS_CODE = {{ $value }})"
+        - alert: BlackboxProbeBackend
+          expr: probe_failed_due_to_regex != 0
+          for: 0m
+          labels:
+            severity: critical
+            namespace: monitoring
+            env: stg
+          annotations:
+            summary: "Probe failed (URL: {{ $labels.instance }})"
+            description: "Probe failed regex doesn't match!"
     - name: pods
       rules:
         - alert: ContainerCpuUsage
