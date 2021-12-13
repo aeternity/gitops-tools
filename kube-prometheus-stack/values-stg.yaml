@@ -10,7 +10,6 @@ kube-prometheus-stack:
       serviceMonitorSelectorNilUsesHelmValues: false
       ruleSelectorNilUsesHelmValues: false
       additionalScrapeConfigs:
-        scrape_configs:
           - job_name: redis_exporter
             static_configs:
             - targets: ['192.168.1.111:9121']
