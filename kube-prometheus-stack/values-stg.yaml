@@ -180,3 +180,13 @@ kube-prometheus-stack:
           annotations:
             summary: Redis down (instance {{ $labels.instance }})
             description: "Redis instance is down"
+        - alert: HostHighCpuLoad
+          expr: 100 - (avg by(instance) (rate(node_cpu_seconds_total{mode="idle"}[2m])) * 100) > 1
+          for: 0m
+          labels:
+            severity: warning
+            namespace: monitoring
+            env: stg
+          annotations:
+            summary: Host high CPU load (instance {{ $labels.instance }})
+            description: "CPU load is > 80%\n  VALUE = {{ $value }}"
