@@ -9,7 +9,13 @@ kube-prometheus-stack:
     prometheusSpec:
       serviceMonitorSelectorNilUsesHelmValues: false
       ruleSelectorNilUsesHelmValues: false
-      additionalScrapeConfigs: []
+      additionalScrapeConfigs:
+        - job_name: redis_exporter
+          static_configs:
+            - targets: ['10.0.1.16:9121']
+        - job_name: node
+          static_configs:
+            - targets: ['10.0.1.16:9100']
     ingress:
       enabled: true
       annotations:
