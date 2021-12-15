@@ -30,7 +30,7 @@ applications:
   kube-prometheus-stack:
     project: tools
     namespace: monitoring
-  kube-prometheus-blackbox:
+  kube-prometheus-blackbox-exporter:
     project: tools
     namespace: monitoring
   aerepl-http:
