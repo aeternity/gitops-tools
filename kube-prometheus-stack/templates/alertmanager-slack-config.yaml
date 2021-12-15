@@ -1,0 +1,25 @@
+---
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: AlertmanagerConfig
+metadata:
+  name: alertmanager-slack-config
+  labels:
+    alertmanagerConfig: {{- include "kube-prometheus-stack.labels" . | nindent 4 }}
+  namespace: {{ .Release.Namespace }}
+spec:
+  route:
+    groupBy: ['job']
+    groupWait: 30s
+    groupInterval: 5m
+    repeatInterval: 12h
+    receiver: alertmanager-slack
+  receivers:
+  - name: alertmanager-slack
+    slackConfigs:
+    - sendResolved: true
+      apiURL:
+        name: alertmanager-slack-secret
+        key: url
+      channel: '#monitoring'
+      title: {{`"{{ template \"slack.ae.title\" . }}"`}}
+      text: {{`"{{ template \"slack.ae.text\" . }}"`}}

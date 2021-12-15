@@ -95,7 +95,30 @@ kube-prometheus-stack:
       hosts:
         - "alertmanager.prd.aeternity.io"
       pathType: ImplementationSpecific
-
+    config:
+      templates:
+        - '/etc/alertmanager/config/*.tmpl'
+    templateFiles:
+      slack.tmpl: |-
+           {{ define "cluster" }}{{ .ExternalURL | reReplaceAll ".*alertmanager\\.(.*)" "$1" }}{{ end }}        
+           {{ define "slack.ae.text" }}
+           {{- $root := . -}}
+           {{ range .Alerts }}
+             *Alert:* {{ .Annotations.summary }} - `{{ .Labels.severity }}`
+             *Cluster:* {{ template "cluster" $root }}
+             *Description:* {{ .Annotations.description }}
+             *Graph:* <{{ .GeneratorURL }}|:chart_with_upwards_trend:>
+             *Runbook:* <{{ .Annotations.runbook }}|:spiral_note_pad:>
+             *Details:*
+               {{ range .Labels.SortedPairs }} - *{{ .Name }}:* `{{ .Value }}`
+               {{ end }}
+           {{ end }}
+           {{ end }}
+           {{ define "slack.ae.title" -}}
+              [{{ .Status | toUpper -}}
+              {{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{- end -}}
+              ] {{ .CommonLabels.alertname }}
+            {{- end }}
   defaultRules:
     rules:
       kubeScheduler: false
@@ -110,6 +133,59 @@ kube-prometheus-stack:
           for: 0m
           labels:
             severity: critical
+            namespace: monitoring
+            env: prd
           annotations:
-            summary: Blackbox probe HTTP failure (instance {{ $labels.instance }})
-            description: "HTTP status code is not 200-399\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+            summary: "Probe failed (URL: {{ $labels.instance }})"
+            description: "Probe failed\n STATUS_CODE = {{ $value }})"
+        - alert: BlackboxProbeBackend
+          expr: probe_failed_due_to_regex{target="superhero-backend"} > 0
+          for: 0m
+          labels:
+            severity: critical
+            namespace: monitoring
+            env: prd
+          annotations:
+            summary: "Probe failed (URL: {{ $labels.instance }})"
+            description: "Please check status on the following link: https://superhero-backend.prd.aepps.com/health/backend"
+    - name: pods
+      rules:
+        - alert: ContainerCpuUsage
+          expr: (sum(rate(container_cpu_usage_seconds_total{name!=""}[5m])) BY (instance, name) * 100) > 80
+          for: 5m
+          labels:
+            severity: critical
+            namespace: monitoring
+            env: prd
+          annotations:
+            summary: "Container CPU usage"
+            description: "Container CPU usage is above 80%\n VALUE = {{ $value }}"
+        - alert: RedisDown
+          expr: redis_up == 0
+          for: 0m
+          labels:
+            severity: critical
+            namespace: monitoring
+            env: prd
+          annotations:
+            summary: Redis down (instance {{ $labels.instance }})
+            description: "Redis instance is down"
+        - alert: HostHighCpuLoad
+          expr: 100 - (avg by(instance) (rate(node_cpu_seconds_total{mode="idle"}[2m])) * 100) > 80
+          for: 0m
+          labels:
+            severity: warning
+            namespace: monitoring
+            env: prd
+          annotations:
+            summary: Host high CPU load (instance {{ $labels.instance }})
+            description: "CPU load is > 80%\n  VALUE = {{ $value }}"
+        - alert: HostOutOfMemory
+          expr: node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes * 100 < 10
+          for: 2m
+          labels:
+            severity: warning
+          annotations:
+            summary: Host out of memory (instance {{ $labels.instance }})
+            description: "Node memory is filling up (< 10% left)\n  VALUE = {{ $value }}"
+

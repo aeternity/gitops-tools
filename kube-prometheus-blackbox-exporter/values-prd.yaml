@@ -8,6 +8,15 @@ prometheus-blackbox-exporter:
           valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
           follow_redirects: true
           preferred_ip_protocol: "ip4"
+      http_backend:
+        prober: http
+        timeout: 5s
+        http:
+          valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
+          follow_redirects: true
+          preferred_ip_protocol: "ip4"
+          fail_if_body_not_matches_regexp:
+            - "true"
   serviceMonitor:
     enabled: true
 
@@ -24,51 +33,56 @@ prometheus-blackbox-exporter:
 
     targets:
       - name: dex
-        url: https://dex.stg.aepps.com
+        url: https://dex.prd.aepps.com
         interval: 60s
         scrapeTimeout: 60s
         module: http_2xx
       - name: base
-        url: https://base.stg.aepps.com
+        url: https://base.prd.aepps.com
         interval: 60s
         scrapeTimeout: 60s
         module: http_2xx
       - name: faucet
-        url: https://faucet.stg.aepps.com
+        url: https://faucet.prd.aepps.com
         interval: 60s
         scrapeTimeout: 60s
         module: http_2xx
       - name: aerepl-http
-        url: https://repl.stg.aepps.com
+        url: https://repl.prd.aepps.com
         interval: 60s
         scrapeTimeout: 60s
         module: http_2xx
       - name: aesophia
-        url: https://compiler.stg.aepps.com
+        url: https://compiler.prd.aepps.com/version
         interval: 60s
         scrapeTimeout: 60s
         module: http_2xx
       - name: explorer-mainnet
-        url: https://explorer-mainnet.stg.aepps.com
+        url: https://explorer-mainnet.prd.aepps.com
         interval: 60s
         scrapeTimeout: 60s
         module: http_2xx
       - name: explorer-testnet
-        url: https://explorer-testnet.stg.aepps.com
+        url: https://explorer-testnet.prd.aepps.com
         interval: 60s
         scrapeTimeout: 60s
         module: http_2xx
       - name: superhero-ui
-        url: https://superhero.stg.aepps.com
+        url: https://superhero.prd.aepps.com
         interval: 60s
         scrapeTimeout: 60s
         module: http_2xx
       - name: superhero-wallet
-        url: https://superhero-wallet.stg.aepps.com
+        url: https://superhero-wallet.prd.aepps.com
         interval: 60s
         scrapeTimeout: 60s
         module: http_2xx
-        
+      - name: superhero-backend
+        url: https://superhero-backend.prd.aepps.com/health/backend
+        interval: 60s
+        scrapeTimeout: 60s
+        module: http_backend
+
     relabelings:
       # This is the part where, the original SM endpoints passed as parameters to blackbox exporter.
       # More info: https://prometheus.io/docs/guides/multi-target-exporter/#prometheus-config
