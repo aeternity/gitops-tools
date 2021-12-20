@@ -1,6 +1,6 @@
 {{- $root := . -}}
 {{- range $key, $value := .Values.applications }}
-{{- range $version := include "$.Values.app.versions" . | fromJsonArray }}
+{{- range $version := include .Values.app.versions . | fromJsonArray }}
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
