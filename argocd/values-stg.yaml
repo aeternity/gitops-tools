@@ -110,9 +110,6 @@ applications:
   argocd:
     project: tools
     namespace: argocd
-  argocd-image-updater:
-    project: tools
-    namespace: argocd
   sealed-secrets:
     project: tools
     namespace: sealed-secrets
