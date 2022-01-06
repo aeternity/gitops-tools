@@ -18,7 +18,7 @@ spec:
     slackConfigs:
     - sendResolved: true
       apiURL:
-        name: alertmanager-slack-secret
+        name: kube-prometheus-stack-secret
         key: url
       channel: '#monitoring'
       title: {{`"{{ template \"slack.ae.title\" . }}"`}}
