@@ -13,10 +13,10 @@ kube-prometheus-stack:
       additionalScrapeConfigs:
         - job_name: redis_exporter
           static_configs:
-            - targets: ['10.0.1.16:9121']
+            - targets: ['10.0.1.137:9121', '10.0.1.133']
         - job_name: node
           static_configs:
-            - targets: ['10.0.1.16:9100']
+            - targets: ['10.0.1.137:9100', '10.0.1.133']
     ingress:
       enabled: true
       annotations:
