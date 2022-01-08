@@ -27,9 +27,6 @@ applications:
   traefik:
     project: tools
     namespace: traefik
-  kube-prometheus-stack:
-    project: tools
-    namespace: monitoring
   kube-prometheus-blackbox-exporter:
     project: tools
     namespace: monitoring
