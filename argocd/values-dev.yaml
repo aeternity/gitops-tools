@@ -33,6 +33,9 @@ applications:
   kube-prometheus-blackbox-exporter:
     project: tools
     namespace: monitoring
+  fluent-bit:
+    project: tools
+    namespace: logging
   aerepl-http:
     project: apps
     namespace: apps
@@ -191,6 +194,8 @@ argo-cd:
           - namespace: traefik
             server: https://kubernetes.default.svc
           - namespace: monitoring
+            server: https://kubernetes.default.svc
+          - namespace: logging
             server: https://kubernetes.default.svc
         clusterResourceWhitelist:
           - group: '*'
