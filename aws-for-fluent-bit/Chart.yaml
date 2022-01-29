@@ -1,5 +1,5 @@
 apiVersion: v2
-name: logging
+name: aws-for-fluent-bit
 description: Fluent-bit deamon set on each node.
 
 version: 0.1.11

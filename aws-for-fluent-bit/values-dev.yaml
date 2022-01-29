@@ -1,4 +1,4 @@
-logging:
+aws-for-fluent-bit:
   global:
   ## Override the deployment namespace
   #   namespaceOverride:
