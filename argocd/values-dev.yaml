@@ -33,7 +33,7 @@ applications:
   kube-prometheus-blackbox-exporter:
     project: tools
     namespace: monitoring
-  fluent-bit:
+  aws-for-fluent-bit:
     project: tools
     namespace: logging
   aerepl-http:
