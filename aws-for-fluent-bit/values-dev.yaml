@@ -71,6 +71,7 @@ aws-for-fluent-bit:
     memBufLimit: 5MB
     skipLongLines: "On"
     refreshInterval: 10
+    Exclude_Path:   "/var/log/containers/*dex*
 
   # extraInputs: |
   #   [INPUT]
