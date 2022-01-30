@@ -88,7 +88,6 @@ aws-for-fluent-bit:
     k8sLoggingParser: "On"
     k8sLoggingExclude: "On"
     Annotations: "Off"
-    Exclude_Path:   "/var/log/containers/*dex*"
 
   extraFilters: |
     [FILTER]
