@@ -71,7 +71,6 @@ aws-for-fluent-bit:
     memBufLimit: 5MB
     skipLongLines: "On"
     refreshInterval: 10
-    Exclude_Path:   "/var/log/containers/*dex*"
 
   # extraInputs: |
   #   [INPUT]
@@ -89,6 +88,7 @@ aws-for-fluent-bit:
     k8sLoggingParser: "On"
     k8sLoggingExclude: "On"
     Annotations: "Off"
+    Exclude_Path:   "/var/log/containers/*dex*"
 
   extraFilters: |
     [FILTER]
