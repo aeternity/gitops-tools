@@ -1,0 +1,10 @@
+apiVersion: v2
+name: fluent-bit
+description: Fluent-bit deamon set on each node.
+
+version: 0.19.18
+
+dependencies:
+  - name: fluent-bit
+    version: 0.19.18
+    repository: https://fluent.github.io/helm-charts
