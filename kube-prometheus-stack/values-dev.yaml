@@ -82,7 +82,7 @@ kube-prometheus-stack:
           revision: 1
           datasource: Prometheus
         opensearch:
-          gnetId: 878
+          gnetId: 11655
           revision: 1
           datasource: Prometheus
     extraSecretMounts:
