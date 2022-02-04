@@ -36,6 +36,9 @@ applications:
   kube-prometheus-elasticsearch-exporter:
     project: tools
     namespace: monitoring
+  fluent-bit:
+    project: tools
+    namespace: logging
   aerepl-http:
     project: apps
     namespace: apps
