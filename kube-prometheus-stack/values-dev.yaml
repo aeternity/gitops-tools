@@ -158,15 +158,15 @@ kube-prometheus-stack:
             / elasticsearch_filesystem_data_size_bytes
         - record: elasticsearch_filesystem_data_free_percent
           expr: 100 - elasticsearch_filesystem_data_used_percent
-        - alert: ElasticsearchTooFewNodesRunning
-          expr: elasticsearch_cluster_health_number_of_nodes < 3
+        - alert: OpensearchTooFewNodesRunning
+          expr: elasticsearch_cluster_health_number_of_nodes < 1
           for: 5m
           labels:
             severity: critical
           annotations:
-            description: There are only {{$value}} < 3 ElasticSearch nodes running
-            summary: ElasticSearch running on less than 3 nodes
-        - alert: ElasticsearchHeapTooHigh
+            description: There are only {{$value}} < 3 Opensearch nodes running
+            summary: Opensearch running on less than 3 nodes
+        - alert: OpensearchHeapTooHigh
           expr: elasticsearch_jvm_memory_used_bytes{area="heap"} / elasticsearch_jvm_memory_max_bytes{area="heap"}
             > 0.9
           for: 15m
@@ -174,7 +174,16 @@ kube-prometheus-stack:
             severity: critical
           annotations:
             description: The heap usage is over 90% for 15m
-            summary: ElasticSearch node {{$labels.node}} heap usage is high        
+            summary: Opensearch node {{$labels.node}} heap usage is high
+        - alert: OpensearchClusterStatus
+          expr: elasticsearch_cluster_health_status{color="red"}==1
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            description: Cluster Status is Red!
+            summary: Opensearch Cluster Status is Red!
+                    
     - name: pods
       rules:
         - alert: ContainerCpuUsage
