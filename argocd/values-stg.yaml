@@ -38,6 +38,9 @@ argo-cd:
         - type: helm
           url: https://charts.bitnami.com/bitnami
           name: bitnami
+        - type: helm
+          url: https://fluent.github.io/helm-charts
+          name: fluent
       dex.config: |
         connectors:
           - type: github
