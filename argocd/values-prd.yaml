@@ -41,6 +41,9 @@ argo-cd:
         - type: helm
           url: https://charts.bitnami.com/bitnami
           name: bitnami
+        - type: helm
+          url: https://fluent.github.io/helm-charts
+          name: fluent
       dex.config: |
         connectors:
           - type: github
@@ -90,6 +93,8 @@ argo-cd:
             server: https://kubernetes.default.svc
           - namespace: monitoring
             server: https://kubernetes.default.svc
+          - namespace: logging
+            server: https://kubernetes.default.svc
         clusterResourceWhitelist:
           - group: '*'
             kind: '*'
@@ -132,6 +137,9 @@ applications:
   kube-prometheus-blackbox-exporter:
     project: tools
     namespace: monitoring
+  fluent-bit:
+    project: tools
+    namespace: logging
   superhero-ui:
     project: apps
     namespace: apps
