@@ -39,6 +39,9 @@ applications:
   fluent-bit:
     project: tools
     namespace: logging
+  cluster-autoscaler:
+    project: tools
+    namespace: cluster-autoscaler
   aerepl-http:
     project: apps
     namespace: apps
@@ -72,6 +75,10 @@ applications:
     namespace: apps
     repoUrl: 'https://github.com/aeternity/gitops-apps.git'
   dex-ui:
+    project: apps
+    namespace: apps
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+  graffiti-server:
     project: apps
     namespace: apps
     repoUrl: 'https://github.com/aeternity/gitops-apps.git'
@@ -140,6 +147,9 @@ argo-cd:
         - type: helm
           url: https://fluent.github.io/helm-charts
           name: fluent
+        - type: helm
+          url: https://kubernetes.github.io/autoscaler
+          name: cluster-autoscaler
       dex.config: |
         connectors:
           - type: github
@@ -202,6 +212,8 @@ argo-cd:
           - namespace: monitoring
             server: https://kubernetes.default.svc
           - namespace: logging
+            server: https://kubernetes.default.svc
+          - namespace: cluster-autoscaler
             server: https://kubernetes.default.svc
         clusterResourceWhitelist:
           - group: '*'
