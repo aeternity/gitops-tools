@@ -144,7 +144,11 @@ applications:
   cluster-autoscaler:
     project: tools
     namespace: cluster-autoscaler
-  superhero-ui:
+  superhero-ui-web:
+    project: apps
+    namespace: apps
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+  superhero-ui-ssr:
     project: apps
     namespace: apps
     repoUrl: 'https://github.com/aeternity/gitops-apps.git'
