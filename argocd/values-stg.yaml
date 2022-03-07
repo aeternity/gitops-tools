@@ -41,9 +41,6 @@ argo-cd:
         - type: helm
           url: https://fluent.github.io/helm-charts
           name: fluent
-        - type: helm
-          url: https://kubernetes.github.io/autoscaler
-          name: cluster-autoscaler
       dex.config: |
         connectors:
           - type: github
@@ -95,8 +92,6 @@ argo-cd:
             server: https://kubernetes.default.svc
           - namespace: logging
             server: https://kubernetes.default.svc
-          - namespace: cluster-autoscaler
-            server: https://kubernetes.default.svc
         clusterResourceWhitelist:
           - group: '*'
             kind: '*'
@@ -141,9 +136,6 @@ applications:
   fluent-bit:
     project: tools
     namespace: logging
-  cluster-autoscaler:
-    project: tools
-    namespace: cluster-autoscaler
   superhero-ui-web:
     project: apps
     namespace: apps
