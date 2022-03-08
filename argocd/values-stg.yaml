@@ -33,6 +33,9 @@ argo-cd:
           url: https://aws.github.io/eks-charts
           name: eks
         - type: helm
+          url: https://helm.traefik.io/traefik
+          name: traefik
+        - type: helm
           url: https://charts.bitnami.com/bitnami
           name: bitnami
         - type: helm
@@ -83,6 +86,8 @@ argo-cd:
             server: https://kubernetes.default.svc
           - namespace: kube-system
             server: https://kubernetes.default.svc
+          - namespace: traefik
+            server: https://kubernetes.default.svc
           - namespace: monitoring
             server: https://kubernetes.default.svc
           - namespace: logging
@@ -116,6 +121,9 @@ applications:
   aws-load-balancer-controller:
     project: tools
     namespace: kube-system
+  traefik:
+    project: tools
+    namespace: traefik
   metrics-server:
     project: tools
     namespace: kube-system
