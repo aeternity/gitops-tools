@@ -1,5 +1,5 @@
 aws-load-balancer-controller:
-  clusterName: stg-vvup
+  clusterName: stg-m4n4
   rbac:
     create: true
   serviceAccount:
