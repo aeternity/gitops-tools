@@ -118,9 +118,6 @@ applications:
   sealed-secrets:
     project: tools
     namespace: sealed-secrets
-  aws-load-balancer-controller:
-    project: tools
-    namespace: kube-system
   traefik:
     project: tools
     namespace: traefik
