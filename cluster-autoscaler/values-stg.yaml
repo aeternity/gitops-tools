@@ -10,7 +10,7 @@ cluster-autoscaler:
     # autoDiscovery.clusterName -- Enable autodiscovery for `cloudProvider=aws`, for groups matching `autoDiscovery.tags`.
     # Enable autodiscovery for `cloudProvider=gce`, but no MIG tagging required.
     # Enable autodiscovery for `cloudProvider=magnum`, for groups matching `autoDiscovery.roles`.
-    clusterName: stg-vvup
+    clusterName: stg-m4n4
 
     # autoDiscovery.tags -- ASG tags to match, run through `tpl`.
     tags:
