@@ -1,6 +1,6 @@
 encValues:
-  es_username: "AgCxx4pduhgSjNgsM40oEjSWTFXrq5Ya13pLjhc9nBKtjuyS/nI3wZxtDfIhdwUmkcNPO6DYHrhCZAp14JqFmMVhqUX/JZWM/pKijwzWR0M5USCpI0e79cL9g34TfzAtYV23ILU3BCyYRz6DAS54tMDvvOajbrdadADw5XpyMI9GMzb6aOCcO19VrabIYLn8Fc3loVpjpQ3ORwrLLSZoRbCYa00Qm9ID7NrVy4dIPMg5fHecKYajGhXs7TqALLUrPW5ERtPYEmlX/gyoEZK4DrYARUAuA9CEsF9Ro2ElSd9ot/7O9+CN6uP2qmtwxS9N+Thyfk2sTLsz1Vtokv2nT4eAoIEaS8J96dv+7aZFDH63ODMyf68d1brB5o74s9jAqQEBrZAuDaS0/fL2xf/RGkQ3PjGUzTMKDIXofHKtfivTdWtH7gknxOFxxHjg9RiLqNncvG5gXf0DNjudPHzKEtxjPb8sEnGiougTCI0X+3ocLzzpGwtYtmy2VUdlQ/GbBdsmAvpQ1+ilZfjqLJutvA3We6waL3cDI8qsX3g8M1/bGii/CSTY2MjoKlaKZlfX/PWIbePEHi8S1OpHz3wekFGscXsrkPmUcUmt6ceeFy0TzTdgCjUfxSnXOpc6sba6H74HWHLKDugUn0S1HLbSPzcoJoVHyRWk1Ns6Cvwmr/AvgaSTXuHcbp5dpNZnfb7tgzzeviZLGiMFFg=="
-  es_password: "AgBog6vMuM+pyi8vo8Y52VbbeQ+Z1QOklJFDJpIrUzJsO6bkipL88yNm9vnD7sH0DC7tGTkhyH1/OnO0AKxKHIB1oiRfWp5Pb+hN7ZwSBLnJ1aZKDdwylzWgGsOWiVduRc8R1xUMvPzv+F1ptjxMYUIvLIJWwz4pX+fYVDkkoLHkKvyD5lh2AtXd6Bdk1jydbL3bbm5W6PIDk6J7WibHayHY4w6z95fR0Hp0ov438DKWRywmDo/ZnBuV6oodIQ/mg4U6rekWgfw+nanTW9q/TnJumrAlTjxUIegGwKSbLoDrfNg+TyLpW38zwv22BaDHT7MOZz0iDOGhMkQNLPH3YZ2+YKotvxVFufhwG2VPH5MYsgQGaCUfzgYi3/iJ4p4hk/RqjIxQZ8VOrrLRSTWv4z1MXJ7ecfEnnYKJglG/vrpXc/0IMz1zoqJmYB6HAjppib/csKgBCIOonRvPsGIDrmAqfYAO9g7u6p2lApKxuwYm6rRCrFzL/xyGt2bZrrRKPLu38uWPlQ2xUfm8G/3ILIfmTJzRBIeqCQBqP4W9C8sjw3whDOFIHNMpEWb4KUhhua9FdRZPJOe4vMwXxAnxMSCxMIVd5mCa2N/nmTZZhqhFe5gvY0tJtPSqOFKFlU5eoYUlg2M4XGyBGFtARpikoWwdKgmGhO3SvMkihZSARPC55v/wsM5P9tdlmcg+hOsWpHz+yfnWPZYMBPZ1"
+  OS_USERNAME: "AgCxx4pduhgSjNgsM40oEjSWTFXrq5Ya13pLjhc9nBKtjuyS/nI3wZxtDfIhdwUmkcNPO6DYHrhCZAp14JqFmMVhqUX/JZWM/pKijwzWR0M5USCpI0e79cL9g34TfzAtYV23ILU3BCyYRz6DAS54tMDvvOajbrdadADw5XpyMI9GMzb6aOCcO19VrabIYLn8Fc3loVpjpQ3ORwrLLSZoRbCYa00Qm9ID7NrVy4dIPMg5fHecKYajGhXs7TqALLUrPW5ERtPYEmlX/gyoEZK4DrYARUAuA9CEsF9Ro2ElSd9ot/7O9+CN6uP2qmtwxS9N+Thyfk2sTLsz1Vtokv2nT4eAoIEaS8J96dv+7aZFDH63ODMyf68d1brB5o74s9jAqQEBrZAuDaS0/fL2xf/RGkQ3PjGUzTMKDIXofHKtfivTdWtH7gknxOFxxHjg9RiLqNncvG5gXf0DNjudPHzKEtxjPb8sEnGiougTCI0X+3ocLzzpGwtYtmy2VUdlQ/GbBdsmAvpQ1+ilZfjqLJutvA3We6waL3cDI8qsX3g8M1/bGii/CSTY2MjoKlaKZlfX/PWIbePEHi8S1OpHz3wekFGscXsrkPmUcUmt6ceeFy0TzTdgCjUfxSnXOpc6sba6H74HWHLKDugUn0S1HLbSPzcoJoVHyRWk1Ns6Cvwmr/AvgaSTXuHcbp5dpNZnfb7tgzzeviZLGiMFFg=="
+  OS_MASTER_PASSWORD: "AgBog6vMuM+pyi8vo8Y52VbbeQ+Z1QOklJFDJpIrUzJsO6bkipL88yNm9vnD7sH0DC7tGTkhyH1/OnO0AKxKHIB1oiRfWp5Pb+hN7ZwSBLnJ1aZKDdwylzWgGsOWiVduRc8R1xUMvPzv+F1ptjxMYUIvLIJWwz4pX+fYVDkkoLHkKvyD5lh2AtXd6Bdk1jydbL3bbm5W6PIDk6J7WibHayHY4w6z95fR0Hp0ov438DKWRywmDo/ZnBuV6oodIQ/mg4U6rekWgfw+nanTW9q/TnJumrAlTjxUIegGwKSbLoDrfNg+TyLpW38zwv22BaDHT7MOZz0iDOGhMkQNLPH3YZ2+YKotvxVFufhwG2VPH5MYsgQGaCUfzgYi3/iJ4p4hk/RqjIxQZ8VOrrLRSTWv4z1MXJ7ecfEnnYKJglG/vrpXc/0IMz1zoqJmYB6HAjppib/csKgBCIOonRvPsGIDrmAqfYAO9g7u6p2lApKxuwYm6rRCrFzL/xyGt2bZrrRKPLu38uWPlQ2xUfm8G/3ILIfmTJzRBIeqCQBqP4W9C8sjw3whDOFIHNMpEWb4KUhhua9FdRZPJOe4vMwXxAnxMSCxMIVd5mCa2N/nmTZZhqhFe5gvY0tJtPSqOFKFlU5eoYUlg2M4XGyBGFtARpikoWwdKgmGhO3SvMkihZSARPC55v/wsM5P9tdlmcg+hOsWpHz+yfnWPZYMBPZ1"
 
 kubernetes-event-exporter:
   ## @section Global parameters
@@ -120,8 +120,8 @@ kubernetes-event-exporter:
           index: test-index-000001
           # Ca be used optionally for time based indices, accepts Go time formatting directives
           #indexFormat: "kube-events"
-          username: es-admin
-          password: es_password
+          username: $OS_USERNAME
+          password: $OS_PASSWORD
           #cloudID: # optional
           #apiKey: # optional
           # If set to true, it allows updating the same document in ES (might be useful handling count)
@@ -297,7 +297,17 @@ kubernetes-event-exporter:
   ##  - name: MY_ENV_VAR
   ##    value: env_var_value
   ##
-  extraEnvVars: []
+  extraEnvVars:
+    - name: OS_USERNAME
+      valueFrom:
+        secretKeyRef:
+          name: kubernetes-event-exporter-secret
+          key: OS_USERNAME
+    - name: OS_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: kubernetes-event-exporter-secret
+          key: OS_MASTER_PASSWORD
   ## @param extraEnvVarsCM ConfigMap containing extra env vars to be added to all containers
   ##
   extraEnvVarsCM: ""
