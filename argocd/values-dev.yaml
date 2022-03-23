@@ -42,6 +42,9 @@ applications:
   cluster-autoscaler:
     project: tools
     namespace: cluster-autoscaler
+  kubernetes-event-exporter:
+    project: tools
+    namespace: kubernetes-event-exporter
   aerepl-http:
     project: apps
     namespace: apps
@@ -218,6 +221,8 @@ argo-cd:
           - namespace: logging
             server: https://kubernetes.default.svc
           - namespace: cluster-autoscaler
+            server: https://kubernetes.default.svc
+          - namespace: kubernetes-event-exporter
             server: https://kubernetes.default.svc
         clusterResourceWhitelist:
           - group: '*'
