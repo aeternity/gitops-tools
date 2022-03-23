@@ -97,6 +97,8 @@ argo-cd:
             server: https://kubernetes.default.svc
           - namespace: cluster-autoscaler
             server: https://kubernetes.default.svc
+          - namespace: kubernetes-event-exporter
+            server: https://kubernetes.default.svc
         clusterResourceWhitelist:
           - group: '*'
             kind: '*'
@@ -144,6 +146,9 @@ applications:
   cluster-autoscaler:
     project: tools
     namespace: cluster-autoscaler
+  kubernetes-event-exporter:
+    project: tools
+    namespace: kubernetes-event-exporter
   superhero-ui-web:
     project: apps
     namespace: apps
