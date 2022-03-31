@@ -1,6 +1,9 @@
 encValues:
-  ROOT_PASSWORD: "AgBtAawKy5vPJeVpS66eOOHu/h4PtETtfFQyspvpFEHuuJ7bWT02mxHmtk3UirnYlXOtP2dofDffvUmy9o3HK7FBIHuwW3dE5hfAEpIzSw8RFeYVXuy7ltc+0U3ORGnFvsjaEf9a/LnpCuVVA2qBIQGfyxJgvDbbVFMwVda4ShEPcmj0BtQhE1SbbfA9EBjAU8cV3gnjJPA3TPCsgOt3KafZk44qHLpt509CmEB0b8rHFjuaGCFKRQ8H5bCYR4OlMIn5hG+6HvZ9qvF0n0dKvj0U4shCC5xDfV38bFPyVcYA9iDHuq7ROdTBtJQPu5QFH2mGIkgpzz1oR+zxszO9IkowIeaNA8EyeP6jv7iN9kz9R4ExS2uRw2/ukQDTkwB4fckgwJfK4brTPhi/8afnmkWcdDZhHrMYCOy77zKqDbPC1ud+OsB9mGjrikIalG+S6pZI6JjIiKOnog6fHUz/LUk8NNVxkS33B8W+FSMzQvC7nO0/JNFDRLv/W+paof79ceQf4fDjvC4GqgCMgNmnIrznA71ghpPkBDcoN91TxTzTBR4/t/KjQQ4J+eZVUAxaWNDa5qEOt85siYXDq3c6PG7k9U62rPfwelht4+4kIGrxnf9m6Ki0WbV5bwqfE8n1+c1RFAMoS5KMEVEOt2UqbTS30wU1JujpA31RhCp3UAdOH2icFmphKdYZh9O42Lfu672R0njOXd6Lo3I="
-  MONGO_PASSWORD: "AgARxIbixOxlb79J4nVSMXKcYmmRI1V4PSwD8D+LlcCJxf/M+8XA/Afjrnpj5aboeAN9pIzuhyar0/1yGhw/1osX91cZ9dceIEb0y6PQSCXRDIDQaLTVHlMa+H9KilxuxqZEivtdp38+9LJ+pF+alkpJkCTZKIz9XyBO5HBPQ+hPnvMhYjS0y0zhIJ5PRKn7zU1GHqTSJKU4bObsyPPww1aEgdmf31EBvGVz1GmXg5fNpIP8SwDy+W/B5eHxTsgGHQ35ax1r0vnu8n9vU5VGGxVOAQIg8zfdcq0JO0sdH4SkDwcP6kXAcNASfBkfZF/1wj/sJybDboq8F/Zf/S0oEw2CDvvBSrCIIUbx+4bnjDCenc/+uIjm8JL/n3fCF7dZ2zqpS1mD+YfAy5z5Dg1gsda3Lr95ME8SgYUdNfk3k4Nr2DHmZcJr9bdqH/hS2J0V5kl2gbRLEqvGXCYkdrfPjJfOfWmOvC83eoWTH5FpyXBcIrc0JdvqkeRPRh3B6C2ECq2iJyAkkIoV+HGSe/kxFp0NafLEZK0lCJBr2tE2vKzpb4XJ6UDGJpZYd/dn4IoRJq6PGv8591PBY57/nklbTHmvVeCr0qvvkFeOVXpuj9tDsxXGFnLkRAv1dJSD/zTbuVQ/Tfy0ZyWxIbSX5ie5fQ5odBANfgmoT0M85AVVjd/KEs2I1FtklCOnNBAlLEPy3Rams8jyTi0cOZM="
+  mongodb-passwords: "AgAxynQNQcw786QJ0yW3yZgWoH/TyMhF/w1TVG6Jua9a6LZtlenaUIoszzN/FsRMmaMSifecLm621khMaVsts+SGqbiZn17SsLWj8oADkjGfHcSh6cSPO4z03/WTIYVFBV0HxVOLKSDqZ9Iya9s0/jmCLaUDEM1IK1nGPrx3uTM+lLAvnk08Pfo1dDYatE5aV90TOSKYHuob8fI0b2mnhgOEM40oUMiasCx9Axky4+NgwTscWWEBCQHqHZ4QNceYRqvUI1DYu5Cv8NrbUoSzX497Ujg6ugUsvolbj5PohhTMtnSIZW0ONKMmdmlk+Yxuc38E/djNLilHX5jhoFiaO/ndmiuiPBYXQ9oQoUIOUVfQlkVH5LKc1q2c7SvwTW08W7w46MdKDQk6SUuzTZsOugEktNltvtEt2nXkIVAGfb+BXf5jXkxMBB36XzO4f563GBnfplw8F3CW5/shKDTpL4gaXXeVIFFfsZZG12QdBvnpVBlwAU4MM40ez+hFR0k3G3rP4l6qR+FMrelDyPcfr6qcGZ4OUP/W/Z5WBFBHY5PkDMDYkwjyyG1MENR6LcusGQ9xy69T2jANG7Vkorvo0CUey/u4LJTtfthBe82Ru7c2h+8PGK73MEd2bPOaYkFHH+1LL333oingW/SPW4sTOn0SENM+7QB7FOWulfpEOwFAvDy88XrsRYYozRmUbK7WFbv0Evo+4fkec3U="
+  mongodb-root-password: "AgAxlEDz9c+SVrrJfVdKL6SPYT1XCdEljjOx+cfs6R+BUcAtAXIXnbOiU0kvG1wEyJ4dLqTz3nxi4EsCJ9tpotXyPPMV5scqXt9Kbpd32J7cH2IbcujpINDGlQECkFDwFRBd3KZxXCOHS6oFsm4klhGeE9Pf8ZIw95DIXw2A4xq+Om2AE95e/pzqzVJArAmVdAk89vGG9j+UyQLF25Ro7OB8lCOUOCqrpuqehBcdOr19oT7NH14YHZrOsHAf9S6rQsm4vBf+FLNcqAYomlGv+4v3DzgVOqKTq0JU/6C9Gc1+Z9TjPQvYiCU33o0HxRsqsIW6iNkzKF5rirfWNIXEy+51CLEJ208SFpX3RJOzDjWGCgjmbroZ1sMm0OLx0kjGmhA+/3p4eOWbBfv/QxzwD9qXFbWrq0X0ni1MNVdLV9CBiL6VEAcofq6v0FrvGEmYTf0vrFsUA0a/nKm//FXDM2vgVXrhDN6oIeq0N+xGiC8eA2EYoJIvstMuBHuIEQ6jUxPmWwMsYgxSzUYO37HE+b6AYBVh6MCE0K8cTeWynhM5cLeEFFs5b5owGFdc8DVkd3oTElNyXfihtJeTiSoiltmwvfVSNZvs//hI5xCe9GjgkvhEBU7lNtIVNWIdXTdH77EuXJnKsMCL2R/HnwO56KKSicfy2/nz0nmSMbaiLJ+i6vABW9zhYXv5YhGTria1RIRE9TAggqmx1G0="
+  mongodb-replica-set-key: "AgBZCglFcUtmuBJ6q5iQQ5u08oHcXnt797u21aysZ8AilEZ9KKJefP8W7C83PTOBs6DE8iPnRfpNaBBRUiA1FAKEZ+Es2ECtsA6nteJ4QeraqolHLkx0uI4/Lmz7+Yc7DCKvyda5yvBEifA81mldwe4KuMzRdKaz4MBf4ad3z/4KVw7WyRaxWxsXOY7y76rx25EerwX1DVULfbQEpE7F0kqHhkWGKw725gVSRQBfrqJVFUXOhAGbybNZrAFWHIPphBU4Rnrl/fabpjZ761UgxZ3jchp2mppE7oQt4LsVqedk4unVnXWdex5qZzJqmMSZnElWDfl42pSYtEoYu716XgXEU7PLGzoKMMfYSjbg/19LwpkHXz5yf182MTRZhXTcD9CWnfLv2bQs1p54IUddHoDKI/BqIV4/7dRnUgOXkfu+w10fykZLCgnRKisYdeLayYU3MmDt7perIAEzktd9ITX39Ex/5uDOsppIy6WL833FTPK6MR7OuMb7Cj30WZOipr2kCHtD8zy6SS8bizuvqIOwhsEMPVHqKqz4TdfZzggHjImUmOCtHkLbNWWhyeBKUE7HKd5f6JoZDNdrTXzY5Rz/AVqQ57u5ZDZKntR9CHoMSQHiyvYaHvhafdNrCDxs1R34OxRzoybAS1Jlgiwn2tYQKBXGoqPU55subzp9tuMIF9x70E7SSMbOoGltQwPbGyKQOvEj2eDMfxQP"
+  mongo-uri: "AgA/DsMEwPEe7d0Px3zuci5k+tDtTg2WO3rB/abZlV8AlRFdOrfwnvWq1EaMzO+ycmfY2mik+62VaI5vJ14XquFOomvI9peGrp6tPmG7rRFLpbV0lMw8Rg9HHCHijcEaGIguig2OmGxvLYOW3f+pYAoke+yU9karEQiI2UHXGRJ/o46Wt4ORNuKBquEeWfVfr2KJ9UJ+Hk2r6Ulv/IxYdwsmQ76VRvE6bmZFwPvQOJiAPbrTu8hvagC40bDiyZmxEx6ttzr4LoCzjE8XsYDUCgAaw10ilI9rBFl0Z29P/FXbpz3BuqfEB7jQJfHOhVuIkv+izagi3eqtQ/AysmqodZ9nmSRCxtTRLGkWjnUqZhIQxzLLjqLYrhk5dAU7dEupUjRwiZgSHQlovVJp1cVAm/pldgM3RDaq/gDZDD1KCV95/LqHyn4q+IQH1As8WNQcd8n9HhQBW0bFQwCVDNtKwLrMe3XQ4W/VQvjiD8c1EmGvyDb/1tVTi9h64mw6KDZh1Q87JvGUsS2qhJ64+H0IbQb40fZHBg5ps3Sjgh2BTYQE5tVdhdYKr2ASWHg0D31+c/uD3sPTFOyZE0NW1KcG+NXiAnCKksBsPk+AOF54n41Xo819JLuWn44f4zL5PMTbcgh9UHaPotR0AA/SWgU2YnMKWifkb+3zjEQjjBnghk3/rK9kNenrweVhGmHwI8ESx0EyYyycjDVLA0jocezGva5B57zR5OgYsX9Fuhe4HDhPaSYVWnhwaiGe/fx9rfzUYKmYzX8E4w2ITZWTQLeAcPlRH+4AZRqKr5iZw+DLSF/5CuxWwRD+DwdSf+A="
+  mongo-oplog-uri: "AgCYgcZ/GrVuj2aQwxPcjDUQdROB/21G8rTnS11bTlP7sW9poVWEb1sH7v0JMXjtlMfCEMr3cVs6RXhHH4820SgAAY7SDEP1GCjXOot9thd7OaVGwTwmKlHVdjAMYc8RLmqHzl7hmudr4J9czoQxcNGWnxf8mkPQPNo+KlL3GdW2sV2Ony5mPOzxPUF4lHwIJFL4cZUGIOiUvTOhssBFlTQSiDGZ7B6q2qmsUAcDw8kUVH/tujkDBefMEAlx8TFgmSUZfa4PUqgwFHL/dwcQDPVub9lALGPgWnN+Q0Kh1JIjlWz7DO8zQN/ryW98EnBqd4U11uwOpgrhb2pGxidT/AMse1GmIJCjxf9mi0iruhU8AxDlY2YO+nYNNT/0cpuaOe86ZfECtTgYNhtAn2dXorqFVrXMLFTo9NYfU9w7PkRKIOUxkE8mMRWXO7Ht40NrLJsdUWitfzuWjs7MW9pBdRTPqCBaW0F6A93ecd+blsdot/mJdBUSnKAGrdW0qLZt0qWXG00sKruKYb1kwpXpqUbvgoInqTeGDyY+ZpWppZPHAjKs93U3Q3NClCI9q49GEqyLliOk540c93DDg6MF84RSat0mkRnuB52xpOV7cen/lPEo/ig0eH79jwuKs7o5IXJIe7vs0U/Qfo1AQh5EIWM1YzidWIr9D8ypfLsMuWH0IoB6yaHnizuc2GjaMqOG5h0gEDffQXTpcFI59OdK9ZJuQBOA4NB0aHwi8u8NzZY4nYrxujYPu+ZWTEPjg9OOxbvcUIDrBM8jch/wIN2hnPCPxzJISo05oSjJzYpWQN45QHocvGKxPwjWzs7aom6edu8="
 
 rocketchat:
   ## Rocket Chat image version
@@ -30,16 +33,6 @@ rocketchat:
 
   # Extra env vars for Rocket.Chat:
   extraEnv: 
-    #- name: ROOT_PASSW
-      #valueFrom:
-        #secretKeyRef:
-          #name: rocketchat-secret
-          #key: ROOT_PASSWORD
-    #- name: MONGO_PASSW
-      #valueFrom:
-        #secretKeyRef:
-          #name: rocketchat-secret
-          #key: MONGO_PASSWORD
     # - name: MONGO_OPTIONS
     #   value: '{"ssl": "true"}'
      #- name: MONGO_OPLOG_URL
@@ -78,7 +71,7 @@ rocketchat:
   #         - e2e-az2
 
   ## Use an existing secret file with the MongoDB Url and OplogUrl
-  existingMongodbSecret: ''
+  existingMongodbSecret: 'rocketchat-secret'
 
   ## MongoDB URL if using an externally provisioned MongoDB
   externalMongodbUrl: # mongodb://user:password@localhost:27017/rocketchat
@@ -93,10 +86,9 @@ rocketchat:
     enabled: true
 
     auth:
-      rootPassword: ROOT_PASSWORD
       username: rocketchat
-      password: MONGO_PASSWORD
       database: rocketchat
+      existingSecret: "rocketchat-secret"
 
     architecture: replicaset
     replicaCount: 1
@@ -265,4 +257,4 @@ rocketchat:
     natsService: 
     streamHubService: 
     accountsService: 
-    authorizationService: 
+    authorizationService:
