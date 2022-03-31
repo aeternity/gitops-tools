@@ -45,6 +45,9 @@ applications:
   kubernetes-event-exporter:
     project: tools
     namespace: kubernetes-event-exporter
+  rocketchat:
+    project: tools
+    namespace: rocketchat
   aerepl-http:
     project: apps
     namespace: apps
@@ -157,6 +160,9 @@ argo-cd:
         - type: helm
           url: https://kubernetes.github.io/autoscaler
           name: cluster-autoscaler
+        - type: helm
+          url: https://rocketchat.github.io/helm-charts
+          name: rocketchat
       dex.config: |
         connectors:
           - type: github
@@ -223,6 +229,8 @@ argo-cd:
           - namespace: cluster-autoscaler
             server: https://kubernetes.default.svc
           - namespace: kubernetes-event-exporter
+            server: https://kubernetes.default.svc
+          - namespace: rocketchat
             server: https://kubernetes.default.svc
         clusterResourceWhitelist:
           - group: '*'
