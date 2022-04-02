@@ -132,11 +132,11 @@ metrics-server:
   ## @param extraArgs Extra arguments to pass to metrics-server on start up
   ## ref: https://github.com/kubernetes-incubator/metrics-server/blob/master/README.md#flags
   ##
-  ## extraArgs:
-  ##   kubelet-insecure-tls: true
+  extraArgs:
+    kubelet-insecure-tls: true
   ##   kubelet-preferred-address-types: InternalIP
   ##
-  extraArgs: {}
+  #extraArgs: {}
   ## @param podLabels Pod labels
   ## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
   ##
