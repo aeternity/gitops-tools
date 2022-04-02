@@ -106,7 +106,7 @@ apiService:
   ## @param apiService.create Specifies whether the v1beta1.metrics.k8s.io API service should be created. You can check if it is needed with `kubectl get --raw "/apis/metrics.k8s.io/v1beta1/nodes"`.
   ## This is still necessary up to at least k8s version >= 1.21, but depends on vendors and cloud providers.
   ##
-  create: false
+  create: true
   ## @param apiService.insecureSkipTLSVerify Specifies whether to skip self-verifying self-signed TLS certificates. Set to "false" if you are providing your own certificates.
   ## Note that "false" MUST be in quotation marks (cf. https://github.com/helm/helm/issues/3308), since false without quotation marks will render to true
   insecureSkipTLSVerify: true
