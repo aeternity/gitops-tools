@@ -21,9 +21,9 @@ applications:
   aws-load-balancer-controller:
     project: tools
     namespace: kube-system
-  metrics-server:
-    project: tools
-    namespace: kube-system
+  #metrics-server:
+    #project: tools
+    #namespace: kube-system
   traefik:
     project: tools
     namespace: traefik
