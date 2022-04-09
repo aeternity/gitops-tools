@@ -44,6 +44,9 @@ argo-cd:
         - type: helm
           url: https://kubernetes.github.io/autoscaler
           name: cluster-autoscaler
+        - type: helm
+          url: https://vmware-tanzu.github.io/helm-charts
+          name: velero
       dex.config: |
         connectors:
           - type: github
@@ -99,6 +102,8 @@ argo-cd:
             server: https://kubernetes.default.svc
           - namespace: kubernetes-event-exporter
             server: https://kubernetes.default.svc
+          - namespace: velero
+            server: https://kubernetes.default.svc
         clusterResourceWhitelist:
           - group: '*'
             kind: '*'
@@ -149,6 +154,9 @@ applications:
   kubernetes-event-exporter:
     project: tools
     namespace: kubernetes-event-exporter
+  velero:
+    project: tools
+    namespace: velero
   superhero-ui-web:
     project: apps
     namespace: apps
