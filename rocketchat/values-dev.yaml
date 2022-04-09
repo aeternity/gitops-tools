@@ -7,7 +7,7 @@ encValues:
 
 velero:
   enabled: "true"
-  schedule: "*/5 * * * *"
+  schedule: "0 1 * * *"
   # Template is the spec that should be used for each backup triggered by this schedule.
   includedResources:
     - "pvcs"
