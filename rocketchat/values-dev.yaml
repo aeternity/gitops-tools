@@ -5,10 +5,21 @@ encValues:
   mongo-uri: "AgA/DsMEwPEe7d0Px3zuci5k+tDtTg2WO3rB/abZlV8AlRFdOrfwnvWq1EaMzO+ycmfY2mik+62VaI5vJ14XquFOomvI9peGrp6tPmG7rRFLpbV0lMw8Rg9HHCHijcEaGIguig2OmGxvLYOW3f+pYAoke+yU9karEQiI2UHXGRJ/o46Wt4ORNuKBquEeWfVfr2KJ9UJ+Hk2r6Ulv/IxYdwsmQ76VRvE6bmZFwPvQOJiAPbrTu8hvagC40bDiyZmxEx6ttzr4LoCzjE8XsYDUCgAaw10ilI9rBFl0Z29P/FXbpz3BuqfEB7jQJfHOhVuIkv+izagi3eqtQ/AysmqodZ9nmSRCxtTRLGkWjnUqZhIQxzLLjqLYrhk5dAU7dEupUjRwiZgSHQlovVJp1cVAm/pldgM3RDaq/gDZDD1KCV95/LqHyn4q+IQH1As8WNQcd8n9HhQBW0bFQwCVDNtKwLrMe3XQ4W/VQvjiD8c1EmGvyDb/1tVTi9h64mw6KDZh1Q87JvGUsS2qhJ64+H0IbQb40fZHBg5ps3Sjgh2BTYQE5tVdhdYKr2ASWHg0D31+c/uD3sPTFOyZE0NW1KcG+NXiAnCKksBsPk+AOF54n41Xo819JLuWn44f4zL5PMTbcgh9UHaPotR0AA/SWgU2YnMKWifkb+3zjEQjjBnghk3/rK9kNenrweVhGmHwI8ESx0EyYyycjDVLA0jocezGva5B57zR5OgYsX9Fuhe4HDhPaSYVWnhwaiGe/fx9rfzUYKmYzX8E4w2ITZWTQLeAcPlRH+4AZRqKr5iZw+DLSF/5CuxWwRD+DwdSf+A="
   mongo-oplog-uri: "AgCYgcZ/GrVuj2aQwxPcjDUQdROB/21G8rTnS11bTlP7sW9poVWEb1sH7v0JMXjtlMfCEMr3cVs6RXhHH4820SgAAY7SDEP1GCjXOot9thd7OaVGwTwmKlHVdjAMYc8RLmqHzl7hmudr4J9czoQxcNGWnxf8mkPQPNo+KlL3GdW2sV2Ony5mPOzxPUF4lHwIJFL4cZUGIOiUvTOhssBFlTQSiDGZ7B6q2qmsUAcDw8kUVH/tujkDBefMEAlx8TFgmSUZfa4PUqgwFHL/dwcQDPVub9lALGPgWnN+Q0Kh1JIjlWz7DO8zQN/ryW98EnBqd4U11uwOpgrhb2pGxidT/AMse1GmIJCjxf9mi0iruhU8AxDlY2YO+nYNNT/0cpuaOe86ZfECtTgYNhtAn2dXorqFVrXMLFTo9NYfU9w7PkRKIOUxkE8mMRWXO7Ht40NrLJsdUWitfzuWjs7MW9pBdRTPqCBaW0F6A93ecd+blsdot/mJdBUSnKAGrdW0qLZt0qWXG00sKruKYb1kwpXpqUbvgoInqTeGDyY+ZpWppZPHAjKs93U3Q3NClCI9q49GEqyLliOk540c93DDg6MF84RSat0mkRnuB52xpOV7cen/lPEo/ig0eH79jwuKs7o5IXJIe7vs0U/Qfo1AQh5EIWM1YzidWIr9D8ypfLsMuWH0IoB6yaHnizuc2GjaMqOG5h0gEDffQXTpcFI59OdK9ZJuQBOA4NB0aHwi8u8NzZY4nYrxujYPu+ZWTEPjg9OOxbvcUIDrBM8jch/wIN2hnPCPxzJISo05oSjJzYpWQN45QHocvGKxPwjWzs7aom6edu8="
 
+velero:
+  enabled: "true"
+  schedule: "*/5 * * * *"
+  # Template is the spec that should be used for each backup triggered by this schedule.
+  includedResources:
+    - "pvcs"
+    - "pvs"
+  storageLocation: default
+  ttl: 720h0m0s
+
 rocketchat:
   ## Rocket Chat image version
   ## ref: https://hub.docker.com/r/rocketchat/rocket.chat/tags
   ##
+
   image:
     ## NOTE: for microsservices, those two itens get ignored, 
     ## for now. 
