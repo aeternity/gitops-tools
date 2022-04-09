@@ -48,6 +48,9 @@ applications:
   rocketchat:
     project: tools
     namespace: rocketchat
+  velero:
+    project: tools
+    namespace: velero
   aerepl-http:
     project: apps
     namespace: apps
@@ -163,6 +166,9 @@ argo-cd:
         - type: helm
           url: https://rocketchat.github.io/helm-charts
           name: rocketchat
+        - type: helm
+          url: https://vmware-tanzu.github.io/helm-charts
+          name: velero
       dex.config: |
         connectors:
           - type: github
@@ -231,6 +237,8 @@ argo-cd:
           - namespace: kubernetes-event-exporter
             server: https://kubernetes.default.svc
           - namespace: rocketchat
+            server: https://kubernetes.default.svc
+          - namespace: velero
             server: https://kubernetes.default.svc
         clusterResourceWhitelist:
           - group: '*'
