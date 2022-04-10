@@ -51,7 +51,7 @@ applications:
   velero:
     project: tools
     namespace: velero
-  velero_apps:
+  veleroApps:
     project: apps
     namespace: velero
   aerepl-http:
