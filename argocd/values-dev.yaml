@@ -51,9 +51,6 @@ applications:
   velero:
     project: tools
     namespace: velero
-  velero-apps:
-    project: apps
-    namespace: velero
   aerepl-http:
     project: apps
     namespace: apps
@@ -255,6 +252,8 @@ argo-cd:
           - 'https://github.com/aeternity/gitops-apps.git'
         destinations:
           - namespace: apps
+            server: https://kubernetes.default.svc
+          - namespace: velero
             server: https://kubernetes.default.svc
         clusterResourceWhitelist:
           - group: '*'
