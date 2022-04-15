@@ -216,16 +216,16 @@ velero:
 
     # Parameters for the `default` VolumeSnapshotLocation. See
     # https://velero.io/docs/v1.6/api-types/volumesnapshotlocation/
-    #volumeSnapshotLocation:
-      ## name is the name of the volume snapshot location where snapshots are being taken. Required.
-      #name:
-      ## provider is the name for the volume snapshot provider. If omitted
-      ## `configuration.provider` will be used instead.
-      #provider:
-      ## Additional provider-specific configuration. See link above
-      ## for details of required/optional fields for your provider.
-      #config: 
-        #region: eu-central-1
+    volumeSnapshotLocation:
+      # name is the name of the volume snapshot location where snapshots are being taken. Required.
+      name:
+      # provider is the name for the volume snapshot provider. If omitted
+      # `configuration.provider` will be used instead.
+      provider:
+      # Additional provider-specific configuration. See link above
+      # for details of required/optional fields for your provider.
+      config: 
+        region: eu-central-1
     #    apiTimeout:
     #    resourceGroup:
     #    The ID of the subscription where volume snapshots should be stored, if different from the cluster’s subscription. If specified, also requires `configuration.volumeSnapshotLocation.config.resourceGroup`to be set. (Azure only)
