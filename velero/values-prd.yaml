@@ -1,4 +1,12 @@
 velero:
+  scheduledBackups:
+    namespaces:
+      - "apps"
+    schedule: "0 1 * * *"
+    includedResources: 
+    - "*"
+    storageLocation: default
+    ttl: 720h0m0s
   ##
   ## Configuration settings that directly affect the Velero deployment YAML.
   ##
