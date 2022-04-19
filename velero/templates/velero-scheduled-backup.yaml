@@ -1,0 +1,24 @@
+{{ if .Values.velero.scheduledBackups }}
+---
+apiVersion: velero.io/v1
+kind: Schedule
+metadata:
+  name: velero-scheduled-backups
+  namespace: velero
+  labels:
+    {{- include "velero.labels" $ | nindent 4 }}
+    velero.io/storage-location: {{ $.Values.velero.scheduledBackups.storageLocation }}
+spec:
+  schedule: {{ $.Values.velero.scheduledBackups.schedule | quote }}
+  template:
+    includedNamespaces:
+        {{- range $.Values.velero.scheduledBackups.namespaces }}
+        - {{ . | quote }}
+        {{- end }}
+    includedResources:
+        {{- range $.Values.velero.scheduledBackups.includedResources }}
+        - {{ . | quote }}
+        {{- end }}
+    storageLocation: {{ $.Values.velero.scheduledBackups.storageLocation }}
+    ttl: {{ $.Values.velero.scheduledBackups.ttl }}
+{{- end }}
