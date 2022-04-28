@@ -33,7 +33,7 @@ rocketchat:
     port: 587
 
   # Extra env vars for Rocket.Chat:
-  extraEnv:
+  extraEnv: |
     - name: ADMIN_USERNAME
       value: admin
     - name: ADMIN_PASS
