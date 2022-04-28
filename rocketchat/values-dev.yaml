@@ -39,7 +39,7 @@ rocketchat:
     - name: ADMIN_PASS
       value: supersecret
     - name: ADMIN_EMAIL 
-      value: pe6ev@yahoo.com
+      value: "pe6ev@yahoo.com"
     # - name: MONGO_OPTIONS
     #   value: '{"ssl": "true"}'
      #- name: MONGO_OPLOG_URL
