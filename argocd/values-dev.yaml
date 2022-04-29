@@ -45,9 +45,9 @@ applications:
   kubernetes-event-exporter:
     project: tools
     namespace: kubernetes-event-exporter
-  rocketchat:
-    project: tools
-    namespace: rocketchat
+  #rocketchat:
+    #project: tools
+    #namespace: rocketchat
   velero:
     project: tools
     namespace: velero
