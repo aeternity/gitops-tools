@@ -33,7 +33,13 @@ rocketchat:
     port: 587
 
   # Extra env vars for Rocket.Chat:
-  extraEnv: #|
+  extraEnv: |
+    - name: ADMIN_USERNAME
+      value: admin
+    - name: ADMIN_PASS
+      value: supersecret
+    - name: ADMIN_EMAIL 
+      value: "pe6ev@yahoo.com"
     # - name: MONGO_OPTIONS
     #   value: '{"ssl": "true"}'
      #- name: MONGO_OPLOG_URL
