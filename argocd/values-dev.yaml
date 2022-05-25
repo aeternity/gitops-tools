@@ -257,6 +257,8 @@ argo-cd:
             server: https://kubernetes.default.svc
           - namespace: velero
             server: https://kubernetes.default.svc
+          - namespace: aenodes
+            server: https://kubernetes.default.svc
         clusterResourceWhitelist:
           - group: '*'
             kind: '*'
@@ -279,7 +281,7 @@ argo-cd:
         namespace: aenodes
         additionalLabels: {}
         additionalAnnotations: {}
-        description: Applications deployed on EKS
+        description: AEnodes deployed on EKS
         sourceRepos:
           - 'https://github.com/aeternity/gitops-nodes.git'
         destinations:
