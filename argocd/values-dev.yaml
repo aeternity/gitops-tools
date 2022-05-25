@@ -10,6 +10,7 @@ defaultTargetRevision: dev
 namespaces:
   - tools
   - apps
+  - aenodes
 
 applications:
   argocd:
