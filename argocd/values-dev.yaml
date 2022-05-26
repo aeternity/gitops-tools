@@ -112,6 +112,7 @@ applications:
     project: aenodes
     namespace: aenodes
     repoUrl: 'https://github.com/aeternity/gitops-nodes.git'
+    targetRevision: master
 
 argo-cd:
   configs:
