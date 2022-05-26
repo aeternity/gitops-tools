@@ -193,15 +193,15 @@ applications:
     project: apps
     namespace: apps
     repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  dex-backend:
+  dex-backend-mainnet:
+    project: apps
+    namespace: apps
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+  dex-backend-testnet:
     project: apps
     namespace: apps
     repoUrl: 'https://github.com/aeternity/gitops-apps.git'
   aepp-faucet:
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  test-repo:
     project: apps
     namespace: apps
     repoUrl: 'https://github.com/aeternity/gitops-apps.git'
