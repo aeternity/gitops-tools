@@ -279,7 +279,7 @@ argo-cd:
           - group: '*'
             kind: '*'
       - name: aenodes
-        namespace: aenodes
+        namespace: argocd
         additionalLabels: {}
         additionalAnnotations: {}
         description: AEnodes deployed on EKS
