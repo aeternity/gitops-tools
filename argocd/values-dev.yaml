@@ -10,6 +10,7 @@ defaultTargetRevision: dev
 namespaces:
   - tools
   - apps
+  - aenodes
 
 applications:
   argocd:
@@ -107,6 +108,11 @@ applications:
     project: apps
     namespace: apps
     repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+  dev-net-hyperchain:
+    project: aenodes
+    namespace: aenodes
+    repoUrl: 'https://github.com/aeternity/gitops-nodes.git'
+    targetRevision: master
 
 argo-cd:
   configs:
@@ -151,6 +157,7 @@ argo-cd:
       repositories: |
         - url: https://github.com/aeternity/gitops-tools.git
         - url: https://github.com/aeternity/gitops-apps.git
+        - url: https://github.com/aeternity/gitops-nodes.git
         - type: helm
           url: https://argoproj.github.io/argo-helm
           name: argo
@@ -252,9 +259,11 @@ argo-cd:
             server: https://kubernetes.default.svc
           - namespace: velero
             server: https://kubernetes.default.svc
+          - namespace: aenodes
+            server: https://kubernetes.default.svc
         clusterResourceWhitelist:
           - group: '*'
-            kind: '*' 
+            kind: '*'
       - name: apps
         namespace: argocd
         additionalLabels: {}
@@ -269,4 +278,17 @@ argo-cd:
             server: https://kubernetes.default.svc
         clusterResourceWhitelist:
           - group: '*'
-            kind: '*'    
+            kind: '*'
+      - name: aenodes
+        namespace: argocd
+        additionalLabels: {}
+        additionalAnnotations: {}
+        description: AEnodes deployed on EKS
+        sourceRepos:
+          - 'https://github.com/aeternity/gitops-nodes.git'
+        destinations:
+          - namespace: aenodes
+            server: https://kubernetes.default.svc
+        clusterResourceWhitelist:
+          - group: '*'
+            kind: '*'
