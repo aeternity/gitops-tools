@@ -15,6 +15,7 @@ argo-cd:
         - "argocd.stg.aeternity.io"
     extraArgs:
       - --insecure
+      - --repo-server-timeout-seconds=180
     config:
       # Argo CD's externally facing base URL (optional). Required when configuring SSO
       # url: https://argocd.example.com
