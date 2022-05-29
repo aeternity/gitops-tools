@@ -148,6 +148,7 @@ argo-cd:
         - "argocd.dev.aeternity.io"
     extraArgs:
       - --insecure=true
+      - --repo-server-timeout-seconds="180"
     logLevel: debug
     config:
       # Argo CD's externally facing base URL (optional). Required when configuring SSO
