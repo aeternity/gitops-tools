@@ -1,5 +1,6 @@
 aws-load-balancer-controller:
   clusterName: dev-wgt7
+  logLevel: debug
   rbac:
     create: true
   serviceAccount:
