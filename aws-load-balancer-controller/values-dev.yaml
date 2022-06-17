@@ -4,7 +4,7 @@ aws-load-balancer-controller:
     create: true
   serviceAccount:
     create: true
-    name: aws-load-balancer-controller
+    name: aws-load-balancer-controller-dev
     # automountServiceAccountToken: false
     annotations:
       eks.amazonaws.com/role-arn: "arn:aws:iam::106102538874:role/aws-lb-controller-dev"
