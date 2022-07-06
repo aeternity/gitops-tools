@@ -113,6 +113,14 @@ applications:
     namespace: aenodes
     repoUrl: 'https://github.com/aeternity/gitops-nodes.git'
     targetRevision: master
+  state-channel-demo-frontend:
+    project: apps
+    namespace: apps
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+  state-channel-demo-backend:
+    project: apps
+    namespace: apps
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
 
 argo-cd:
   configs:
