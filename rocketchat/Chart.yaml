@@ -1,9 +1,0 @@
-apiVersion: v2
-name: rocketchat
-description: rocketchat
-version: 4.5.4
-
-dependencies:
-  - name: rocketchat
-    version: 4.5.4
-    repository: https://rocketchat.github.io/helm-charts
