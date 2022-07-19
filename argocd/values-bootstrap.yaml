@@ -21,6 +21,8 @@ argo-cd:
     metrics:
       serviceMonitor:
         enabled: false
+    ingress:
+      enabled: false
 
 applications:
   - name: argocd
