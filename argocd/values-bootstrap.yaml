@@ -1,0 +1,28 @@
+# Don't use sealed secrets because of CRD
+encValues: []
+
+# Disable metrics because of CRD
+argo-cd:
+  repoServer:
+    metrics:
+      serviceMonitor:
+        enabled: false
+
+  controller:
+    metrics:
+      serviceMonitor:
+        enabled: false
+  dex:
+    metrics:
+      serviceMonitor:
+        enabled: false
+
+  server:
+    metrics:
+      serviceMonitor:
+        enabled: false
+
+applications:
+  argocd:
+    project: tools
+    namespace: argocd
