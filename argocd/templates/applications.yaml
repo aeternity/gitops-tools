@@ -1,27 +1,27 @@
 {{- $root := . -}}
-{{- range $key, $value := .Values.applications }}
+{{- range .Values.applications }}
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: {{ $key }}
+  name: {{ .name }}
   namespace: {{ $root.Release.Namespace }}
   finalizers:
     - resources-finalizer.argocd.argoproj.io
   labels:
     {{- include "argocd.labels" $root  | nindent 4 }}
 spec:
-  project: {{ $value.project }}
+  project: {{ .project }}
   source:
-    path: {{ $key }}
-    repoURL: {{ $value.repoUrl | default $root.Values.defaultRepoUrl }}
-    targetRevision: {{ $value.targetRevision | default $root.Values.defaultTargetRevision }}
+    path: {{ .name }}
+    repoURL: {{ .repoUrl | default $root.Values.defaultRepoUrl }}
+    targetRevision: {{ .targetRevision | default $root.Values.defaultTargetRevision }}
     helm:
       valueFiles:
         - values.yaml
-        - values-{{ $value.targetRevision | default $root.Values.defaultTargetRevision }}.yaml
+        - values-{{ .targetRevision | default $root.Values.defaultTargetRevision }}.yaml
   destination:
-    namespace: {{ $value.namespace }}
+    namespace: {{ .namespace }}
     server: 'https://kubernetes.default.svc'
   syncPolicy:
     automated:
@@ -29,5 +29,4 @@ spec:
       selfHeal: false
     syncOptions:
       - CreateNamespace=true
-
 {{- end }}

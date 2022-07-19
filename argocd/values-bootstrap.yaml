@@ -23,6 +23,6 @@ argo-cd:
         enabled: false
 
 applications:
-  argocd:
+  - name: argocd
     project: tools
     namespace: argocd
