@@ -3,6 +3,10 @@ encValues: []
 
 # Disable metrics because of CRD
 argo-cd:
+  configs:
+    secret:
+      createSecret: true
+
   repoServer:
     metrics:
       serviceMonitor:
@@ -12,12 +16,18 @@ argo-cd:
     metrics:
       serviceMonitor:
         enabled: false
+
   dex:
     metrics:
       serviceMonitor:
         enabled: false
 
   server:
+    config:
+      users.anonymous.enabled: "true"
+    extraArgs:
+      - --insecure=true
+      - --disable-auth=true
     metrics:
       serviceMonitor:
         enabled: false
