@@ -12,6 +12,9 @@ applications:
   - name: sealed-secrets
     project: tools
     namespace: sealed-secrets
+  - name: external-secrets
+    project: tools
+    namespace: external-secrets
   - name: aws-load-balancer-controller
     project: tools
     namespace: kube-system
@@ -187,6 +190,9 @@ argo-cd:
         - type: helm
           url: https://vmware-tanzu.github.io/helm-charts
           name: velero
+        - type: helm
+          url: https://charts.external-secrets.io
+          name: external-secrets
       dex.config: |
         connectors:
           - type: github
@@ -259,6 +265,8 @@ argo-cd:
           - namespace: velero
             server: https://kubernetes.default.svc
           - namespace: aenodes
+            server: https://kubernetes.default.svc
+          - namespace: external-secrets
             server: https://kubernetes.default.svc
         clusterResourceWhitelist:
           - group: '*'
