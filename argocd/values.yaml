@@ -27,9 +27,6 @@ applications:
   - name: kube-prometheus-blackbox-exporter
     project: tools
     namespace: monitoring
-  - name: kube-prometheus-elasticsearch-exporter
-    project: tools
-    namespace: monitoring
   - name: fluent-bit
     project: tools
     namespace: logging
