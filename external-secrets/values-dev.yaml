@@ -1,3 +1,4 @@
-serviceAccount:
-  annotations:
-    eks.amazonaws.com/role-arn: arn:aws:iam::106102538874:role/dev-wgt7-eso
+external-secrets:
+  serviceAccount:
+    annotations:
+      eks.amazonaws.com/role-arn: arn:aws:iam::106102538874:role/dev-wgt7-eso
