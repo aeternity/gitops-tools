@@ -230,7 +230,7 @@ applications:
     project: apps
     namespace: apps
     repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  explorer-frontend:
+  explorer:
     project: apps
     namespace: apps
     repoUrl: 'https://github.com/aeternity/gitops-apps.git'
