@@ -1,0 +1,5 @@
+app-secrets:
+  external:
+    values:
+      OS_USERNAME: /kubernetes-event-exporter/OS_USERNAME
+      OS_MASTER_PASSWORD: /kubernetes-event-exporter/OS_MASTER_PASSWORD

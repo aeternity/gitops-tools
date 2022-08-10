@@ -1,6 +1,6 @@
-encValues:
-  OS_USERNAME: "AgBWeNA03lZ+0KLM0mSQXq4oVLEj6vzwypiqnX1//hKXKQb7YcP9KpYwg2eeGX03RBr+vqwf+bzg3+GsQ/UjfrvaobkAIhGJWIs/tDIUKgtqC0agZgwTHlZ6dJJuHrCsSwDPYbXQsCCuGumBSnsdViofD9QTxE6aloMWaDxMaPNKkYEWu24O0YsRXxSz37JhpDoAq2/xPJSstDmQOlULFrrjBEcc+KoCaPP4pzO6bP/iDDbkRiFQ8p2n/YcPfjsi6Ykwgvm+YDaH+dt0OZIAAgtaWBK5io1ATlNTJmtt8dpqek2J+L5B3/rhxThs9x6ySNHMpEF+MaRGEEivgeaDIndAEwDfFFB8d7LPgagkece3rBekhn+dboi3eYj5TG7s86CNNgXP7c45+TyX7pzhamE8h8iWrv2fHaQbmTtxOEc/Y21W327L/2qfE5vl8kxCCM9JQJD+eXibBq8FJDlpqCHbCC92gSV+dgoGlY8Yj+uCTF+lC0qA0epnnLFi5sF43vQxRl6h/ZI5DSAgwlCaHkrqZIJOCVD4k+eo7S91ry/q8LfJj2OY7CDkYlTIPluWi8XI/FDkQmvIqWUc12SJEkcpE1M99csaPHWaBVSBAuvprSmavtjl6F5Hg2tA5uZZGekwPGYK8W/e/3gGeU8noZy55M7JgxFZOWsQz6fBMm1WIWvdOTjoSB7ZGKXnud0Ij0vnj4MdT3zzeA=="
-  OS_MASTER_PASSWORD: "AgByCjDFcgyPlDIIRZjReZyvZCLgc3Jj+7SyiGBwf8Ql1xgtheGsPCTpYD7eNtbTAz7aJLrtVx/LRrdi9nR9TQlSY8GLDwSfWEZTJ8a/80grArDEfFqIG4tTDfZdraQXcRwSUG8MjJMRA9kpd2KeWUJMmthhcp2b1yssgwrzNWaJdCiplzG7jRlpfhrB5gFtlGkbb9Y63jbT8mPK9TlNsNBwU7wFbpljiy2mDlSsgXpbAlp8Bjfo3EloHcZjJ6J4T5pFW62GZP+q8U/QDicE9JpTP1ZWpuoB58GslX6NXB/T+L45p6HFAqyd+OxGdza6P3zi69uM7n3qvBTeaVtB9ohAYd063jwu02xdZera8SYEwocZagAdnigKzLnsB91DtNc7cV2WFIkgqMl9ZeAeqRyv8//mYjCGNbG/8Cpd+rk1I5dautfpfKPNA/xwt+FV9marwQiFsqjWJmwPIGRaPD600piHawcqqu1ek446MzCBrFIPMw+r3HrdfxHlhI8+LdZyiwL7Mdyqa5GOJkZRXnTfJhDIN7VLGvTig1j4QTF9QgodynrovtjeZUV6BSeTsdJrhj9Qhox2fClBpJoFqdSSlc6taY7QJgL7tXATzEHqRGvG99JnPL4tXYCaie1TMEpaJ7OrUGBVqLXxeEqz6rORQvmh5rPE5EeAkjZJ7mmFBCKH1gUm3A64BVRhCCzEzrl3fkR4+Xkk/A=="
+app-secrets:
+  external:
+    remotePrefix: /k8s/dev-wgt7
 
 kubernetes-event-exporter:
   ## @section Global parameters
@@ -301,12 +301,12 @@ kubernetes-event-exporter:
     - name: OS_USERNAME
       valueFrom:
         secretKeyRef:
-          name: kubernetes-event-exporter-secret
+          name: kubernetes-event-exporter-app-secrets
           key: OS_USERNAME
     - name: OS_PASSWORD
       valueFrom:
         secretKeyRef:
-          name: kubernetes-event-exporter-secret
+          name: kubernetes-event-exporter-app-secrets
           key: OS_MASTER_PASSWORD
   ## @param extraEnvVarsCM ConfigMap containing extra env vars to be added to all containers
   ##
