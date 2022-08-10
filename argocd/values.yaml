@@ -1,3 +1,13 @@
+app-secrets:
+  external:
+    secretName: argocd-secret
+    values:
+      "dex.github.clientID": /argocd/GITHUB_CLIENT_ID
+      "dex.github.clientSecret": /argocd/GITHUB_CLIENT_SECRET
+      "admin.password": /argocd/ADMIN_PASSWORD
+      "admin.passwordMtime": /argocd/ADMIN_MTIME
+      "server.secretkey": /argocd/SERVER_SECRET_KEY
+
 defaultRepoUrl: 'https://github.com/aeternity/gitops-tools.git'
 
 namespaces:

@@ -1,6 +1,3 @@
-# Don't use sealed secrets because of CRD
-encValues: []
-
 # Disable metrics because of CRD
 argo-cd:
   configs:
