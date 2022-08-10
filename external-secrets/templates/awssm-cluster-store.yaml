@@ -11,3 +11,4 @@ spec:
         jwt:
           serviceAccountRef:
             name: external-secrets
+            namespace: {{ .Release.Namespace }}
