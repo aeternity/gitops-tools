@@ -6,3 +6,108 @@ app-secrets:
       GRAFANA_ADMIN_USER: /monitoring/GRAFANA_ADMIN_USER
       GRAFANA_ADMIN_PASSWORD: /monitoring/GRAFANA_ADMIN_PASSWORD
       SLACK_HOOK_URL: /monitoring/SLACK_HOOK_URL
+
+
+kube-prometheus-stack:
+  prometheus:
+    prometheusSpec:
+      serviceMonitorSelectorUsesHelmValues: false
+      ruleSelectorNilUsesHelmValues: false
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: traefik
+      pathType: ImplementationSpecific
+
+  grafana:
+    admin:
+      existingSecret: kube-prometheus-stack-app-secrets
+      userKey: GRAFANA_ADMIN_USER
+      passwordKey: GRAFANA_ADMIN_PASSWORD
+    sidecar:
+      dashboards:
+        enabled: true
+        folderAnnotation: grafana-dashboard-dir
+    grafana.ini:
+      plugins:
+        enable_alpha: true
+      auth.github:
+        enabled: true
+        client_id: $__file{/etc/secrets/GITHUB_CLIENT_ID}
+        client_secret: $__file{/etc/secrets/GITHUB_CLIENT_SECRET}
+        scopes: user:email,read:org
+        auth_url: https://github.com/login/oauth/authorize
+        token_url: https://github.com/login/oauth/access_token
+        api_url: https://api.github.com/user
+        allow_sign_up: true
+        allowed_organizations: aeternity
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: traefik
+      pathType: ImplementationSpecific
+    plugins:
+      - grafana-piechart-panel
+    dashboardProviders:
+     dashboardproviders.yaml:
+       apiVersion: 1
+       providers:
+       - name: 'tools'
+         orgId: 1
+         folder: 'Tools'
+         type: file
+         disableDeletion: true
+         editable: true
+         options:
+           path: /var/lib/grafana/dashboards/tools
+    dashboards:
+      tools:
+        traefik2:
+          gnetId: 11462
+          revision: 1
+          datasource: Prometheus
+        argocd:
+          gnetId: 14584
+          revision: 1
+          datasource: Prometheus
+    extraSecretMounts:
+    - name: secrets-mount
+      secretName: kube-prometheus-stack-app-secrets
+      defaultMode: 0440
+      mountPath: /etc/secrets
+      readOnly: true
+
+  alertmanager:
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: traefik
+      pathType: ImplementationSpecific
+    config:
+      templates:
+        - '/etc/alertmanager/config/*.tmpl'
+    templateFiles:
+      slack.tmpl: |-
+           {{ define "cluster" }}{{ .ExternalURL | reReplaceAll ".*alertmanager\\.(.*)" "$1" }}{{ end }}
+           {{ define "slack.ae.text" }}
+           {{- $root := . -}}
+           {{ range .Alerts }}
+             *Alert:* {{ .Annotations.summary }} - `{{ .Labels.severity }}`
+             *Cluster:* {{ template "cluster" $root }}
+             *Description:* {{ .Annotations.description }}
+             *Graph:* <{{ .GeneratorURL }}|:chart_with_upwards_trend:>
+             *Runbook:* <{{ .Annotations.runbook }}|:spiral_note_pad:>
+             *Details:*
+               {{ range .Labels.SortedPairs }} - *{{ .Name }}:* `{{ .Value }}`
+               {{ end }}
+           {{ end }}
+           {{ end }}
+           {{ define "slack.ae.title" -}}
+              [{{ .Status | toUpper -}}
+              {{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{- end -}}
+              ] {{ .CommonLabels.alertname }}
+            {{- end }}
+
+  defaultRules:
+    rules:
+      kubeScheduler: false
