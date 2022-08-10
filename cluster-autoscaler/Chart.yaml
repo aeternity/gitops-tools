@@ -10,4 +10,4 @@ dependencies:
     repository: https://kubernetes.github.io/autoscaler
   - name: app-secrets
     version: 0.0.1
-    repository: "file://../app-asecrets"
+    repository: "file://../app-secrets"

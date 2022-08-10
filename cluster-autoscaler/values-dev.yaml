@@ -3,6 +3,7 @@ cluster-autoscaler:
     clusterName: dev-wgt7
 
 app-secrets:
-  remotePrefix: /k8s/dev-wgt7
-  values:
-    GRAFFITI_S3_KEY: GRAFFITI_S3_KEY
+  external:
+    remotePrefix: /k8s/dev-wgt7
+    values:
+      GRAFFITI_S3_KEY: GRAFFITI_S3_KEY
