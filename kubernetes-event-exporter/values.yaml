@@ -3,3 +3,19 @@ app-secrets:
     values:
       OS_USERNAME: /kubernetes-event-exporter/OS_USERNAME
       OS_MASTER_PASSWORD: /kubernetes-event-exporter/OS_MASTER_PASSWORD
+
+kubernetes-event-exporter:
+  serviceAccount:
+    name: "kubernetes-event-exporter"
+
+  extraEnvVars:
+    - name: OS_USERNAME
+      valueFrom:
+        secretKeyRef:
+          name: kubernetes-event-exporter-app-secrets
+          key: OS_USERNAME
+    - name: OS_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: kubernetes-event-exporter-app-secrets
+          key: OS_MASTER_PASSWORD
