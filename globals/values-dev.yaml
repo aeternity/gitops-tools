@@ -1,4 +1,0 @@
-# Mixin global values
-app-secrets:
-  external:
-    remotePrefix: /k8s/dev-wgt7

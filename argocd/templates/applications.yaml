@@ -19,8 +19,6 @@ spec:
     helm:
       ignoreMissingValueFiles: true
       valueFiles:
-        - /globals/values.yaml
-        - /globals/{{ .targetRevision | default $root.Values.defaultTargetRevision }}.yaml
         - values.yaml
         - values-{{ .targetRevision | default $root.Values.defaultTargetRevision }}.yaml
   destination:
