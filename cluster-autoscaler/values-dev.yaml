@@ -6,4 +6,4 @@ app-secrets:
   external:
     remotePrefix: /k8s/dev-wgt7
     values:
-      GRAFFITI_S3_KEY: GRAFFITI_S3_KEY
+      GRAFFITI_S3_KEY: /apps/GRAFFITI_S3_KEY
