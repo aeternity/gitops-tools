@@ -49,9 +49,6 @@ applications:
   - name: kubernetes-event-exporter
     project: tools
     namespace: kubernetes-event-exporter
-  - name: rocketchat
-    project: tools
-    namespace: rocketchat
   - name: velero
     project: tools
     namespace: velero
@@ -203,9 +200,6 @@ argo-cd:
           url: https://kubernetes.github.io/autoscaler
           name: cluster-autoscaler
         - type: helm
-          url: https://rocketchat.github.io/helm-charts
-          name: rocketchat
-        - type: helm
           url: https://vmware-tanzu.github.io/helm-charts
           name: velero
         - type: helm
@@ -277,8 +271,6 @@ argo-cd:
           - namespace: cluster-autoscaler
             server: https://kubernetes.default.svc
           - namespace: kubernetes-event-exporter
-            server: https://kubernetes.default.svc
-          - namespace: rocketchat
             server: https://kubernetes.default.svc
           - namespace: velero
             server: https://kubernetes.default.svc
