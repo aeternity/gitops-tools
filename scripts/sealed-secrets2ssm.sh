@@ -44,3 +44,5 @@ migrate_secret apps graffiti-server-app-secret S3_SECRET GRAFFITI_S3_SECRET
 
 migrate_secret apps dex-backend-testnet-app-secret POSTGRES_PASSWORD DEX_TESTNET_POSTGRES_PASSWORD
 migrate_secret apps dex-backend-mainnet-app-secret POSTGRES_PASSWORD DEX_MAINNET_POSTGRES_PASSWORD
+
+migrate_secret apps aepp-faucet-app-secret FAUCET_ACCOUNT_PRIV_KEY
