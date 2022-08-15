@@ -1,0 +1,14 @@
+defaultTargetRevision: stg
+
+app-secrets:
+  external:
+    remotePrefix: /k8s/stg-m4n4
+
+argo-cd:
+  server:
+    ingress:
+      hosts:
+        - "argocd.stg.aeternity.io"
+    config:
+      # Argo CD's externally facing base URL (optional). Required when configuring SSO
+      url: https://argocd.stg.aeternity.io

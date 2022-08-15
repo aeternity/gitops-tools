@@ -1,0 +1,14 @@
+defaultTargetRevision: prd
+
+app-secrets:
+  external:
+    remotePrefix: /k8s/prd-0e9c
+
+argo-cd:
+  server:
+    ingress:
+      hosts:
+        - "argocd.prd.aeternity.io"
+    config:
+      # Argo CD's externally facing base URL (optional). Required when configuring SSO
+      url: https://argocd.prd.aeternity.io
