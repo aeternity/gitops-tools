@@ -169,6 +169,7 @@ argo-cd:
       - --repo-server-timeout-seconds=180
     logLevel: debug
     config:
+      users.anonymous.enabled: "false"
       # Argo CD instance label key
       application.instanceLabelKey: argocd.argoproj.io/instance
       repositories: |
