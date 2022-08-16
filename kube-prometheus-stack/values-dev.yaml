@@ -43,7 +43,6 @@ kube-prometheus-stack:
           labels:
             severity: critical
             namespace: monitoring
-            env: dev
           annotations:
             summary: "Probe failed (URL: {{ $labels.instance }})"
             description: "Probe failed\n STATUS_CODE = {{ $value }})"
@@ -53,10 +52,9 @@ kube-prometheus-stack:
           labels:
             severity: critical
             namespace: monitoring
-            env: dev
           annotations:
             summary: "Probe failed (URL: {{ $labels.instance }})"
-            description: "Please check status on the following link: https://superhero-backend.dev.aepps.com/health/backend"
+            description: "Probe failed\n STATUS_CODE = {{ $value }})"
     - name: elasticsearch
       rules:
         - record: elasticsearch_filesystem_data_used_percent
@@ -98,7 +96,6 @@ kube-prometheus-stack:
           labels:
             severity: critical
             namespace: monitoring
-            env: dev
           annotations:
             summary: "Container CPU usage"
             description: "Container CPU usage is above 80%\n VALUE = {{ $value }}"
@@ -108,7 +105,6 @@ kube-prometheus-stack:
           labels:
             severity: critical
             namespace: monitoring
-            env: dev
           annotations:
             summary: Redis down (instance {{ $labels.instance }})
             description: "Redis instance is down"
@@ -118,7 +114,6 @@ kube-prometheus-stack:
           labels:
             severity: warning
             namespace: monitoring
-            env: dev
           annotations:
             summary: Host high CPU load (instance {{ $labels.instance }})
             description: "CPU load is > 80%\n  VALUE = {{ $value }}"
