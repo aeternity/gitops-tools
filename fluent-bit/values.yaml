@@ -1,0 +1,118 @@
+fluent-bit:
+  config:
+    service: |
+      [SERVICE]
+          Daemon Off
+          Flush 1
+          Log_Level {{ .Values.logLevel }}
+          Parsers_File parsers.conf
+          Parsers_File custom_parsers.conf
+          HTTP_Server On
+          HTTP_Listen 0.0.0.0
+          HTTP_Port {{ .Values.metricsPort }}
+          storage.path              /var/log/ds/flb-storage/
+          storage.sync              normal
+          storage.checksum          off
+          storage.backlog.mem_limit 100M
+
+    ## https://docs.fluentbit.io/manual/pipeline/inputs
+    inputs: |
+      [INPUT]
+          Name tail
+          Path /var/log/containers/*.log
+          Tag kube.*
+          DB /var/log/ds/flb_kube.db
+          DB.Sync            Normal
+          Mem_Buf_Limit      50MB
+          Skip_Long_Lines    Off
+          Refresh_Interval   10
+          Buffer_Chunk_Size  2MB
+          Buffer_Max_Size    4MB
+          Exclude_Path /var/log/containers/dex*.log,/var/log/containers/mdw-frontend*.log,/var/log/containers/superhero*.log
+      [INPUT]
+          Name tail
+          Path /var/log/containers/dex*.log,/var/log/containers/mdw-frontend*.log,/var/log/containers/superhero*.log
+          Tag nginx.*
+          DB /var/log/ds/flb_kube_nginx.db
+          DB.Sync            Normal
+          Mem_Buf_Limit      50MB
+          Skip_Long_Lines    Off
+          Refresh_Interval   10
+          Buffer_Chunk_Size  2MB
+          Buffer_Max_Size    4MB
+
+    ## https://docs.fluentbit.io/manual/pipeline/filters
+    filters: |
+      [FILTER]
+          Name kubernetes
+          Match *
+          Merge_Log On
+          Keep_Log Off
+          K8S-Logging.Parser On
+          K8S-Logging.Exclude On
+      [FILTER]
+          Name         grep
+          Match        *
+          Exclude      log .*kube-probe
+      [FILTER]
+          Name        parser
+          Match       nginx.*
+          Key_Name    log
+          Parser      nginx
+          Preserve_Key  True
+          Reserve_Data  True
+      [FILTER]
+          Name modify
+          Match nginx.*
+          Remove stream
+          Rename method app_method
+          Rename path app_path
+          Rename remote app_remote
+          Rename size app_size
+          Rename host app_host
+          Rename user app_user
+          Rename code app_code
+          Rename referer app_referer
+      [FILTER]
+          Name nest
+          Match nginx.*
+          Operation nest
+          Wildcard app_*
+          Nest_under app
+          Remove_prefix app_
+
+    ## https://docs.fluentbit.io/manual/pipeline/parsers
+    customParsers: |
+      [PARSER]
+          Name docker_no_time
+          Format json
+          Time_Keep Off
+          Time_Key time
+          Time_Format %Y-%m-%dT%H:%M:%S.%L
+      [PARSER]
+          Name   apache_error
+          Format regex
+          Regex  ^\[[^ ]* (?<time>[^\]]*)\] \[(?<level>[^\]]*)\](?: \[pid (?<pid>[^\]]*)\])?( \[client (?<client>[^\]]*)\])? (?<message>.*)$
+      [PARSER]
+          Name   nginx
+          Format regex
+          Regex ^(?<remote>[^ ]*) (?<host>[^ ]*) (?<user>[^ ]*) \[(?<time>[^\]]*)\] "(?<method>\S+)(?: +(?<path>[^\"]*?)(?: +\S*)?)?" (?<code>[^ ]*) (?<size>[^ ]*)(?: "(?<referer>[^\"]*)" "(?<agent>[^\"]*)")?$
+          Time_Key time
+          Time_Format %d/%b/%Y:%H:%M:%S %z
+      [PARSER]
+          Name   json
+          Format json
+          Time_Key time
+          Time_Format %d/%b/%Y:%H:%M:%S %z
+      [PARSER]
+          Name        docker
+          Format      json
+          Time_Key    time
+          Time_Format %Y-%m-%dT%H:%M:%S.%L
+          Time_Keep   On
+      [PARSER]
+          Name        syslog
+          Format      regex
+          Regex       ^\<(?<pri>[0-9]+)\>(?<time>[^ ]* {1,2}[^ ]* [^ ]*) (?<host>[^ ]*) (?<ident>[a-zA-Z0-9_\/\.\-]*)(?:\[(?<pid>[0-9]+)\])?(?:[^\:]*\:)? *(?<message>.*)$
+          Time_Key    time
+          Time_Format %b %d %H:%M:%S
