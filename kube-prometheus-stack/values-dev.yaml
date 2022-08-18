@@ -27,7 +27,7 @@ kube-prometheus-stack:
       tls:
         - hosts:
           - "grafana.dev.aeternity.io"
-
+          secretName: grafana-cert
   alertmanager:
     alertmanagerSpec:
       externalUrl: "https://alertmanager.dev.aeternity.io"
