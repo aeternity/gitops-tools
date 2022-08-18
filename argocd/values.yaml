@@ -52,6 +52,9 @@ applications:
   - name: velero
     project: tools
     namespace: velero
+  - name: cert-manager
+    project: tools
+    namespace: cert-manager
   - name: aerepl-http
     project: apps
     namespace: apps
@@ -206,6 +209,9 @@ argo-cd:
         - type: helm
           url: https://charts.external-secrets.io
           name: external-secrets
+        - type: helm
+          url: https://charts.jetstack.io
+          name: cert-manager
       dex.config: |
         connectors:
           - type: github
@@ -278,6 +284,8 @@ argo-cd:
           - namespace: aenodes
             server: https://kubernetes.default.svc
           - namespace: external-secrets
+            server: https://kubernetes.default.svc
+          - namespace: cert-manager
             server: https://kubernetes.default.svc
         clusterResourceWhitelist:
           - group: '*'
