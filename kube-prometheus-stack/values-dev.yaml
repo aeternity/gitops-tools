@@ -24,6 +24,9 @@ kube-prometheus-stack:
     ingress:
       hosts:
         - "grafana.dev.aeternity.io"
+      tls:
+        - hosts:
+          - "grafana.dev.aeternity.io"
 
   alertmanager:
     alertmanagerSpec:
