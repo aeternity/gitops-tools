@@ -17,4 +17,4 @@ spec:
             metadata:
               annotations:
                 traefik.ingress.kubernetes.io/router.tls: "true"
-                traefik.ingress.kubernetes.io/router.entrypoints: https
+                traefik.ingress.kubernetes.io/router.entrypoints: websecure
