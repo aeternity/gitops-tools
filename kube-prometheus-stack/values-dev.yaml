@@ -15,6 +15,10 @@ kube-prometheus-stack:
     ingress:
       hosts:
         - "prometheus.dev.aeternity.io"
+      tls:
+        - hosts:
+          - "prometheus.dev.aeternity.io"
+          secretName: prometheus-cert
 
   grafana:
     grafana.ini:
@@ -28,6 +32,7 @@ kube-prometheus-stack:
         - hosts:
           - "grafana.dev.aeternity.io"
           secretName: grafana-cert
+
   alertmanager:
     alertmanagerSpec:
       externalUrl: "https://alertmanager.dev.aeternity.io"
