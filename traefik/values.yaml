@@ -18,5 +18,5 @@ traefik:
       expose: true
       exposedPort: 8443
       protocol: TCP
-      # tls:
-      #   enabled: true
+      tls:
+        enabled: true
