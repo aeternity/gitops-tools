@@ -84,7 +84,7 @@ kube-prometheus-stack:
       enabled: true
       annotations:
         traefik.ingress.kubernetes.io/router.entrypoints: https
-        cert-manager.io/cluster-issuer: letsencrypt-staging
+        cert-manager.io/cluster-issuer: letsencrypt
       pathType: ImplementationSpecific
     config:
       templates:
