@@ -34,3 +34,7 @@ kube-prometheus-stack:
     ingress:
       hosts:
         - "alertmanager.dev.aeternity.io"
+      tls:
+        - hosts:
+          - "alertmanager.dev.aeternity.io"
+          secretName: alertmanager-cert
