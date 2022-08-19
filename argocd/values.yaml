@@ -7,6 +7,7 @@ app-secrets:
       "admin.password": /argocd/ADMIN_PASSWORD
       "admin.passwordMtime": /argocd/ADMIN_MTIME
       "server.secretkey": /argocd/SERVER_SECRET_KEY
+      "webhook.github.secret": /argocd/GITHUB_WEBHOOK_SECRET
 
 defaultRepoUrl: 'https://github.com/aeternity/gitops-tools.git'
 
