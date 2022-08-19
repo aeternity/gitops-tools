@@ -6,6 +6,9 @@ traefik:
   logs:
     access:
       enabled: true
+  ingressClass:
+    enabled: true
+    isDefaultClass: true
   service:
     annotations:
       service.beta.kubernetes.io/aws-load-balancer-type: external
