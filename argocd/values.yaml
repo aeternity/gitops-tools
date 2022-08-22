@@ -167,7 +167,7 @@ argo-cd:
     ingress:
       enabled: true
       annotations:
-        traefik.ingress.kubernetes.io/router.entrypoints: https
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
         cert-manager.io/cluster-issuer: letsencrypt
       pathType: ImplementationSpecific
     extraArgs:
