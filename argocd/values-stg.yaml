@@ -238,6 +238,10 @@ applications:
     project: apps
     namespace: apps
     repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+  ga-multisig-ui:
+    project: apps
+    namespace: apps
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
 
 namespaces:
   - tools
