@@ -2,9 +2,9 @@ apiVersion: v2
 name: aws-ebs-csi-driver
 description: AWS ebs csi-driver Helm chart for Kubernetes
 
-version: 1.11.2
+version: 2.10.1
 
 dependencies:
-  - name: aws-load-balancer-controller
-    version: 1.11.2
+  - name: aws-ebs-csi-driver
+    version: 2.10.1
     repository: https://kubernetes-sigs.github.io/aws-ebs-csi-driver/
