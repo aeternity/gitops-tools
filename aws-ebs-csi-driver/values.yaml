@@ -5,3 +5,6 @@ aws-ebs-csi-driver:
     name: aws-ebs-csi-driver-dev # change the name and move to values.yaml
     annotations:
       eks.amazonaws.com/role-arn: "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
+  storageClasses:
+  - name: ebs-sc
+    volumeBindingMode: WaitForFirstConsumer
