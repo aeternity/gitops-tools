@@ -2,6 +2,7 @@ aws-ebs-csi-driver:
   clusterName: dev-wgt7
   logLevel: debug
   serviceAccount:
+    create: true
     name: aws-ebs-csi-driver-dev # change the name and move to values.yaml
     annotations:
       eks.amazonaws.com/role-arn: "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
