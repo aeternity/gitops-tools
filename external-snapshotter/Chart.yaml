@@ -1,0 +1,10 @@
+apiVersion: v2
+name: external-snapshooter
+description: https://github.com/kubernetes-csi/external-snapshotter
+
+version: 0.0.1
+
+dependencies:
+  - name: external-snapshooter
+    version: 0.0.1
+    repository: "file://./"
