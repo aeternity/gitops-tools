@@ -126,7 +126,12 @@ applications:
     project: apps
     namespace: apps
     repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: dev-net-hyperchain
+  - name: dev-net-aenode
+    project: aenodes
+    namespace: aenodes
+    repoUrl: 'https://github.com/aeternity/gitops-nodes.git'
+    targetRevision: master
+  - name: dev-net-snapshoot
     project: aenodes
     namespace: aenodes
     repoUrl: 'https://github.com/aeternity/gitops-nodes.git'
