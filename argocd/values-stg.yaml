@@ -158,6 +158,9 @@ applications:
   velero:
     project: tools
     namespace: velero
+  cert-manager:
+    project: tools
+    namespace: cert-manager
   superhero-ui-web:
     project: apps
     namespace: apps
