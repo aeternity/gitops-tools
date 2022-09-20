@@ -10,14 +10,9 @@ argo-cd:
       annotations:
         kubernetes.io/ingress.class: traefik
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
-        cert-manager.io/cluster-issuer: letsencrypt
       pathType: ImplementationSpecific
       hosts:
         - "argocd.prd.aeternity.io"
-      tls:
-        - hosts:
-          - "argocd.dev.aeternity.io"
-          secretName: argocd-cert
     extraArgs:
       - --insecure
       - --repo-server-timeout-seconds=180
