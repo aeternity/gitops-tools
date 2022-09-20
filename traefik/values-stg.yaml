@@ -6,6 +6,9 @@ traefik:
   logs:
     access:
       enabled: true
+  ingressClass:
+    enabled: true
+    isDefaultClass: tru
   service:
     spec:
       # externalTrafficPolicy: Local
@@ -25,4 +28,3 @@ traefik:
       protocol: TCP
       tls:
         enabled: true
-
