@@ -322,7 +322,7 @@ fluent-bit:
       [FILTER]
           Name         grep
           Match        *
-          Exclude      log .*[info]
+          Exclude      log .*info
       [FILTER]
           Name        parser
           Match       nginx.*
