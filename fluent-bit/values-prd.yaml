@@ -320,6 +320,10 @@ fluent-bit:
           Match        *
           Exclude      log ^.*kube-probe.*$
       [FILTER]
+        Name             grep
+        Match            kube.*
+        Exclude          log \"GET HTTP\/1\.1\" 200 
+      [FILTER]
           Name        parser
           Match       nginx.*
           Key_Name    log
