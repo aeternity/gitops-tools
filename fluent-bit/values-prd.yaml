@@ -318,15 +318,7 @@ fluent-bit:
       [FILTER]
           Name         grep
           Match        *
-          Exclude      log .*kube-probe
-      [FILTER]
-          Name         grep
-          Match        *
-          Exclude      log .*info
-      [FILTER]
-          Name         grep
-          Match        *
-          Exclude      log .*200
+          Exclude      '"GET / HTTP/1.1" 200'
       [FILTER]
           Name        parser
           Match       nginx.*
