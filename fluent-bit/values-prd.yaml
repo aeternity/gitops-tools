@@ -320,6 +320,10 @@ fluent-bit:
           Match        *
           Exclude      log .*kube-probe
       [FILTER]
+          Name         grep
+          Match        *
+          Exclude      log .*[info]
+      [FILTER]
           Name        parser
           Match       nginx.*
           Key_Name    log
