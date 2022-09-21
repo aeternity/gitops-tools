@@ -316,9 +316,9 @@ fluent-bit:
           K8S-Logging.Parser On
           K8S-Logging.Exclude On
       [FILTER]
-          Name         grep
-          Match        *
-          Exclude      log .*kube-probe
+          Name     grep
+          Match    *
+          Exclude  log \"GET \/ HTTP\/1\.1\" 200
       [FILTER]
           Name        parser
           Match       nginx.*
