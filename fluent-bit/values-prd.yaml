@@ -324,6 +324,10 @@ fluent-bit:
           Match        *
           Exclude      log .*info
       [FILTER]
+          Name         grep
+          Match        *
+          Exclude      log .*200
+      [FILTER]
           Name        parser
           Match       nginx.*
           Key_Name    log
