@@ -85,4 +85,5 @@ fluent-bit:
           Wildcard app_*
           Nest_under app
           Remove_prefix app_
-    logLevel: info
+    
+    logLevel: debug
