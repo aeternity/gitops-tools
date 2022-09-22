@@ -13,4 +13,4 @@ fluent-bit:
           Replace_Dots    On
           Index fluentbit
           Type  _doc
-          Trace_Error On
+
