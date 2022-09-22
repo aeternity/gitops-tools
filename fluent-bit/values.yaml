@@ -86,4 +86,4 @@ fluent-bit:
           Nest_under app
           Remove_prefix app_
     
-    logLevel: debug
+    logLevel: info
