@@ -358,7 +358,7 @@ fluent-bit:
           tls             On
           Replace_Dots    On
           Index fluentbit
-          
+          Type  _doc
           
     ## https://docs.fluentbit.io/manual/pipeline/parsers
     customParsers: |
