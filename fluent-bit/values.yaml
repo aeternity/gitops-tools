@@ -90,10 +90,6 @@ fluent-bit:
           Time_Key time
           Time_Format %Y-%m-%dT%H:%M:%S.%L
       [PARSER]
-          Name   apache_error
-          Format regex
-          Regex  ^\[[^ ]* (?<time>[^\]]*)\] \[(?<level>[^\]]*)\](?: \[pid (?<pid>[^\]]*)\])?( \[client (?<client>[^\]]*)\])? (?<message>.*)$
-      [PARSER]
           Name   nginx
           Format regex
           Regex ^(?<remote>[^ ]*) (?<host>[^ ]*) (?<user>[^ ]*) \[(?<time>[^\]]*)\] "(?<method>\S+)(?: +(?<path>[^\"]*?)(?: +\S*)?)?" (?<code>[^ ]*) (?<size>[^ ]*)(?: "(?<referer>[^\"]*)" "(?<agent>[^\"]*)")?$
