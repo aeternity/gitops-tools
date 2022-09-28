@@ -152,7 +152,7 @@ applications:
 argo-cd:
   configs:
     secret:
-      createSecret: false
+      createSecret: true
   controller:
     extraArgs:
       - --repo-server-timeout-seconds
