@@ -1,0 +1,4 @@
+external:
+  remotePrefix: ""
+  secretName: ""
+  values: {}

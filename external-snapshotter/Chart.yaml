@@ -1,0 +1,10 @@
+apiVersion: v2
+name: external-snapshooter
+description: https://github.com/kubernetes-csi/external-snapshotter
+
+version: 0.0.1
+
+dependencies:
+  - name: snapscheduler
+    version: 3.1.0
+    repository: https://backube.github.io/helm-charts/

@@ -1,0 +1,54 @@
+prometheus-blackbox-exporter:
+  serviceMonitor:
+    enabled: true
+    targets:
+      - name: dex
+        url: https://dex.dev.aepps.com
+        interval: 60s
+        scrapeTimeout: 60s
+        module: http_2xx
+      - name: base
+        url: https://base.dev.aepps.com
+        interval: 60s
+        scrapeTimeout: 60s
+        module: http_2xx
+      - name: faucet
+        url: https://faucet.dev.aepps.com
+        interval: 60s
+        scrapeTimeout: 60s
+        module: http_2xx
+      - name: aerepl-http
+        url: https://repl.dev.aepps.com
+        interval: 60s
+        scrapeTimeout: 60s
+        module: http_2xx
+      - name: aesophia
+        url: https://compiler.dev.aepps.com/version
+        interval: 60s
+        scrapeTimeout: 60s
+        module: http_2xx
+      - name: explorer-mainnet
+        url: https://explorer-mainnet.dev.aepps.com
+        interval: 60s
+        scrapeTimeout: 60s
+        module: http_2xx
+      - name: explorer-testnet
+        url: https://explorer-testnet.dev.aepps.com
+        interval: 60s
+        scrapeTimeout: 60s
+        module: http_2xx
+      - name: superhero-ui
+        url: https://superhero.dev.aepps.com
+        interval: 60s
+        scrapeTimeout: 60s
+        module: http_2xx
+      - name: superhero-wallet
+        url: https://superhero-wallet.dev.aepps.com
+        interval: 60s
+        scrapeTimeout: 60s
+        module: http_2xx
+      - name: superhero-backend
+        url: https://superhero-backend.dev.aepps.com/health/backend
+        interval: 60s
+        scrapeTimeout: 60s
+        module: http_backend

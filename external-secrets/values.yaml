@@ -1,0 +1,4 @@
+external-secrets:
+  priorityClassName: system-cluster-critical
+  webhook:
+    create: true

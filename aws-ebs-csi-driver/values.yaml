@@ -1,0 +1,12 @@
+aws-ebs-csi-driver:
+  clusterName: dev-wgt7
+  logLevel: debug
+  controller:
+    serviceAccount:
+      create: true
+      name: aws-ebs-csi-driver-dev # change the name and move to values.yaml
+      annotations:
+        eks.amazonaws.com/role-arn: "arn:aws:iam::106102538874:role/aws-ebs-controller-dev"
+  storageClasses:
+  - name: ebs-sc
+    volumeBindingMode: WaitForFirstConsumer

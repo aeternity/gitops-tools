@@ -1,0 +1,8 @@
+app-secrets:
+  external:
+    remotePrefix: /k8s/dev-wgt7
+
+kubernetes-event-exporter:
+  extraEnvVars:
+    - name: OS_HOST
+      value: "https://opensearch-dev.aepps.com"
