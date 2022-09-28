@@ -167,6 +167,9 @@ applications:
   velero:
     project: tools
     namespace: velero
+  cert-manager:
+    project: tools
+    namespace: cert-manager
   superhero-ui:
     project: apps
     namespace: apps
@@ -211,6 +214,10 @@ applications:
     project: apps
     namespace: apps
     repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+  aepp-faucet-nodejs:
+    project: apps
+    namespace: apps
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
   test-repo:
     project: apps
     namespace: apps
@@ -239,9 +246,6 @@ applications:
     project: apps
     namespace: apps
     repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  cert-manager:
-    project: tools
-    namespace: cert-manager
     
 namespaces:
   - tools
