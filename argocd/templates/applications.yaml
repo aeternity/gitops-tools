@@ -17,7 +17,7 @@ spec:
     repoURL: {{ .repoUrl | default $root.Values.defaultRepoUrl }}
     targetRevision: {{ .targetRevision | default $root.Values.defaultTargetRevision }}
     helm:
-      ignoreMissingValueFiles: true
+      # ignoreMissingValueFiles: true
       valueFiles:
         - values.yaml
         - values-{{ .targetRevision | default $root.Values.defaultTargetRevision }}.yaml
