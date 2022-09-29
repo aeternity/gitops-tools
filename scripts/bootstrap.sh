@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ENV=$(git branch)
+ENV=$(git rev-parse --abbrev-ref HEAD)
 
 (cd argocd && helm dep up)
 
