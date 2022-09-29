@@ -1,36 +1,6 @@
 prometheus-blackbox-exporter:
-  config:
-    modules:
-      http_2xx:
-        prober: http
-        timeout: 15s
-        http:
-          valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
-          follow_redirects: true
-          preferred_ip_protocol: "ip4"
-      http_backend:
-        prober: http
-        timeout: 15s
-        http:
-          valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
-          follow_redirects: true
-          preferred_ip_protocol: "ip4"
-          fail_if_body_not_matches_regexp:
-            - "true"
   serviceMonitor:
     enabled: true
-
-    defaults:
-      additionalMetricsRelabels: {}
-      labels: {}
-      interval: 30s
-      scrapeTimeout: 30s
-      module: http_2xx
-    scheme: http
-
-    tlsConfig: {}
-    bearerTokenFile:
-
     targets:
       - name: dex
         url: https://dex.stg.aepps.com
@@ -82,13 +52,3 @@ prometheus-blackbox-exporter:
         interval: 60s
         scrapeTimeout: 60s
         module: http_backend
-
-    relabelings:
-      # This is the part where, the original SM endpoints passed as parameters to blackbox exporter.
-      # More info: https://prometheus.io/docs/guides/multi-target-exporter/#prometheus-config
-      - sourceLabels: [__address__]
-        targetLabel: __param_target
-      - sourceLabels: [__param_target]
-        targetLabel: instance
-      - targetLabel: __address__
-        replacement: blackbox-prometheus-blackbox-exporter.monitoring.svc.cluster.local:9115
