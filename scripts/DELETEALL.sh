@@ -1,6 +1,6 @@
 #!/bin/bash
 
-NAMESPACES=(aenodes apps tools logging cluster-autoscaler cert-manager velero argocd monitoring traefik sealed-secrets kubernetes-event-exporter)
+NAMESPACES=(aenodes apps tools logging cluster-autoscaler cert-manager velero argocd monitoring traefik sealed-secrets kubernetes-event-exporter external-secrets)
 SERVICES=(aws-load-balancer-webhook-service kube-prometheus-stack-coredns kube-prometheus-stack-kube-controller-manager kube-prometheus-stack-kube-etcd kube-prometheus-stack-kube-proxy kube-prometheus-stack-kube-scheduler kube-prometheus-stack-kubelet metrics-server)
 DEPLOYMENTS=(aws-load-balancer-controller metrics-server)
 APPS=(aepp-base aepp-faucet aepp-graffiti aerepl-http aesophia-http aws-load-balancer-controller cert-manager cluster-autoscaler dex-ui fluent-bit ga-multisig-backend graffiti-server kube-prometheus-blackbox-exporter kube-prometheus-stack kubernetes-event-exporter mdw-frontend metrics-server sealed-secrets state-channel-demo-backend state-channel-demo-frontend superhero-backend superhero-wallet traefik velero)
