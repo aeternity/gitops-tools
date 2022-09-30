@@ -16,3 +16,15 @@ argo-cd:
     config:
       # Argo CD's externally facing base URL (optional). Required when configuring SSO
       url: https://argocd.dev.aeternity.io
+
+applications:
+  - name: dev-net-aenode
+    project: aenodes
+    namespace: aenodes
+    repoUrl: 'https://github.com/aeternity/gitops-nodes.git'
+    targetRevision: master
+  - name: dev-net-snapshoot
+    project: aenodes
+    namespace: aenodes
+    repoUrl: 'https://github.com/aeternity/gitops-nodes.git'
+    targetRevision: master
