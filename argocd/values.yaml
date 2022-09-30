@@ -239,6 +239,8 @@ argo-cd:
             ignoreDifferences: |
               jsonPointers:
               - /webhooks/0/failurePolicy
+              jqPathExpressions:
+              - .webhooks[]?.clientConfig.caBundle
       # oidc.config: |
       #   requestedIDTokenClaims:
       #     groups:
