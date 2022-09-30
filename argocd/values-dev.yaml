@@ -28,3 +28,11 @@ applications:
     namespace: aenodes
     repoUrl: 'https://github.com/aeternity/gitops-nodes.git'
     targetRevision: master
+  - name: aepp-hc-ui
+    project: apps
+    namespace: apps
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+  - name: aepp-base-hc
+    project: apps
+    namespace: apps
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
