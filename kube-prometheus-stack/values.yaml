@@ -72,6 +72,10 @@ kube-prometheus-stack:
           gnetId: 14584
           revision: 1
           datasource: Prometheus
+        blackbox:
+          gnetId: 13659
+          revision: 1
+          datasource: Prometheus
     extraSecretMounts:
     - name: secrets-mount
       secretName: kube-prometheus-stack-app-secrets
