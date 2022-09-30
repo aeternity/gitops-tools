@@ -1,5 +1,5 @@
 {{- $root := . -}}
-{{- range .Values.applications }}
+{{- range (concat .Values.applications .Values.additionalApplications) }}
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
