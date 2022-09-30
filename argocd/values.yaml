@@ -26,9 +26,6 @@ applications:
   - name: external-secrets
     project: tools
     namespace: external-secrets
-  - name: aws-ebs-csi-driver
-    project: tools
-    namespace: kube-system
   - name: external-snapshotter
     project: tools
     namespace: kube-system
