@@ -5,7 +5,7 @@ fluent-bit:
       [OUTPUT]
           Name            es
           Match           *
-          Host            opensearch-prd.aepps.com
+          Host            opensearch-stg.aepps.com
           Port            443
           AWS_Auth        On
           AWS_Region      eu-central-1
