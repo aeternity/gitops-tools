@@ -18,6 +18,7 @@ spec:
     targetRevision: {{ $value.targetRevision | default $root.Values.defaultTargetRevision }}
     helm:
       valueFiles:
+        - values.yaml
         - values-prd.yaml
   destination:
     namespace: {{ $value.namespace }}
