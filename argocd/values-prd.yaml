@@ -9,6 +9,10 @@ argo-cd:
     ingress:
       hosts:
         - "argocd.prd.aeternity.io"
+      tls:
+        - hosts:
+          - "argocd.prd.aeternity.io"
+          secretName: argocd-cert
     config:
       # Argo CD's externally facing base URL (optional). Required when configuring SSO
       url: https://argocd.prd.aeternity.io
