@@ -140,6 +140,9 @@ applications:
   sealed-secrets:
     project: tools
     namespace: sealed-secrets
+  external-secrets:
+    project: tools
+    namespace: external-secrets
   aws-load-balancer-controller:
     project: tools
     namespace: kube-system  
