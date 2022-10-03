@@ -1,0 +1,7 @@
+aws-load-balancer-controller:
+  clusterName: dev-wgt7
+  logLevel: debug
+  serviceAccount:
+    name: aws-load-balancer-controller-dev # change the name and move to values.yaml
+    annotations:
+      eks.amazonaws.com/role-arn: "arn:aws:iam::106102538874:role/aws-lb-controller-dev"
