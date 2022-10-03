@@ -71,6 +71,10 @@ applications:
     project: apps
     namespace: apps
     repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+  - name: aepp-faucet-nodejs
+    project: apps
+    namespace: apps
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
   - name: aepp-contracts
     project: apps
     namespace: apps
@@ -123,6 +127,12 @@ applications:
     project: apps
     namespace: apps
     repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+  - name: ga-multisig-ui
+    project: apps
+    namespace: apps
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+
+additionalApplications: []
 
 argo-cd:
   configs:
@@ -237,6 +247,8 @@ argo-cd:
             ignoreDifferences: |
               jsonPointers:
               - /webhooks/0/failurePolicy
+              jqPathExpressions:
+              - .webhooks[]?.clientConfig.caBundle
       # oidc.config: |
       #   requestedIDTokenClaims:
       #     groups:
