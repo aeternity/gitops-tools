@@ -52,6 +52,9 @@ argo-cd:
           url: https://vmware-tanzu.github.io/helm-charts
           name: velero
         - type: helm
+          url: https://charts.external-secrets.io
+          name: external-secrets
+        - type: helm
           url: https://charts.jetstack.io
           name: cert-manager
       dex.config: |
@@ -110,6 +113,8 @@ argo-cd:
           - namespace: kubernetes-event-exporter
             server: https://kubernetes.default.svc
           - namespace: velero
+            server: https://kubernetes.default.svc
+          - namespace: external-secrets
             server: https://kubernetes.default.svc
           - namespace: cert-manager
             server: https://kubernetes.default.svc
