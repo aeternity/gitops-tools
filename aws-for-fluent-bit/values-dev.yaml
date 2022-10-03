@@ -1,0 +1,3 @@
+aws-for-fluent-bit:
+  elasticsearch:
+    host: "search-opensearch-dev-rtq7cbn3a4z77ts5k6puordcaq.eu-central-1.es.amazonaws.com"
