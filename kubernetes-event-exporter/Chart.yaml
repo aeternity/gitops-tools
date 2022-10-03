@@ -7,3 +7,6 @@ dependencies:
   - name: kubernetes-event-exporter
     version: 1.4.3
     repository: https://charts.bitnami.com/bitnami
+  - name: app-secrets
+    version: 0.0.1
+    repository: "file://../app-secrets"

@@ -1,8 +1,8 @@
 app-secrets:
   external:
-    remotePrefix: /k8s/prd-0e9c
+    remotePrefix: /k8s/dev-wgt7
 
 kubernetes-event-exporter:
   extraEnvVars:
     - name: OS_HOST
-      value: "https://opensearch-prd.aepps.com"
+      value: "https://opensearch-dev.aepps.com"

@@ -1,0 +1,50 @@
+app-secrets:
+  external:
+    values:
+      OS_USERNAME: /kubernetes-event-exporter/OS_USERNAME
+      OS_MASTER_PASSWORD: /kubernetes-event-exporter/OS_MASTER_PASSWORD
+
+kubernetes-event-exporter:
+  serviceAccount:
+    name: "kubernetes-event-exporter"
+
+  extraEnvVars:
+    - name: OS_USERNAME
+      valueFrom:
+        secretKeyRef:
+          name: kubernetes-event-exporter-app-secrets
+          key: OS_USERNAME
+    - name: OS_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: kubernetes-event-exporter-app-secrets
+          key: OS_MASTER_PASSWORD
+
+  config:
+    receivers:
+      - name: "os"
+        elasticsearch:
+          hosts:
+            - $OS_HOST
+          index: k8sevents
+          # Ca be used optionally for time based indices, accepts Go time formatting directives
+          #indexFormat: "kube-events"
+          username: $OS_USERNAME
+          password: $OS_PASSWORD
+          #cloudID: # optional
+          #apiKey: # optional
+          # If set to true, it allows updating the same document in ES (might be useful handling count)
+          useEventID: true
+          # Type should be only used for clusters Version 6 and lower.
+          # type: kube-event
+          # If set to true, all dots in labels and annotation keys are replaced by underscores. Defaults false
+          deDot: true
+          layout: # Optional
+          tls: # optional, advanced options for tls
+            insecureSkipVerify: true # optional, if set to true, the tls cert won't be verified
+            #serverName: # optional, the domain, the certificate was issued for, in case it doesn't match the hostname used for the connection
+            #caFile: # optional, path to the CA file of the trusted authority the cert was signed with
+    route:
+      routes:
+        - match:
+            - receiver: "os"
