@@ -1,0 +1,39 @@
+velero:
+  schedules:
+    apps-ns:
+      schedule: "0 1 * * *"
+      labels:
+        velero.io/storage-location: default
+      template:
+        includedNamespaces:
+          - apps
+        includedResources: 
+          - "*"
+        storageLocation: default
+        ttl: "720h0m0s"
+
+  initContainers:
+    - name: velero-plugin-for-aws
+      image: velero/velero-plugin-for-aws:v1.4.1
+      imagePullPolicy: IfNotPresent
+      volumeMounts:
+        - mountPath: /target
+          name: plugins
+
+  configuration:
+    provider: aws
+    backupStorageLocation:
+      default: true
+      config:
+        region: eu-central-1
+    volumeSnapshotLocation:
+      config: 
+        region: eu-central-1
+
+  serviceAccount:
+    server:
+      create: true 
+      name: "velero"
+
+  credentials:
+    useSecret: false

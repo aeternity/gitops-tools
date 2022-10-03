@@ -1,0 +1,9 @@
+velero:
+  configuration:
+    backupStorageLocation:
+      bucket: aeternity-velero-backup-stg
+
+  serviceAccount:
+    server:
+      annotations: 
+        eks.amazonaws.com/role-arn: "arn:aws:iam::106102538874:role/velero-stg"
