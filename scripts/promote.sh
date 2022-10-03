@@ -1,8 +1,8 @@
 #!/bin/bash
 set -euo pipefail
 
-ALWAYS_EXCLUDE=(':(exclude)external-snapshotter')
-
+ALWAYS_EXCLUDE=('external-snapshotter' 'aws-ebs-csi-driver')
+ENV_EXCLUDE=('values-dev.yaml' 'values-stg.yaml' 'values-prd.yaml')
 function usage {
     echo "Usage:"
     echo "$0 diff <source branch> <target branch> - list changes"
@@ -14,15 +14,29 @@ function usage {
 function diff {
     src=${1:?"Please provide a source branch"}
     dst=${2:-HEAD}
+    exclude=()
 
-    git diff $dst..$src $ALWAYS_EXCLUDE
+    for e in ${ALWAYS_EXCLUDE[@]}; do
+        exclude+=(":(exclude)$e")
+    done
+
+    for e in ${ENV_EXCLUDE[@]}; do
+        exclude+=(":(exclude)*/$e")
+    done
+
+    git diff $dst..$src ${exclude[@]}
 }
 
 function diff-all {
     src=${1:?"Please provide a source branch"}
     dst=${2:-HEAD}
+    exclude=()
 
-    git diff $dst..$src $ALWAYS_EXCLUDE
+    for e in ${ALWAYS_EXCLUDE[@]}; do
+        exclude+=(":(exclude)/$e")
+    done
+
+    git diff $dst..$src ${exclude[@]}
 }
 
 function ignore_path {
@@ -58,6 +72,10 @@ function app {
     ignore_path $source $destination $chart/values-stg.yaml
     ignore_path $source $destination $chart/values-prd.yaml
 
+    for e in ${ENV_EXCLUDE[@]}; do
+        ignore_path $source $destination $chart/$e
+    done
+
     echo "---------------------------------------------------------------"
     echo "Review your promote with:"
     echo "git diff --cached"
@@ -65,13 +83,19 @@ function app {
     echo ""
     echo "Commit your promote with:"
     echo "git commit -am 'promote: [${source}→${destination}] $chart'"
+    echo "---------------------------------------------------------------"
 }
 
 function all {
     source=${1:?"Please provide source branch"}
     destination=${2:?"Please provide destination branch"}
+    exclude=()
 
-    dirs=$(find . -type d -maxdepth 1 -not \( -path . -o -path ./.git -o -path ./scripts \))
+    for e in ${ALWAYS_EXCLUDE[@]}; do
+        exclude+=("-o -path ./$e")
+    done
+
+    dirs=$(find . -type d -maxdepth 1 -not \( -path . -o -path ./.git -o -path ./scripts ${exclude[@]} \))
     while IFS= read -r dir; do
         app $(basename "$dir") $source $destination
     done <<< "$dirs"
