@@ -39,3 +39,6 @@ additionalApplications:
   - name: aws-ebs-csi-driver
     project: tools
     namespace: kube-system
+  - name: external-snapshotter
+    project: tools
+    namespace: kube-system
