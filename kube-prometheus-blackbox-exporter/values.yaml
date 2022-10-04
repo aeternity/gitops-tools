@@ -27,4 +27,4 @@ prometheus-blackbox-exporter:
       - sourceLabels: [__param_target]
         targetLabel: instance
       - targetLabel: __address__
-        replacement: blackbox-prometheus-blackbox-exporter.monitoring.svc.cluster.local:9115
+        replacement: kube-prometheus-blackbox-exporter.monitoring.svc.cluster.local:9115
