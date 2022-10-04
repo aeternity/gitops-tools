@@ -26,9 +26,6 @@ applications:
   - name: external-secrets
     project: tools
     namespace: external-secrets
-  - name: external-snapshotter
-    project: tools
-    namespace: kube-system
   - name: aws-load-balancer-controller
     project: tools
     namespace: kube-system
@@ -128,10 +125,6 @@ applications:
     namespace: apps
     repoUrl: 'https://github.com/aeternity/gitops-apps.git'
   - name: ga-multisig-ui
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: explorer
     project: apps
     namespace: apps
     repoUrl: 'https://github.com/aeternity/gitops-apps.git'
