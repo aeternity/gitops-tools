@@ -10,6 +10,7 @@ app-secrets:
 
 kube-prometheus-stack:
   prometheus:
+    selectorOverride: {}
     prometheusSpec:
       serviceMonitorSelectorUsesHelmValues: false
       ruleSelectorNilUsesHelmValues: false
