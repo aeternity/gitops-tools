@@ -68,10 +68,6 @@ function app {
     rm -Rf "$chart"
     git checkout "$source" "$chart"
 
-    ignore_path $source $destination $chart/values-dev.yaml
-    ignore_path $source $destination $chart/values-stg.yaml
-    ignore_path $source $destination $chart/values-prd.yaml
-
     for e in ${ENV_EXCLUDE[@]}; do
         ignore_path $source $destination $chart/$e
     done
