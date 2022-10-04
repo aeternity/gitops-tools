@@ -13,6 +13,10 @@ argo-cd:
       pathType: ImplementationSpecific
       hosts:
         - "argocd.prd.aeternity.io"
+      tls:
+        - hosts:
+          - "argocd.prd.aeternity.io"
+          secretName: argocd-cert
     extraArgs:
       - --insecure
       - --repo-server-timeout-seconds=180
