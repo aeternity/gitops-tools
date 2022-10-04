@@ -1,0 +1,4 @@
+sealed-secrets:
+  # https://argoproj.github.io/argo-cd/faq/#sealed-secret-stuck-progressing
+  commandArgs:
+    - --update-status
