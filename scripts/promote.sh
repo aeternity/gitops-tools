@@ -50,11 +50,6 @@ function ignore_path {
 
         git checkout "${destination}" "${path}" > /dev/null 2>&1 || true
     fi
-
-    # if the env values file hasn't been initialized yet
-    if [[ ! -f $path ]]; then
-        git checkout "${source}" "${path}" > /dev/null 2>&1 || true
-    fi
 }
 
 function app {
