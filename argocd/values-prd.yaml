@@ -1,3 +1,5 @@
+defaultTargetRevision: prd
+
 app-secrets:
   external:
     remotePrefix: /k8s/prd-0e9c
@@ -5,142 +7,15 @@ app-secrets:
 argo-cd:
   server:
     ingress:
-      enabled: true
-      annotations:
-        kubernetes.io/ingress.class: traefik
-        traefik.ingress.kubernetes.io/router.entrypoints: websecure
-        cert-manager.io/cluster-issuer: letsencrypt
-      pathType: ImplementationSpecific
       hosts:
         - "argocd.prd.aeternity.io"
       tls:
         - hosts:
           - "argocd.prd.aeternity.io"
           secretName: argocd-cert
-    extraArgs:
-      - --insecure
-      - --repo-server-timeout-seconds=180
     config:
       # Argo CD's externally facing base URL (optional). Required when configuring SSO
-      # url: https://argocd.example.com
-      # Argo CD instance label key
       url: https://argocd.prd.aeternity.io
-      application.instanceLabelKey: argocd.argoproj.io/instance
-      repositories: |
-        - url: https://github.com/aeternity/gitops-tools.git
-        - type: helm
-          url: https://argoproj.github.io/argo-helm
-          name: argo
-        - type: helm
-          url: https://bitnami-labs.github.io/sealed-secrets
-          name: sealed-secrets
-        - type: helm
-          url: https://aws.github.io/eks-charts
-          name: eks
-        - type: helm
-          url: https://helm.traefik.io/traefik
-          name: traefik
-        - type: helm
-          url: https://prometheus-community.github.io/helm-charts
-          name: prometheus-community
-        - type: helm
-          url: https://charts.bitnami.com/bitnami
-          name: bitnami
-        - type: helm
-          url: https://fluent.github.io/helm-charts
-          name: fluent
-        - type: helm
-          url: https://kubernetes.github.io/autoscaler
-          name: cluster-autoscaler
-        - type: helm
-          url: https://vmware-tanzu.github.io/helm-charts
-          name: velero
-        - type: helm
-          url: https://charts.external-secrets.io
-          name: external-secrets
-        - type: helm
-          url: https://charts.jetstack.io
-          name: cert-manager
-      dex.config: |
-        connectors:
-          - type: github
-            id: github
-            name: GitHub
-            config:
-              clientID: $dex.github.clientID
-              clientSecret: $dex.github.clientSecret
-              orgs:
-              - name: aeternity
-      resource.customizations: |
-          networking.k8s.io/Ingress:
-            health.lua: |
-              hs = {}
-              hs.status = "Healthy"
-              return hs
-          admissionregistration.k8s.io/MutatingWebhookConfiguration:
-            ignoreDifferences: |
-              jsonPointers:
-              - /webhooks/0/failurePolicy
-          admissionregistration.k8s.io/ValidatingWebhookConfiguration:
-            ignoreDifferences: |
-              jsonPointers:
-              - /webhooks/0/failurePolicy
-    rbacConfig:
-      policy.default: role:readonly
-      policy.csv: |
-        g, aeternity:devops, role:admin
-    additionalProjects:
-      - name: tools
-        namespace: argocd
-        additionalLabels: {}
-        additionalAnnotations: {}
-        description: Tools used to run the environment
-        sourceRepos:
-          - 'https://github.com/aeternity/gitops-tools.git'
-        destinations:
-          - namespace: tools
-            server: https://kubernetes.default.svc
-          - namespace: argocd
-            server: https://kubernetes.default.svc
-          - namespace: sealed-secrets
-            server: https://kubernetes.default.svc
-          - namespace: kube-system
-            server: https://kubernetes.default.svc
-          - namespace: traefik
-            server: https://kubernetes.default.svc
-          - namespace: monitoring
-            server: https://kubernetes.default.svc
-          - namespace: logging
-            server: https://kubernetes.default.svc
-          - namespace: cluster-autoscaler
-            server: https://kubernetes.default.svc
-          - namespace: kubernetes-event-exporter
-            server: https://kubernetes.default.svc
-          - namespace: velero
-            server: https://kubernetes.default.svc
-          - namespace: external-secrets
-            server: https://kubernetes.default.svc
-          - namespace: cert-manager
-            server: https://kubernetes.default.svc
-        clusterResourceWhitelist:
-          - group: '*'
-            kind: '*'
-      - name: apps
-        namespace: argocd
-        additionalLabels: {}
-        additionalAnnotations: {}
-        description: Applications deployed on EKS
-        sourceRepos:
-          - 'https://github.com/aeternity/gitops-apps.git'
-        destinations:
-          - namespace: apps
-            server: https://kubernetes.default.svc
-        clusterResourceWhitelist:
-          - group: '*'
-            kind: '*'
-
-defaultRepoUrl: 'https://github.com/aeternity/gitops-tools.git'
-defaultTargetRevision: prd
 
 applications:
   argocd:
@@ -254,3 +129,4 @@ applications:
 namespaces:
   - tools
   - apps
+  - aenodes
