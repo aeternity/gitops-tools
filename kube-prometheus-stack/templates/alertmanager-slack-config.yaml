@@ -18,8 +18,8 @@ spec:
     slackConfigs:
     - sendResolved: true
       apiURL:
-        name: kube-prometheus-stack-secret
-        key: url
+        name: kube-prometheus-stack-app-secrets
+        key: SLACK_HOOK_URL
       channel: '#monitoring'
       title: {{`"{{ template \"slack.ae.title\" . }}"`}}
       text: {{`"{{ template \"slack.ae.text\" . }}"`}}

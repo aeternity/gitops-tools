@@ -1,0 +1,45 @@
+app-secrets:
+  external:
+    remotePrefix: /k8s/dev-wgt7
+
+kube-prometheus-stack:
+  prometheus:
+    prometheusSpec:
+      additionalScrapeConfigs:
+        - job_name: redis_exporter
+          static_configs:
+            - targets: ['10.0.1.13:9121', '10.0.1.11:9121']
+        - job_name: node
+          static_configs:
+            - targets: ['10.0.1.13:9100', '10.0.1.11:9100']
+    ingress:
+      hosts:
+        - "prometheus.dev.aeternity.io"
+      tls:
+        - hosts:
+          - "prometheus.dev.aeternity.io"
+          secretName: prometheus-cert
+
+  grafana:
+    grafana.ini:
+      server:
+        domain: grafana.dev.aeternity.io
+        root_url: https://grafana.dev.aeternity.io
+    ingress:
+      hosts:
+        - "grafana.dev.aeternity.io"
+      tls:
+        - hosts:
+          - "grafana.dev.aeternity.io"
+          secretName: grafana-cert
+
+  alertmanager:
+    alertmanagerSpec:
+      externalUrl: "https://alertmanager.dev.aeternity.io"
+    ingress:
+      hosts:
+        - "alertmanager.dev.aeternity.io"
+      tls:
+        - hosts:
+          - "alertmanager.dev.aeternity.io"
+          secretName: alertmanager-cert
