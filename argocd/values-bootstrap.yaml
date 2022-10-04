@@ -1,0 +1,37 @@
+# Disable metrics because of CRD
+argo-cd:
+  configs:
+    secret:
+      createSecret: true
+
+  repoServer:
+    metrics:
+      serviceMonitor:
+        enabled: false
+
+  controller:
+    metrics:
+      serviceMonitor:
+        enabled: false
+
+  dex:
+    metrics:
+      serviceMonitor:
+        enabled: false
+
+  server:
+    config:
+      users.anonymous.enabled: "true"
+    extraArgs:
+      - --insecure=true
+      - --disable-auth=true
+    metrics:
+      serviceMonitor:
+        enabled: false
+    ingress:
+      enabled: false
+
+applications:
+  - name: argocd
+    project: tools
+    namespace: argocd
