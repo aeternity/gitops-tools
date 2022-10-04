@@ -80,6 +80,10 @@ applications:
     project: apps
     namespace: apps
     repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+  - name: explorer-frontend
+    project: apps
+    namespace: apps
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
   - name: aepp-base
     project: apps
     namespace: apps
