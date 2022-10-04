@@ -1,18 +1,18 @@
-defaultTargetRevision: prd
+defaultTargetRevision: dev
 
 app-secrets:
   external:
-    remotePrefix: /k8s/prd-0e9c
+    remotePrefix: /k8s/dev-wgt7
 
 argo-cd:
   server:
     ingress:
       hosts:
-        - "argocd.prd.aeternity.io"
+        - "argocd.dev.aeternity.io"
       tls:
         - hosts:
-          - "argocd.prd.aeternity.io"
+          - "argocd.dev.aeternity.io"
           secretName: argocd-cert
     config:
       # Argo CD's externally facing base URL (optional). Required when configuring SSO
-      url: https://argocd.prd.aeternity.io
+      url: https://argocd.dev.aeternity.io

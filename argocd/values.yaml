@@ -11,6 +11,131 @@ app-secrets:
 
 defaultRepoUrl: 'https://github.com/aeternity/gitops-tools.git'
 
+namespaces:
+  - tools
+  - apps
+  - aenodes
+
+applications:
+  - name: argocd
+    project: tools
+    namespace: argocd
+  - name: sealed-secrets
+    project: tools
+    namespace: sealed-secrets
+  - name: external-secrets
+    project: tools
+    namespace: external-secrets
+  - name: external-snapshotter
+    project: tools
+    namespace: kube-system
+  - name: aws-load-balancer-controller
+    project: tools
+    namespace: kube-system
+  - name: metrics-server
+    project: tools
+    namespace: kube-system
+  - name: traefik
+    project: tools
+    namespace: traefik
+  - name: kube-prometheus-stack
+    project: tools
+    namespace: monitoring
+  - name: kube-prometheus-blackbox-exporter
+    project: tools
+    namespace: monitoring
+  - name: fluent-bit
+    project: tools
+    namespace: logging
+  - name: cluster-autoscaler
+    project: tools
+    namespace: cluster-autoscaler
+  - name: kubernetes-event-exporter
+    project: tools
+    namespace: kubernetes-event-exporter
+  - name: velero
+    project: tools
+    namespace: velero
+  - name: cert-manager
+    project: tools
+    namespace: cert-manager
+  - name: aerepl-http
+    project: apps
+    namespace: apps
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+  - name: aesophia-http
+    project: apps
+    namespace: apps
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+  - name: aepp-faucet
+    project: apps
+    namespace: apps
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+  - name: aepp-faucet-nodejs
+    project: apps
+    namespace: apps
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+  - name: aepp-contracts
+    project: apps
+    namespace: apps
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+  - name: mdw-frontend
+    project: apps
+    namespace: apps
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+  - name: aepp-base
+    project: apps
+    namespace: apps
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+  - name: superhero-ui
+    project: apps
+    namespace: apps
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+  - name: superhero-wallet
+    project: apps
+    namespace: apps
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+  - name: superhero-backend
+    project: apps
+    namespace: apps
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+  - name: dex-ui
+    project: apps
+    namespace: apps
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+  - name: dex-backend-mainnet
+    project: apps
+    namespace: apps
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+  - name: dex-backend-testnet
+    project: apps
+    namespace: apps
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+  - name: aepp-graffiti
+    project: apps
+    namespace: apps
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+  - name: state-channel-demo-frontend
+    project: apps
+    namespace: apps
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+  - name: state-channel-demo-backend
+    project: apps
+    namespace: apps
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+  - name: ga-multisig-backend
+    project: apps
+    namespace: apps
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+  - name: ga-multisig-ui
+    project: apps
+    namespace: apps
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+  - name: explorer
+    project: apps
+    namespace: apps
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+
 additionalApplications: []
 
 argo-cd:
