@@ -1,3 +1,8 @@
+defaultCertificateDmains:
+  - "dev.aeternity.io"
+  - "*.dev.aeternity.io"
+  - "*.dev.aepps.com"
+
 traefik:
   service:
     annotations:
