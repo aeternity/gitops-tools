@@ -1,2 +1,5 @@
+dnsSolverDomains:
+  - 'aeternity.io'
+  - 'aepps.com'
 cert-manager:
   installCRDs: true
