@@ -1,4 +1,5 @@
 #!/bin/bash
+
 set -euo pipefail
 
 ALWAYS_EXCLUDE=('external-snapshotter' 'aws-ebs-csi-driver')
