@@ -1,0 +1,4 @@
+traefik:
+  service:
+    annotations:
+      service.beta.kubernetes.io/aws-load-balancer-name: stg-m4n4-traefik-ingress
