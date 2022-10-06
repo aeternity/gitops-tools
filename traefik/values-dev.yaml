@@ -1,4 +1,0 @@
-traefik:
-  service:
-    annotations:
-      service.beta.kubernetes.io/aws-load-balancer-name: dev-wgt7-traefik-ingress
