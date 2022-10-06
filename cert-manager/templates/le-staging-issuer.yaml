@@ -18,3 +18,12 @@ spec:
               annotations:
                 # traefik.ingress.kubernetes.io/router.tls: "true"
                 traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    - dns01:
+        route53:
+          region: us-east-1
+          # role: {{ .Values.dnsSolverRole }}
+      selector:
+        dnsZones:
+          {{- toYaml .Values.dnsSolverDomains | nindent 10 }}
+        matchLabels:
+          "solver": "route53"
