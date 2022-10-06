@@ -22,8 +22,8 @@ spec:
         route53:
           region: us-east-1
           role: {{ .Values.dnsSolverRole }}
-      dnsZones:
-        {{- toYaml .Values.dnsSolverDomains | nindent 8 }}
-      selector:
-        matchLabels:
-          "solver": "route53"
+        dnsZones:
+          {{- toYaml .Values.dnsSolverDomains | nindent 8 }}
+        selector:
+          matchLabels:
+            "solver": "route53"
