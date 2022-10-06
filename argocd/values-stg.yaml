@@ -16,9 +16,3 @@ argo-cd:
     config:
       # Argo CD's externally facing base URL (optional). Required when configuring SSO
       url: https://argocd.stg.aeternity.io
-
-additionalApplications:
-  - name: test-repo
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
