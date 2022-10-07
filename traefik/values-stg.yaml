@@ -1,3 +1,7 @@
+defaultCertificateDmains:
+  - "*.stg.aeternity.io"
+  - "*.stg.aepps.com"
+
 traefik:
   service:
     annotations:

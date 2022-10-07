@@ -1,3 +1,7 @@
+defaultCertificateDmains:
+  - "*.prd.aeternity.io"
+  - "*.prd.aepps.com"
+
 traefik:
   service:
     annotations:

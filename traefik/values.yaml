@@ -1,3 +1,4 @@
+defaultCertificateDmains: []
 traefik:
   globalArguments: []
   additionalArguments:
@@ -25,3 +26,7 @@ traefik:
       protocol: TCP
       tls:
         enabled: true
+  tlsStore:
+    default:
+      defaultCertificate:
+        secretName: traefik-default-cert
