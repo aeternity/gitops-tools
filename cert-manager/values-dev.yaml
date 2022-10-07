@@ -1,7 +1,4 @@
-# dnsSolverRole: "arn:aws:iam::106102538874:role/cert-manager-dev"
 cert-manager:
   serviceAccount:
     annotations:
       eks.amazonaws.com/role-arn: "arn:aws:iam::106102538874:role/cert-manager-dev"
-  securityContext:
-    fsGroup: 1001

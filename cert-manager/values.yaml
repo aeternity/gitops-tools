@@ -5,5 +5,5 @@ dnsSolverDomains:
 # dnsSolverZoneID: Z09971041YPZJWTYTDN8S
 cert-manager:
   installCRDs: true
-  global:
-    logLevel: 6
+  securityContext:
+    fsGroup: 1001
