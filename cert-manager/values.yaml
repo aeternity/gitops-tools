@@ -1,8 +1,6 @@
 dnsSolverDomains:
   - 'aeternity.io'
   - 'aepps.com'
-# Note this is delegated zone ID
-# dnsSolverZoneID: Z09971041YPZJWTYTDN8S
 cert-manager:
   installCRDs: true
   securityContext:

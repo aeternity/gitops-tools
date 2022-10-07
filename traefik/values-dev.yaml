@@ -1,6 +1,4 @@
 defaultCertificateDmains:
-  # - "dev.aeternity.io"
-  # - "dev.aepps.com"
   - "*.dev.aeternity.io"
   - "*.dev.aepps.com"
 
