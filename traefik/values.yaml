@@ -26,7 +26,7 @@ traefik:
       protocol: TCP
       tls:
         enabled: true
-  # tlsStore:
-  #   default:
-  #     defaultCertificate:
-  #       secretName: traefik-default-cert
+  tlsStore:
+    default:
+      defaultCertificate:
+        secretName: traefik-default-cert
