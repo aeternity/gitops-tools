@@ -19,6 +19,7 @@ spec:
                 # traefik.ingress.kubernetes.io/router.tls: "true"
                 traefik.ingress.kubernetes.io/router.entrypoints: websecure
     - dns01:
+        cnameStrategy: Follow
         route53:
           region: us-east-1
           hostedZoneID: {{ .Values.dnsSolverZoneID }}
