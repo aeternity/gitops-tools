@@ -1,4 +1,4 @@
-dnsSolverRole: "arn:aws:iam::106102538874:role/cert-manager-dev"
+# dnsSolverRole: "arn:aws:iam::106102538874:role/cert-manager-dev"
 cert-manager:
   serviceAccount:
     annotations:

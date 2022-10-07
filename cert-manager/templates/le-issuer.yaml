@@ -22,8 +22,12 @@ spec:
         cnameStrategy: Follow
         route53:
           region: us-east-1
+          {{- if .Values.dnsSolverZoneID }}
           hostedZoneID: {{ .Values.dnsSolverZoneID }}
-          # role: {{ .Values.dnsSolverRole }}
+          {{- end }}
+          {{- if .Values.dnsSolverRole }}
+          role: {{ .Values.dnsSolverRole }}
+          {{- end }}
       selector:
         dnsZones:
           {{- toYaml .Values.dnsSolverDomains | nindent 10 }}

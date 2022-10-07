@@ -22,7 +22,9 @@ spec:
         cnameStrategy: Follow
         route53:
           region: us-east-1
+          {{- if .Values.dnsSolverZoneID }}
           hostedZoneID: {{ .Values.dnsSolverZoneID }}
+          {{- end }}
           # role: {{ .Values.dnsSolverRole }}
       selector:
         dnsZones:
