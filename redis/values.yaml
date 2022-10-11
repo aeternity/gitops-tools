@@ -1,2 +1,5 @@
 redis:
   architecture: standalone
+  master:
+    persistence:
+      enabled: false
