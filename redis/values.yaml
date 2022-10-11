@@ -2,3 +2,5 @@ redis:
   architecture: standalone
   persistence:
     enabled: false
+  auth:
+    enabled: false
