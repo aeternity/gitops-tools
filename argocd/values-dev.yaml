@@ -42,3 +42,6 @@ additionalApplications:
   - name: external-snapshotter
     project: tools
     namespace: kube-system
+  - name: redis
+    project: tools
+    namespace: redis
