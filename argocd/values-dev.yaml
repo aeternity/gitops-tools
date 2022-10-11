@@ -45,7 +45,7 @@ additionalApplications:
   - name: redis
     project: tools
     namespace: redis
-  - name: aepp-govarnance
+  - name: governance-server
     project: apps
     namespace: apps
     repoUrl: 'https://github.com/aeternity/gitops-apps.git'
