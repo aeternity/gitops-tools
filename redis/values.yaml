@@ -4,3 +4,6 @@ redis:
     enabled: false
   auth:
     enabled: false
+  master:
+    persistence:
+      enabled: false
