@@ -1,0 +1,32 @@
+defaultCertificateDmains: []
+traefik:
+  globalArguments: []
+  additionalArguments:
+    - "--entrypoints.web.http.redirections.entrypoint.to=:443"
+    - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
+  logs:
+    access:
+      enabled: true
+  ingressClass:
+    enabled: true
+    isDefaultClass: true
+  service:
+    annotations:
+      service.beta.kubernetes.io/aws-load-balancer-type: external
+      service.beta.kubernetes.io/aws-load-balancer-scheme: "internet-facing"
+      service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: instance
+  ports:
+    websecure:
+      tls:
+        enabled: true
+    https:
+      port: 10443
+      expose: true
+      exposedPort: 8443
+      protocol: TCP
+      tls:
+        enabled: true
+  tlsStore:
+    default:
+      defaultCertificate:
+        secretName: traefik-default-cert

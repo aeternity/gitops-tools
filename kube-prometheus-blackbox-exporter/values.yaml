@@ -19,6 +19,14 @@ prometheus-blackbox-exporter:
             - "true"
 
   serviceMonitor:
+    enabled: true
+    defaults:
+      additionalMetricsRelabels: {}
+      additionalRelabeling: []
+      labels: {}
+      interval: 60s
+      scrapeTimeout: 60s
+      module: http_2xx
     relabelings:
       # This is the part where, the original SM endpoints passed as parameters to blackbox exporter.
       # More info: https://prometheus.io/docs/guides/multi-target-exporter/#prometheus-config

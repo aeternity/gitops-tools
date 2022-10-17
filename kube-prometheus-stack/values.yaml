@@ -10,8 +10,9 @@ app-secrets:
 
 kube-prometheus-stack:
   prometheus:
+    serviceMonitorSelector: {}
     prometheusSpec:
-      serviceMonitorSelectorUsesHelmValues: false
+      serviceMonitorSelectorNilUsesHelmValues: false
       ruleSelectorNilUsesHelmValues: false
     ingress:
       enabled: true
