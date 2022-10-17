@@ -1,18 +1,8 @@
+defaultCertificateDmains:
+  - "*.prd.aeternity.io"
+  - "*.prd.aepps.com"
+
 traefik:
-  globalArguments: []
-  additionalArguments:
-    - "--entrypoints.web.http.redirections.entrypoint.to=:443"
-    - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
-  logs:
-    access:
-      enabled: true
   service:
-    spec:
-      # externalTrafficPolicy: Local
     annotations:
       service.beta.kubernetes.io/aws-load-balancer-name: prd-0e9c-traefik-ingress
-      service.beta.kubernetes.io/aws-load-balancer-type: external
-      service.beta.kubernetes.io/aws-load-balancer-scheme: "internet-facing"
-      service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: instance
-      service.beta.kubernetes.io/aws-load-balancer-ssl-cert: "arn:aws:acm:eu-central-1:106102538874:certificate/2fce6e1d-0d21-4cd8-85b5-076fc9b77e7e, arn:aws:acm:eu-central-1:106102538874:certificate/ab7b19dc-a491-40d2-a7f5-35ca388c248c"
-      service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "443"
