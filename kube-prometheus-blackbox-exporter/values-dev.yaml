@@ -7,6 +7,14 @@ prometheus-blackbox-exporter:
       - name: hc-ui
         url: https://hc-ui.dev.aepps.com
 
+      # Tools
+      - name: argocd
+        url: https://argocd.dev.aeternity.io
+      - name: prometheus
+        url: https://prometheus.dev.aeternity.io
+      - name: grafana
+        url: https://grafana.dev.aeternity.io
+
       # Infrastructure
       - name: base
         url: https://base.dev.aepps.com
