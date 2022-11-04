@@ -48,10 +48,6 @@ prometheus-blackbox-exporter:
         url: https://state-channel-demo.stg.aepps.com
       - name: state-channel-demo-backend
         url: https://state-channel-demo-backend.stg.aepps.com
-      - name: develop-state-channel-demo
-        url: https://develop-state-channel-demo.stg.aepps.com
-      - name: develop-state-channel-demo-backend
-        url: https://develop-state-channel-demo-backend.stg.aepps.com
       - name: superhero
         url: https://superhero.stg.aepps.com
       - name: superhero-backend
