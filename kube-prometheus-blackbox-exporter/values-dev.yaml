@@ -1,6 +1,14 @@
 prometheus-blackbox-exporter:
   serviceMonitor:
     targets:
+      # Tools
+      - name: argocd
+        url: https://argocd.stg.aeternity.io
+      - name: prometheus
+        url: https://prometheus.stg.aeternity.io
+      - name: grafana
+        url: https://grafana.stg.aeternity.io
+
       # Infrastructure
       - name: base
         url: https://base.stg.aepps.com
