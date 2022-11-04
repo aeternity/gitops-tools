@@ -1,54 +1,53 @@
 prometheus-blackbox-exporter:
   serviceMonitor:
-    enabled: true
     targets:
-      - name: dex
-        url: https://dex.dev.aepps.com
-        interval: 60s
-        scrapeTimeout: 60s
-        module: http_2xx
+      # Infrastructure
       - name: base
-        url: https://base.dev.aepps.com
-        interval: 60s
-        scrapeTimeout: 60s
-        module: http_2xx
+        url: https://base.stg.aepps.com
+      - name: contracts
+        url: https://contracts.stg.aepps.com
       - name: faucet
-        url: https://faucet.dev.aepps.com
-        interval: 60s
-        scrapeTimeout: 60s
-        module: http_2xx
-      - name: aerepl-http
-        url: https://repl.dev.aepps.com
-        interval: 60s
-        scrapeTimeout: 60s
-        module: http_2xx
-      - name: aesophia
-        url: https://compiler.dev.aepps.com/version
-        interval: 60s
-        scrapeTimeout: 60s
-        module: http_2xx
-      - name: explorer-mainnet
-        url: https://explorer-mainnet.dev.aepps.com
-        interval: 60s
-        scrapeTimeout: 60s
-        module: http_2xx
-      - name: explorer-testnet
-        url: https://explorer-testnet.dev.aepps.com
-        interval: 60s
-        scrapeTimeout: 60s
-        module: http_2xx
-      - name: superhero-ui
-        url: https://superhero.dev.aepps.com
-        interval: 60s
-        scrapeTimeout: 60s
-        module: http_2xx
-      - name: superhero-wallet
-        url: https://superhero-wallet.dev.aepps.com
-        interval: 60s
-        scrapeTimeout: 60s
-        module: http_2xx
+        url: https://faucet.stg.aepps.com
+      - name: faucet-nodejs
+        url: https://faucet-nodejs.stg.aepps.com
+      - name: repl
+        url: https://repl.stg.aepps.com
+      - name: compiler
+        url: https://compiler.stg.aepps.com/version
+      - name: mdw-explorer
+        url: https://mdw-explorer.stg.aepps.com
+      - name: mdw-explorer-testnet
+        url: https://mdw-explorer-testnet.stg.aepps.com
+
+      # Applications
+      - name: explorer-frontend
+        url: https://explorer-frontend.stg.aepps.com
+      - name: aepp-grafitti
+        url: https://aepp-grafitti.stg.aepps.com
+      - name: graffiti-server
+        url: https://graffiti-server.stg.aepps.com
+      - name: dex
+        url: https://dex.stg.aepps.com
+      - name: dex-backend-mainnet
+        url: https://dex-backend-mainnet.stg.aepps.com
+      - name: dex-backend-testnet
+        url: https://dex-backend-testnet.stg.aepps.com
+      - name: ga-multisig-ui
+        url: https://ga-multisig-ui.stg.aepps.com
+      - name: ga-multisig-backend
+        url: https://ga-multisig-backend.stg.aepps.com
+      - name: state-channel-demo
+        url: https://state-channel-demo.stg.aepps.com
+      - name: state-channel-demo-backend
+        url: https://state-channel-demo-backend.stg.aepps.com
+      - name: develop-state-channel-demo
+        url: https://develop-state-channel-demo.stg.aepps.com
+      - name: develop-state-channel-demo-backend
+        url: https://develop-state-channel-demo-backend.stg.aepps.com
+      - name: superhero
+        url: https://superhero.stg.aepps.com
       - name: superhero-backend
-        url: https://superhero-backend.dev.aepps.com/health/backend
-        interval: 60s
-        scrapeTimeout: 60s
+        url: https://superhero-backend.stg.aepps.com/health/backend
         module: http_backend
+      - name: superhero-wallet
+        url: https://superhero-wallet.stg.aepps.com
