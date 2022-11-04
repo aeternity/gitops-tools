@@ -3,59 +3,59 @@ prometheus-blackbox-exporter:
     targets:
       # Tools
       - name: argocd
-        url: https://argocd.stg.aeternity.io
+        url: https://argocd.dev.aeternity.io
       - name: prometheus
-        url: https://prometheus.stg.aeternity.io
+        url: https://prometheus.dev.aeternity.io
       - name: grafana
-        url: https://grafana.stg.aeternity.io
+        url: https://grafana.dev.aeternity.io
 
       # Infrastructure
       - name: base
-        url: https://base.stg.aepps.com
+        url: https://base.dev.aepps.com
       - name: contracts
-        url: https://contracts.stg.aepps.com
+        url: https://contracts.dev.aepps.com
       - name: faucet
-        url: https://faucet.stg.aepps.com
+        url: https://faucet.dev.aepps.com
       - name: faucet-nodejs
-        url: https://faucet-nodejs.stg.aepps.com
+        url: https://faucet-nodejs.dev.aepps.com
       - name: repl
-        url: https://repl.stg.aepps.com
+        url: https://repl.dev.aepps.com
       - name: compiler
-        url: https://compiler.stg.aepps.com/version
+        url: https://compiler.dev.aepps.com/version
       - name: mdw-explorer
-        url: https://mdw-explorer.stg.aepps.com
+        url: https://mdw-explorer.dev.aepps.com
       - name: mdw-explorer-testnet
-        url: https://mdw-explorer-testnet.stg.aepps.com
+        url: https://mdw-explorer-testnet.dev.aepps.com
 
       # Applications
       - name: explorer-frontend
-        url: https://explorer-frontend.stg.aepps.com
+        url: https://explorer-frontend.dev.aepps.com
       - name: aepp-grafitti
-        url: https://aepp-grafitti.stg.aepps.com
+        url: https://aepp-grafitti.dev.aepps.com
       - name: graffiti-server
-        url: https://graffiti-server.stg.aepps.com
+        url: https://graffiti-server.dev.aepps.com
       - name: dex
-        url: https://dex.stg.aepps.com
+        url: https://dex.dev.aepps.com
       - name: dex-backend-mainnet
-        url: https://dex-backend-mainnet.stg.aepps.com
+        url: https://dex-backend-mainnet.dev.aepps.com
       - name: dex-backend-testnet
-        url: https://dex-backend-testnet.stg.aepps.com
+        url: https://dex-backend-testnet.dev.aepps.com
       - name: ga-multisig-ui
-        url: https://ga-multisig-ui.stg.aepps.com
+        url: https://ga-multisig-ui.dev.aepps.com
       - name: ga-multisig-backend
-        url: https://ga-multisig-backend.stg.aepps.com
+        url: https://ga-multisig-backend.dev.aepps.com
       - name: state-channel-demo
-        url: https://state-channel-demo.stg.aepps.com
+        url: https://state-channel-demo.dev.aepps.com
       - name: state-channel-demo-backend
-        url: https://state-channel-demo-backend.stg.aepps.com
+        url: https://state-channel-demo-backend.dev.aepps.com
       - name: develop-state-channel-demo
-        url: https://develop-state-channel-demo.stg.aepps.com
+        url: https://develop-state-channel-demo.dev.aepps.com
       - name: develop-state-channel-demo-backend
-        url: https://develop-state-channel-demo-backend.stg.aepps.com
+        url: https://develop-state-channel-demo-backend.dev.aepps.com
       - name: superhero
-        url: https://superhero.stg.aepps.com
+        url: https://superhero.dev.aepps.com
       - name: superhero-backend
-        url: https://superhero-backend.stg.aepps.com/health/backend
+        url: https://superhero-backend.dev.aepps.com/health/backend
         module: http_backend
       - name: superhero-wallet
-        url: https://superhero-wallet.stg.aepps.com
+        url: https://superhero-wallet.dev.aepps.com
