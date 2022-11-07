@@ -31,3 +31,7 @@ traefik:
     default:
       defaultCertificate:
         secretName: traefik-default-cert
+  metrics:
+    prometheus:
+      serviceMonitor:
+        jobLabel: traefik
