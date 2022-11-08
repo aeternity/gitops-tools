@@ -136,9 +136,6 @@ applications:
     project: apps
     namespace: apps
     repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: redis
-    project: tools
-    namespace: redis
   - name: governance-server-mainnet
     project: apps
     namespace: apps
@@ -151,6 +148,10 @@ applications:
     project: apps
     namespace: apps
     repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+  - name: redis
+    project: tools
+    namespace: redis
+
 
 additionalApplications: []
 

@@ -69,6 +69,10 @@ kube-prometheus-stack:
           gnetId: 11462
           revision: 1
           datasource: Prometheus
+        traefik22:
+          gnetId: 12250
+          revision: 1
+          datasource: Prometheus
         argocd:
           gnetId: 14584
           revision: 1
