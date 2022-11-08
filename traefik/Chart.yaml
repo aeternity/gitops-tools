@@ -2,9 +2,9 @@ apiVersion: v2
 name: traefik
 description: A Traefik based Kubernetes ingress controller
 
-version: 17.0.5
+version: 19.0.4
 
 dependencies:
   - name: traefik
-    version: 17.0.5
+    version: 19.0.4
     repository: https://helm.traefik.io/traefik
