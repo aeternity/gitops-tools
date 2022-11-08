@@ -27,6 +27,8 @@ traefik:
       protocol: TCP
       tls:
         enabled: true
+    metrics:
+      expose: true
   tlsStore:
     default:
       defaultCertificate:
