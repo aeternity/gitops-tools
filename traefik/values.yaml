@@ -4,6 +4,7 @@ traefik:
   additionalArguments:
     - "--entrypoints.web.http.redirections.entrypoint.to=:443"
     - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
+    - "--metrics.prometheus.addServicesLabels=true"
   logs:
     access:
       enabled: true
@@ -11,6 +12,7 @@ traefik:
     enabled: true
     isDefaultClass: true
   service:
+    single: false
     annotations:
       service.beta.kubernetes.io/aws-load-balancer-type: external
       service.beta.kubernetes.io/aws-load-balancer-scheme: "internet-facing"
@@ -26,7 +28,14 @@ traefik:
       protocol: TCP
       tls:
         enabled: true
+    metrics:
+      expose: true
   tlsStore:
     default:
       defaultCertificate:
         secretName: traefik-default-cert
+  metrics:
+    prometheus:
+      serviceMonitor:
+        enabled: true
+        honorLabels: true
