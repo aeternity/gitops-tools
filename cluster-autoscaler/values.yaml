@@ -1,3 +1,5 @@
 cluster-autoscaler:
   cloudProvider: aws
   awsRegion: eu-central-1
+  serviceMonitor:
+    enabled: true
