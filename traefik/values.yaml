@@ -1,15 +1,5 @@
 defaultCertificateDmains: []
 traefik:
-  resources:
-    limits:
-      memory: "128Mi"
-    requests:
-      cpu: "500m"
-  autoscaling:
-    enabled: true
-    minReplicas: 3
-    maxReplicas: 15
-
   globalArguments: []
   additionalArguments:
     - "--entrypoints.web.http.redirections.entrypoint.to=:443"
