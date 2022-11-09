@@ -15,7 +15,6 @@ traefik:
     - "--entrypoints.web.http.redirections.entrypoint.to=:443"
     - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
     - "--metrics.prometheus.addServicesLabels=true"
-    - "--ping.entrypoint=websecure"
   logs:
     access:
       enabled: true
