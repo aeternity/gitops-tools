@@ -5,6 +5,8 @@ traefik:
       memory: "128Mi"
     requests:
       cpu: "500m"
+  deployment:
+    replicas: 3
   autoscaling:
     enabled: false
     minReplicas: 3
