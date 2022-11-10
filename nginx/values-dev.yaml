@@ -1,0 +1,3 @@
+nginx:
+  ingress:
+    hostname: static.dev.aeternity.io

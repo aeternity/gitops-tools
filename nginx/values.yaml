@@ -1,0 +1,16 @@
+nginx:
+  service:
+    type: ClusterIP
+  ingress:
+    enabled: true
+    annotations:
+      traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      cert-manager.io/cluster-issuer: letsencrypt
+    pathType: ImplementationSpecific
+  serverBlock: |-
+    server {
+      listen 0.0.0.0:8080;
+      location /hello {
+        return 200 "hello!";
+      }
+    }

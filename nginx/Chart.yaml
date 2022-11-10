@@ -1,0 +1,11 @@
+apiVersion: v2
+name: nginx
+description: Nginx test deployment
+
+version: 13.2.13
+
+dependencies:
+  - name: nginx
+    version: 13.2.13
+    repository: https://charts.bitnami.com/bitnami
+

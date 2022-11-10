@@ -14,6 +14,9 @@ argo-cd:
       url: https://argocd.dev.aeternity.io
 
 additionalApplications:
+  - name: nginx
+    project: tools
+    namespace: tools
   - name: dev-net-aenode
     project: aenodes
     namespace: aenodes
