@@ -1,4 +1,9 @@
 nginx:
+  resources:
+    limits:
+      memory: "256Mi"
+    requests:
+      cpu: "500m"
   service:
     type: ClusterIP
   ingress:
