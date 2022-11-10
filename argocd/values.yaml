@@ -152,7 +152,6 @@ applications:
     project: tools
     namespace: redis
 
-
 additionalApplications: []
 
 argo-cd:
@@ -276,7 +275,6 @@ argo-cd:
               - .spec.conversion.webhook.clientConfig.caBundle
               - .spec.conversion.webhook.clientConfig.service.name
               - .spec.conversion.webhook.clientConfig.service.namespace
-
       # oidc.config: |
       #   requestedIDTokenClaims:
       #     groups:
