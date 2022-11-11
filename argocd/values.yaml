@@ -82,9 +82,7 @@ projects:
   - name: aenodes
     namespace: argocd
     additionalLabels: {}
-    additionalAnnotations:
-      # keep the resource during migration
-      "helm.sh/resource-policy": keep
+    additionalAnnotations: {}
     description: AEnodes deployed on EKS
     sourceRepos:
       - 'https://github.com/aeternity/gitops-nodes.git'
