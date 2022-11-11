@@ -296,7 +296,7 @@ argo-cd:
         additionalLabels: {}
         additionalAnnotations:
           # keep the resource during migration
-          - "helm.sh/resource-policy": keep
+          "helm.sh/resource-policy": keep
         description: Tools used to run the environment
         sourceRepos:
           - 'https://github.com/aeternity/gitops-tools.git'
@@ -341,7 +341,7 @@ argo-cd:
         additionalLabels: {}
         additionalAnnotations:
           # keep the resource during migration
-          - "helm.sh/resource-policy": keep
+          "helm.sh/resource-policy": keep
         description: Applications deployed on EKS
         sourceRepos:
           - 'https://github.com/aeternity/gitops-apps.git'
@@ -358,7 +358,7 @@ argo-cd:
         additionalLabels: {}
         additionalAnnotations:
           # keep the resource during migration
-          - "helm.sh/resource-policy": keep
+          "helm.sh/resource-policy": keep
         description: AEnodes deployed on EKS
         sourceRepos:
           - 'https://github.com/aeternity/gitops-nodes.git'

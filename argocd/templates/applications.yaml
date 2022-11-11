@@ -12,7 +12,7 @@ metadata:
     {{- include "argocd.labels" $root  | nindent 4 }}
   annotations:
     # keep the resource during migration
-    - "helm.sh/resource-policy": keep
+    "helm.sh/resource-policy": keep
 spec:
   project: {{ .project }}
   source:
