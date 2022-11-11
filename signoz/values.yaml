@@ -57,4 +57,4 @@ frontend:
 
 alertmanager:
   persistence:
-    storageClass: ebs-sc
+    enabled: false
