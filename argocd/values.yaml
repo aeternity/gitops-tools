@@ -1,7 +1,3 @@
-global:
-  image:
-    tag: "v2.5.2"
-
 app-secrets:
   external:
     secretName: argocd-secret
