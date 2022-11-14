@@ -5,6 +5,10 @@ app-secrets:
     remotePrefix: /k8s/dev-wgt7
 
 argo-cd:
+  configs:
+    cm:
+      # Argo CD's externally facing base URL (optional). Required when configuring SSO
+      url: https://argocd.dev.aeternity.io
   server:
     ingress:
       hosts:
