@@ -345,9 +345,6 @@ argo-cd:
 
   controller:
     resources:
-      limits:
-        cpu: 300m
-        memory: 768Mi
       requests:
         cpu: 200m
         memory: 768Mi
@@ -361,9 +358,6 @@ argo-cd:
 
   repoServer:
     resources:
-      limits:
-        cpu: 150m
-        memory: 512Mi
       requests:
         cpu: 100m
         memory: 512Mi
