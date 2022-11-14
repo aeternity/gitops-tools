@@ -117,6 +117,7 @@ applications:
   - name: kube-prometheus-stack
     project: tools
     namespace: monitoring
+    serverSideApply: true
   - name: kube-prometheus-blackbox-exporter
     project: tools
     namespace: monitoring
