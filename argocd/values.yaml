@@ -242,6 +242,9 @@ argo-cd:
         - type: helm
           url: https://charts.jetstack.io
           name: cert-manager
+        - type: helm
+          url: https://charts.signoz.io
+          name: signoz
       dex.config: |
         connectors:
           - type: github
@@ -320,6 +323,8 @@ argo-cd:
           - namespace: cert-manager
             server: https://kubernetes.default.svc
           - namespace: redis
+            server: https://kubernetes.default.svc
+          - namespace: signoz
             server: https://kubernetes.default.svc
         clusterResourceWhitelist:
           - group: '*'
