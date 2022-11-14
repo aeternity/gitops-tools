@@ -57,8 +57,6 @@ projects:
         server: https://kubernetes.default.svc
       - namespace: redis
         server: https://kubernetes.default.svc
-      - namespace: signoz
-        server: https://kubernetes.default.svc
     clusterResourceWhitelist:
       - group: '*'
         kind: '*'
@@ -335,10 +333,6 @@ argo-cd:
         type: helm
         url: https://charts.jetstack.io
         name: cert-manager
-      signoz-helm:
-        type: helm
-        url: https://charts.signoz.io
-        name: signoz
 
   applicationSet:
     enabled: false

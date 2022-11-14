@@ -42,6 +42,3 @@ additionalApplications:
   - name: external-snapshotter
     project: tools
     namespace: kube-system
-  - name: signoz
-    project: tools
-    namespace: signoz
