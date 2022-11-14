@@ -67,3 +67,7 @@ signoz:
         # -- Frontend Ingress Host names with their path details
         hosts:
         - host: "signoz.stg.aeternity.io"
+            paths:
+            - path: /
+                pathType: ImplementationSpecific
+                port: 3301
