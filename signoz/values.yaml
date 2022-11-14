@@ -13,10 +13,9 @@ signoz:
   
   druid:
       image:
-          tag: 0.21.1-rc2
+        tag: 0.21.1-rc2
   
       configVars:
-  
           # To store data on local disks attached
           druid_extensions_loadList: '["druid-histogram", "druid-datasketches", "druid-lookups-cached-global", "postgresql-metadata-storage", "druid-kafka-indexing-service"]'
           druid_storage_type: local
@@ -42,16 +41,24 @@ signoz:
   
   flattener-processor:
       configVars:
-          KAFKA_BROKER: signoz-kafka:9092
-          KAFKA_INPUT_TOPIC: otlp_spans
-          KAFKA_OUTPUT_TOPIC: flattened_spans
+        KAFKA_BROKER: signoz-kafka:9092
+        KAFKA_INPUT_TOPIC: otlp_spans
+        KAFKA_OUTPUT_TOPIC: flattened_spans
   
   query-service:
       configVars:
-          DruidClientUrl: http://signoz-druid-router:8888
-          DruidDatasource: flattened_spans
+        DruidClientUrl: http://signoz-druid-router:8888
+        DruidDatasource: flattened_spans
   
   frontend:
-      config:
-          name: signoz-nginx-config
-          queryServiceUrl: signoz-query-service:8080
+    config:
+      name: signoz-nginx-config
+      queryServiceUrl: signoz-query-service:8080
+    ingress:
+      enabled: true
+      hosts: 
+        - "signoz.stg.aeternity.io"
+      tls:
+        - hosts:
+          - "signoz.stg.aeternity.io"
+          secretName: signoz-cert
