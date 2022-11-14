@@ -339,7 +339,17 @@ argo-cd:
         type: helm
         url: https://charts.signoz.io
         name: signoz
+
+  applicationSet:
+    enabled: false
+
   controller:
+    resources:
+      limits:
+        cpu: 300m
+        memory: 648Mi
+      requests:
+        cpu: 200m
     extraArgs:
       - --repo-server-timeout-seconds
       - "360"
@@ -347,7 +357,14 @@ argo-cd:
       enabled: true
       serviceMonitor:
         enabled: true
+
   repoServer:
+    resources:
+      limits:
+        cpu: 150m
+        memory: 144Mi
+      requests:
+        cpu: 100m
     env:
       - name: "ARGOCD_EXEC_TIMEOUT"
         value: "3m"
@@ -355,12 +372,26 @@ argo-cd:
       enabled: true
       serviceMonitor:
         enabled: true
+
   dex:
+    resources:
+      limits:
+        cpu: 150m
+        memory: 42Mi
+      requests:
+        cpu: 100m
     metrics:
       enabled: true
       serviceMonitor:
         enabled: true
+
   server:
+    resources:
+      limits:
+        cpu: 150m
+        memory: 56Mi
+      requests:
+        cpu: 100m
     metrics:
       enabled: true
       serviceMonitor:
@@ -374,3 +405,14 @@ argo-cd:
     extraArgs:
       - --insecure=true
       - --repo-server-timeout-seconds=180
+
+  redis:
+    resources:
+      limits:
+        cpu: 150m
+        memory: 64Mi
+      requests:
+        cpu: 100m
+
+  notifications:
+    enabled: false
