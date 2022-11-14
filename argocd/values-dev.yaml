@@ -13,9 +13,6 @@ argo-cd:
     ingress:
       hosts:
         - "argocd.dev.aeternity.io"
-    config:
-      # Argo CD's externally facing base URL (optional). Required when configuring SSO
-      url: https://argocd.dev.aeternity.io
 
 additionalApplications:
   - name: nginx
