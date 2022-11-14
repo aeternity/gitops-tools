@@ -16,6 +16,7 @@ kube-prometheus-stack:
         memory: 64Mi
       requests:
         cpu: 100m
+        memory: 64Mi
 
   kube-state-metrics:
     resources:
@@ -24,6 +25,7 @@ kube-prometheus-stack:
         memory: 32Mi
       requests:
         cpu: 100m
+        memory: 32Mi
 
   prometheus-node-exporter:
     resources:
@@ -32,6 +34,7 @@ kube-prometheus-stack:
         memory: 24Mi
       requests:
         cpu: 100m
+        memory: 24Mi
 
   prometheus:
     serviceMonitorSelector: {}
@@ -58,6 +61,7 @@ kube-prometheus-stack:
         memory: 165Mi
       requests:
         cpu: 100m
+        memory: 165Mi
     admin:
       existingSecret: kube-prometheus-stack-app-secrets
       userKey: GRAFANA_ADMIN_USER
@@ -140,6 +144,7 @@ kube-prometheus-stack:
           memory: 32Mi
         requests:
           cpu: 100m
+          memory: 32Mi
     ingress:
       enabled: true
       annotations:

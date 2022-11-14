@@ -350,6 +350,7 @@ argo-cd:
         memory: 648Mi
       requests:
         cpu: 200m
+        memory: 648Mi
     extraArgs:
       - --repo-server-timeout-seconds
       - "360"
@@ -365,6 +366,7 @@ argo-cd:
         memory: 384Mi
       requests:
         cpu: 100m
+        memory: 384Mi
     env:
       - name: "ARGOCD_EXEC_TIMEOUT"
         value: "3m"
@@ -380,6 +382,7 @@ argo-cd:
         memory: 42Mi
       requests:
         cpu: 100m
+        memory: 42Mi
     metrics:
       enabled: true
       serviceMonitor:
@@ -392,6 +395,7 @@ argo-cd:
         memory: 56Mi
       requests:
         cpu: 100m
+        memory: 56Mi
     metrics:
       enabled: true
       serviceMonitor:
@@ -413,6 +417,7 @@ argo-cd:
         memory: 64Mi
       requests:
         cpu: 100m
+        memory: 64Mi
 
   notifications:
     enabled: false
