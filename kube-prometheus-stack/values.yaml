@@ -9,9 +9,39 @@ app-secrets:
 
 
 kube-prometheus-stack:
+  prometheusOperator:
+    resources:
+      limits:
+        cpu: 150m
+        memory: 64Mi
+      requests:
+        cpu: 100m
+
+  kube-state-metrics:
+    resources:
+      limits:
+        cpu: 150m
+        memory: 24Mi
+      requests:
+        cpu: 100m
+
+  prometheus-node-exporter:
+    resources:
+      limits:
+        cpu: 150m
+        memory: 24Mi
+      requests:
+        cpu: 100m
+
   prometheus:
     serviceMonitorSelector: {}
     prometheusSpec:
+      resources:
+        limits:
+          cpu: 1000m
+          memory: 1500Mi
+        requests:
+          cpu: 600m
       serviceMonitorSelectorNilUsesHelmValues: false
       ruleSelectorNilUsesHelmValues: false
     ingress:
@@ -22,6 +52,12 @@ kube-prometheus-stack:
       pathType: ImplementationSpecific
 
   grafana:
+    resources:
+      limits:
+        cpu: 150m
+        memory: 165Mi
+      requests:
+        cpu: 100m
     admin:
       existingSecret: kube-prometheus-stack-app-secrets
       userKey: GRAFANA_ADMIN_USER
@@ -97,6 +133,13 @@ kube-prometheus-stack:
       readOnly: true
 
   alertmanager:
+    alertmanagerSpec:
+      resources:
+        limits:
+          cpu: 150m
+          memory: 32Mi
+        requests:
+          cpu: 100m
     ingress:
       enabled: true
       annotations:

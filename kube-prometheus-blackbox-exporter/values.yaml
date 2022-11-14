@@ -1,4 +1,11 @@
 prometheus-blackbox-exporter:
+  resources:
+    limits:
+      cpu: 150m
+      memory: 24Mi
+    requests:
+      cpu: 100m
+
   config:
     modules:
       http_2xx:
