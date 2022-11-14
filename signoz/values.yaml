@@ -55,10 +55,21 @@ signoz:
       name: signoz-nginx-config
       queryServiceUrl: signoz-query-service:8080
     ingress:
-      enabled: true
-      hosts: 
-        - "signoz.stg.aeternity.io"
-      tls:
-        - hosts:
-          - "signoz.stg.aeternity.io"
-          secretName: signoz-cert
+        # -- Enable ingress for Frontend
+        enabled: true
+        # -- Ingress Class Name to be used to identify ingress controllers
+        className: ""
+        # -- Annotations to Frontend Ingress
+        annotations: {}
+        # kubernetes.io/ingress.class: nginx
+        # kubernetes.io/tls-acme: "true"
+        # cert-manager.io/cluster-issuer: letsencrypt-prod
+        # -- Frontend Ingress Host names with their path details
+        hosts:
+        - host: signoz.stg.aeternity.io
+            paths:
+            - path: /
+                pathType: ImplementationSpecific
+                port: 3301
+        # -- Frontend Ingress TLS
+        tls: []
