@@ -66,8 +66,9 @@ signoz:
         # cert-manager.io/cluster-issuer: letsencrypt-prod
         # -- Frontend Ingress Host names with their path details
         hosts:
-        - host: "signoz.stg.aeternity.io"
+          - host: "signoz.stg.aeternity.io"
             paths:
             - path: /
-                pathType: ImplementationSpecific
-                port: 3301
+              pathType: ImplementationSpecific
+              port: 3301
+
