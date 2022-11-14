@@ -60,7 +60,9 @@ signoz:
         # -- Ingress Class Name to be used to identify ingress controllers
         className: ""
         # -- Annotations to Frontend Ingress
-        annotations: {}
+        annotations:
+          traefik.ingress.kubernetes.io/router.entrypoints: websecure
+          cert-manager.io/cluster-issuer: letsencrypt
         # kubernetes.io/ingress.class: nginx
         # kubernetes.io/tls-acme: "true"
         # cert-manager.io/cluster-issuer: letsencrypt-prod
