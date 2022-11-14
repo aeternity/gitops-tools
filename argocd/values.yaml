@@ -276,49 +276,66 @@ argo-cd:
       policy.csv: |
         g, aeternity:devops, role:admin
     repositories: |
-      - url: https://github.com/aeternity/gitops-tools.git
-      - url: https://github.com/aeternity/gitops-apps.git
-      - url: https://github.com/aeternity/gitops-nodes.git
-      - type: helm
+      tools:
+        url: https://github.com/aeternity/gitops-tools.git
+      apps:
+        url: https://github.com/aeternity/gitops-apps.git
+      nodes:
+        url: https://github.com/aeternity/gitops-nodes.git
+      argo-helm:
+        type: helm
         url: https://argoproj.github.io/argo-helm
         name: argo
-      - type: helm
+      sealed-secrets-helm:
+        type: helm
         url: https://bitnami-labs.github.io/sealed-secrets
         name: sealed-secrets
-      - type: helm
+      traefik-helm:
+        type: helm
         url: https://helm.traefik.io/traefik
         name: traefik
-      - type: helm
+      prometheus-helm:
+        type: helm
         url: https://prometheus-community.github.io/helm-charts
         name: prometheus-community
-      - type: helm
+      backube-helm:
+        type: helm
         url: https://backube.github.io/helm-charts/
         name: backube
-      - type: helm
+      kube-sigs-helm:
+        type: helm
         url: https://kubernetes-sigs.github.io/aws-ebs-csi-driver/
         name: kubernetes-sigs
-      - type: helm
+      eks-helm:
+        type: helm
         url: https://aws.github.io/eks-charts
         name: eks
-      - type: helm
+      bitnami-helm:
+        type: helm
         url: https://charts.bitnami.com/bitnami
         name: bitnami
-      - type: helm
+      fluent-helm:
+        type: helm
         url: https://fluent.github.io/helm-charts
         name: fluent
-      - type: helm
+      autoscaler-helm:
+        type: helm
         url: https://kubernetes.github.io/autoscaler
         name: cluster-autoscaler
-      - type: helm
+      valero-helm:
+        type: helm
         url: https://vmware-tanzu.github.io/helm-charts
         name: velero
-      - type: helm
+      external-secrets-helm:
+        type: helm
         url: https://charts.external-secrets.io
         name: external-secrets
-      - type: helm
+      cert-manager-helm:
+        type: helm
         url: https://charts.jetstack.io
         name: cert-manager
-      - type: helm
+      signoz-helm:
+        type: helm
         url: https://charts.signoz.io
         name: signoz
   controller:
