@@ -275,7 +275,7 @@ argo-cd:
       policy.default: role:readonly
       policy.csv: |
         g, aeternity:devops, role:admin
-    repositories: |
+    repositories:
       tools:
         url: https://github.com/aeternity/gitops-tools.git
       apps:
