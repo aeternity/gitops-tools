@@ -1,4 +1,11 @@
 velero:
+  resources:
+    limits:
+      cpu: 15m
+      memory: 128Mi
+    requests:
+      cpu: 10m
+      memory: 128Mi
   schedules:
     apps-ns:
       schedule: "0 1 * * *"

@@ -1,4 +1,11 @@
 sealed-secrets:
+  resources:
+    limits:
+      cpu: 15m
+      memory: 18Mi
+    requests:
+      cpu: 10m
+      memory: 18Mi
   # https://argoproj.github.io/argo-cd/faq/#sealed-secret-stuck-progressing
   commandArgs:
     - --update-status
