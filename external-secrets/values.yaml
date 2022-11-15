@@ -7,5 +7,22 @@ external-secrets:
     requests:
       cpu: 10m
       memory: 42Mi
+
   webhook:
     create: true
+    resources:
+      limits:
+        cpu: 15m
+        memory: 26Mi
+      requests:
+        cpu: 10m
+        memory: 26Mi
+
+  certController:
+    resources:
+      limits:
+        cpu: 15m
+        memory: 90Mi
+      requests:
+        cpu: 10m
+        memory: 90Mi

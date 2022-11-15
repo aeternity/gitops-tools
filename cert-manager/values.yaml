@@ -12,3 +12,21 @@ cert-manager:
       memory: 56Mi
   securityContext:
     fsGroup: 1001
+
+  webhook:
+    resources:
+      limits:
+        cpu: 15m
+        memory: 24Mi
+      requests:
+        cpu: 10m
+        memory: 24Mi
+
+  cainjector:
+    resources:
+      limits:
+        cpu: 15m
+        memory: 128Mi
+      requests:
+        cpu: 10m
+        memory: 128Mi
