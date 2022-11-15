@@ -1,4 +1,11 @@
 aws-load-balancer-controller:
+  resources:
+    limits:
+      cpu: 15m
+      memory: 72Mi
+    requests:
+      cpu: 10m
+      memory: 72Mi
   rbac:
     create: true
   serviceAccount:
