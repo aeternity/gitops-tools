@@ -4,6 +4,13 @@ fluent-bit:
     # Overrides the image tag whose default is {{ .Chart.AppVersion }}
     tag: "1.9.9"
     pullPolicy: Always
+  resources:
+    limits:
+      cpu: 100m
+      memory: 48Mi
+    requests:
+      cpu: 60m
+      memory: 48Mi
   config:
     service: |
       [SERVICE]
