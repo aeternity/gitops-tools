@@ -14,13 +14,13 @@ traefik:
     metrics:
     - type: Resource
       resource:
-        name: cpu
+        name: memory
         target:
           type: Utilization
           averageUtilization: 60
     - type: Resource
       resource:
-        name: memory
+        name: cpu
         target:
           type: Utilization
           averageUtilization: 60
