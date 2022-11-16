@@ -7,18 +7,18 @@ redis:
   master:
     resources:
       limits:
-        cpu: 15m
+        cpu: 50m
         memory: 24Mi
       requests:
-        cpu: 10m
+        cpu: 30m
         memory: 24Mi
     persistence:
       enabled: false
   replica:
     resources:
       limits:
-        cpu: 15m
+        cpu: 50m
         memory: 24Mi
       requests:
-        cpu: 10m
+        cpu: 30m
         memory: 24Mi
