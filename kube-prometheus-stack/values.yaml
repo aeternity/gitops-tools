@@ -30,10 +30,10 @@ kube-prometheus-stack:
   prometheus-node-exporter:
     resources:
       limits:
-        cpu: 75m
+        cpu: 150m
         memory: 24Mi
       requests:
-        cpu: 50m
+        cpu: 100m
         memory: 24Mi
 
   prometheus:
