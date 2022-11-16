@@ -1,10 +1,10 @@
 cluster-autoscaler:
   resources:
     limits:
-      cpu: 15m
+      cpu: 75m
       memory: 96Mi
     requests:
-      cpu: 10m
+      cpu: 50m
       memory: 96Mi
   cloudProvider: aws
   awsRegion: eu-central-1
