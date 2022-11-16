@@ -367,10 +367,10 @@ argo-cd:
     resources:
       limits:
         cpu: 150m
-        memory: 42Mi
+        memory: 64Mi
       requests:
         cpu: 100m
-        memory: 42Mi
+        memory: 64Mi
     metrics:
       enabled: true
       serviceMonitor:
