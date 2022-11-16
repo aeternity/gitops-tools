@@ -6,10 +6,10 @@ aws-ebs-csi-driver:
     resources:
       limits:
         cpu: 15m
-        memory: 70Mi
+        memory: 128Mi
       requests:
         cpu: 10m
-        memory: 70Mi
+        memory: 128Mi
 
   controller:
     resources:

@@ -8,17 +8,17 @@ redis:
     resources:
       limits:
         cpu: 15m
-        memory: 12Mi
+        memory: 24Mi
       requests:
         cpu: 10m
-        memory: 12Mi
+        memory: 24Mi
     persistence:
       enabled: false
   replica:
     resources:
       limits:
         cpu: 15m
-        memory: 12Mi
+        memory: 24Mi
       requests:
         cpu: 10m
-        memory: 12Mi
+        memory: 24Mi

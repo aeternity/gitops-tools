@@ -402,10 +402,10 @@ argo-cd:
     resources:
       limits:
         cpu: 150m
-        memory: 64Mi
+        memory: 128Mi
       requests:
         cpu: 100m
-        memory: 64Mi
+        memory: 128Mi
 
   notifications:
     enabled: false
