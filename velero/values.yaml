@@ -1,10 +1,10 @@
 velero:
   resources:
     limits:
-      cpu: 15m
+      cpu: 75m
       memory: 128Mi
     requests:
-      cpu: 10m
+      cpu: 50m
       memory: 128Mi
   schedules:
     apps-ns:
