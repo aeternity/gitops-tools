@@ -173,7 +173,9 @@ kube-prometheus-stack:
 
   defaultRules:
     rules:
-      kubeScheduler: false
+      kubeSchedulerAlerting: false
+      kubeSchedulerRecording: false
+      kubeControllerManager: false
 
   additionalPrometheusRulesMap:
   - name: blackbox
