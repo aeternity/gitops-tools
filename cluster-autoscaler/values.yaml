@@ -1,7 +1,6 @@
 cluster-autoscaler:
   resources:
     limits:
-      cpu: 75m
       memory: 96Mi
     requests:
       cpu: 50m

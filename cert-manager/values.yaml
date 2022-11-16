@@ -5,7 +5,6 @@ cert-manager:
   installCRDs: true
   resources:
     limits:
-      cpu: 15m
       memory: 56Mi
     requests:
       cpu: 10m
@@ -16,7 +15,6 @@ cert-manager:
   webhook:
     resources:
       limits:
-        cpu: 15m
         memory: 24Mi
       requests:
         cpu: 10m
@@ -25,7 +23,6 @@ cert-manager:
   cainjector:
     resources:
       limits:
-        cpu: 15m
         memory: 164Mi
       requests:
         cpu: 10m

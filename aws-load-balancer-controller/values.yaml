@@ -1,7 +1,6 @@
 aws-load-balancer-controller:
   resources:
     limits:
-      cpu: 15m
       memory: 72Mi
     requests:
       cpu: 10m

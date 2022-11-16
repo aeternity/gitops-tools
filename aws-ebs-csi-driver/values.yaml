@@ -5,7 +5,6 @@ aws-ebs-csi-driver:
   node:
     resources:
       limits:
-        cpu: 15m
         memory: 128Mi
       requests:
         cpu: 10m
@@ -14,7 +13,6 @@ aws-ebs-csi-driver:
   controller:
     resources:
       limits:
-        cpu: 15m
         memory: 80Mi
       requests:
         cpu: 10m

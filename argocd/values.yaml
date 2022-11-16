@@ -366,7 +366,6 @@ argo-cd:
   dex:
     resources:
       limits:
-        cpu: 150m
         memory: 64Mi
       requests:
         cpu: 100m
@@ -379,7 +378,6 @@ argo-cd:
   server:
     resources:
       limits:
-        cpu: 150m
         memory: 128Mi
       requests:
         cpu: 100m
@@ -401,7 +399,6 @@ argo-cd:
   redis:
     resources:
       limits:
-        cpu: 150m
         memory: 128Mi
       requests:
         cpu: 100m

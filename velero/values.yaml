@@ -1,7 +1,6 @@
 velero:
   resources:
     limits:
-      cpu: 75m
       memory: 128Mi
     requests:
       cpu: 50m

@@ -2,9 +2,10 @@ defaultCertificateDmains: []
 traefik:
   resources:
     limits:
-      memory: "256Mi"
+      memory: 256Mi
     requests:
-      cpu: "500m"
+      cpu: 500m
+      memory: 256Mi
 
   topologySpreadConstraints:
   # This forces the scheduler to put traefik pods on nodes where no other traefik pods are scheduled.

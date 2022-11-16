@@ -2,7 +2,6 @@ external-secrets:
   priorityClassName: system-cluster-critical
   resources:
     limits:
-      cpu: 15m
       memory: 42Mi
     requests:
       cpu: 10m
@@ -12,7 +11,6 @@ external-secrets:
     create: true
     resources:
       limits:
-        cpu: 15m
         memory: 32Mi
       requests:
         cpu: 10m
@@ -21,7 +19,6 @@ external-secrets:
   certController:
     resources:
       limits:
-        cpu: 15m
         memory: 90Mi
       requests:
         cpu: 10m

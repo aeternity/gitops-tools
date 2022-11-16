@@ -1,7 +1,7 @@
-metrics-server:
+snapscheduler:
   resources:
     limits:
       memory: 48Mi
     requests:
-      cpu: 30m
+      cpu: 10m
       memory: 48Mi

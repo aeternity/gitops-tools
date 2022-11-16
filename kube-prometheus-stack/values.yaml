@@ -12,7 +12,6 @@ kube-prometheus-stack:
   prometheusOperator:
     resources:
       limits:
-        cpu: 15m
         memory: 64Mi
       requests:
         cpu: 10m
@@ -21,7 +20,6 @@ kube-prometheus-stack:
   kube-state-metrics:
     resources:
       limits:
-        cpu: 15m
         memory: 64Mi
       requests:
         cpu: 10m
@@ -30,7 +28,6 @@ kube-prometheus-stack:
   prometheus-node-exporter:
     resources:
       limits:
-        cpu: 150m
         memory: 24Mi
       requests:
         cpu: 100m
@@ -41,10 +38,10 @@ kube-prometheus-stack:
     prometheusSpec:
       resources:
         limits:
-          cpu: 450m
           memory: 1500Mi
         requests:
           cpu: 300m
+          memory: 1500Mi
       serviceMonitorSelectorNilUsesHelmValues: false
       ruleSelectorNilUsesHelmValues: false
     ingress:
@@ -57,7 +54,6 @@ kube-prometheus-stack:
   grafana:
     resources:
       limits:
-        cpu: 150m
         memory: 284Mi
       requests:
         cpu: 100m
@@ -140,7 +136,6 @@ kube-prometheus-stack:
     alertmanagerSpec:
       resources:
         limits:
-          cpu: 15m
           memory: 32Mi
         requests:
           cpu: 10m
