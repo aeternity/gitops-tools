@@ -6,10 +6,10 @@ fluent-bit:
     pullPolicy: Always
   resources:
     limits:
-      cpu: 100m
+      cpu: 150m
       memory: 128Mi
     requests:
-      cpu: 60m
+      cpu: 100m
       memory: 128Mi
   config:
     service: |
