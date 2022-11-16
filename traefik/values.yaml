@@ -5,8 +5,25 @@ traefik:
       memory: "256Mi"
     requests:
       cpu: "500m"
+
+  topologySpreadConstraints:
+  # This forces the scheduler to put traefik pods on nodes where no other traefik pods are scheduled.
+   - labelSelector:
+       matchLabels:
+         app.kubernetes.io/name: traefik
+     maxSkew: 1
+     topologyKey: kubernetes.io/hostname
+     whenUnsatisfiable: ScheduleAnyway
+   - labelSelector:
+       matchLabels:
+         app.kubernetes.io/name: traefik
+     maxSkew: 1
+     topologyKey: topology.kubernetes.io/zone
+     whenUnsatisfiable: ScheduleAnyway
+
   deployment:
     replicas: 3
+
   autoscaling:
     enabled: true
     minReplicas: 3
@@ -31,6 +48,7 @@ traefik:
         - type: Pods
           value: 1
           periodSeconds: 60
+
   globalArguments: []
   additionalArguments:
     - "--entrypoints.web.http.redirections.entrypoint.to=:443"
