@@ -38,8 +38,8 @@ prometheus-blackbox-exporter:
         url: https://explorer-frontend.dev.aepps.com
       - name: aepp-grafitti
         url: https://aepp-grafitti.dev.aepps.com
-      - name: graffiti-server
-        url: https://graffiti-server.dev.aepps.com
+      # - name: graffiti-server
+      #   url: https://graffiti-server.dev.aepps.com
       - name: dex
         url: https://dex.dev.aepps.com
       - name: dex-backend-mainnet
@@ -62,8 +62,8 @@ prometheus-blackbox-exporter:
         url: https://develop-state-channel-demo-backend.dev.aepps.com
       - name: superhero
         url: https://superhero.dev.aepps.com
-      - name: superhero-backend
-        url: https://superhero-backend.dev.aepps.com/health/backend
-        module: http_backend
+      # - name: superhero-backend
+      #   url: https://superhero-backend.dev.aepps.com/health/backend
+      #   module: http_backend
       - name: superhero-wallet
         url: https://superhero-wallet.dev.aepps.com
