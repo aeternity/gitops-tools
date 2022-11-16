@@ -1,8 +1,8 @@
 metrics-server:
   resources:
     limits:
-      cpu: 15m
+      cpu: 50m
       memory: 48Mi
     requests:
-      cpu: 10m
+      cpu: 30m
       memory: 48Mi
