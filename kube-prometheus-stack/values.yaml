@@ -74,9 +74,6 @@ kube-prometheus-stack:
         feedback_links_enabled: false
       plugins:
         enable_alpha: true
-      log:
-        mode: console
-        level: debug
       auth.github:
         enabled: true
         client_id: $__file{/etc/secrets/GITHUB_CLIENT_ID}
