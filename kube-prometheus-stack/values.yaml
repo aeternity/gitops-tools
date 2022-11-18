@@ -87,7 +87,7 @@ kube-prometheus-stack:
         api_url: https://api.github.com/user
         allow_sign_up: true
         allowed_organizations: aeternity
-        role_attribute_path: contains(groups[*], '@github/devops') && 'GrafanaAdmin' || 'Viewer'
+        role_attribute_path: contains(groups[*], '@aeternity/devops') && 'GrafanaAdmin' || 'Viewer'
         allow_assign_grafana_admin: true
     ingress:
       enabled: true
