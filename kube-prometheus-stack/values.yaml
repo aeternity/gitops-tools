@@ -71,12 +71,12 @@ kube-prometheus-stack:
         reporting_enabled: false
         check_for_updates: false
         check_for_plugin_updates: false
+        feedback_links_enabled: false
       plugins:
         enable_alpha: true
       log:
         mode: console
-        console:
-          level: debug
+        level: debug
       auth.github:
         enabled: true
         client_id: $__file{/etc/secrets/GITHUB_CLIENT_ID}
