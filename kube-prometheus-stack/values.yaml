@@ -67,8 +67,16 @@ kube-prometheus-stack:
         enabled: true
         folderAnnotation: grafana-dashboard-dir
     grafana.ini:
+      analytics:
+        reporting_enabled: false
+        check_for_updates: false
+        check_for_plugin_updates: false
       plugins:
         enable_alpha: true
+      log:
+        mode: console
+        console:
+          level: debug
       auth.github:
         enabled: true
         client_id: $__file{/etc/secrets/GITHUB_CLIENT_ID}
