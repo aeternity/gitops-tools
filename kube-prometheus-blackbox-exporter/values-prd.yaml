@@ -53,3 +53,5 @@ prometheus-blackbox-exporter:
         module: http_backend
       - name: superhero-wallet
         url: https://superhero-wallet.prd.aepps.com
+      - name: testnet-node
+        url: https://testnet.prd.aepps.com/v3/status
