@@ -1,4 +1,6 @@
 prometheus-blackbox-exporter:
+  image:
+    repository: mirror.gcr.io/prom/blackbox-exporter
   resources:
     limits:
       memory: 24Mi

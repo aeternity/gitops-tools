@@ -1,4 +1,6 @@
 velero:
+  image:
+    repository: mirror.gcr.io/velero/velero
   resources:
     limits:
       memory: 128Mi

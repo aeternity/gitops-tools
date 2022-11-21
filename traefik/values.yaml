@@ -1,5 +1,7 @@
 defaultCertificateDmains: []
 traefik:
+  image:
+    name: mirror.gcr.io/library/traefik
   resources:
     limits:
       memory: 256Mi
