@@ -16,6 +16,83 @@ namespaces:
   - apps
   - aenodes
 
+projects:
+  - name: tools
+    namespace: argocd
+    additionalLabels: {}
+    additionalAnnotations:
+      # keep the resource during migration
+      "helm.sh/resource-policy": keep
+    description: Tools used to run the environment
+    sourceRepos:
+      - 'https://github.com/aeternity/gitops-tools.git'
+    destinations:
+      - namespace: default
+        server: https://kubernetes.default.svc
+      - namespace: tools
+        server: https://kubernetes.default.svc
+      - namespace: argocd
+        server: https://kubernetes.default.svc
+      - namespace: sealed-secrets
+        server: https://kubernetes.default.svc
+      - namespace: kube-system
+        server: https://kubernetes.default.svc
+      - namespace: traefik
+        server: https://kubernetes.default.svc
+      - namespace: monitoring
+        server: https://kubernetes.default.svc
+      - namespace: logging
+        server: https://kubernetes.default.svc
+      - namespace: cluster-autoscaler
+        server: https://kubernetes.default.svc
+      - namespace: kubernetes-event-exporter
+        server: https://kubernetes.default.svc
+      - namespace: velero
+        server: https://kubernetes.default.svc
+      - namespace: aenodes
+        server: https://kubernetes.default.svc
+      - namespace: external-secrets
+        server: https://kubernetes.default.svc
+      - namespace: cert-manager
+        server: https://kubernetes.default.svc
+      - namespace: redis
+        server: https://kubernetes.default.svc
+    clusterResourceWhitelist:
+      - group: '*'
+        kind: '*'
+  - name: apps
+    namespace: argocd
+    additionalLabels: {}
+    additionalAnnotations:
+      # keep the resource during migration
+      "helm.sh/resource-policy": keep
+    description: Applications deployed on EKS
+    sourceRepos:
+      - 'https://github.com/aeternity/gitops-apps.git'
+    destinations:
+      - namespace: apps
+        server: https://kubernetes.default.svc
+      - namespace: velero
+        server: https://kubernetes.default.svc
+    clusterResourceWhitelist:
+      - group: '*'
+        kind: '*'
+  - name: aenodes
+    namespace: argocd
+    additionalLabels: {}
+    additionalAnnotations: {}
+    description: AEnodes deployed on EKS
+    sourceRepos:
+      - 'https://github.com/aeternity/gitops-nodes.git'
+    destinations:
+      - namespace: aenodes
+        server: https://kubernetes.default.svc
+      - namespace: kube-system
+        server: https://kubernetes.default.svc
+    clusterResourceWhitelist:
+      - group: '*'
+        kind: '*'
+
 applications:
   - name: argocd
     project: tools
@@ -38,6 +115,7 @@ applications:
   - name: kube-prometheus-stack
     project: tools
     namespace: monitoring
+    serverSideApply: true
   - name: kube-prometheus-blackbox-exporter
     project: tools
     namespace: monitoring
@@ -152,99 +230,14 @@ applications:
     project: tools
     namespace: redis
 
-
 additionalApplications: []
 
 argo-cd:
   configs:
     secret:
       createSecret: false
-  controller:
-    extraArgs:
-      - --repo-server-timeout-seconds
-      - "360"
-    metrics:
-      enabled: true
-      serviceMonitor:
-        enabled: true
-  repoServer:
-    env:
-      - name: "ARGOCD_EXEC_TIMEOUT"
-        value: "3m"
-    metrics:
-      enabled: true
-      serviceMonitor:
-        enabled: true
-  dex:
-    metrics:
-      enabled: true
-      serviceMonitor:
-        enabled: true
-  server:
-    metrics:
-      enabled: true
-      serviceMonitor:
-        enabled: true
-    ingress:
-      enabled: true
-      annotations:
-        traefik.ingress.kubernetes.io/router.entrypoints: websecure
-        cert-manager.io/cluster-issuer: letsencrypt
-      pathType: ImplementationSpecific
-    extraArgs:
-      - --insecure=true
-      - --repo-server-timeout-seconds=180
-    logLevel: debug
-    config:
+    cm:
       users.anonymous.enabled: "false"
-      # Argo CD instance label key
-      application.instanceLabelKey: argocd.argoproj.io/instance
-      repositories: |
-        - url: https://github.com/aeternity/gitops-tools.git
-        - url: https://github.com/aeternity/gitops-apps.git
-        - url: https://github.com/aeternity/gitops-nodes.git
-        - type: helm
-          url: https://argoproj.github.io/argo-helm
-          name: argo
-        - type: helm
-          url: https://bitnami-labs.github.io/sealed-secrets
-          name: sealed-secrets
-        - type: helm
-          url: https://helm.traefik.io/traefik
-          name: traefik
-        - type: helm
-          url: https://prometheus-community.github.io/helm-charts
-          name: prometheus-community
-        - type: helm
-          url: https://backube.github.io/helm-charts/
-          name: backube
-        - type: helm
-          url: https://kubernetes-sigs.github.io/aws-ebs-csi-driver/
-          name: kubernetes-sigs
-        - type: helm
-          url: https://aws.github.io/eks-charts
-          name: eks
-        - type: helm
-          url: https://charts.bitnami.com/bitnami
-          name: bitnami
-        - type: helm
-          url: https://fluent.github.io/helm-charts
-          name: fluent
-        - type: helm
-          url: https://kubernetes.github.io/autoscaler
-          name: cluster-autoscaler
-        - type: helm
-          url: https://vmware-tanzu.github.io/helm-charts
-          name: velero
-        - type: helm
-          url: https://charts.external-secrets.io
-          name: external-secrets
-        - type: helm
-          url: https://charts.jetstack.io
-          name: cert-manager
-        - type: helm
-          url: https://charts.signoz.io
-          name: signoz
       dex.config: |
         connectors:
           - type: github
@@ -255,8 +248,6 @@ argo-cd:
               clientSecret: $dex.github.clientSecret
               orgs:
               - name: aeternity
-      # https://github.com/argoproj/argo-cd/issues/1704
-      # https://argoproj.github.io/argo-cd/user-guide/diffing/
       resource.customizations: |
           networking.k8s.io/Ingress:
             health.lua: |
@@ -273,89 +264,145 @@ argo-cd:
               - /webhooks/0/failurePolicy
               jqPathExpressions:
               - .webhooks[]?.clientConfig.caBundle
-      # oidc.config: |
-      #   requestedIDTokenClaims:
-      #     groups:
-      #       essential: true
-      #   requestedScopes:
-      #     - openid
-      #     - profile
-      #     - email
-    rbacConfig:
+          apiextensions.k8s.io:
+            ignoreDifferences: |
+              jqPathExpressions:
+              - .spec.conversion.webhook.clientConfig.caBundle
+              - .spec.conversion.webhook.clientConfig.service.name
+              - .spec.conversion.webhook.clientConfig.service.namespace
+    rbac:
       policy.default: role:readonly
       policy.csv: |
         g, aeternity:devops, role:admin
-    additionalProjects:
-      - name: tools
-        namespace: argocd
-        additionalLabels: {}
-        additionalAnnotations: {}
-        description: Tools used to run the environment
-        sourceRepos:
-          - 'https://github.com/aeternity/gitops-tools.git'
-        destinations:
-          - namespace: default
-            server: https://kubernetes.default.svc
-          - namespace: tools
-            server: https://kubernetes.default.svc
-          - namespace: argocd
-            server: https://kubernetes.default.svc
-          - namespace: sealed-secrets
-            server: https://kubernetes.default.svc
-          - namespace: kube-system
-            server: https://kubernetes.default.svc
-          - namespace: traefik
-            server: https://kubernetes.default.svc
-          - namespace: monitoring
-            server: https://kubernetes.default.svc
-          - namespace: logging
-            server: https://kubernetes.default.svc
-          - namespace: cluster-autoscaler
-            server: https://kubernetes.default.svc
-          - namespace: kubernetes-event-exporter
-            server: https://kubernetes.default.svc
-          - namespace: velero
-            server: https://kubernetes.default.svc
-          - namespace: aenodes
-            server: https://kubernetes.default.svc
-          - namespace: external-secrets
-            server: https://kubernetes.default.svc
-          - namespace: cert-manager
-            server: https://kubernetes.default.svc
-          - namespace: redis
-            server: https://kubernetes.default.svc
-          - namespace: signoz
-            server: https://kubernetes.default.svc
-        clusterResourceWhitelist:
-          - group: '*'
-            kind: '*'
-      - name: apps
-        namespace: argocd
-        additionalLabels: {}
-        additionalAnnotations: {}
-        description: Applications deployed on EKS
-        sourceRepos:
-          - 'https://github.com/aeternity/gitops-apps.git'
-        destinations:
-          - namespace: apps
-            server: https://kubernetes.default.svc
-          - namespace: velero
-            server: https://kubernetes.default.svc
-        clusterResourceWhitelist:
-          - group: '*'
-            kind: '*'
-      - name: aenodes
-        namespace: argocd
-        additionalLabels: {}
-        additionalAnnotations: {}
-        description: AEnodes deployed on EKS
-        sourceRepos:
-          - 'https://github.com/aeternity/gitops-nodes.git'
-        destinations:
-          - namespace: aenodes
-            server: https://kubernetes.default.svc
-          - namespace: kube-system
-            server: https://kubernetes.default.svc
-        clusterResourceWhitelist:
-          - group: '*'
-            kind: '*'
+    repositories:
+      tools:
+        url: https://github.com/aeternity/gitops-tools.git
+      apps:
+        url: https://github.com/aeternity/gitops-apps.git
+      nodes:
+        url: https://github.com/aeternity/gitops-nodes.git
+      argo-helm:
+        type: helm
+        url: https://argoproj.github.io/argo-helm
+        name: argo
+      sealed-secrets-helm:
+        type: helm
+        url: https://bitnami-labs.github.io/sealed-secrets
+        name: sealed-secrets
+      traefik-helm:
+        type: helm
+        url: https://helm.traefik.io/traefik
+        name: traefik
+      prometheus-helm:
+        type: helm
+        url: https://prometheus-community.github.io/helm-charts
+        name: prometheus-community
+      backube-helm:
+        type: helm
+        url: https://backube.github.io/helm-charts/
+        name: backube
+      kube-sigs-helm:
+        type: helm
+        url: https://kubernetes-sigs.github.io/aws-ebs-csi-driver/
+        name: kubernetes-sigs
+      eks-helm:
+        type: helm
+        url: https://aws.github.io/eks-charts
+        name: eks
+      bitnami-helm:
+        type: helm
+        url: https://charts.bitnami.com/bitnami
+        name: bitnami
+      fluent-helm:
+        type: helm
+        url: https://fluent.github.io/helm-charts
+        name: fluent
+      autoscaler-helm:
+        type: helm
+        url: https://kubernetes.github.io/autoscaler
+        name: cluster-autoscaler
+      valero-helm:
+        type: helm
+        url: https://vmware-tanzu.github.io/helm-charts
+        name: velero
+      external-secrets-helm:
+        type: helm
+        url: https://charts.external-secrets.io
+        name: external-secrets
+      cert-manager-helm:
+        type: helm
+        url: https://charts.jetstack.io
+        name: cert-manager
+
+  applicationSet:
+    enabled: false
+
+  controller:
+    resources:
+      requests:
+        cpu: 200m
+        memory: 768Mi
+    extraArgs:
+      - --repo-server-timeout-seconds
+      - "360"
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true
+
+  repoServer:
+    resources:
+      requests:
+        cpu: 100m
+        memory: 512Mi
+    env:
+      - name: "ARGOCD_EXEC_TIMEOUT"
+        value: "3m"
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true
+
+  dex:
+    resources:
+      limits:
+        memory: 64Mi
+      requests:
+        cpu: 100m
+        memory: 64Mi
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true
+
+  server:
+    resources:
+      limits:
+        memory: 256Mi
+      requests:
+        cpu: 100m
+        memory: 256Mi
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true
+    ingress:
+      enabled: true
+      annotations:
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        cert-manager.io/cluster-issuer: letsencrypt
+      pathType: ImplementationSpecific
+    extraArgs:
+      - --insecure=true
+      - --repo-server-timeout-seconds=180
+
+  redis:
+    resources:
+      limits:
+        memory: 128Mi
+      requests:
+        cpu: 100m
+        memory: 128Mi
+
+  notifications:
+    enabled: false
