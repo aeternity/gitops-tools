@@ -3,6 +3,7 @@ velero:
     repository: mirror.gcr.io/velero/velero
   resources:
     limits:
+      cpu: null
       memory: 128Mi
     requests:
       cpu: 50m
