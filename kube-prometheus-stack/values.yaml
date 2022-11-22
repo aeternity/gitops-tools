@@ -9,9 +9,39 @@ app-secrets:
 
 
 kube-prometheus-stack:
+  prometheusOperator:
+    resources:
+      limits:
+        memory: 64Mi
+      requests:
+        cpu: 10m
+        memory: 64Mi
+
+  kube-state-metrics:
+    resources:
+      limits:
+        memory: 64Mi
+      requests:
+        cpu: 10m
+        memory: 64Mi
+
+  prometheus-node-exporter:
+    resources:
+      limits:
+        memory: 24Mi
+      requests:
+        cpu: 100m
+        memory: 24Mi
+
   prometheus:
     serviceMonitorSelector: {}
     prometheusSpec:
+      resources:
+        limits:
+          memory: 1500Mi
+        requests:
+          cpu: 300m
+          memory: 1500Mi
       serviceMonitorSelectorNilUsesHelmValues: false
       ruleSelectorNilUsesHelmValues: false
     ingress:
@@ -22,6 +52,14 @@ kube-prometheus-stack:
       pathType: ImplementationSpecific
 
   grafana:
+    image:
+      repository: mirror.gcr.io/grafana/grafana
+    resources:
+      limits:
+        memory: 284Mi
+      requests:
+        cpu: 100m
+        memory: 284Mi
     admin:
       existingSecret: kube-prometheus-stack-app-secrets
       userKey: GRAFANA_ADMIN_USER
@@ -31,6 +69,11 @@ kube-prometheus-stack:
         enabled: true
         folderAnnotation: grafana-dashboard-dir
     grafana.ini:
+      analytics:
+        reporting_enabled: false
+        check_for_updates: false
+        check_for_plugin_updates: false
+        feedback_links_enabled: false
       plugins:
         enable_alpha: true
       auth.github:
@@ -43,6 +86,8 @@ kube-prometheus-stack:
         api_url: https://api.github.com/user
         allow_sign_up: true
         allowed_organizations: aeternity
+        role_attribute_path: contains(groups[*], '@aeternity/devops') && 'GrafanaAdmin' || 'Viewer'
+        allow_assign_grafana_admin: true
     ingress:
       enabled: true
       annotations:
@@ -85,6 +130,10 @@ kube-prometheus-stack:
           gnetId: 3831
           revision: 1
           datasource: Prometheus
+        hpa:
+          gnetId: 10257
+          revision: 1
+          datasource: Prometheus
     extraSecretMounts:
     - name: secrets-mount
       secretName: kube-prometheus-stack-app-secrets
@@ -93,6 +142,13 @@ kube-prometheus-stack:
       readOnly: true
 
   alertmanager:
+    alertmanagerSpec:
+      resources:
+        limits:
+          memory: 32Mi
+        requests:
+          cpu: 10m
+          memory: 32Mi
     ingress:
       enabled: true
       annotations:
@@ -126,7 +182,9 @@ kube-prometheus-stack:
 
   defaultRules:
     rules:
-      kubeScheduler: false
+      kubeSchedulerAlerting: false
+      kubeSchedulerRecording: false
+      kubeControllerManager: false
 
   additionalPrometheusRulesMap:
   - name: blackbox

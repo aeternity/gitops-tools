@@ -1,4 +1,12 @@
 sealed-secrets:
+  image:
+    registry: mirror.gcr.io
+  resources:
+    limits:
+      memory: 18Mi
+    requests:
+      cpu: 10m
+      memory: 18Mi
   # https://argoproj.github.io/argo-cd/faq/#sealed-secret-stuck-progressing
   commandArgs:
     - --update-status

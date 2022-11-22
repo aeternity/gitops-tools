@@ -3,5 +3,27 @@ dnsSolverDomains:
   - 'aepps.com'
 cert-manager:
   installCRDs: true
+  resources:
+    limits:
+      memory: 56Mi
+    requests:
+      cpu: 10m
+      memory: 56Mi
   securityContext:
     fsGroup: 1001
+
+  webhook:
+    resources:
+      limits:
+        memory: 24Mi
+      requests:
+        cpu: 10m
+        memory: 24Mi
+
+  cainjector:
+    resources:
+      limits:
+        memory: 164Mi
+      requests:
+        cpu: 10m
+        memory: 164Mi

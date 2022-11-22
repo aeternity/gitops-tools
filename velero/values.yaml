@@ -1,4 +1,13 @@
 velero:
+  image:
+    repository: mirror.gcr.io/velero/velero
+  resources:
+    limits:
+      cpu: null
+      memory: 128Mi
+    requests:
+      cpu: 50m
+      memory: 128Mi
   schedules:
     apps-ns:
       schedule: "0 1 * * *"

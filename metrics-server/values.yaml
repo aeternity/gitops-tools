@@ -1,0 +1,7 @@
+metrics-server:
+  resources:
+    limits:
+      memory: 48Mi
+    requests:
+      cpu: 30m
+      memory: 48Mi

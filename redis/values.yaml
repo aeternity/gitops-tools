@@ -5,5 +5,18 @@ redis:
   auth:
     enabled: false
   master:
+    resources:
+      limits:
+        memory: 24Mi
+      requests:
+        cpu: 30m
+        memory: 24Mi
     persistence:
       enabled: false
+  replica:
+    resources:
+      limits:
+        memory: 24Mi
+      requests:
+        cpu: 30m
+        memory: 24Mi
