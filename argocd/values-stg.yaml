@@ -26,3 +26,6 @@ additionalApplications:
   - name: signoz
     project: tools
     namespace: signoz
+  - name: aws-ebs-csi-driver
+    project: tools
+    namespace: kube-system
