@@ -1,0 +1,29 @@
+aws-ebs-csi-driver:
+  clusterName: stg-m4n4
+  logLevel: debug
+
+  node:
+    enableWindows: false
+    resources:
+      limits:
+        memory: 128Mi
+      requests:
+        cpu: 10m
+        memory: 128Mi
+
+  controller:
+    resources:
+      limits:
+        memory: 80Mi
+      requests:
+        cpu: 10m
+        memory: 80Mi
+    serviceAccount:
+      create: true
+      name: aws-ebs-csi-driver-stg # change the name and move to values.yaml
+      annotations:
+        eks.amazonaws.com/role-arn: "arn:aws:iam::106102538874:role/aws-ebs-controller-stg"
+
+  storageClasses:
+  - name: ebs-sc
+    volumeBindingMode: WaitForFirstConsumer
