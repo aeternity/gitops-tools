@@ -24,8 +24,6 @@ prometheus-blackbox-exporter:
         url: https://explorer-frontend.prd.aepps.com
       - name: aepp-grafitti
         url: https://aepp-grafitti.prd.aepps.com
-      - name: graffiti-server
-        url: https://graffiti-server.prd.aepps.com
       - name: dex
         url: https://dex.prd.aepps.com
       - name: dex-backend-mainnet
@@ -56,4 +54,16 @@ prometheus-blackbox-exporter:
       - name: testnet-node
         url: https://testnet.prd.aepps.com/v3/status
       - name: governance-superhero
-        url: governance-superhero.prd.aepps.com/ 
+        url: https://governance-superhero.prd.aepps.com
+      - name: governance
+        url: https://governance.aeternity.com
+      - name: graffiti
+        url: https://graffiti.aeternity.com
+      - name: governance-server-mainnet
+        url: https://governance-server-mainnet.prd.aepps.com
+      - name: governance-server-testnet
+        url: https://governance-server-testnet.prd.aepps.com
+      - name: graffiti-server-mainnet
+        url: https://graffiti-server-mainnet.prd.aepps.com/health
+      - name: graffiti-server-testnet
+        url: https://graffiti-server-testnet.prd.aepps.com/health
