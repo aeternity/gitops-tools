@@ -5,4 +5,4 @@ aws-ebs-csi-driver:
       create: true
       name: aws-ebs-csi-driver-stg
       annotations:
-        eks.amazonaws.com/role-arn: "arn:aws:iam::106102538874:policy/aws-ebs-controller-stg"
+        eks.amazonaws.com/role-arn: "arn:aws:iam::106102538874:role/aws-ebs-controller-stg"
