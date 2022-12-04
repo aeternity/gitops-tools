@@ -1,20 +1,12 @@
 aws-ebs-csi-driver:
-  clusterName: stg-m4n4
   node:
-    serviceAccount:
-      create: true
-      name: aws-ebs-csi-driver-stg
-      annotations:
-        eks.amazonaws.com/role-arn: "arn:aws:iam::106102538874:role/aws-ebs-controller-stg"
-  logLevel: debug
-
-  enableWindows: false
-  resources:
-    limits:
-      memory: 128Mi
-    requests:
-      cpu: 10m
-      memory: 128Mi
+    enableWindows: false
+    resources:
+      limits:
+        memory: 128Mi
+      requests:
+        cpu: 10m
+        memory: 128Mi
 
   controller:
     resources:

@@ -1,4 +1,5 @@
 aws-ebs-csi-driver:
+  logLevel: debug
   clusterName: stg-m4n4
   node:
     serviceAccount:
