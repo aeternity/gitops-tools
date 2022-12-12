@@ -233,6 +233,9 @@ applications:
   - name: redis
     project: tools
     namespace: redis
+  - name: signoz
+    project: tools
+    namespace: signoz
 
 additionalApplications: []
 
