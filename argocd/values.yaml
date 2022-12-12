@@ -57,6 +57,8 @@ projects:
         server: https://kubernetes.default.svc
       - namespace: redis
         server: https://kubernetes.default.svc
+      - namespace: signoz
+        server: https://kubernetes.default.svc
     clusterResourceWhitelist:
       - group: '*'
         kind: '*'
