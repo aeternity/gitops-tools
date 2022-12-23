@@ -14,7 +14,7 @@ kube-prometheus-stack:
             - targets: ['10.0.1.13:9100', '10.0.1.11:9100']
         - job_name: statsd
           static_configs:
-            - targets: ['10.0.4.174:9102']
+            - targets: ['18.184.198.170:9102']
         - job_name: ec2_exporter
           relabel_configs:
             - source_labels: [__meta_ec2_tag_Name]
