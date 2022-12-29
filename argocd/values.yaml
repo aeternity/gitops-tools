@@ -119,6 +119,9 @@ applications:
   - name: kube-prometheus-blackbox-exporter
     project: tools
     namespace: monitoring
+  - name: fluent-bit
+    project: tools
+    namespace: logging
   - name: cluster-autoscaler
     project: tools
     namespace: cluster-autoscaler
