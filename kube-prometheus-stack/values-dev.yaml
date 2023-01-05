@@ -32,7 +32,7 @@ kube-prometheus-stack:
               target_label: ip
           ec2_sd_configs:
             - region: eu-central-1
-              port: 9103
+              port: 9100
     ingress:
       hosts:
         - "prometheus.dev.aeternity.io"
