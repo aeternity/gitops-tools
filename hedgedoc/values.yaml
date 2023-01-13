@@ -1,3 +1,9 @@
+app-secrets:
+  external:
+    remotePrefix: /k8s/dev-wgt7
+    values:
+      DB_PASSWORD: "/hedgedoc/DB_PASSWORD"
+
 hedgedoc:
   image:
     repository: ghcr.io/linuxserver/hedgedoc
@@ -6,23 +12,18 @@ hedgedoc:
   
   secret: {}
     # DB_PASS: "hedgedoc-pass"
-  
-  # See more environment variables in the hedgedoc documentation
-  # https://github.com/linuxserver/docker-hedgedoc#parameters
+
   env:
-    # TZ:
-    # PUID: "1000"
-    # PGID: "1000"
-    # DB_USER: "hedgedoc"
-    # DB_HOST: "mariadb"
-    # DB_NAME: "hedgedoc"
-    # DB_PORT: "3306"
     CMD_DOMAIN: "hedgedoc.dev.aeternity.io"
     
   service:
     port:
       port: 3000
   
+  database: 
+    password: DB_PASSWORD
+    databaseName: hedgedoc
+
   ingress:
     enabled: true
     annotations:
@@ -39,17 +40,21 @@ hedgedoc:
       emptyDir: false
       mountPath: /config
   
-  # Enable mariadb
-  # https://github.com/nicholaswilde/helm-charts/blob/main/charts/mariadb/values.yaml
   mariadb:
-    enabled: true
-    env:
-      MYSQL_USER: hedgedoc
-      MYSQL_DATABASE: hedgedoc
-    fullnameOverride: hedgedoc-mariadb
-
-    persistence:
-      config:
+    enabled: false
+    volumePermissions:
+      enabled: true
+    db:
+      user: hedgedoc
+      password: DB_PASSWORD
+      name: hedgedoc
+    master:
+      persistence:
         enabled: true
-        emptyDir: false
-        mountPath: /config
+    replication:
+      enabled: false
+
+    authentication:
+      local:
+        enabled: true
+        allowRegister: true
