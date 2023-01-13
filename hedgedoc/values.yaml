@@ -42,7 +42,7 @@ hedgedoc:
   # Enable mariadb
   # https://github.com/nicholaswilde/helm-charts/blob/main/charts/mariadb/values.yaml
   mariadb:
-    enabled: false
+    enabled: true
     env:
       MYSQL_USER: hedgedoc
       MYSQL_DATABASE: hedgedoc
