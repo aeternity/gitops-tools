@@ -24,6 +24,10 @@ hedgedoc:
   
   ingress:
     enabled: true
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt
+      kubernetes.io/ingress.class: traefik
+      traefik.ingress.kubernetes.io/router.entrypoints: websecure
 
   persistence:
     config:
