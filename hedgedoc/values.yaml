@@ -23,7 +23,9 @@ hedgedoc:
       port: 3000
   
   ingress:
-    enabled: false
+    enabled: true
+    hosts:
+      - "hedgedoc.dev.aeternity.io"
   
   persistence:
     config:
