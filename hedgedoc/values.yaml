@@ -18,10 +18,7 @@ hedgedoc:
     # DB_NAME: "hedgedoc"
     # DB_PORT: "3306"
     CMD_DOMAIN: "hedgedoc.dev.aeternity.io"
-    CMD_URL_ADDPORT: "true"
-    CMD_PORT: "443"
-    CMD_PROTOCOL_USESSL: "true"
-  
+    
   service:
     port:
       port: 3000
