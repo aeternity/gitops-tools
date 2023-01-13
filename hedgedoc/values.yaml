@@ -58,10 +58,7 @@ hedgedoc:
       enabled: false
 
   authentication:
-    local:
-      enabled: true
-      allowRegister: true
     github:
-        enabled: false
-        clientId: GITHUB_CLIENT_ID
-        secret: GITHUB_CLIENT_SECRET
+      enabled: false
+      clientId: GITHUB_CLIENT_ID
+      secret: GITHUB_CLIENT_SECRET
