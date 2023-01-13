@@ -55,7 +55,7 @@ hedgedoc:
     replication:
       enabled: false
 
-    authentication:
-      local:
-        enabled: true
-        allowRegister: true
+  authentication:
+    local:
+      enabled: true
+      allowRegister: true
