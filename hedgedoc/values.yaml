@@ -3,6 +3,8 @@ app-secrets:
     remotePrefix: /k8s/dev-wgt7
     values:
       DB_PASSWORD: "/hedgedoc/DB_PASSWORD"
+      GITHUB_CLIENT_SECRET: "/hedgedoc/GITHUB_CLIENT_SECRET"
+      GITHUB_CLIENT_ID: "/hedgedoc/GITHUB_CLIENT_ID"
 
 hedgedoc:
   image:
@@ -59,3 +61,7 @@ hedgedoc:
     local:
       enabled: true
       allowRegister: true
+    github:
+        enabled: false
+        clientId: GITHUB_CLIENT_ID
+        secret: GITHUB_CLIENT_SECRET
