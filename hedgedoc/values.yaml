@@ -24,9 +24,10 @@ hedgedoc:
   
   ingress:
     enabled: true
-    hosts:
-      - "hedgedoc.dev.aeternity.io"
-  
+    annotations:
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        cert-manager.io/cluster-issuer: letsencrypt
+        
   persistence:
     config:
       enabled: false
