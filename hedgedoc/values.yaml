@@ -35,7 +35,7 @@ hedgedoc:
 
   persistence:
     config:
-      enabled: false
+      enabled: true
       emptyDir: false
       mountPath: /config
   
@@ -47,3 +47,9 @@ hedgedoc:
       MYSQL_USER: hedgedoc
       MYSQL_DATABASE: hedgedoc
     fullnameOverride: hedgedoc-mariadb
+
+    persistence:
+      config:
+        enabled: true
+        emptyDir: false
+        mountPath: /config
