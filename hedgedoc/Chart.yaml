@@ -1,0 +1,10 @@
+apiVersion: v2
+name: hedgedoc
+description: hedgedoc chart
+
+version: 1.1.0
+
+dependencies:
+  - name: hedgedoc
+    version: 1.1.0
+    repository: https://nicholaswilde.github.io/helm-charts/
