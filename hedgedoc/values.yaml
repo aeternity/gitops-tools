@@ -9,7 +9,7 @@ hedgedoc:
   
   # See more environment variables in the hedgedoc documentation
   # https://github.com/linuxserver/docker-hedgedoc#parameters
-  env: {}
+  env:
     # TZ:
     # PUID: "1000"
     # PGID: "1000"
@@ -17,6 +17,10 @@ hedgedoc:
     # DB_HOST: "mariadb"
     # DB_NAME: "hedgedoc"
     # DB_PORT: "3306"
+    CMD_DOMAIN: "hedgedoc.dev.aeternity.io"
+    CMD_URL_ADDPORT: true
+    CMD_PORT: 443
+    CMD_PROTOCOL_USESSL: true
   
   service:
     port:
