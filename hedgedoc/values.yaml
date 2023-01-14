@@ -59,6 +59,6 @@ hedgedoc:
 
   authentication:
     github:
-      enabled: false
+      enabled: true
       clientId: GITHUB_CLIENT_ID
       secret: GITHUB_CLIENT_SECRET
