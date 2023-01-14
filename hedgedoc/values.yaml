@@ -18,6 +18,9 @@ hedgedoc:
 
   env:
     CMD_DOMAIN: "hedgedoc.dev.aeternity.io"
+    DB_USER: hedgedoc
+    DB_PASS: DB_PASSWORD
+    DB_NAME: hedgedoc
     
   service:
     port:
