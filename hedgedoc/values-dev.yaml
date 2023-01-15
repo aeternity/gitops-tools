@@ -78,7 +78,7 @@ hedgedoc:
     #    password:
     #    databaseName:
     imageStorePersistentVolume:
-      enabled: true
+      enabled: false
       size: '10Gi'
       storageClass: "-"
       accessModes:
