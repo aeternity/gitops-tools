@@ -13,13 +13,12 @@ hedgedoc:
     pullPolicy: IfNotPresent
     tag: "version-1.9.6"
   
-  secret: {}
-    # DB_PASS: "hedgedoc-pass"
+  secret:
+    DB_PASS: DB_PASSWORD
 
   env:
     CMD_DOMAIN: "hedgedoc.dev.aeternity.io"
     DB_USER: hedgedoc
-    DB_PASS: DB_PASSWORD
     DB_NAME: hedgedoc
     
   service:
