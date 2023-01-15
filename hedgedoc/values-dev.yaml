@@ -18,9 +18,10 @@ hedgedoc:
 
   image:
     image:
-    repository: ghcr.io/linuxserver/hedgedoc
+    registry: "quay.io"
+    repository: "hedgedoc/hedgedoc"
+    tag: "1.9.4"
     pullPolicy: IfNotPresent
-    tag: "version-1.9.6"
     pullSecrets: []
   #    - myRegistryKeySecretName
 
