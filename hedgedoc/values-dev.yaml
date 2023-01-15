@@ -17,10 +17,10 @@ hedgedoc:
   # fullnameOverride:
 
   image:
-    registry: "quay.io"
-    repository: "hedgedoc/hedgedoc"
-    tag: "1.9.4"
+    image:
+    repository: ghcr.io/linuxserver/hedgedoc
     pullPolicy: IfNotPresent
+    tag: "version-1.9.6"
     pullSecrets: []
   #    - myRegistryKeySecretName
 
