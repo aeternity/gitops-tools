@@ -1,3 +1,12 @@
+app-secrets:
+  external:
+    remotePrefix: /k8s/dev-wgt7
+    values:
+      DB_PASS: "/hedgedoc/DB_PASSWORD"
+      GITHUB_CLIENT_SECRET: "/hedgedoc/GITHUB_CLIENT_SECRET"
+      GITHUB_CLIENT_ID: "/hedgedoc/GITHUB_CLIENT_ID"
+      SESSION_SECRET: "/hedgedoc/SESSION_SECRET"
+
 hedgedoc:
   image:
     repository: ghcr.io/linuxserver/hedgedoc
@@ -7,25 +16,14 @@ hedgedoc:
     CMD_DOMAIN: "hedgedoc.dev.aeternity.io"
     DB_USER: hedgedoc
     DB_NAME: hedgedoc
-  secret: 
-     DB_PASS: DB_PASS
+    CMD_LOGLEVEL: debug
+    CMD_SESSION_SECRET: secret-test
   envFrom:
     - secretRef:
-      name: hedgedoc
+      name: hedgedoc-app-secrets   
   service:
     port:
-      port: 3000    
-  authentication:
-    github:
-      enabled: true
-      clientId: GITHUB_CLIENT_ID
-      secret: GITHUB_CLIENT_SECRET    
-  security:
-    sessionSecret: SESSION_SECRET  
-  connection:
-    database: 
-      password: DB_PASSWORD
-      databaseName: hedgedoc  
+      port: 3000  
   ingress:
     enabled: true
     annotations:
@@ -55,11 +53,3 @@ hedgedoc:
       enabled: false
     fullnameOverride: hedgedoc-mariadb
 
-app-secrets:
-  external:
-    remotePrefix: /k8s/dev-wgt7
-    values:
-      DB_PASS: "/hedgedoc/DB_PASSWORD"
-      GITHUB_CLIENT_SECRET: "/hedgedoc/GITHUB_CLIENT_SECRET"
-      GITHUB_CLIENT_ID: "/hedgedoc/GITHUB_CLIENT_ID"
-      SESSION_SECRET: "/hedgedoc/SESSION_SECRET"
