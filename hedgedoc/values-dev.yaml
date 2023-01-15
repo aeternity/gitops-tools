@@ -45,8 +45,7 @@ hedgedoc:
     hosts:
       - host: "hedgedoc.dev.aeternity.io"
         paths:
-        - path: /
-          pathType: Prefix 
+        - /
     tls: []
     #  - secretName: chart-example-tls
     #    hosts:
