@@ -25,7 +25,7 @@ hedgedoc:
   #    - myRegistryKeySecretName
 
   mariadb:
-    enabled: false
+    enabled: true
     volumePermissions:
       enabled: true
     db:
