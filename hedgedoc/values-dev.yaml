@@ -56,91 +56,97 @@ hedgedoc:
   ##
   ## HedgeDoc application configuration
   ##
-  #hedgedoc:
-  connection:
-    ## if you doesn't using ingress, you can setup domain for your CodiMD instances
-    domain: hedgedoc.dev.aeternity.io
-    ## if you want to add port number on your url
-    urlAddPort: false
-    ## if you use load balancer or setup TLS on ingress
-    protocolUseSSL: false
-  ##
-  ## External database configuration
-  ##   if you want to use external database
-  ##   database type only support mysql and postgres
-  ##
-  #  database:
-  #    type: postgres
-  #    host:
-  #    port:
-  #    username:
-  #    password:
-  #    databaseName:
-  imageStorePersistentVolume:
-    enabled: true
-    size: '10Gi'
-    storageClass: "-"
-    accessModes:
-      - ReadWriteOnce
-    volumeMode: Filesystem
-  ## for advanced used, manually setup environment for used
-  extraEnvironmentVariables:
-      CMD_LOGLEVEL: debug
-  ## automatically check new version
-  versionCheck: true
-  ##
-  ## about security setting
-  ##
-  security:
-    useCDN: 'false'
-    # session secret, please change this value
-    sessionSecret: 'changeit'
-    sessionLife: '1209600000'
-    ## HSTS setting
-    hstsEnabled: 'true'
-    hstsMaxAge: '31536000'
-    hstsIncludeSubdomain: 'false'
-    hstsPreload: 'true'
-    ## CSP setting
-    cspEnabled: 'true'
-    # cspReportUri:
-    ## setup allow origin
-    # allowOrigin:
-    ## use gravatar.com as user gravatar
-    allowGravatar: 'true'
-  ##
-  ## for tooBusy block user when server event loop lag more than ? ms
-  ##
-  responseMaxLag: '70'
-  ##
-  ## setting about note creation
-  ##
-  noteCreation:
-    freeUrlEnabled: 'false'
-    freeUrlForbiddenNoteIds: 'robots.txt,favicon.ico,api'
-    defaultPermission: 'editable'
-  ##
-  ## setting about note permission
-  ##
-  notePermission:
-    allowAnonymousEdit: true
-    allowAnonymousView: true
-  ##
-  ## allow export note to pdf
-  ##
-  allowPDFExport: false
-  ##
-  ## setting about markdown
-  ##
-  markdown:
-    # plantUMLServer:
-    useHardBreak: true
-    linkifyHeaderStyle: 'keep-case'
-  authentication:
-    local:
+  hedgedoc:
+    connection:
+      ## if you doesn't using ingress, you can setup domain for your CodiMD instances
+      domain: hedgedoc.dev.aeternity.io
+      ## if you want to add port number on your url
+      urlAddPort: false
+      ## if you use load balancer or setup TLS on ingress
+      protocolUseSSL: false
+
+    ##
+    ## External database configuration
+    ##   if you want to use external database
+    ##   database type only support mysql and postgres
+    ##
+    #  database:
+    #    type: postgres
+    #    host:
+    #    port:
+    #    username:
+    #    password:
+    #    databaseName:
+    imageStorePersistentVolume:
       enabled: true
-      allowRegister: true
-    github:
-      enabled: true
-      clientId: GITHUB_CLIENT_ID
-      secret: GITHUB_CLIENT_SECRET
+      size: '10Gi'
+      storageClass: "-"
+      accessModes:
+        - ReadWriteOnce
+      volumeMode: Filesystem
+
+    ## for advanced used, manually setup environment for used
+    extraEnvironmentVariables:
+       CMD_LOGLEVEL: debug
+
+    ## automatically check new version
+    versionCheck: true
+
+    ##
+    ## about security setting
+    ##
+    security:
+      useCDN: 'false'
+      # session secret, please change this value
+      sessionSecret: 'changeit'
+      sessionLife: '1209600000'
+      ## HSTS setting
+      hstsEnabled: 'true'
+      hstsMaxAge: '31536000'
+      hstsIncludeSubdomain: 'false'
+      hstsPreload: 'true'
+      ## CSP setting
+      cspEnabled: 'true'
+      # cspReportUri:
+      ## setup allow origin
+      # allowOrigin:
+      ## use gravatar.com as user gravatar
+      allowGravatar: 'true'
+
+    ##
+    ## for tooBusy block user when server event loop lag more than ? ms
+    ##
+    responseMaxLag: '70'
+
+    ##
+    ## setting about note creation
+    ##
+    noteCreation:
+      freeUrlEnabled: 'false'
+      freeUrlForbiddenNoteIds: 'robots.txt,favicon.ico,api'
+      defaultPermission: 'editable'
+    ##
+    ## setting about note permission
+    ##
+    notePermission:
+      allowAnonymousEdit: true
+      allowAnonymousView: true
+    ##
+    ## allow export note to pdf
+    ##
+    allowPDFExport: false
+    ##
+    ## setting about markdown
+    ##
+    markdown:
+      # plantUMLServer:
+      useHardBreak: true
+      linkifyHeaderStyle: 'keep-case'
+    authentication:
+      local:
+        enabled: true
+        allowRegister: true
+      github:
+        enabled: true
+        clientId: GITHUB_CLIENT_ID
+        secret: GITHUB_CLIENT_SECRET
