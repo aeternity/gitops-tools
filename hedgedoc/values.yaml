@@ -13,8 +13,9 @@ hedgedoc:
     pullPolicy: IfNotPresent
     tag: "version-1.9.6"
   
-  secret:
-    DB_PASS: DB_PASSWORD
+  envFrom:
+    - secretRef:
+      name: hedgedoc-app-secrets
 
   env:
     CMD_DOMAIN: "hedgedoc.dev.aeternity.io"
