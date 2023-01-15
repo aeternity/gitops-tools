@@ -2,14 +2,16 @@ hedgedoc:
   image:
     repository: ghcr.io/linuxserver/hedgedoc
     pullPolicy: IfNotPresent
-    tag: "version-1.9.6"    
-  envFrom:
-    - secretRef:
-      name: hedgedoc-app-secrets  
+    tag: "version-1.9.6"
   env:
     CMD_DOMAIN: "hedgedoc.dev.aeternity.io"
     DB_USER: hedgedoc
-    DB_NAME: hedgedoc      
+    DB_NAME: hedgedoc
+  secret: 
+     DB_PASS: DB_PASS
+  envFrom:
+    - secretRef:
+      name: hedgedoc
   service:
     port:
       port: 3000    
@@ -51,6 +53,7 @@ hedgedoc:
         enabled: true
     replication:
       enabled: false
+    fullnameOverride: hedgedoc-mariadb
 
 app-secrets:
   external:
