@@ -1,65 +1,42 @@
 hedgedoc:
-    image:
-      repository: ghcr.io/linuxserver/hedgedoc
-      pullPolicy: IfNotPresent
-      tag: "version-1.9.6"
-    
-    envFrom:
-      - secretRef:
-        name: hedgedoc-app-secrets
-  
-    env:
-      CMD_DOMAIN: "hedgedoc.dev.aeternity.io"
-      DB_USER: hedgedoc
-      DB_NAME: hedgedoc
-      
-    service:
-      port:
-        port: 3000
-    
-    authentication:
-      github:
-        enabled: true
-        clientId: GITHUB_CLIENT_ID
-        secret: GITHUB_CLIENT_SECRET
-    
-    security:
-      sessionSecret: SESSION_SECRET
-  
-    connection:
-      database: 
-        password: DB_PASSWORD
-        databaseName: hedgedoc
-  
-    ingress:
+  image:
+    repository: ghcr.io/linuxserver/hedgedoc
+    pullPolicy: IfNotPresent
+    tag: "version-1.9.6"    
+  envFrom:
+    - secretRef:
+        name: hedgedoc-app-secrets  
+  env:
+    CMD_DOMAIN: "hedgedoc.dev.aeternity.io"
+    DB_USER: hedgedoc
+    DB_NAME: hedgedoc  
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: traefik
+    hosts:
+      - host: "hedgedoc.dev.aeternity.io"
+        paths:
+        - path: /
+          pathType: Prefix  
+  persistence:
+    config:
       enabled: true
-      annotations:
-        kubernetes.io/ingress.class: traefik
-      hosts:
-        - host: "hedgedoc.dev.aeternity.io"
-          paths:
-          - path: /
-            pathType: Prefix
-  
-    persistence:
-      config:
-        enabled: true
-        emptyDir: false
-        mountPath: /config
-    
-    mariadb:
+      emptyDir: false
+      mountPath: /config    
+  mariadb:
+    enabled: true
+    volumePermissions:
       enabled: true
-      volumePermissions:
+    db:
+      user: hedgedoc
+      password: DB_PASSWORD
+      name: hedgedoc
+    master:
+      persistence:
         enabled: true
-      db:
-        user: hedgedoc
-        password: DB_PASSWORD
-        name: hedgedoc
-      master:
-        persistence:
-          enabled: true
-      replication:
-        enabled: false
+    replication:
+      enabled: false
 
 app-secrets:
   external:
