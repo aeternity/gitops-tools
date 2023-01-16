@@ -49,3 +49,9 @@ additionalApplications:
   - name: hedgedoc
     project: tools
     namespace: hedgedoc
+  - name: postgresql
+    project: tools
+    namespace: wikijs
+  - name: wikijs
+    project: tools
+    namespace: wikijs
