@@ -22,7 +22,7 @@ wikijs:
     DB_NAME: "wikijs"
   envFrom:
    - secretRef:
-       name: wikijs-secret-app
+       name: wikijs-app-secrets
   ingress:
     main:
       enabled: true
@@ -32,7 +32,7 @@ wikijs:
         - host: "wikijs.dev.aeternity.io"
           paths:
           - path: /
-          
+
   persistence:
     config:
       enabled: false
