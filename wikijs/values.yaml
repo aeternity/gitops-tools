@@ -4,7 +4,7 @@ app-secrets:
     values:
       DB_PASS: "/wikijs/WIKI_DB_PASSWORD"
 
-wikijs: 
+wikijs:
   image:
     repository: ghcr.io/linuxserver/wikijs
     tag: version-2.5.201
