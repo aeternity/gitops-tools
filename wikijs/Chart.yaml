@@ -8,3 +8,6 @@ dependencies:
   - name: wikijs
     version: 6.4.2
     repository: https://k8s-at-home.com/charts/
+  - name: app-secrets
+    version: 0.0.1
+    repository: "file://../app-secrets"
