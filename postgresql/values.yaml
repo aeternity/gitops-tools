@@ -24,6 +24,7 @@ postgresql:
         username: "wikijs"
         password: "DB_PASSWORD"
         database: "wikijs"
+        postgresPassword: "DB_PASSWORD"
         existingSecret: "postgresql-app-secrets"
         secretKeys:
           userPasswordKey: "DB_PASSWORD"
