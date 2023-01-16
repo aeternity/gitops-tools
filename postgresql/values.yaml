@@ -2,7 +2,8 @@ app-secrets:
   external:
     remotePrefix: /k8s/dev-wgt7
     values:
-      DB_PASSWORD: "/wikijs/DB_PASSWORD"
+      WIKI_DB_PASSWORD: "/wikijs/DB_PASSWORD"
+      PG_DB_PASSWORD: "/wikijs/DB_PASSWORD"
 
 postgresql:
   ## @section Global parameters
@@ -22,12 +23,12 @@ postgresql:
       ##
       auth:
         username: "wikijs"
-        password: "DB_PASSWORD"
+        password: "WIKI_DB_PASSWORD"
         database: "wikijs"
-        postgresPassword: "DB_PASSWORD"
+        postgresPassword: "PG_DB_PASSWORD"
         existingSecret: "postgresql-app-secrets"
         secretKeys:
-          userPasswordKey: "DB_PASSWORD"
+          userPasswordKey: "WIKI_DB_PASSWORD"
       
   image:
     registry: docker.io
