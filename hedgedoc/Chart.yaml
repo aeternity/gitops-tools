@@ -2,11 +2,11 @@ apiVersion: v2
 name: hedgedoc
 description: hedgedoc chart
 
-version: 0.1.12
+version: 1.1.0
 
 dependencies:
   - name: hedgedoc
-    version: 0.1.12
+    version: 1.1.0
     repository: https://nicholaswilde.github.io/helm-charts/
   - name: app-secrets
     version: 0.0.1
