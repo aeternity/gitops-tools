@@ -2,14 +2,14 @@ hedgedoc:
   image:
     repository: ghcr.io/linuxserver/hedgedoc
     pullPolicy: IfNotPresent
-    tag: "version-1.9.6"    
-  envFrom:
-    - secretRef:
-        name: hedgedoc-app-secrets  
+    tag: "version-1.9.6"
   env:
     CMD_DOMAIN: "hedgedoc.dev.aeternity.io"
     DB_USER: hedgedoc
-    DB_NAME: hedgedoc  
+    DB_NAME: hedgedoc
+  envFrom:
+   - secretRef:
+       name: hedgedoc-app-secrets
   ingress:
     enabled: true
     annotations:
