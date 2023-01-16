@@ -1,0 +1,9 @@
+app-secrets:
+  external:
+    remotePrefix: /k8s/dev-wgt7
+
+wikijs:
+  hosts:
+    - host: "wikijs.dev.aeternity.io"
+      paths:
+      - path: /

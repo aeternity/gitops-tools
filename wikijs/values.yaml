@@ -1,10 +1,9 @@
 app-secrets:
   external:
-    remotePrefix: /k8s/dev-wgt7
     values:
       DB_PASS: "/wikijs/WIKI_DB_PASSWORD"
 
-wikijs: 
+wikijs:
   image:
     repository: ghcr.io/linuxserver/wikijs
     tag: version-2.5.201
@@ -27,11 +26,7 @@ wikijs:
     main:
       enabled: true
       annotations:
-        kubernetes.io/ingress.class: traefik
-      hosts:
-        - host: "wikijs.dev.aeternity.io"
-          paths:
-          - path: /
+        kubernetes.io/ingress.class: traefik 
 
   persistence:
     config:
