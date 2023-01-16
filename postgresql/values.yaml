@@ -33,3 +33,7 @@ postgresql:
     repository: bitnami/postgresql
     tag: 15.1.0-debian-11-r20
     debug: false
+  auth:
+    ## @param auth.enablePostgresUser Assign a password to the "postgres" admin user. Otherwise, remote access will be blocked for this user
+    ##
+    enablePostgresUser: false
