@@ -50,9 +50,9 @@ hedgedoc:
     ## if you use load balancer or setup TLS on ingress
     protocolUseSSL: false
   imageStorePersistentVolume:
-    enabled: false
+    enabled: true
     size: '10Gi'
-    storageClass: "-"
+    storageClass: "gp2"
     accessModes:
       - ReadWriteOnce
     volumeMode: Filesystem
