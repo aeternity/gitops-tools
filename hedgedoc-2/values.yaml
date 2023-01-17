@@ -34,6 +34,7 @@ app:
       - host: "hedgedoc2.dev.aeternity.io"
         paths:
           - path: "/"
+        version: "version-1.9.6"
   env:
     CMD_DOMAIN: "hedgedoc2.dev.aeternity.io"
     DB_USER: hedgedoc
