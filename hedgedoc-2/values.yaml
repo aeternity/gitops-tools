@@ -1,73 +1,74 @@
-# Default values for codimd.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
-
-# storageClass:
-# nameOverride:
-# fullnameOverride:
-
-image:
-  registry: "quay.io"
-  repository: "hedgedoc/hedgedoc"
-  tag: "1.9.4"
-  pullPolicy: IfNotPresent
-  pullSecrets: []
-#    - myRegistryKeySecretName
-
-##
-## PostgreSQL chart configuration
-##
-## Reference: https://github.com/bitnami/charts/blob/master/bitnami/postgresql/values.yaml
-##
-## If you want to use external database, just set postgresql.enabled to false
-##
-postgresql:
-  enabled: true
-  volumePermissions:
-    enabled: true
-  postgresqlUsername: codimd
-  postgresqlPassword: changeme
-  postgresqlDatabase: codimd
-ingress:
-  enabled: true
-  annotations:
-      kubernetes.io/ingress.class: traefik
-  hosts:
-    - host: "hedgedoc2.dev.aeternity.io"
-      paths:
-      - path: /
-  tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
-
 hedgedoc:
-  connection:
-    ## if you doesn't using ingress, you can setup domain for your CodiMD instances
-    # domain:
-    ## if you want to add port number on your url
-    urlAddPort: false
-    ## if you use load balancer or setup TLS on ingress
-    protocolUseSSL: false
-  imageStorePersistentVolume:
+  # Default values for codimd.
+  # This is a YAML-formatted file.
+  # Declare variables to be passed into your templates.
+  
+  # storageClass:
+  # nameOverride:
+  # fullnameOverride:
+  
+  image:
+    registry: "quay.io"
+    repository: "hedgedoc/hedgedoc"
+    tag: "1.9.4"
+    pullPolicy: IfNotPresent
+    pullSecrets: []
+  #    - myRegistryKeySecretName
+  
+  ##
+  ## PostgreSQL chart configuration
+  ##
+  ## Reference: https://github.com/bitnami/charts/blob/master/bitnami/postgresql/values.yaml
+  ##
+  ## If you want to use external database, just set postgresql.enabled to false
+  ##
+  postgresql:
     enabled: true
-    size: '10Gi'
-    storageClass: "gp2"
-    accessModes:
-      - ReadWriteOnce
-    volumeMode: Filesystem
-
-  ## for advanced used, manually setup environment for used
-  extraEnvironmentVariables:
-    CMD_DOMAIN: "hedgedoc.dev.aeternity.io"
-
-  ## automatically check new version
-  versionCheck: true
-  authentication:
-    github:
-      enabled: false
-      clientId: GITHUB_CLIENT_ID
-      secret: GITHUB_CLIENT_SECRET
+    volumePermissions:
+      enabled: true
+    postgresqlUsername: codimd
+    postgresqlPassword: changeme
+    postgresqlDatabase: codimd
+  ingress:
+    enabled: true
+    annotations:
+        kubernetes.io/ingress.class: traefik
+    hosts:
+      - host: "hedgedoc2.dev.aeternity.io"
+        paths:
+        - path: /
+    tls: []
+    #  - secretName: chart-example-tls
+    #    hosts:
+    #      - chart-example.local
+  
+  hedgedoc:
+    connection:
+      ## if you doesn't using ingress, you can setup domain for your CodiMD instances
+      # domain:
+      ## if you want to add port number on your url
+      urlAddPort: false
+      ## if you use load balancer or setup TLS on ingress
+      protocolUseSSL: false
+    imageStorePersistentVolume:
+      enabled: true
+      size: '10Gi'
+      storageClass: "gp2"
+      accessModes:
+        - ReadWriteOnce
+      volumeMode: Filesystem
+  
+    ## for advanced used, manually setup environment for used
+    extraEnvironmentVariables:
+      CMD_DOMAIN: "hedgedoc.dev.aeternity.io"
+  
+    ## automatically check new version
+    versionCheck: true
+    authentication:
+      github:
+        enabled: false
+        clientId: GITHUB_CLIENT_ID
+        secret: GITHUB_CLIENT_SECRET
 
 app-secrets:
   external:
