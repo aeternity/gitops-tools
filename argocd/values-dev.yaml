@@ -55,3 +55,6 @@ additionalApplications:
   - name: wikijs
     project: tools
     namespace: wikijs
+  - name: hedgedoc-2
+    project: tools
+    namespace: hedgedoc-2

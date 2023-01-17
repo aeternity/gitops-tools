@@ -61,6 +61,8 @@ projects:
         server: https://kubernetes.default.svc
       - namespace: wikijs
         server: https://kubernetes.default.svc
+      - namespace: hedgedoc-2
+        server: https://kubernetes.default.svc
     clusterResourceWhitelist:
       - group: '*'
         kind: '*'
