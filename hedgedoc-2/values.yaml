@@ -33,7 +33,7 @@ ingress:
   annotations:
       kubernetes.io/ingress.class: traefik
   hosts:
-    - host: "hedgedoc.dev.aeternity.io"
+    - host: "hedgedoc2.dev.aeternity.io"
       paths:
       - path: /
   tls: []
