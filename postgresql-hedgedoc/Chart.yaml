@@ -1,0 +1,13 @@
+apiVersion: v2
+name: postgresql-hedgedoc
+description: postgresql chart
+
+version: 12.1.9
+
+dependencies:
+  - name: postgresql
+    version: 12.1.9
+    repository: https://charts.bitnami.com/bitnami
+  - name: app-secrets
+    version: 0.0.1
+    repository: "file://../app-secrets"

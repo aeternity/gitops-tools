@@ -58,3 +58,6 @@ additionalApplications:
   - name: hedgedoc-2
     project: tools
     namespace: hedgedoc-2
+  - name: postgresql-hedgedoc
+    project: tools
+    namespace: hedgedoc-2

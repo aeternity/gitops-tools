@@ -2,9 +2,9 @@ app-secrets:
   external:
     remotePrefix: /k8s/dev-wgt7
     values:
-      DB_PASS: "/hedgedoc/DB_PASSWORD"
-      GITHUB_CLIENT_SECRET: "/hedgedoc/GITHUB_CLIENT_SECRET"
-      GITHUB_CLIENT_ID: "/hedgedoc/GITHUB_CLIENT_ID"
+      DB_PASS: "/hedgedoc/HEDGEDOC_DB_PASSWORD"
+      CMD_GITHUB_CLIENTID: "/hedgedoc/GITHUB_CLIENT_ID"
+      CMD_GITHUB_CLIENTSECRET: "/hedgedoc/GITHUB_CLIENT_SECRET"
       SESSION_SECRET: "/hedgedoc/SESSION_SECRET"
 
 app:
@@ -42,3 +42,6 @@ app:
     CMD_DOMAIN: "hedgedoc2.dev.aeternity.io"
     DB_USER: hedgedoc
     DB_NAME: hedgedoc
+    DB_HOST: "postgresql-hedgedoc.hedgedoc-2.svc.cluster.local"
+    DB_PORT: "5432"
+  
