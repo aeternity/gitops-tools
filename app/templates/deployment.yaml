@@ -1,0 +1,162 @@
+{{ $versions := .Values.versions }}
+{{ $imageTag := .Values.image.tag }}
+{{ $allVersions := append $versions (merge (dict "version" (default .Values.image.tag .Chart.AppVersion )) $) | compact | uniq }}
+{{- range $key, $val := $allVersions}}
+{{- if $val.version }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "app.versionedFullname" (merge (dict "version" $val.version) $) }}
+  labels:
+    {{- include "app.labels" $ | nindent 4 }}
+    app.kubernetes.io/version: {{ quote $val.version }}
+    {{- with $val.gitSha }} 
+    app.kubernetes.io/gitSha: {{ quote $val.gitSha }}
+    {{- end }}
+spec:
+  {{- if not $.Values.autoscaling.enabled }}
+  replicas: {{ $.Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "app.selectorLabels" $ | nindent 6 }}
+      {{- if not $imageTag }} 
+      app.kubernetes.io/version: {{ $val.version }}
+      {{- end }}
+  strategy:
+    type: {{ $.Values.strategyType | default "RollingUpdate" }}
+  template:
+    metadata:
+      {{- with $.Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "app.selectorLabels" $ | nindent 8 }}
+        app.kubernetes.io/version: {{ quote $val.version }}
+        {{- with $val.gitSha }} 
+        app.kubernetes.io/gitSha: {{ quote $val.gitSha }}
+        {{- end }}
+    spec:
+      {{- with $.Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "app.serviceAccountName" $ }}
+      securityContext:
+        {{- toYaml $.Values.podSecurityContext | nindent 8 }}
+      {{- if $.Values.init.enabled }}
+      initContainers:
+        - name: {{ include "app.fullname" $ }}-init
+          image: "{{ $.Values.image.repository | default (print "aeternity/" $.Release.Name) }}:{{ $val.version }}"
+          imagePullPolicy: {{ $.Values.image.pullPolicy }}
+          command: {{ $.Values.init.command }}
+          {{- with $.Values.init.args }}
+          args:
+          {{- range . }}
+            - {{ . | quote }}
+          {{- end }}
+          {{- end }}
+          env:
+          {{- range $key, $value := $.Values.env }}
+            {{- if eq $key "POSTGRES_SCHEMA"}}
+            - name: {{ $key }}
+              value: "{{ include "app.fullname" $ }}-{{ $val.version }}"
+            {{- else }}
+            - name: {{ $key }}
+              value: {{ $value | quote }}  
+            {{- end }}
+          {{- end }}
+            {{- range $key, $value := $.Values.encValues }}
+            - name: {{ $key }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "app.fullname" $ }}-secret
+                  key: {{ $key }}
+            {{- end }}
+            {{- range $key, $value := $.Values.secrets.external.values }}
+            - name: {{ $key }}
+              valueFrom:
+                secretKeyRef:
+                  {{- if $.Values.secrets.external.secretName }}
+                  name: {{ $.Values.secrets.external.secretName }}
+                  {{- else }}
+                  name: {{ include "app.fullname" $ }}-external-secrets
+                  {{- end }}
+                  key: {{ $key }}
+            {{- end }}
+      {{- end }}
+      containers:
+        - name: {{ include "app.fullname" $ }}
+          securityContext:
+            {{- toYaml $.Values.securityContext | nindent 12 }}
+          image: "{{ $.Values.image.repository | default (print "aeternity/" $.Release.Name) }}:{{ $val.version }}"
+          imagePullPolicy: {{ $.Values.image.pullPolicy }}
+          env:
+          {{- range $key, $value := $.Values.env }}
+            {{- if eq $key "POSTGRES_SCHEMA"}}
+            - name: {{ $key }}
+              value: "{{ include "app.fullname" $ }}-{{ $val.version }}"
+            {{- else }}
+            - name: {{ $key }}
+              value: {{ $value | quote }}  
+            {{- end }}
+          {{- end }}
+            {{- range $key, $value := $.Values.encValues }}
+            - name: {{ $key }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "app.fullname" $ }}-secret
+                  key: {{ $key }}
+            {{- end }}
+            {{- range $key, $value := $.Values.secrets.external.values }}
+            - name: {{ $key }}
+              valueFrom:
+                secretKeyRef:
+                  {{- if $.Values.secrets.external.secretName }}
+                  name: {{ $.Values.secrets.external.secretName }}
+                  {{- else }}
+                  name: {{ include "app.fullname" $ }}-external-secrets
+                  {{- end }}
+                  key: {{ $key }}
+            {{- end }}
+          ports:
+            - name: http
+              containerPort: {{ $.Values.service.port }}
+              protocol: TCP
+          {{- if $.Values.probes.liveness.enabled }}
+          livenessProbe:
+            {{- toYaml $.Values.probes.liveness.config | nindent 12 }}
+          {{- end }}
+          {{- if $.Values.probes.readiness.enabled }}
+          readinessProbe:
+            {{- toYaml $.Values.probes.readiness.config | nindent 12 }}
+          {{- end }}
+          resources:
+            {{- toYaml $.Values.resources | nindent 12 }}
+          volumeMounts:
+          - name: data
+            mountPath: {{ $.Values.persistence.mountPath | default "/opt" }}
+      volumes:
+      - name: data
+      {{- if $.Values.persistence.enabled }}
+        persistentVolumeClaim:
+          claimName: {{ include "app.versionedFullname" (merge (dict "version" $val.version) $) }}
+      {{- else }}
+        emptyDir: {}
+      {{- end -}}
+      {{- with $.Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with $.Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with $.Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+{{- end }}
+{{- end }}

@@ -1,0 +1,114 @@
+# Default values for app.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# A list of versions (docker tags) that should be deployed.
+# This is merged with image.tag or Chart .AppVersion.
+# Multiple version can be routed in the ingress section.
+versions: []
+
+replicaCount: 1
+
+image:
+  repository: ""
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: ""
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: false
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: false
+  labels: []
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+  stripPrefix: ""
+  hosts:
+    - host: chart-example.local
+      paths:
+        - path: /
+        # Version key should match with a version in the versions list
+        # - path: /v2
+        #   version: v2.0.0
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+resources:
+  limits:
+    memory: 16Mi
+  requests:
+    cpu: 10m
+    memory: 16Mi
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+persistence:
+  enabled: false
+
+init:
+  enabled: false
+
+probes:
+  liveness:
+    enabled: true
+    config:
+      httpGet:
+        path: /
+        port: http
+      initialDelaySeconds: 60
+  readiness:
+    enabled: true
+    config:
+      httpGet:
+        path: /
+        port: http
+
+encValues: {}
+
+secrets:
+  external:
+    remotePrefix: ""
+    secretName: ""
+    values: {}

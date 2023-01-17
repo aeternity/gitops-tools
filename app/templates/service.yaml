@@ -1,0 +1,24 @@
+{{ $versions := .Values.versions }}
+{{ $allVersions := append $versions (merge (dict "version" (default .Values.image.tag .Chart.AppVersion )) $) | compact | uniq }}
+{{- range $key, $val := $allVersions}}
+{{- if $val.version }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "app.versionedFullname" (merge (dict "version" $val.version) $) }}
+  labels:
+    {{- include "app.labels" $ | nindent 4 }}
+    app.kubernetes.io/version: {{ $val.version }}
+spec:
+  type: {{ $.Values.service.type }}
+  ports:
+    - port: {{ $.Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "app.selectorLabels" $ | nindent 4 }}
+    app.kubernetes.io/version: {{ $val.version }}
+{{- end }}
+{{- end }}

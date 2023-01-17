@@ -1,0 +1,10 @@
+{{- if and .Values.ingress.enabled .Values.ingress.stripPrefix -}}
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: {{ include "app.fullname" . }}
+spec:
+  stripPrefixRegex:
+    regex:
+      - {{ .Values.ingress.stripPrefix }}
+{{- end }}
