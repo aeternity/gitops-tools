@@ -2,11 +2,11 @@ hedgedoc:
   # Default values for codimd.
   # This is a YAML-formatted file.
   # Declare variables to be passed into your templates.
-  
+
   # storageClass:
   # nameOverride:
   # fullnameOverride:
-  
+
   image:
     registry: "quay.io"
     repository: "hedgedoc/hedgedoc"
@@ -14,7 +14,7 @@ hedgedoc:
     pullPolicy: IfNotPresent
     pullSecrets: []
   #    - myRegistryKeySecretName
-  
+
   ##
   ## PostgreSQL chart configuration
   ##
@@ -22,13 +22,20 @@ hedgedoc:
   ##
   ## If you want to use external database, just set postgresql.enabled to false
   ##
-  postgresql:
+  mariadb:
+  enabled: true
+  volumePermissions:
     enabled: true
-    volumePermissions:
+  db:
+    user: codimd
+    password: changeme
+    name: codimd
+  master:
+    persistence:
       enabled: true
-    postgresqlUsername: codimd
-    postgresqlPassword: changeme
-    postgresqlDatabase: codimd
+  replication:
+    enabled: false
+
   ingress:
     enabled: true
     annotations:
@@ -41,7 +48,7 @@ hedgedoc:
     #  - secretName: chart-example-tls
     #    hosts:
     #      - chart-example.local
-  
+
   hedgedoc:
     connection:
       ## if you doesn't using ingress, you can setup domain for your CodiMD instances
@@ -57,11 +64,11 @@ hedgedoc:
       accessModes:
         - ReadWriteOnce
       volumeMode: Filesystem
-  
+
     ## for advanced used, manually setup environment for used
     extraEnvironmentVariables:
       CMD_DOMAIN: "hedgedoc.dev.aeternity.io"
-  
+
     ## automatically check new version
     versionCheck: true
     authentication:
