@@ -35,6 +35,9 @@ app:
         paths:
           - path: "/"
         version: "version-1.9.6"
+    versions:
+    - {version: "version-1.9.6", gitSha: "12345"}
+
   env:
     CMD_DOMAIN: "hedgedoc2.dev.aeternity.io"
     DB_USER: hedgedoc
