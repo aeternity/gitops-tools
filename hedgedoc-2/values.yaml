@@ -27,6 +27,9 @@ app:
 
   ingress:
     enabled: true
+    annotations:
+      traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      cert-manager.io/cluster-issuer: letsencrypt
     hosts:
       - host: "hedgedoc2.dev.aeternity.io"
         paths:
