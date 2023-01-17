@@ -50,7 +50,7 @@ hedgedoc:
     ## if you use load balancer or setup TLS on ingress
     protocolUseSSL: false
   imageStorePersistentVolume:
-    enabled: true
+    enabled: false
     size: '10Gi'
     storageClass: "-"
     accessModes:
