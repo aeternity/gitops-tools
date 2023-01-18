@@ -22,7 +22,7 @@ additionalApplications:
   - name: test-repo
     project: apps
     namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+    repoUrl: 'https://github.com/aeternity/gitops-apps-aelabs.git'
   - name: signoz
     project: tools
     namespace: signoz
