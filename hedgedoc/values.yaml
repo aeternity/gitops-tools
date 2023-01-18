@@ -15,6 +15,7 @@ hedgedoc:
       - host: "hedgedoc.dev.aeternity.io"
         paths:
         - path: /
+          pathType: Prefix  
   persistence:
     config:
       enabled: true
