@@ -1,0 +1,5 @@
+app-secrets:
+  external:
+    remotePrefix: /k8s/dev-wgt7
+    values:
+      DB_PASS: "/wikijs/WIKI_DB_PASSWORD"
