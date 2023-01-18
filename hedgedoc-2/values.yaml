@@ -44,4 +44,4 @@ app:
     DB_NAME: hedgedoc
     DB_HOST: "postgresql-hedgedoc.hedgedoc-2.svc.cluster.local"
     DB_PORT: "5432"
-  
+    CMD_LOGLEVEL: debug
