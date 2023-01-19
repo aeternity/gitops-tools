@@ -1,6 +1,10 @@
 defaultTargetRevision: stg
 
 app-secrets:
+  external:
+    remotePrefix: /k8s/stg-m4n4
+
+app-secrets-github:
   labels:
     argocd.argoproj.io/secret-type: repository
   external:

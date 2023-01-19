@@ -10,3 +10,6 @@ dependencies:
   - name: app-secrets
     version: 0.0.1
     repository: "file://../app-secrets"
+  - name: app-secrets-github
+    version: 0.0.1
+    repository: "file://../app-secrets"
