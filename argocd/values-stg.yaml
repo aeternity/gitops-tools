@@ -5,7 +5,6 @@ app-secrets:
     argocd.argoproj.io/secret-type: repository
   external:
     remotePrefix: /k8s/stg-m4n4/
-    secretName: argocd-secret-github
     values:
       "url": https://github.com/aeternity/gitops-apps-aelabs.git
       "password": /argocd/GITHUB_TOKEN
