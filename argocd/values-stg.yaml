@@ -1,8 +1,13 @@
 defaultTargetRevision: stg
 
 app-secrets:
+  labels:
+    argocd.argoproj.io/secret-type: repository
   external:
-    remotePrefix: /k8s/stg-m4n4
+    remotePrefix: /k8s/stg-m4n4/
+  url: https://github.com/aeternity/gitops-apps-aelabs.git
+  password: /argocd/GITHUB_TOKEN
+  username: not-used
 
 argo-cd:
   configs:
