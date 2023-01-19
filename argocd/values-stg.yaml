@@ -2,7 +2,7 @@ defaultTargetRevision: stg
 
 app-secrets:
   external:
-    remotePrefix: /k8s/stg-m4n4/
+    remotePrefix: /k8s/stg-m4n4
 
 argo-cd:
   configs:
