@@ -6,9 +6,7 @@ app-secrets:
   external:
     remotePrefix: /k8s/stg-m4n4
     values:
-      "url": https://github.com/aeternity/gitops-apps-aelabs.git
       "password": /argocd/GITHUB_TOKEN
-      "username": not-used
 
 argo-cd:
   configs:
