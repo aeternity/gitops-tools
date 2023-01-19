@@ -1,6 +1,4 @@
 app-secrets:
-  labels:
-    argocd.argoproj.io/secret-type: repository
   external:
     secretName: argocd-secret
     values:
@@ -10,9 +8,6 @@ app-secrets:
       "admin.passwordMtime": /argocd/ADMIN_MTIME
       "server.secretkey": /argocd/SERVER_SECRET_KEY
       "webhook.github.secret": /argocd/GITHUB_WEBHOOK_SECRET
-      "url": https://github.com/aeternity/gitops-apps-aelabs.git
-      "password": /argocd/GITHUB_TOKEN
-      "username": not-used
 
 defaultRepoUrl: 'https://github.com/aeternity/gitops-tools.git'
 
