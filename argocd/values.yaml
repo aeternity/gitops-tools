@@ -228,15 +228,15 @@ applications:
   - name: governance-server-mainnet
     project: apps
     namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps-aelabs.git'
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
   - name: governance-server-testnet
     project: apps
     namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps-aelabs.git'
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
   - name: governance-aepp
     project: apps
     namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps-aelabs.git'
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
   - name: redis
     project: tools
     namespace: redis
@@ -310,7 +310,7 @@ argo-cd:
         type: helm
         url: https://prometheus-community.github.io/helm-charts
         name: prometheus-community
-      backube-helm:
+      backube-helm: 
         type: helm
         url: https://backube.github.io/helm-charts/
         name: backube
