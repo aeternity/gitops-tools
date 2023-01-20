@@ -45,4 +45,6 @@ Selector labels
 {{- define "app-secrets.selectorLabels" -}}
 app.kubernetes.io/name: {{ include "app-secrets.fullname" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
+argocd.argoproj.io/secret-type: repository
 {{- end }}
+
