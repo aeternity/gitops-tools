@@ -10,13 +10,13 @@ postgresql-hedgedoc:
     storageClass: ""
     postgresql:
       auth:
-        username: "hedgedoc"
-        password: "HEDGEDOC_DB_PASSWORD"
-        database: "hedgedoc"
-        postgresPassword: "PG_DB_PASSWORD"
-        existingSecret: "postgresql-hedgedoc-app-secrets"
+        username: hedgedoc
+        password: HEDGEDOC_DB_PASSWORD
+        database: hedgedoc
+        postgresPassword: PG_DB_PASSWORD
+        existingSecret: postgresql-hedgedoc-app-secrets
         secretKeys:
-          userPasswordKey: "HEDGEDOC_DB_PASSWORD"
+          userPasswordKey: HEDGEDOC_DB_PASSWORD
       
   image:
     registry: docker.io
