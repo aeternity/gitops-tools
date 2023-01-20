@@ -144,11 +144,11 @@ applications:
   - name: aerepl-http
     project: apps
     namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps-aelabs.git'
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
   - name: aesophia-http
     project: apps
     namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps-aelabs.git'
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
   - name: aepp-faucet
     project: apps
     namespace: apps
@@ -160,11 +160,11 @@ applications:
   - name: aepp-contracts
     project: apps
     namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps-aelabs.git'
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
   - name: mdw-frontend
     project: apps
     namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps-aelabs.git'
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
   - name: aescan-frontend-mvp
     project: apps
     namespace: apps
@@ -172,7 +172,7 @@ applications:
   - name: aepp-base
     project: apps
     namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps-aelabs.git'
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
   - name: superhero-ui
     project: apps
     namespace: apps
