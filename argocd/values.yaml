@@ -168,63 +168,63 @@ applications:
   - name: aescan-frontend-mvp
     project: apps
     namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+    repoUrl: 'https://github.com/aeternity/gitops-apps-aelabs.git'
   - name: aepp-base
     project: apps
     namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps-aelabs.git'
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
   - name: superhero-ui
     project: apps
     namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+    repoUrl: 'https://github.com/aeternity/gitops-apps-aelabs.git'
   - name: superhero-wallet
     project: apps
     namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+    repoUrl: 'https://github.com/aeternity/gitops-apps-aelabs.git'
   - name: superhero-backend
     project: apps
     namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+    repoUrl: 'https://github.com/aeternity/gitops-apps-aelabs.git'
   - name: dex-ui
     project: apps
     namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+    repoUrl: 'https://github.com/aeternity/gitops-apps-aelabs.git'
   - name: dex-backend-mainnet
     project: apps
     namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+    repoUrl: 'https://github.com/aeternity/gitops-apps-aelabs.git'
   - name: dex-backend-testnet
     project: apps
     namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+    repoUrl: 'https://github.com/aeternity/gitops-apps-aelabs.git'
   - name: aepp-graffiti
     project: apps
     namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+    repoUrl: 'https://github.com/aeternity/gitops-apps-aelabs.git'
   - name: graffiti-server-mainnet
     project: apps
     namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+    repoUrl: 'https://github.com/aeternity/gitops-apps-aelabs.git'
   - name: graffiti-server-testnet
     project: apps
     namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+    repoUrl: 'https://github.com/aeternity/gitops-apps-aelabs.git'
   - name: state-channel-demo-frontend
     project: apps
     namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+    repoUrl: 'https://github.com/aeternity/gitops-apps-aelabs.git'
   - name: state-channel-demo-backend
     project: apps
     namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+    repoUrl: 'https://github.com/aeternity/gitops-apps-aelabs.git'
   - name: ga-multisig-backend
     project: apps
     namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+    repoUrl: 'https://github.com/aeternity/gitops-apps-aelabs.git'
   - name: ga-multisig-ui
     project: apps
     namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+    repoUrl: 'https://github.com/aeternity/gitops-apps-aelabs.git'
   - name: governance-server-mainnet
     project: apps
     namespace: apps
