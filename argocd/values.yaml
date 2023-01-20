@@ -211,6 +211,7 @@ argo-cd:
         - url: https://github.com/aeternity/gitops-tools.git
         - url: https://github.com/aeternity/gitops-apps.git
         - url: https://github.com/aeternity/gitops-nodes.git
+        - url: https://github.com/aeternity/gitops-apps-aelabs.git
         - type: helm
           url: https://argoproj.github.io/argo-helm
           name: argo
@@ -339,6 +340,7 @@ argo-cd:
         description: Applications deployed on EKS
         sourceRepos:
           - 'https://github.com/aeternity/gitops-apps.git'
+          - 'https://github.com/aeternity/gitops-apps-aelabs.git'
         destinations:
           - namespace: apps
             server: https://kubernetes.default.svc
