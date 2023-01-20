@@ -49,7 +49,7 @@ additionalApplications:
   - name: test-repo
     project: apps
     namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git-aelabs'
+    repoUrl: 'https://github.com/aeternity/gitops-apps-aelabs.git'
   - name: hedgedoc
     project: tools
     namespace: hedgedoc
