@@ -74,10 +74,10 @@ hedgedoc:
     ## for advanced used, manually setup environment for used
     extraEnvironmentVariables:
       CMD_DOMAIN: "hedgedoc2.dev.aeternity.io"
-      DB_USER: hedgedoc
-      DB_NAME: hedgedoc
-      DB_HOST: "postgresql-hedgedoc.hedgedoc-2.svc.cluster.local"
-      DB_PORT: "5432"
+      CMD_DB_USERNAME: hedgedoc
+      CMD_DB_DATABASE: hedgedoc
+      CMD_DB_HOST: "postgresql-hedgedoc.hedgedoc-2.svc.cluster.local"
+      CMD_DB_PORT: "5432"
       CMD_LOGLEVEL: debug
 
     ## automatically check new version
@@ -92,7 +92,7 @@ app-secrets:
   external:
     remotePrefix: /k8s/dev-wgt7
     values:
-      DB_PASS: "/hedgedoc/HEDGEDOC_DB_PASSWORD"
+      CMD_DB_PASSWORD: "/hedgedoc/HEDGEDOC_DB_PASSWORD"
       GITHUB_CLIENT_SECRET: "/hedgedoc/GITHUB_CLIENT_SECRET"
       GITHUB_CLIENT_ID: "/hedgedoc/GITHUB_CLIENT_ID"
       SESSION_SECRET: "/hedgedoc/SESSION_SECRET"
