@@ -172,7 +172,7 @@ applications:
   - name: aepp-base
     project: apps
     namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+    repoUrl: 'https://github.com/aeternity/gitops-apps-aelabs.git'
   - name: superhero-ui
     project: apps
     namespace: apps
