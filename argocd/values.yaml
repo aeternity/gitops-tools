@@ -152,11 +152,11 @@ applications:
   - name: aepp-faucet
     project: apps
     namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps-aelabs.git'
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
   - name: aepp-faucet-nodejs
     project: apps
     namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps-aelabs.git'
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
   - name: aepp-contracts
     project: apps
     namespace: apps
