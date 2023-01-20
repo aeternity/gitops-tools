@@ -11,11 +11,10 @@ postgresql-hedgedoc:
     postgresql:
       auth:
         username: hedgedoc
-        password: HEDGEDOC_DB_PASSWORD
         database: hedgedoc
-        postgresPassword: PG_DB_PASSWORD
         existingSecret: postgresql-hedgedoc-app-secrets
         secretKeys:
+          adminPasswordKey: PG_DB_PASSWORD
           userPasswordKey: HEDGEDOC_DB_PASSWORD
       
   image:
