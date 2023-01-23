@@ -5,9 +5,9 @@ description: hedgedoc chart
 version: 0.1.12
 
 dependencies:
-  - name: hedgedoc
-    version: 0.1.12
-    repository: https://schmitzis.github.io/helm-charts/
+  - name: app
+    version: 0.4.0
+    repository: "file://../app"
   - name: app-secrets
     version: 0.0.1
     repository: "file://../app-secrets"
