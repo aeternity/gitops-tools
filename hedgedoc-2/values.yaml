@@ -28,7 +28,9 @@ app:
     DB_HOST: "postgresql-hedgedoc.hedgedoc-2.svc.cluster.local"
     DB_PORT: "5432"
     CMD_LOGLEVEL: debug
-
+  serviceMonitor:
+    enabled: false
+    
 app-secrets:
   external:
     remotePrefix: /k8s/dev-wgt7
