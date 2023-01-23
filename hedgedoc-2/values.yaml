@@ -1,3 +1,12 @@
+app-secrets:
+  external:
+    remotePrefix: /k8s/dev-wgt7
+    values:
+      CMD_DB_PASSWORD: "/hedgedoc/HEDGEDOC_DB_PASSWORD"
+      GITHUB_CLIENT_SECRET: "/hedgedoc/GITHUB_CLIENT_SECRET"
+      GITHUB_CLIENT_ID: "/hedgedoc/GITHUB_CLIENT_ID"
+      SESSION_SECRET: "/hedgedoc/SESSION_SECRET"
+
 app:
   image:
     repository: "linuxserver/hedgedoc"
@@ -19,7 +28,7 @@ app:
   secrets:
     external:
       values:
-        CMD_DB_PASSWORD: "/hedgedoc/HEDGEDOC_DB_PASSWORD"
+        CMD_DB_PASSWORD: "/k8s/dev-wgt7/hedgedoc/HEDGEDOC_DB_PASSWORD"
   env:
     CMD_DOMAIN: "hedgedoc2.dev.aeternity.io"
     DB_USER: hedgedoc
@@ -34,11 +43,5 @@ app:
       enabled: false
     readiness:
       enabled: false  
-app-secrets:
-  external:
-    remotePrefix: /k8s/dev-wgt7
-    values:
-      CMD_DB_PASSWORD: "/hedgedoc/HEDGEDOC_DB_PASSWORD"
-      GITHUB_CLIENT_SECRET: "/hedgedoc/GITHUB_CLIENT_SECRET"
-      GITHUB_CLIENT_ID: "/hedgedoc/GITHUB_CLIENT_ID"
-      SESSION_SECRET: "/hedgedoc/SESSION_SECRET"
+
+
