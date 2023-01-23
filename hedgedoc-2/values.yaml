@@ -12,36 +12,7 @@ hedgedoc:
     tag: "1.9.4"
     pullPolicy: IfNotPresent
     pullSecrets: []
-  #    - myRegistryKeySecretName
-
-  ##
-  ## PostgreSQL chart configuration
-  ##
-  ## Reference: https://github.com/bitnami/charts/blob/master/bitnami/postgresql/values.yaml
-  ##
-  ## If you want to use external database, just set postgresql.enabled to false
-  ##
-  mariadb:
-    enabled: false
-    volumePermissions:
-      enabled: true
-    db:
-      user: test
-      password: test
-      name: test
-    master:
-      persistence:
-        enabled: true
-    replication:
-      enabled: false
     
-  postgresql:
-    enabled: false
-    volumePermissions:
-      enabled: true
-    postgresqlUsername: codimd
-    postgresqlPassword: changeme
-    postgresqlDatabase: codimd
   ingress:
     enabled: true
     annotations:
@@ -79,6 +50,7 @@ hedgedoc:
       CMD_DB_HOST: "postgresql-hedgedoc.hedgedoc-2.svc.cluster.local"
       CMD_DB_PORT: "5432"
       CMD_LOGLEVEL: debug
+      CMD_DB_PASSWORD: CMD_DB_PASSWORD #keep it for reference
 
     ## automatically check new version
     versionCheck: true
