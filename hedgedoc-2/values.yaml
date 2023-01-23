@@ -12,6 +12,8 @@ app:
     repository: "linuxserver/hedgedoc"
     tag: "1.9.4"
     pullPolicy: IfNotPresent
+  service:
+    port: 3000
   ingress:
     enabled: true
     annotations:
@@ -43,5 +45,3 @@ app:
       enabled: false
     readiness:
       enabled: false  
-
-
