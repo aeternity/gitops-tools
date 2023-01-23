@@ -1,7 +1,6 @@
 app:
   image:
-    registry: "quay.io"
-    repository: "hedgedoc/hedgedoc"
+    repository: "linuxserver/hedgedoc"
     tag: "1.9.4"
     pullPolicy: IfNotPresent
   ingress:
