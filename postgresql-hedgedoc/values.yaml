@@ -5,19 +5,20 @@ app-secrets:
       HEDGEDOC_DB_PASSWORD: "/hedgedoc/HEDGEDOC_DB_PASSWORD"
       PG_DB_PASSWORD: "/hedgedoc/PG_DB_PASSWORD"
 
-global:
-  storageClass: ""
-  postgresql:
-    auth:
-      username: hedgedoc
-      database: hedgedoc
-      existingSecret: postgresql-hedgedoc-app-secrets
-      secretKeys:
-        adminPasswordKey: PG_DB_PASSWORD
-        userPasswordKey: HEDGEDOC_DB_PASSWORD      
-image:
-  registry: docker.io
-  repository: bitnami/postgresql
-  tag: 15.1.0-debian-11-r20
-  debug: false
-
+postgresql:
+  global:
+    storageClass: ""
+    postgresql:
+      auth:
+        username: hedgedoc
+        database: hedgedoc
+        existingSecret: postgresql-hedgedoc-app-secrets
+        secretKeys:
+          adminPasswordKey: PG_DB_PASSWORD
+          userPasswordKey: HEDGEDOC_DB_PASSWORD
+      
+  image:
+    registry: docker.io
+    repository: bitnami/postgresql
+    tag: 15.1.0-debian-11-r20
+    debug: false
