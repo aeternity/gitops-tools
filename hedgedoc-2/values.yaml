@@ -30,7 +30,11 @@ app:
     CMD_LOGLEVEL: debug
   serviceMonitor:
     enabled: false
-    
+  probes:
+    liveness:
+      enabled: false
+    readiness:
+      enabled: false  
 app-secrets:
   external:
     remotePrefix: /k8s/dev-wgt7
