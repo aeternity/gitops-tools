@@ -224,7 +224,7 @@ applications:
   - name: ga-multisig-backend-testnet
     project: apps
     namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps-aelabs'
+    repoUrl: 'https://github.com/aeternity/gitops-apps-aelabs.git'
   - name: ga-multisig-ui
     project: apps
     namespace: apps
