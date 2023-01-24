@@ -75,7 +75,6 @@ projects:
     description: Applications deployed on EKS
     sourceRepos:
       - 'https://github.com/aeternity/gitops-apps.git'
-      - 'https://github.com/aeternity/gitops-apps-aelabs'
     destinations:
       - namespace: apps
         server: https://kubernetes.default.svc
