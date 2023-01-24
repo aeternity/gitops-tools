@@ -37,8 +37,8 @@ Common labels
 helm.sh/chart: {{ include "app-secrets.chart" . }}
 {{ include "app-secrets.selectorLabels" . }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
-argocd.argoproj.io/secret-type: repository
 {{- end }}
+
 
 {{/*
 Selector labels
