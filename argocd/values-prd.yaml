@@ -1,5 +1,13 @@
 defaultTargetRevision: prd
 
+external:
+  secretName: argocd-github-token
+  remotePrefix: /k8s/prd-0e9c
+  values:
+    "password": /argocd/GITHUB_TOKEN
+    "url": /argocd/GITOPS_AELABS_URL
+    "username": /argocd/GITOPS_AELABS_USER
+
 app-secrets:
   external:
     remotePrefix: /k8s/prd-0e9c
