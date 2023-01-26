@@ -1,5 +1,13 @@
 defaultTargetRevision: stg
 
+external:
+  secretName: argocd-github-token
+  remotePrefix: /k8s/stg-m4n4
+  values:
+    "password": /argocd/GITHUB_TOKEN
+    "url": /argocd/GITOPS_AELABS_URL
+    "username": /argocd/GITOPS_AELABS_USER
+
 app-secrets:
   external:
     remotePrefix: /k8s/stg-m4n4
