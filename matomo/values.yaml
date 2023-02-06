@@ -228,7 +228,7 @@ matomo:
   persistence:
     ## @param persistence.enabled Enable persistence using PVC
     ##
-    enabled: true
+    enabled: false
     ## @param persistence.storageClass PVC Storage Class for Matomo volume
     ## If defined, storageClassName: <storageClass>
     ## If set to "-", storageClassName: "", which disables dynamic provisioning
@@ -551,7 +551,7 @@ matomo:
       ## @param mariadb.primary.persistence.existingClaim Name of an existing `PersistentVolumeClaim` for MariaDB primary replicas
       ##
       persistence:
-        enabled: true
+        enabled: false
         ## mariadb data Persistent Volume Storage Class
         ## If defined, storageClassName: <storageClass>
         ## If set to "-", storageClassName: "", which disables dynamic provisioning
