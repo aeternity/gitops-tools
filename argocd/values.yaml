@@ -63,6 +63,8 @@ projects:
         server: https://kubernetes.default.svc
       - namespace: hedgedoc-2
         server: https://kubernetes.default.svc
+      - namespace: matomo
+        server: https://kubernetes.default.svc
     clusterResourceWhitelist:
       - group: '*'
         kind: '*'

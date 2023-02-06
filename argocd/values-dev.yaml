@@ -69,3 +69,6 @@ additionalApplications:
   - name: postgresql-hedgedoc
     project: tools
     namespace: hedgedoc-2
+  - name: matomo
+    project: tools
+    namespace: matomo
