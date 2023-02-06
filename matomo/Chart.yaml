@@ -1,0 +1,13 @@
+apiVersion: v2
+name: matomo
+description: matomo chart
+
+version: 0.2.22
+
+dependencies:
+  - name: matomo
+    version: 0.2.22
+    repository: https://k8s-at-home.com/charts/
+  - name: app-secrets
+    version: 0.0.1
+    repository: "file://../app-secrets"
