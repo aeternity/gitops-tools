@@ -107,7 +107,7 @@ matomo:
   ## @param matomoWebsiteHost Matomo application host
   ## ref: https://github.com/bitnami/containers/tree/main/bitnami/matomo#configuration
   ##
-  matomoWebsiteHost: https://example.org
+  matomoWebsiteHost: https://matomo.dev.aeternity.io
   ## @param matomoSkipInstall Skip Matomo installation wizard. Useful for migrations and restoring from SQL dump
   ## ref: https://github.com/bitnami/containers/tree/main/bitnami/matomo#configuration
   ##
