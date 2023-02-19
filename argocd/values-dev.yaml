@@ -69,6 +69,4 @@ additionalApplications:
   - name: postgresql-hedgedoc
     project: tools
     namespace: hedgedoc-2
-  - name: sentry
-    project: tools
-    namespace: sentry
+
