@@ -12,18 +12,12 @@ prometheus-blackbox-exporter:
         url: https://faucet-nodejs.prd.aepps.com
       - name: repl
         url: https://repl.prd.aepps.com
-      - name: compiler
-        url: https://compiler.prd.aepps.com/version
       - name: mdw-explorer
         url: https://mdw-explorer.prd.aepps.com
       - name: mdw-explorer-testnet
         url: https://mdw-explorer-testnet.prd.aepps.com
 
       # Applications
-      - name: explorer-frontend
-        url: https://explorer-frontend.prd.aepps.com
-      - name: aepp-grafitti
-        url: https://aepp-grafitti.prd.aepps.com
       - name: dex
         url: https://dex.prd.aepps.com
       - name: dex-backend-mainnet
@@ -32,23 +26,14 @@ prometheus-blackbox-exporter:
         url: https://dex-backend-testnet.prd.aepps.com
       - name: ga-multisig-ui
         url: https://ga-multisig-ui.prd.aepps.com
-      - name: ga-multisig-backend
-        url: https://ga-multisig-backend.prd.aepps.com
       - name: statechannel
         url: https://statechannel.aepps.com
       - name: state-channel-demo
         url: https://state-channel-demo.prd.aepps.com
       - name: state-channel-demo-backend
         url: https://state-channel-demo-backend.prd.aepps.com
-      - name: develop-state-channel-demo
-        url: https://develop-state-channel-demo.prd.aepps.com
-      - name: develop-state-channel-demo-backend
-        url: https://develop-state-channel-demo-backend.prd.aepps.com
       - name: superhero
         url: https://superhero.prd.aepps.com
-      - name: superhero-backend
-        url: https://superhero-backend.prd.aepps.com/health/backend
-        module: http_backend
       - name: superhero-wallet
         url: https://superhero-wallet.prd.aepps.com
       - name: testnet-node
@@ -61,8 +46,6 @@ prometheus-blackbox-exporter:
         url: https://graffiti.aeternity.com
       - name: governance-server-mainnet
         url: https://governance-server-mainnet.prd.aepps.com
-      - name: governance-server-testnet
-        url: https://governance-server-testnet.prd.aepps.com
       - name: graffiti-server-mainnet
         url: https://graffiti-server-mainnet.prd.aepps.com/health
       - name: graffiti-server-testnet
