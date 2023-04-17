@@ -4,6 +4,11 @@ app-secrets:
 
 kube-prometheus-stack:
   prometheus:
+    prometheusSpec:
+      additionalScrapeConfigs:
+        - job_name: node
+          static_configs:
+            - targets: ['172.16.4.210:9100']
     ingress:
       hosts:
         - "prometheus.prd.aeternity.io"
