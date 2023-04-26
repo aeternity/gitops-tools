@@ -39,7 +39,7 @@ prometheus-blackbox-exporter:
       - name: testnet-node
         url: https://testnet.prd.aepps.com/v3/status
       - name: governance-superhero
-        url: https://governance-superhero.prd.aepps.com
+        url: https://governance-server-mainnet.prd.aepps.com/pollOrdering?closed=false
       - name: governance
         url: https://governance.aeternity.com
       - name: graffiti
