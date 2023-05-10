@@ -28,8 +28,8 @@ prometheus-blackbox-exporter:
         url: https://repl.dev.aepps.com
       - name: compiler
         url: https://compiler.dev.aepps.com/version
-      - name: mdw-explorer
-        url: https://mdw-explorer.dev.aepps.com
+      - name: mdw-explorer-mainnet
+        url: https://mdw-explorer-mainnet.dev.aepps.com
       - name: mdw-explorer-testnet
         url: https://mdw-explorer-testnet.dev.aepps.com
 
