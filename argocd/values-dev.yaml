@@ -69,11 +69,3 @@ additionalApplications:
   - name: postgresql-hedgedoc
     project: tools
     namespace: hedgedoc-2
-  - name: aescan
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps-aelabs.git'
-  - name: aescan-testnet
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps-aelabs.git'
