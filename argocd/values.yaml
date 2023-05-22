@@ -247,6 +247,10 @@ applications:
   - name: signoz
     project: tools
     namespace: signoz
+  - name: token-sale-aepp
+    project: apps
+    namespace: apps
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
 
 additionalApplications: []
 
