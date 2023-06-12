@@ -54,3 +54,7 @@ prometheus-blackbox-exporter:
         url: https://aescan.io
       - name: aescan-io-testnet
         url: https://testnet.aescan.io
+      - name: token-migration.aeternity.io
+        url: https://token-migration.aeternity.io
+
+        
