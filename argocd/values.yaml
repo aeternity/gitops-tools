@@ -137,6 +137,14 @@ applications:
   - name: cert-manager
     project: tools
     namespace: cert-manager
+  - name: aemon-testnet
+    project: apps
+    namespace: apps
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+  - name: aemon-mainnet
+    project: apps
+    namespace: apps
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
   - name: aerepl-http
     project: apps
     namespace: apps
