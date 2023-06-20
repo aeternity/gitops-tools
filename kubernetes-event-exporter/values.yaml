@@ -5,6 +5,13 @@ app-secrets:
       OS_MASTER_PASSWORD: /kubernetes-event-exporter/OS_MASTER_PASSWORD
 
 kubernetes-event-exporter:
+  resources:
+    limits:
+      memory: 32Mi
+    requests:
+      cpu: 50m
+      memory: 32Mi
+
   serviceAccount:
     name: "kubernetes-event-exporter"
 
