@@ -7,7 +7,7 @@ traefik:
     replicas: 10
   resources:
     limits:
-      memory: "128Mi"
+      memory: "192Mi"
     requests:
       cpu: "500m"
   service:
