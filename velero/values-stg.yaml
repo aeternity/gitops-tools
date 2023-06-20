@@ -1,4 +1,7 @@
 velero:
+  image:
+    repository: velero/velero
+
   configuration:
     backupStorageLocation:
       bucket: aeternity-velero-backup-stg
