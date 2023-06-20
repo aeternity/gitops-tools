@@ -1,7 +1,8 @@
 #!/bin/bash
+
 set -euo pipefail
 
-ALWAYS_EXCLUDE=('external-snapshotter' 'aws-ebs-csi-driver')
+ALWAYS_EXCLUDE=('external-snapshotter' 'aws-ebs-csi-driver' 'nginx' 'signoz')
 ENV_EXCLUDE=('values-dev.yaml' 'values-stg.yaml' 'values-prd.yaml')
 function usage {
     echo "Usage:"
@@ -30,13 +31,8 @@ function diff {
 function diff-all {
     src=${1:?"Please provide a source branch"}
     dst=${2:-HEAD}
-    exclude=()
 
-    for e in ${ALWAYS_EXCLUDE[@]}; do
-        exclude+=(":(exclude)/$e")
-    done
-
-    git diff $dst..$src ${exclude[@]}
+    git diff $dst..$src
 }
 
 function ignore_path {
