@@ -1,4 +1,9 @@
 fluent-bit:
+  resources:
+    limits:
+      memory: 384Mi
+    requests:
+      memory: 384Mi
   config:
     ## https://docs.fluentbit.io/manual/pipeline/outputs
     outputs: |
