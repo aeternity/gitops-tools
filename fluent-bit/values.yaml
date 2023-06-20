@@ -2,8 +2,14 @@ fluent-bit:
   image:
     repository: cr.fluentbit.io/fluent/fluent-bit
     # Overrides the image tag whose default is {{ .Chart.AppVersion }}
-    tag: "1.8.7"
+    tag: "1.9.9"
     pullPolicy: Always
+  resources:
+    limits:
+      memory: 256Mi
+    requests:
+      cpu: 100m
+      memory: 256Mi
   config:
     service: |
       [SERVICE]
@@ -87,3 +93,4 @@ fluent-bit:
           Remove_prefix app_
     
     logLevel: info
+
