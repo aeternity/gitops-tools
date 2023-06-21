@@ -50,7 +50,3 @@ additionalApplications:
   - name: external-snapshotter
     project: tools
     namespace: kube-system
-  - name: test-repo
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps-aelabs.git'
