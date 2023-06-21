@@ -17,69 +17,69 @@ namespaces:
   - aenodes
 
 projects:
-  - name: tools
-    namespace: argocd
-    additionalLabels: {}
-    additionalAnnotations:
-      # keep the resource during migration
-      "helm.sh/resource-policy": keep
-    description: Tools used to run the environment
-    sourceRepos:
-      - 'https://github.com/aeternity/gitops-tools.git'
-    destinations:
-      - namespace: default
-        server: https://kubernetes.default.svc
-      - namespace: tools
-        server: https://kubernetes.default.svc
-      - namespace: argocd
-        server: https://kubernetes.default.svc
-      - namespace: sealed-secrets
-        server: https://kubernetes.default.svc
-      - namespace: kube-system
-        server: https://kubernetes.default.svc
-      - namespace: traefik
-        server: https://kubernetes.default.svc
-      - namespace: monitoring
-        server: https://kubernetes.default.svc
-      - namespace: logging
-        server: https://kubernetes.default.svc
-      - namespace: cluster-autoscaler
-        server: https://kubernetes.default.svc
-      - namespace: kubernetes-event-exporter
-        server: https://kubernetes.default.svc
-      - namespace: velero
-        server: https://kubernetes.default.svc
-      - namespace: aenodes
-        server: https://kubernetes.default.svc
-      - namespace: external-secrets
-        server: https://kubernetes.default.svc
-      - namespace: cert-manager
-        server: https://kubernetes.default.svc
-      - namespace: redis
-        server: https://kubernetes.default.svc
-      - namespace: signoz
-        server: https://kubernetes.default.svc
-    clusterResourceWhitelist:
-      - group: '*'
-        kind: '*'
-  - name: apps
-    namespace: argocd
-    additionalLabels: {}
-    additionalAnnotations:
-      # keep the resource during migration
-      "helm.sh/resource-policy": keep
-    description: Applications deployed on EKS
-    sourceRepos:
-      - 'https://github.com/aeternity/gitops-apps.git'
-      - 'https://github.com/aeternity/gitops-apps-aelabs'
-    destinations:
-      - namespace: apps
-        server: https://kubernetes.default.svc
-      - namespace: velero
-        server: https://kubernetes.default.svc
-    clusterResourceWhitelist:
-      - group: '*'
-        kind: '*'
+  # - name: tools
+  #   namespace: argocd
+  #   additionalLabels: {}
+  #   additionalAnnotations:
+  #     # keep the resource during migration
+  #     "helm.sh/resource-policy": keep
+  #   description: Tools used to run the environment
+  #   sourceRepos:
+  #     - 'https://github.com/aeternity/gitops-tools.git'
+  #   destinations:
+  #     - namespace: default
+  #       server: https://kubernetes.default.svc
+  #     - namespace: tools
+  #       server: https://kubernetes.default.svc
+  #     - namespace: argocd
+  #       server: https://kubernetes.default.svc
+  #     - namespace: sealed-secrets
+  #       server: https://kubernetes.default.svc
+  #     - namespace: kube-system
+  #       server: https://kubernetes.default.svc
+  #     - namespace: traefik
+  #       server: https://kubernetes.default.svc
+  #     - namespace: monitoring
+  #       server: https://kubernetes.default.svc
+  #     - namespace: logging
+  #       server: https://kubernetes.default.svc
+  #     - namespace: cluster-autoscaler
+  #       server: https://kubernetes.default.svc
+  #     - namespace: kubernetes-event-exporter
+  #       server: https://kubernetes.default.svc
+  #     - namespace: velero
+  #       server: https://kubernetes.default.svc
+  #     - namespace: aenodes
+  #       server: https://kubernetes.default.svc
+  #     - namespace: external-secrets
+  #       server: https://kubernetes.default.svc
+  #     - namespace: cert-manager
+  #       server: https://kubernetes.default.svc
+  #     - namespace: redis
+  #       server: https://kubernetes.default.svc
+  #     - namespace: signoz
+  #       server: https://kubernetes.default.svc
+  #   clusterResourceWhitelist:
+  #     - group: '*'
+  #       kind: '*'
+  # - name: apps
+  #   namespace: argocd
+  #   additionalLabels: {}
+  #   additionalAnnotations:
+  #     # keep the resource during migration
+  #     "helm.sh/resource-policy": keep
+  #   description: Applications deployed on EKS
+  #   sourceRepos:
+  #     - 'https://github.com/aeternity/gitops-apps.git'
+  #     - 'https://github.com/aeternity/gitops-apps-aelabs'
+  #   destinations:
+  #     - namespace: apps
+  #       server: https://kubernetes.default.svc
+  #     - namespace: velero
+  #       server: https://kubernetes.default.svc
+  #   clusterResourceWhitelist:
+  #     - group: '*'
+  #       kind: '*'
   - name: aenodes
     namespace: argocd
     additionalLabels: {}
@@ -165,19 +165,15 @@ applications:
     project: apps
     namespace: apps
     repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: mdw-frontend-mainnet
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
   - name: mdw-frontend-testnet
     project: apps
     namespace: apps
     repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: aescan
+  - name: mdw-frontend-mainnet
     project: apps
     namespace: apps
     repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: aescan-testnet
+  - name: aescan
     project: apps
     namespace: apps
     repoUrl: 'https://github.com/aeternity/gitops-apps.git'
@@ -221,10 +217,6 @@ applications:
     project: apps
     namespace: apps
     repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: graffiti-frontend
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
   - name: state-channel-demo-frontend
     project: apps
     namespace: apps
@@ -260,6 +252,9 @@ applications:
   - name: redis
     project: tools
     namespace: redis
+  - name: signoz
+    project: tools
+    namespace: signoz
   - name: token-sale-aepp
     project: apps
     namespace: apps
@@ -432,165 +427,14 @@ argo-cd:
     extraArgs:
       - --insecure=true
       - --repo-server-timeout-seconds=180
-    logLevel: debug
-    config:
-      users.anonymous.enabled: "false"
-      # Argo CD instance label key
-      application.instanceLabelKey: argocd.argoproj.io/instance
-      repositories: |
-        - url: https://github.com/aeternity/gitops-tools.git
-        - url: https://github.com/aeternity/gitops-apps.git
-        - url: https://github.com/aeternity/gitops-nodes.git
-        - url: https://github.com/aeternity/gitops-apps-aelabs.git
-        - type: helm
-          url: https://argoproj.github.io/argo-helm
-          name: argo
-        - type: helm
-          url: https://bitnami-labs.github.io/sealed-secrets
-          name: sealed-secrets
-        - type: helm
-          url: https://helm.traefik.io/traefik
-          name: traefik
-        - type: helm
-          url: https://prometheus-community.github.io/helm-charts
-          name: prometheus-community
-        - type: helm
-          url: https://backube.github.io/helm-charts/
-          name: backube
-        - type: helm
-          url: https://kubernetes-sigs.github.io/aws-ebs-csi-driver/
-          name: kubernetes-sigs
-        - type: helm
-          url: https://aws.github.io/eks-charts
-          name: eks
-        - type: helm
-          url: https://charts.bitnami.com/bitnami
-          name: bitnami
-        - type: helm
-          url: https://fluent.github.io/helm-charts
-          name: fluent
-        - type: helm
-          url: https://kubernetes.github.io/autoscaler
-          name: cluster-autoscaler
-        - type: helm
-          url: https://vmware-tanzu.github.io/helm-charts
-          name: velero
-        - type: helm
-          url: https://charts.external-secrets.io
-          name: external-secrets
-        - type: helm
-          url: https://charts.jetstack.io
-          name: cert-manager
-      dex.config: |
-        connectors:
-          - type: github
-            id: github
-            name: GitHub
-            config:
-              clientID: $dex.github.clientID
-              clientSecret: $dex.github.clientSecret
-              orgs:
-              - name: aeternity
-      # https://github.com/argoproj/argo-cd/issues/1704
-      # https://argoproj.github.io/argo-cd/user-guide/diffing/
-      resource.customizations: |
-          networking.k8s.io/Ingress:
-            health.lua: |
-              hs = {}
-              hs.status = "Healthy"
-              return hs
-          admissionregistration.k8s.io/MutatingWebhookConfiguration:
-            ignoreDifferences: |
-              jsonPointers:
-              - /webhooks/0/failurePolicy
-          admissionregistration.k8s.io/ValidatingWebhookConfiguration:
-            ignoreDifferences: |
-              jsonPointers:
-              - /webhooks/0/failurePolicy
-              jqPathExpressions:
-              - .webhooks[]?.clientConfig.caBundle
-      # oidc.config: |
-      #   requestedIDTokenClaims:
-      #     groups:
-      #       essential: true
-      #   requestedScopes:
-      #     - openid
-      #     - profile
-      #     - email
-    rbacConfig:
-      policy.default: role:readonly
-      policy.csv: |
-        g, aeternity:devops, role:admin
-    additionalProjects:
-      - name: tools
-        namespace: argocd
-        additionalLabels: {}
-        additionalAnnotations: {}
-        description: Tools used to run the environment
-        sourceRepos:
-          - 'https://github.com/aeternity/gitops-tools.git'
-        destinations:
-          - namespace: default
-            server: https://kubernetes.default.svc
-          - namespace: tools
-            server: https://kubernetes.default.svc
-          - namespace: argocd
-            server: https://kubernetes.default.svc
-          - namespace: sealed-secrets
-            server: https://kubernetes.default.svc
-          - namespace: kube-system
-            server: https://kubernetes.default.svc
-          - namespace: traefik
-            server: https://kubernetes.default.svc
-          - namespace: monitoring
-            server: https://kubernetes.default.svc
-          - namespace: logging
-            server: https://kubernetes.default.svc
-          - namespace: cluster-autoscaler
-            server: https://kubernetes.default.svc
-          - namespace: kubernetes-event-exporter
-            server: https://kubernetes.default.svc
-          - namespace: velero
-            server: https://kubernetes.default.svc
-          - namespace: aenodes
-            server: https://kubernetes.default.svc
-          - namespace: external-secrets
-            server: https://kubernetes.default.svc
-          - namespace: cert-manager
-            server: https://kubernetes.default.svc
-          - namespace: redis
-            server: https://kubernetes.default.svc
-        clusterResourceWhitelist:
-          - group: '*'
-            kind: '*'
-      - name: apps
-        namespace: argocd
-        additionalLabels: {}
-        additionalAnnotations: {}
-        description: Applications deployed on EKS
-        sourceRepos:
-          - 'https://github.com/aeternity/gitops-apps.git'
-          - 'https://github.com/aeternity/gitops-apps-aelabs.git'
-        destinations:
-          - namespace: apps
-            server: https://kubernetes.default.svc
-          - namespace: velero
-            server: https://kubernetes.default.svc
-        clusterResourceWhitelist:
-          - group: '*'
-            kind: '*'
-      - name: aenodes
-        namespace: argocd
-        additionalLabels: {}
-        additionalAnnotations: {}
-        description: AEnodes deployed on EKS
-        sourceRepos:
-          - 'https://github.com/aeternity/gitops-nodes.git'
-        destinations:
-          - namespace: aenodes
-            server: https://kubernetes.default.svc
-          - namespace: kube-system
-            server: https://kubernetes.default.svc
-        clusterResourceWhitelist:
-          - group: '*'
-            kind: '*'
+
+  redis:
+    resources:
+      limits:
+        memory: 128Mi
+      requests:
+        cpu: 100m
+        memory: 128Mi
+
+  notifications:
+    enabled: false
