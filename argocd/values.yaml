@@ -256,9 +256,6 @@ applications:
   - name: redis
     project: tools
     namespace: redis
-  - name: signoz
-    project: tools
-    namespace: signoz
   - name: token-sale-aepp
     project: apps
     namespace: apps
