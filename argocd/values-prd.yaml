@@ -17,6 +17,10 @@ app-secrets:
       "username": /argocd/GITOPS_AELABS_USER
 
 argo-cd:
+  configs:
+    cm:
+      # Argo CD's externally facing base URL (optional). Required when configuring SSO
+      url: https://argocd.prd.aeternity.io
   server:
     ingress:
       hosts:
@@ -25,9 +29,6 @@ argo-cd:
         - hosts:
           - "argocd.prd.aeternity.io"
           secretName: argocd-cert
-    config:
-      # Argo CD's externally facing base URL (optional). Required when configuring SSO
-      url: https://argocd.prd.aeternity.io
 
 additionalApplications:
   - name: test-repo
