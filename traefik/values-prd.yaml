@@ -4,7 +4,7 @@ defaultCertificateDmains:
 
 traefik:
   deployment:
-    replicas: 10
+    replicas: 5
   service:
     annotations:
       service.beta.kubernetes.io/aws-load-balancer-name: prd-0e9c-traefik-ingress
