@@ -5,11 +5,6 @@ defaultCertificateDmains:
 traefik:
   deployment:
     replicas: 10
-  resources:
-    limits:
-      memory: "192Mi"
-    requests:
-      cpu: "500m"
   service:
     annotations:
       service.beta.kubernetes.io/aws-load-balancer-name: prd-0e9c-traefik-ingress
