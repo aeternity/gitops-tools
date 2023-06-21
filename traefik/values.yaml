@@ -1,5 +1,31 @@
 defaultCertificateDmains: []
 traefik:
+  image:
+    name: mirror.gcr.io/library/traefik
+  resources:
+    limits:
+      memory: 256Mi
+    requests:
+      cpu: 500m
+      memory: 256Mi
+
+  topologySpreadConstraints:
+   - labelSelector:
+       matchLabels:
+         app.kubernetes.io/name: traefik
+     maxSkew: 1
+     topologyKey: kubernetes.io/hostname
+     whenUnsatisfiable: ScheduleAnyway
+   - labelSelector:
+       matchLabels:
+         app.kubernetes.io/name: traefik
+     maxSkew: 1
+     topologyKey: topology.kubernetes.io/zone
+     whenUnsatisfiable: ScheduleAnyway
+
+  deployment:
+    replicas: 3
+
   globalArguments: []
   additionalArguments:
     - "--entrypoints.web.http.redirections.entrypoint.to=:443"
