@@ -10,9 +10,6 @@ metadata:
     - resources-finalizer.argocd.argoproj.io
   labels:
     {{- include "argocd.labels" $root  | nindent 4 }}
-  annotations:
-    # keep the resource during migration
-    "helm.sh/resource-policy": keep
 spec:
   project: {{ .project }}
   source:
@@ -33,7 +30,4 @@ spec:
       selfHeal: false
     syncOptions:
       - CreateNamespace=true
-      {{- if .serverSideApply }}
-      - ServerSideApply=true
-      {{- end }}
 {{- end }}
