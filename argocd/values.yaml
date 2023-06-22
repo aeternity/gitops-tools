@@ -303,6 +303,8 @@ argo-cd:
               - .spec.conversion.webhook.clientConfig.caBundle
               - .spec.conversion.webhook.clientConfig.service.name
               - .spec.conversion.webhook.clientConfig.service.namespace
+              managedFieldsManagers: |
+              - external-secrets
     rbac:
       policy.default: role:readonly
       policy.csv: |
