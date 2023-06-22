@@ -35,6 +35,3 @@ additionalApplications:
     project: apps
     namespace: apps
     repoUrl: 'https://github.com/aeternity/gitops-apps-aelabs.git'
-  - name: aws-ebs-csi-driver
-    project: tools
-    namespace: kube-system
