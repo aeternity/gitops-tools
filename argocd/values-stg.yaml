@@ -35,9 +35,6 @@ additionalApplications:
     project: apps
     namespace: apps
     repoUrl: 'https://github.com/aeternity/gitops-apps-aelabs.git'
-  - name: signoz
-    project: tools
-    namespace: signoz
   - name: aws-ebs-csi-driver
     project: tools
     namespace: kube-system
