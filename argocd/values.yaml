@@ -303,6 +303,8 @@ argo-cd:
               - .spec.conversion.webhook.clientConfig.caBundle
               - .spec.conversion.webhook.clientConfig.service.name
               - .spec.conversion.webhook.clientConfig.service.namespace
+          clustersecretstores.external-secrets.io:
+            ignoreDifferences: |
               managedFieldsManagers:
               - external-secrets
     rbac:
