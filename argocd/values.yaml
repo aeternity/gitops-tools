@@ -291,6 +291,8 @@ argo-cd:
             ignoreDifferences: |
               jsonPointers:
               - /webhooks/0/failurePolicy
+              jqPathExpressions:
+              - .webhooks[]?.clientConfig.caBundle
           admissionregistration.k8s.io/ValidatingWebhookConfiguration:
             ignoreDifferences: |
               jsonPointers:
@@ -303,7 +305,7 @@ argo-cd:
               - .spec.conversion.webhook.clientConfig.caBundle
               - .spec.conversion.webhook.clientConfig.service.name
               - .spec.conversion.webhook.clientConfig.service.namespace
-          clustersecretstores.external-secrets.io:
+          apiextensions.k8s.io/CustomResourceDefinition:
             ignoreDifferences: |
               managedFieldsManagers:
               - external-secrets
