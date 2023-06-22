@@ -1,8 +1,0 @@
-aws-ebs-csi-driver:
-  clusterName: prd-0e9c
-  node:
-    serviceAccount:
-      create: true
-      name: aws-ebs-csi-driver-prd
-      annotations:
-        eks.amazonaws.com/role-arn: "arn:aws:iam::106102538874:role/aws-ebs-controller-prd"
