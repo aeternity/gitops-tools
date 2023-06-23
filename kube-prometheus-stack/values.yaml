@@ -47,7 +47,6 @@ kube-prometheus-stack:
     ingress:
       enabled: true
       annotations:
-        kubernetes.io/ingress.class: traefik
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
         cert-manager.io/cluster-issuer: letsencrypt
       pathType: ImplementationSpecific
@@ -92,7 +91,6 @@ kube-prometheus-stack:
     ingress:
       enabled: true
       annotations:
-        kubernetes.io/ingress.class: traefik
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
         cert-manager.io/cluster-issuer: letsencrypt
       pathType: ImplementationSpecific
@@ -154,7 +152,6 @@ kube-prometheus-stack:
     ingress:
       enabled: true
       annotations:
-        kubernetes.io/ingress.class: traefik
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
         cert-manager.io/cluster-issuer: letsencrypt
       pathType: ImplementationSpecific
