@@ -26,11 +26,6 @@ additionalApplications:
   - name: nginx
     project: tools
     namespace: tools
-  - name: dev-net-aenode
-    project: aenodes
-    namespace: aenodes
-    repoUrl: 'https://github.com/aeternity/gitops-nodes.git'
-    targetRevision: master
   - name: aepp-hc-ui
     project: apps
     namespace: apps
