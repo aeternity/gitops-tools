@@ -1,7 +1,0 @@
-apiVersion: v2
-name: app-secrets
-description: Defines application secrets mixin chart.
-
-type: application
-
-version: 0.0.1
