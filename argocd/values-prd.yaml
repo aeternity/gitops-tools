@@ -31,10 +31,6 @@ argo-cd:
           secretName: argocd-cert
 
 additionalApplications:
-  - name: test-repo
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
   - name: governance-aepp-superhero
     project: apps
     namespace: apps
