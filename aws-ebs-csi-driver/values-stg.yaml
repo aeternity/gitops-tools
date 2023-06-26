@@ -1,8 +1,0 @@
-aws-ebs-csi-driver:
-  clusterName: stg-m4n4
-  node:
-    serviceAccount:
-      create: true
-      name: aws-ebs-csi-driver-stg
-      annotations:
-        eks.amazonaws.com/role-arn: "arn:aws:iam::106102538874:role/aws-ebs-controller-stg"

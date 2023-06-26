@@ -338,10 +338,6 @@ argo-cd:
         type: helm
         url: https://backube.github.io/helm-charts/
         name: backube
-      kube-sigs-helm:
-        type: helm
-        url: https://kubernetes-sigs.github.io/aws-ebs-csi-driver/
-        name: kubernetes-sigs
       eks-helm:
         type: helm
         url: https://aws.github.io/eks-charts
