@@ -10,6 +10,7 @@ traefik:
       memory: 256Mi
 
   topologySpreadConstraints:
+  # This forces the scheduler to put traefik pods on nodes where no other traefik pods are scheduled.
    - labelSelector:
        matchLabels:
          app.kubernetes.io/name: traefik

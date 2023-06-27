@@ -1,4 +1,8 @@
 aws-load-balancer-controller:
+  createIngressClassResource: false
+  enableServiceMutatorWebhook: false
+  # keepTLSSecret specifies whether to reuse existing TLS secret for chart upgrade
+  keepTLSSecret: true
   resources:
     limits:
       memory: 72Mi
