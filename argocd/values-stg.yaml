@@ -39,10 +39,6 @@ additionalApplications:
     project: apps
     namespace: apps
     repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: aescan-testnet
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
   - name: superhero-ui
     project: apps
     namespace: apps
