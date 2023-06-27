@@ -1,4 +1,5 @@
 aws-load-balancer-controller:
+  createIngressClassResource: false
   # keepTLSSecret specifies whether to reuse existing TLS secret for chart upgrade
   keepTLSSecret: true
   resources:
