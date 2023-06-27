@@ -57,8 +57,6 @@ projects:
         server: https://kubernetes.default.svc
       - namespace: redis
         server: https://kubernetes.default.svc
-      - namespace: signoz
-        server: https://kubernetes.default.svc
     clusterResourceWhitelist:
       - group: '*'
         kind: '*'
@@ -71,7 +69,7 @@ projects:
     description: Applications deployed on EKS
     sourceRepos:
       - 'https://github.com/aeternity/gitops-apps.git'
-      - 'https://github.com/aeternity/gitops-apps-aelabs'
+      - 'https://github.com/aeternity/gitops-apps-aelabs.git'
     destinations:
       - namespace: apps
         server: https://kubernetes.default.svc
@@ -177,62 +175,6 @@ applications:
     project: apps
     namespace: apps
     repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: superhero-ui
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: superhero-wallet
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: superhero-backend
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: dex-ui
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: dex-backend-mainnet
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: dex-backend-testnet
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: aepp-graffiti
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: graffiti-server-mainnet
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: graffiti-server-testnet
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: state-channel-demo-frontend
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: state-channel-demo-backend
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: ga-multisig-backend-mainnet
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: ga-multisig-backend-testnet
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: ga-multisig-ui
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
   - name: governance-server-mainnet
     project: apps
     namespace: apps
@@ -248,7 +190,6 @@ applications:
   - name: redis
     project: tools
     namespace: redis
-
 
 additionalApplications: []
 
@@ -278,6 +219,8 @@ argo-cd:
             ignoreDifferences: |
               jsonPointers:
               - /webhooks/0/failurePolicy
+              jqPathExpressions:
+              - .webhooks[]?.clientConfig.caBundle
           admissionregistration.k8s.io/ValidatingWebhookConfiguration:
             ignoreDifferences: |
               jsonPointers:
@@ -290,6 +233,10 @@ argo-cd:
               - .spec.conversion.webhook.clientConfig.caBundle
               - .spec.conversion.webhook.clientConfig.service.name
               - .spec.conversion.webhook.clientConfig.service.namespace
+          apiextensions.k8s.io/CustomResourceDefinition:
+            ignoreDifferences: |
+              managedFieldsManagers:
+              - external-secrets
     rbac:
       policy.default: role:readonly
       policy.csv: |
