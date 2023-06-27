@@ -248,10 +248,7 @@ applications:
   - name: redis
     project: tools
     namespace: redis
-  - name: token-sale-aepp
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+
 
 additionalApplications: []
 
