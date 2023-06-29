@@ -1,7 +1,8 @@
 defaultCertificateDmains: []
 traefik:
   image:
-    name: mirror.gcr.io/library/traefik
+    registry: public.ecr.aws
+    repository: docker/library/traefik
   resources:
     limits:
       memory: 256Mi
