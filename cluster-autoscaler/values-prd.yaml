@@ -1,3 +1,0 @@
-cluster-autoscaler:
-  autoDiscovery:
-    clusterName: prd-0e9c
