@@ -52,8 +52,6 @@ kube-prometheus-stack:
       pathType: ImplementationSpecific
 
   grafana:
-    image:
-      repository: mirror.gcr.io/grafana/grafana
     resources:
       limits:
         memory: 284Mi
