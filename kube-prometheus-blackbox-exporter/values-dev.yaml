@@ -34,22 +34,38 @@ prometheus-blackbox-exporter:
         url: https://mdw-explorer-testnet.dev.aepps.com
 
       # Applications
-      - name: explorer-frontend
-        url: https://explorer-frontend.dev.aepps.com
+      ## Aescan
+      - name: aescan
+        url: https://aescan.dev.aepps.com
+      - name: aescan-testnet
+        url: https://aescan-testnet.dev.aepps.com
+      ## Governance
+      - name: governance
+        url: https://governance.dev.aepps.com
+      - name: governance-mainnet
+        url: https://governance-server-mainnet.dev.aepps.com/version
+      - name: governance-testnet
+        url: https://governance-server-testnet.dev.aepps.com/version
+      ## Grafitti
       - name: aepp-grafitti
         url: https://aepp-grafitti.dev.aepps.com
-      # - name: graffiti-server
-      #   url: https://graffiti-server.dev.aepps.com
+      # - name: aepp-grafitti-mainnet
+      #   url: https://graffiti-server-mainnet.dev.aepps.com/health
+      # - name: aepp-grafitti-testnet
+      #   url: https://graffiti-server-testnet.dev.aepps.com/health
+      ## DEX
       - name: dex
         url: https://dex.dev.aepps.com
       - name: dex-backend-mainnet
         url: https://dex-backend-mainnet.dev.aepps.com
       - name: dex-backend-testnet
         url: https://dex-backend-testnet.dev.aepps.com
+      ## GA Multisignature
       - name: ga-multisig-ui
         url: https://ga-multisig-ui.dev.aepps.com
       - name: ga-multisig-backend
         url: https://ga-multisig-backend.dev.aepps.com
+      ## State Channel Demo
       - name: state-channel-demo
         url: https://state-channel-demo.dev.aepps.com
       - name: state-channel-demo-backend
@@ -58,11 +74,11 @@ prometheus-blackbox-exporter:
         url: https://develop-state-channel-demo.dev.aepps.com
       - name: develop-state-channel-demo-backend
         url: https://develop-state-channel-demo-backend.dev.aepps.com
-
+      ## Superhero
       - name: superhero
         url: https://superhero.dev.aepps.com
-      # - name: superhero-backend
-      #   url: https://superhero-backend.dev.aepps.com/health/backend
-      #   module: http_backend
+      - name: superhero-backend
+        url: https://superhero-backend.dev.aepps.com/health/backend
+        module: http_backend
       - name: superhero-wallet
         url: https://superhero-wallet.dev.aepps.com
