@@ -50,8 +50,6 @@ prometheus-blackbox-exporter:
         url: https://ga-multisig-ui.dev.aepps.com
       - name: ga-multisig-backend
         url: https://ga-multisig-backend.dev.aepps.com
-      - name: statechannel
-        url: https://statechannel.aepps.com
       - name: state-channel-demo
         url: https://state-channel-demo.dev.aepps.com
       - name: state-channel-demo-backend
@@ -60,6 +58,7 @@ prometheus-blackbox-exporter:
         url: https://develop-state-channel-demo.dev.aepps.com
       - name: develop-state-channel-demo-backend
         url: https://develop-state-channel-demo-backend.dev.aepps.com
+
       - name: superhero
         url: https://superhero.dev.aepps.com
       # - name: superhero-backend
