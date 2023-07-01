@@ -63,8 +63,6 @@ prometheus-blackbox-exporter:
       ## GA Multisignature
       - name: ga-multisig-ui
         url: https://ga-multisig-ui.dev.aepps.com
-      - name: ga-multisig-backend
-        url: https://ga-multisig-backend.dev.aepps.com
       ## State Channel Demo
       - name: state-channel-demo
         url: https://state-channel-demo.dev.aepps.com
