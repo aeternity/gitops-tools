@@ -57,6 +57,8 @@ projects:
         server: https://kubernetes.default.svc
       - namespace: redis
         server: https://kubernetes.default.svc
+      - namespace: rabbitmq
+        server: https://kubernetes.default.svc
     clusterResourceWhitelist:
       - group: '*'
         kind: '*'
@@ -135,6 +137,9 @@ applications:
   - name: cert-manager
     project: tools
     namespace: cert-manager
+  - name: rabbitmq
+    project: tools
+    namespace: rabbitmq
   - name: aemon-testnet
     project: apps
     namespace: apps
