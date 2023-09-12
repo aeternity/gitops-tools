@@ -125,3 +125,7 @@ rabbitmq:
     ##        - frontend
     ##
     additionalRules: []
+  clustering:
+  ## @param clustering.enabled Enable RabbitMQ clustering
+  ##
+    enabled: false
