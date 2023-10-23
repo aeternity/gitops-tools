@@ -1,0 +1,8 @@
+vertical-pod-autoscaler:
+  updater:
+    enabled: false
+  recommender:
+    enabled: true
+    metrics:
+      serviceMonitor:
+        enabled: true

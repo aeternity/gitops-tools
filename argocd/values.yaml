@@ -126,6 +126,9 @@ applications:
   - name: cluster-autoscaler
     project: tools
     namespace: cluster-autoscaler
+  - name: vertical-pod-autoscaler
+    project: tools
+    namespace: vertical-pod-autoscaler
   - name: kubernetes-event-exporter
     project: tools
     namespace: kubernetes-event-exporter
@@ -298,6 +301,10 @@ argo-cd:
         type: helm
         url: https://charts.jetstack.io
         name: cert-manager
+      vpa:
+        type: helm
+        url: https://cowboysysop.github.io/charts/
+        name: vpa
 
   applicationSet:
     enabled: false

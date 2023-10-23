@@ -1,0 +1,11 @@
+apiVersion: v2
+name: vertical-pod-autoscaler
+description: Set of components that automatically adjust the amount of CPU and memory requested by pods running in the Kubernetes Cluster
+
+version: 9.4.0
+
+dependencies:
+  - name: vertical-pod-autoscaler
+    version: 9.4.0
+    appVersion: 1.0.0
+    repository: https://cowboysysop.github.io/charts/
