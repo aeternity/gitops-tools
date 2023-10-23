@@ -24,6 +24,45 @@ kube-prometheus-stack:
       requests:
         cpu: 10m
         memory: 64Mi
+    customResourceState:
+      enabled: true
+      config:
+        kind: CustomResourceStateMetrics
+        spec:
+          resources:
+            - groupVersionKind:
+                group: autoscaling.k8s.io
+                kind: "VerticalPodAutoscaler"
+                version: "v1"
+              labelsFromPath:
+                verticalpodautoscaler: [metadata, name]
+                namespace: [metadata, namespace]
+                target_api_version: [apiVersion]
+                target_kind: [spec, targetRef, kind]
+                target_name: [spec, targetRef, name]
+              metrics:
+                - name: "vpa_containerrecommendations_target"
+                  help: "VPA container recommendations for memory."
+                  each:
+                    type: Gauge
+                    gauge:
+                      path: [status, recommendation, containerRecommendations, "0", target, memory]
+                  labelsFromPath:
+                    container: [status, recommendation, containerRecommendations, "0", containerName]
+                  commonLabels:
+                    resource: "memory"
+                    unit: "byte"
+                - name: "vpa_containerrecommendations_target"
+                  help: "VPA container recommendations for cpu."
+                  each:
+                    type: Gauge
+                    gauge:
+                      path: [status, recommendation, containerRecommendations, "0", target, cpu]
+                  labelsFromPath:
+                    container: [status, recommendation, containerRecommendations, "0", containerName]
+                  commonLabels:
+                    resource: "cpu"
+                    unit: "core"
 
   prometheus-node-exporter:
     resources:
