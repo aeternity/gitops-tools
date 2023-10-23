@@ -1,0 +1,22 @@
+{{- if .Values.vpa.enabled }}
+{{ $versions := .Values.versions }}
+{{ $allVersions := append $versions (merge (dict "version" (default .Values.image.tag .Chart.AppVersion )) $) | compact | uniq }}
+{{- range $key, $val := $allVersions}}
+{{- if $val.version }}
+---
+apiVersion: autoscaling.k8s.io/v1
+kind: VerticalPodAutoscaler
+metadata:
+  name: {{ include "app.versionedFullname" (merge (dict "version" $val.version) $) }}-vpa
+  labels:
+    {{- include "app.labels" $ | nindent 4 }}
+spec:
+  targetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: {{ include "app.versionedFullname" (merge (dict "version" $val.version) $) }}
+  updatePolicy:
+    updateMode: "Off"
+{{- end }}
+{{- end }}
+{{- end }}
