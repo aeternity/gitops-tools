@@ -45,6 +45,8 @@ projects:
         server: https://kubernetes.default.svc
       - namespace: cluster-autoscaler
         server: https://kubernetes.default.svc
+      - namespace: vertical-pod-autoscaler
+        server: https://kubernetes.default.svc
       - namespace: kubernetes-event-exporter
         server: https://kubernetes.default.svc
       - namespace: velero
