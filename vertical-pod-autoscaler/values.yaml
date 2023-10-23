@@ -1,4 +1,6 @@
 vertical-pod-autoscaler:
+  admissionController:
+    enabled: false
   updater:
     enabled: false
   recommender:
