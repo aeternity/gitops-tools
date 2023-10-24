@@ -24,6 +24,9 @@ kube-prometheus-stack:
       requests:
         cpu: 10m
         memory: 64Mi
+    prometheus:
+      monitor:
+        enabled: true
     selfMonitor:
       enabled: true
     rbac:
