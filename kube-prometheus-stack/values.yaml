@@ -24,6 +24,13 @@ kube-prometheus-stack:
       requests:
         cpu: 10m
         memory: 64Mi
+    selfMonitor:
+      enabled: true
+    rbac:
+      extraRules:
+        - apiGroups: ["autoscaling.k8s.io"]
+          resources: ["verticalpodautoscalers"]
+          verbs: ["list", "watch"]
     customResourceState:
       enabled: true
       config:
