@@ -45,7 +45,7 @@ projects:
         server: https://kubernetes.default.svc
       - namespace: cluster-autoscaler
         server: https://kubernetes.default.svc
-      - namespace: vertical-pod-autoscaler
+      - namespace: vpa
         server: https://kubernetes.default.svc
       - namespace: kubernetes-event-exporter
         server: https://kubernetes.default.svc
@@ -128,9 +128,9 @@ applications:
   - name: cluster-autoscaler
     project: tools
     namespace: cluster-autoscaler
-  - name: vertical-pod-autoscaler
+  - name: vpa
     project: tools
-    namespace: vertical-pod-autoscaler
+    namespace: vpa
   - name: kubernetes-event-exporter
     project: tools
     namespace: kubernetes-event-exporter
@@ -305,7 +305,7 @@ argo-cd:
         name: cert-manager
       vpa:
         type: helm
-        url: https://cowboysysop.github.io/charts/
+        url: https://charts.fairwinds.com/stable
         name: vpa
 
   applicationSet:

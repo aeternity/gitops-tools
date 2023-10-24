@@ -1,0 +1,11 @@
+vpa:
+  admissionController:
+    enabled: false
+  updater:
+    enabled: false
+  recommender:
+    enabled: true
+    extraArgs:
+      storage: prometheus
+      prometheus-address: |
+        http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090
