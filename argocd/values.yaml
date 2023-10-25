@@ -46,8 +46,6 @@ projects:
         server: https://kubernetes.default.svc
       - namespace: cluster-autoscaler
         server: https://kubernetes.default.svc
-      - namespace: vpa
-        server: https://kubernetes.default.svc
       - namespace: kubernetes-event-exporter
         server: https://kubernetes.default.svc
       - namespace: velero
@@ -128,7 +126,7 @@ applications:
     namespace: cluster-autoscaler
   - name: vpa
     project: tools
-    namespace: vpa
+    namespace: tools
   - name: kubernetes-event-exporter
     project: tools
     namespace: kubernetes-event-exporter
