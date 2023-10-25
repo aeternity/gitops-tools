@@ -44,12 +44,6 @@ projects:
         server: https://kubernetes.default.svc
       - namespace: logging
         server: https://kubernetes.default.svc
-      - namespace: cluster-autoscaler
-        server: https://kubernetes.default.svc
-      - namespace: kubernetes-event-exporter
-        server: https://kubernetes.default.svc
-      - namespace: velero
-        server: https://kubernetes.default.svc
       - namespace: aenodes
         server: https://kubernetes.default.svc
       - namespace: external-secrets
@@ -73,8 +67,6 @@ projects:
       - 'https://github.com/aeternity/gitops-apps-aelabs.git'
     destinations:
       - namespace: apps
-        server: https://kubernetes.default.svc
-      - namespace: velero
         server: https://kubernetes.default.svc
     clusterResourceWhitelist:
       - group: '*'
