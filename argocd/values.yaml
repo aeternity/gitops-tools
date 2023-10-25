@@ -31,6 +31,9 @@ projects:
         server: https://kubernetes.default.svc
       - namespace: tools
         server: https://kubernetes.default.svc
+        # allow configuration of LimitRanges and other globals
+      - namespace: apps
+        server: https://kubernetes.default.svc
       - namespace: argocd
         server: https://kubernetes.default.svc
       - namespace: sealed-secrets
