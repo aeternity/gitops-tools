@@ -129,7 +129,7 @@ applications:
     namespace: tools
   - name: kubernetes-event-exporter
     project: tools
-    namespace: kubernetes-event-exporter
+    namespace: monitoring
   - name: velero
     project: tools
     namespace: velero
