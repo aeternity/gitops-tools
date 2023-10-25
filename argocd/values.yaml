@@ -132,10 +132,14 @@ applications:
     namespace: monitoring
   - name: velero
     project: tools
-    namespace: velero
+    namespace: tools
   - name: cert-manager
     project: tools
     namespace: cert-manager
+  - name: redis
+    project: tools
+    namespace: redis
+
   - name: aemon-testnet
     project: apps
     namespace: apps
@@ -188,9 +192,6 @@ applications:
     project: apps
     namespace: apps
     repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: redis
-    project: tools
-    namespace: redis
 
 additionalApplications: []
 
