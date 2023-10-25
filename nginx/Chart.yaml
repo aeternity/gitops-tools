@@ -1,6 +1,6 @@
 apiVersion: v2
 name: nginx
-description: Nginx test deployment
+description: Nginx test deployment. Used for load testing (scalability) of the ingress controller.
 
 version: 13.2.13
 

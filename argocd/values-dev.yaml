@@ -23,9 +23,6 @@ argo-cd:
         - "argocd.dev.aeternity.io"
 
 additionalApplications:
-  - name: nginx
-    project: tools
-    namespace: tools
   - name: aepp-hc-ui
     project: apps
     namespace: apps
