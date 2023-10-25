@@ -1,4 +1,6 @@
 aws-load-balancer-controller:
+  # causes TLS usses
+  enableServiceMutatorWebhook: false
   # keepTLSSecret specifies whether to reuse existing TLS secret for chart upgrade
   keepTLSSecret: true
   resources:
