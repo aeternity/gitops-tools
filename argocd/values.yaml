@@ -112,7 +112,7 @@ applications:
     namespace: monitoring
   - name: fluent-bit
     project: tools
-    namespace: logging
+    namespace: tools
   - name: cluster-autoscaler
     project: tools
     namespace: tools
