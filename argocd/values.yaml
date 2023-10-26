@@ -85,9 +85,6 @@ applications:
   - name: argocd
     project: tools
     namespace: argocd
-  - name: external-secrets
-    project: tools
-    namespace: external-secrets
   - name: aws-load-balancer-controller
     project: tools
     namespace: kube-system
@@ -107,6 +104,9 @@ applications:
   - name: fluent-bit
     project: tools
     namespace: monitoring
+  - name: external-secrets
+    project: tools
+    namespace: tools
   - name: kubernetes-event-exporter
     project: tools
     namespace: monitoring
