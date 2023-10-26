@@ -4,11 +4,12 @@ traefik:
     registry: public.ecr.aws
     repository: docker/library/traefik
   resources:
-    limits:
-      memory: 256Mi
     requests:
-      cpu: 500m
-      memory: 256Mi
+      cpu: 50m
+      memory: 64Mi
+    limits:
+      cpu: 75m
+      memory: 96Mi
 
   topologySpreadConstraints:
   # This forces the scheduler to put traefik pods on nodes where no other traefik pods are scheduled.
@@ -29,8 +30,8 @@ traefik:
     replicas: 3
 
   autoscaling:
-    enabled: true
-    minReplicas: 3
+    enabled: false
+    minReplicas: 2
     maxReplicas: 15
     metrics:
     - type: Resource
