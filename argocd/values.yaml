@@ -124,9 +124,6 @@ applications:
   - name: cert-manager
     project: tools
     namespace: cert-manager
-  - name: redis
-    project: tools
-    namespace: redis
 
   - name: aemon-testnet
     project: apps
