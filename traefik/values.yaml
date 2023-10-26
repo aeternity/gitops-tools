@@ -27,11 +27,11 @@ traefik:
      whenUnsatisfiable: ScheduleAnyway
 
   deployment:
-    replicas: 3
+    replicas: 2
 
   autoscaling:
     enabled: false
-    minReplicas: 2
+    minReplicas: 3
     maxReplicas: 15
     metrics:
     - type: Resource
