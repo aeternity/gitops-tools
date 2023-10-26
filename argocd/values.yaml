@@ -42,10 +42,6 @@ projects:
         server: https://kubernetes.default.svc
       - namespace: monitoring
         server: https://kubernetes.default.svc
-      - namespace: logging
-        server: https://kubernetes.default.svc
-      - namespace: aenodes
-        server: https://kubernetes.default.svc
       - namespace: external-secrets
         server: https://kubernetes.default.svc
       - namespace: cert-manager
