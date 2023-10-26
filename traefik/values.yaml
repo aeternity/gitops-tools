@@ -5,10 +5,10 @@ traefik:
     repository: docker/library/traefik
   resources:
     requests:
-      cpu: 50m
+      cpu: 100m
       memory: 64Mi
     limits:
-      cpu: 75m
+      cpu: 150m
       memory: 96Mi
 
   topologySpreadConstraints:
