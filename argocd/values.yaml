@@ -46,8 +46,6 @@ projects:
         server: https://kubernetes.default.svc
       - namespace: cert-manager
         server: https://kubernetes.default.svc
-      - namespace: redis
-        server: https://kubernetes.default.svc
     clusterResourceWhitelist:
       - group: '*'
         kind: '*'
@@ -109,15 +107,15 @@ applications:
   - name: fluent-bit
     project: tools
     namespace: monitoring
+  - name: kubernetes-event-exporter
+    project: tools
+    namespace: monitoring
   - name: cluster-autoscaler
     project: tools
     namespace: tools
   - name: vpa
     project: tools
     namespace: tools
-  - name: kubernetes-event-exporter
-    project: tools
-    namespace: monitoring
   - name: velero
     project: tools
     namespace: tools
