@@ -121,7 +121,7 @@ applications:
     namespace: tools
   - name: cert-manager
     project: tools
-    namespace: cert-manager
+    namespace: tools
 
   - name: aemon-testnet
     project: apps
