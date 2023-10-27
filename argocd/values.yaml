@@ -306,11 +306,11 @@ argo-cd:
   repoServer:
     resources:
       requests:
-        cpu: 100m
+        cpu: 200m
         memory: 160Mi
       limits:
         cpu: 700m
-        memory: 240Mi
+        # memory: 240Mi
     env:
       - name: "ARGOCD_EXEC_TIMEOUT"
         value: "3m"
