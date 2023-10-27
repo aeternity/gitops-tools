@@ -9,6 +9,30 @@ app-secrets:
 
 
 kube-prometheus-stack:
+  ## Disable scrapping unused metrics: https://medium.com/gumgum-tech/how-to-reduce-your-prometheus-cost-6c7cc685e347
+  ## Component scraping the kube api server
+  ##
+  kubeApiServer:
+   enabled: false
+
+  ## Component scraping etcd
+  ##
+  kubeEtcd:
+   enabled: false
+
+  kubelet:
+   serviceMonitor:
+     cAdvisorMetricRelabelings:
+     - sourceLabels: [__name__]
+       separator: ;
+       regex: "container_(tasks_state|memory_fail.*)"
+       action: drop
+     metricRelabelings:
+     - sourceLabels: [__name__]
+       separator: ;
+       regex: (storage_operation.+|kubelet.+|)
+       action: drop
+
   prometheusOperator:
     resources:
       requests:
