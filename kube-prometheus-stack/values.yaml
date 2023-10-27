@@ -11,19 +11,21 @@ app-secrets:
 kube-prometheus-stack:
   prometheusOperator:
     resources:
-      limits:
-        memory: 64Mi
       requests:
         cpu: 10m
-        memory: 64Mi
+        memory: 32Mi
+      limits:
+        cpu: 15m
+        memory: 48Mi
 
   kube-state-metrics:
     resources:
-      limits:
-        memory: 64Mi
       requests:
         cpu: 10m
         memory: 64Mi
+      limits:
+        cpu: 15m
+        memory: 96Mi
     prometheus:
       monitor:
         enabled: true
@@ -76,21 +78,23 @@ kube-prometheus-stack:
 
   prometheus-node-exporter:
     resources:
-      limits:
-        memory: 24Mi
       requests:
-        cpu: 100m
+        cpu: 50m
+        memory: 16Mi
+      limits:
+        cpu: 75m
         memory: 24Mi
 
   prometheus:
     serviceMonitorSelector: {}
     prometheusSpec:
       resources:
-        limits:
-          memory: 1500Mi
         requests:
-          cpu: 300m
-          memory: 1500Mi
+          cpu: 100m
+          memory: 1.3Gi
+        limits:
+          cpu: 150m
+          memory: 1.8Gi
       serviceMonitorSelectorNilUsesHelmValues: false
       ruleSelectorNilUsesHelmValues: false
     ingress:
@@ -102,11 +106,12 @@ kube-prometheus-stack:
 
   grafana:
     resources:
-      limits:
-        memory: 284Mi
       requests:
         cpu: 100m
-        memory: 284Mi
+        memory: 128Mi
+      limits:
+        cpu: 150m
+        memory: 192Mi
     admin:
       existingSecret: kube-prometheus-stack-app-secrets
       userKey: GRAFANA_ADMIN_USER
