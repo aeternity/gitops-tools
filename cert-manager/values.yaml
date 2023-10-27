@@ -4,10 +4,11 @@ dnsSolverDomains:
 cert-manager:
   installCRDs: true
   resources:
-    limits:
-      memory: 56Mi
     requests:
-      cpu: 10m
+      cpu: 50m
+      memory: 56Mi
+    limits:
+      cpu: 75m
       memory: 56Mi
   securityContext:
     fsGroup: 1001

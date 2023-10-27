@@ -310,7 +310,7 @@ argo-cd:
         memory: 160Mi
       limits:
         cpu: 700m
-        memory: 240Mi
+        memory: 512Mi
     env:
       - name: "ARGOCD_EXEC_TIMEOUT"
         value: "3m"
