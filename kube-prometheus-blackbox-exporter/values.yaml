@@ -31,7 +31,7 @@ prometheus-blackbox-exporter:
     enabled: true
     defaults:
       additionalMetricsRelabels:
-        - targetLabel: job
+          targetLabel: job
           replacement: apps
       additionalRelabeling: []
       labels: {}

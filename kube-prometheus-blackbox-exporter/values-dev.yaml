@@ -5,7 +5,7 @@ prometheus-blackbox-exporter:
       - name: base-hc
         url: https://base-hc.dev.aepps.com
         additionalMetricsRelabels:
-          - targetLabel: job
+            targetLabel: job
             replacement: core-apps
       - name: hc-ui
         url: https://hc-ui.dev.aepps.com
