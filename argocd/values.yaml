@@ -248,50 +248,6 @@ argo-cd:
         url: https://github.com/aeternity/gitops-nodes.git
         name: nodes
 
-      argo-helm:
-        type: helm
-        url: https://argoproj.github.io/argo-helm
-        name: argo
-      traefik-helm:
-        type: helm
-        url: https://helm.traefik.io/traefik
-        name: traefik
-      prometheus-helm:
-        type: helm
-        url: https://prometheus-community.github.io/helm-charts
-        name: prometheus-community
-      backube-helm:
-        type: helm
-        url: https://backube.github.io/helm-charts/
-        name: backube
-      eks-helm:
-        type: helm
-        url: https://aws.github.io/eks-charts
-        name: eks
-      bitnami-helm:
-        type: helm
-        url: https://charts.bitnami.com/bitnami
-        name: bitnami
-      fluent-helm:
-        type: helm
-        url: https://fluent.github.io/helm-charts
-        name: fluent
-      autoscaler-helm:
-        type: helm
-        url: https://kubernetes.github.io/autoscaler
-        name: cluster-autoscaler
-      valero-helm:
-        type: helm
-        url: https://vmware-tanzu.github.io/helm-charts
-        name: velero
-      external-secrets-helm:
-        type: helm
-        url: https://charts.external-secrets.io
-        name: external-secrets
-      cert-manager-helm:
-        type: helm
-        url: https://charts.jetstack.io
-        name: cert-manager
 
   applicationSet:
     enabled: false
