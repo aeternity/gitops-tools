@@ -4,36 +4,56 @@ prometheus-blackbox-exporter:
       # Environment specific
       - name: base-hc
         url: https://base-hc.dev.aepps.com
-        additionalMetricsRelabels:
-            job: core-apps
       - name: hc-ui
         url: https://hc-ui.dev.aepps.com
 
       # Tools
       - name: argocd
         url: https://argocd.dev.aeternity.io
+        additionalMetricsRelabels:
+          job: tools
       - name: prometheus
         url: https://prometheus.dev.aeternity.io
+        additionalMetricsRelabels:
+          job: tools
       - name: grafana
         url: https://grafana.dev.aeternity.io
+        additionalMetricsRelabels:
+          job: tools
 
-      # Infrastructure
+      # Infrastructure/Core apps
       - name: base
         url: https://base.dev.aepps.com
+        additionalMetricsRelabels:
+          job: core-apps
       - name: contracts
         url: https://contracts.dev.aepps.com
+        additionalMetricsRelabels:
+          job: core-apps
       - name: faucet
         url: https://faucet.dev.aepps.com
+        additionalMetricsRelabels:
+          job: core-apps
       - name: faucet-nodejs
         url: https://faucet-nodejs.dev.aepps.com
+        additionalMetricsRelabels:
+          job: core-apps
       - name: repl
         url: https://repl.dev.aepps.com
+        additionalMetricsRelabels:
+          job: core-apps
       - name: compiler
         url: https://compiler.dev.aepps.com/version
+        additionalMetricsRelabels:
+          job: core-apps
       - name: mdw-explorer-mainnet
         url: https://mdw-explorer-mainnet.dev.aepps.com
+        additionalMetricsRelabels:
+          job: core-apps
       - name: mdw-explorer-testnet
         url: https://mdw-explorer-testnet.dev.aepps.com
+        additionalMetricsRelabels:
+          job: core-apps
 
       # Applications
       ## Governance
