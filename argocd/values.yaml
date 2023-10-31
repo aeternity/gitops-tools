@@ -292,10 +292,6 @@ argo-cd:
         type: helm
         url: https://charts.jetstack.io
         name: cert-manager
-      vpa:
-        type: helm
-        url: https://charts.fairwinds.com/stable
-        name: vpa
 
   applicationSet:
     enabled: false
