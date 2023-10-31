@@ -42,12 +42,10 @@ prometheus-blackbox-exporter:
       - name: governance-testnet
         url: https://governance-server-testnet.dev.aepps.com/version
       ## Grafitti
-      # - name: aepp-grafitti
-      #   url: https://aepp-grafitti.dev.aepps.com
-      # - name: aepp-grafitti-mainnet
-      #   url: https://graffiti-server-mainnet.dev.aepps.com/health
-      # - name: aepp-grafitti-testnet
-      #   url: https://graffiti-server-testnet.dev.aepps.com/health
+      - name: aepp-grafitti
+        url: https://aepp-grafitti.dev.aepps.com
+      - name: aepp-grafitti
+        url: https://graffiti-server.dev.aepps.com/health
       ## State Channel Demo
       - name: state-channel-demo
         url: https://state-channel-demo.dev.aepps.com
