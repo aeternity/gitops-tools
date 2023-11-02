@@ -81,6 +81,46 @@ projects:
       - group: '*'
         kind: '*'
 
+applicationsets:
+  - name: core-apps
+    generators:
+    - git:
+        repoURL: https://github.com/aeternity/gitops-apps.git
+        revision: dev
+        directories:
+          - path: aepp-base
+          - path: app
+            exclude: true
+          - path: app-secrets
+            exclude: true
+    template:
+      metadata:
+        name: '{{path.basename}}'
+      spec:
+        project: apps
+        source:
+          repoURL: https://github.com/aeternity/gitops-apps.git
+          targetRevision: dev
+          path: '{{path}}'
+          helm:
+            ignoreMissingValueFiles: true
+            valueFiles:
+              - values.yaml
+              - values-dev.yaml
+        destination:
+          server: https://kubernetes.default.svc
+          namespace: apps
+        syncPolicy:
+          automated:
+            prune: true
+            selfHeal: false
+          syncOptions:
+            - CreateNamespace=true
+            - RespectIgnoreDifferences=true
+    syncPolicy:
+      # Set Application finalizer
+      preserveResourcesOnDeletion: false
+
 applications:
   - name: argocd
     project: tools
@@ -159,10 +199,10 @@ applications:
     project: apps
     namespace: apps
     repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: aepp-base
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+  # - name: aepp-base
+  #   project: apps
+  #   namespace: apps
+  #   repoUrl: 'https://github.com/aeternity/gitops-apps.git'
   - name: governance-server-mainnet
     project: apps
     namespace: apps
