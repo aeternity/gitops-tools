@@ -159,10 +159,10 @@ applications:
     project: apps
     namespace: apps
     repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: aepp-base
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+  # - name: aepp-base
+  #   project: apps
+  #   namespace: apps
+  #   repoUrl: 'https://github.com/aeternity/gitops-apps.git'
   - name: governance-server-mainnet
     project: apps
     namespace: apps
@@ -198,6 +198,10 @@ argo-cd:
   configs:
     secret:
       createSecret: false
+    params:
+      applicationsetcontroller.policy: create
+      # applicationsetcontroller.policy: create-update
+      # applicationsetcontroller.policy: sync
     cm:
       users.anonymous.enabled: "false"
       dex.config: |
@@ -258,7 +262,7 @@ argo-cd:
 
 
   applicationSet:
-    enabled: false
+    enabled: true
 
   controller:
     resources:
