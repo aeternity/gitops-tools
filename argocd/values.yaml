@@ -101,6 +101,8 @@ applicationsets:
     template:
       metadata:
         name: '{{path.basename}}'
+        annotations:
+          argocd.argoproj.io/manifest-generate-paths: .;../app;../app-secrets
       spec:
         project: apps
         source:
@@ -124,7 +126,7 @@ applicationsets:
             - RespectIgnoreDifferences=true
     syncPolicy:
       # Set Application finalizer
-      preserveResourcesOnDeletion: false
+      preserveResourcesOnDeletion: true
 
 applications:
   - name: argocd
@@ -184,10 +186,10 @@ applications:
     project: apps
     namespace: apps
     repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: aepp-faucet
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+  # - name: aepp-faucet
+  #   project: apps
+  #   namespace: apps
+  #   repoUrl: 'https://github.com/aeternity/gitops-apps.git'
   - name: aepp-faucet-nodejs
     project: apps
     namespace: apps
