@@ -94,6 +94,10 @@ applicationsets:
             exclude: true
           - path: app-secrets
             exclude: true
+          - path: scaffold
+            exclude: true
+          - path: scripts
+            exclude: true
     template:
       metadata:
         name: '{{path.basename}}'
@@ -240,8 +244,7 @@ argo-cd:
     secret:
       createSecret: false
     params:
-      applicationsetcontroller.policy: create-only
-      # applicationsetcontroller.policy: create-update
+      applicationsetcontroller.policy: create-update
       # applicationsetcontroller.policy: sync
     cm:
       users.anonymous.enabled: "false"
