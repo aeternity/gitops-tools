@@ -239,7 +239,7 @@ argo-cd:
     secret:
       createSecret: false
     params:
-      applicationsetcontroller.policy: create
+      applicationsetcontroller.policy: create-only
       # applicationsetcontroller.policy: create-update
       # applicationsetcontroller.policy: sync
     cm:
