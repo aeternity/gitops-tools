@@ -89,6 +89,7 @@ applicationsets:
         revision: dev
         directories:
           - path: aepp-base
+          - path: aepp-faucet
           - path: app
             exclude: true
           - path: app-secrets
@@ -305,11 +306,11 @@ argo-cd:
     enabled: true
     resources:
       requests:
-        cpu: 1000m
-        memory: 500Mi
+        cpu: 50m
+        memory: 48Mi
       limits:
-        cpu: 2000m
-        memory: 2Gi
+        cpu: 75m
+        memory: 72Mi
 
   controller:
     resources:
