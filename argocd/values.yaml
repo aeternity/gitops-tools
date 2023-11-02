@@ -303,6 +303,13 @@ argo-cd:
 
   applicationSet:
     enabled: true
+    resources:
+      requests:
+        cpu: 500m
+        memory: 300Mi
+      limits:
+        cpu: 750m
+        memory: 450Mi
 
   controller:
     resources:
