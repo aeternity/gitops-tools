@@ -159,10 +159,10 @@ applications:
     project: apps
     namespace: apps
     repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  # - name: aepp-base
-  #   project: apps
-  #   namespace: apps
-  #   repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+  - name: aepp-base
+    project: apps
+    namespace: apps
+    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
   - name: governance-server-mainnet
     project: apps
     namespace: apps
