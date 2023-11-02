@@ -305,11 +305,11 @@ argo-cd:
     enabled: true
     resources:
       requests:
-        cpu: 500m
-        memory: 300Mi
+        cpu: 1000m
+        memory: 500Mi
       limits:
-        cpu: 750m
-        memory: 450Mi
+        cpu: 2000m
+        memory: 2Gi
 
   controller:
     resources:
