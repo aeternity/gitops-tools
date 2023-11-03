@@ -141,22 +141,6 @@ applications:
     project: tools
     namespace: monitoring
 
-  - name: external-secrets
-    project: tools
-    namespace: tools
-  - name: cluster-autoscaler
-    project: tools
-    namespace: tools
-  - name: vpa
-    project: tools
-    namespace: tools
-  - name: velero
-    project: tools
-    namespace: tools
-  - name: cert-manager
-    project: tools
-    namespace: tools
-
 additionalApplications: []
 
 argo-cd:
