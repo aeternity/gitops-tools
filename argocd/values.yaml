@@ -111,6 +111,19 @@ applicationsets:
     syncPolicy:
       # Set Application finalizer
       preserveResourcesOnDeletion: true
+  - name: monitoring-tools
+    repoUrl: https://github.com/aeternity/gitops-tools.git
+    # targetRevision: master #see defaultTargetRevision
+    include:
+      - kube-prometheus-stack
+      - kube-prometheus-blackbox-exporter
+      - fluent-bit
+      - kubernetes-event-exporter
+    project: tools
+    appNamespace: monitoring
+    syncPolicy:
+      # Set Application finalizer
+      preserveResourcesOnDeletion: true
 
 additionalApplicationsets: []
 
@@ -127,6 +140,7 @@ applications:
   - name: traefik
     project: tools
     namespace: traefik
+
   - name: kube-prometheus-stack
     project: tools
     namespace: monitoring
