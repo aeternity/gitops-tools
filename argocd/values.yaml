@@ -82,7 +82,7 @@ projects:
         kind: '*'
 
 applicationsets:
-  - name: core-apps
+  - name: apps
     generators:
     - git:
         repoURL: https://github.com/aeternity/gitops-apps.git
