@@ -87,13 +87,27 @@ applicationsets:
     # targetRevision: master #see defaultTargetRevision
     include: ['*']
     exclude:
-      - app-secrets
+      - app
       - scaffold
       - scripts
       - aepp-hc-ui
       - aepp-base-hc
     project: apps
     appNamespace: apps
+    syncPolicy:
+      # Set Application finalizer
+      preserveResourcesOnDeletion: true
+  - name: tools
+    repoUrl: https://github.com/aeternity/gitops-tools.git
+    # targetRevision: master #see defaultTargetRevision
+    include:
+      - cert-manager
+      - external-secrets
+      - cluster-autoscaler
+      - velero
+      - vpa
+    project: tools
+    appNamespace: tools
     syncPolicy:
       # Set Application finalizer
       preserveResourcesOnDeletion: true
@@ -126,6 +140,7 @@ applications:
   - name: kubernetes-event-exporter
     project: tools
     namespace: monitoring
+
   - name: external-secrets
     project: tools
     namespace: tools
