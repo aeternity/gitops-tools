@@ -88,8 +88,7 @@ applicationsets:
         repoURL: https://github.com/aeternity/gitops-apps.git
         revision: dev
         directories:
-          - path: aepp-base
-          - path: aepp-faucet
+          - path: '*'
           - path: app
             exclude: true
           - path: app-secrets
