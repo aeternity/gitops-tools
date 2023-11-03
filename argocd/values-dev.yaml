@@ -22,15 +22,20 @@ argo-cd:
       hosts:
         - "argocd.dev.aeternity.io"
 
+additionalApplicationsets:
+  - name: apps-dev
+    repoUrl: https://github.com/aeternity/gitops-apps.git
+    # targetRevision: master #see defaultTargetRevision
+    include:
+      - aepp-hc-ui
+      - aepp-base-hc
+    project: apps
+    appNamespace: apps
+    syncPolicy:
+      # Set Application finalizer
+      preserveResourcesOnDeletion: true
+
 additionalApplications:
-  - name: aepp-hc-ui
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: aepp-base-hc
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
   - name: external-snapshotter
     project: tools
     namespace: kube-system

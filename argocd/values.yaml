@@ -90,6 +90,8 @@ applicationsets:
       - app-secrets
       - scaffold
       - scripts
+      - aepp-hc-ui
+      - aepp-base-hc
     project: apps
     appNamespace: apps
     syncPolicy:
