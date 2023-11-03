@@ -83,49 +83,20 @@ projects:
 
 applicationsets:
   - name: apps
-    generators:
-    - git:
-        repoURL: https://github.com/aeternity/gitops-apps.git
-        revision: dev
-        directories:
-          - path: '*'
-          - path: app
-            exclude: true
-          - path: app-secrets
-            exclude: true
-          - path: scaffold
-            exclude: true
-          - path: scripts
-            exclude: true
-    template:
-      metadata:
-        name: '{{path.basename}}'
-        annotations:
-          argocd.argoproj.io/manifest-generate-paths: .;../app;../app-secrets
-      spec:
-        project: apps
-        source:
-          repoURL: https://github.com/aeternity/gitops-apps.git
-          targetRevision: dev
-          path: '{{path}}'
-          helm:
-            ignoreMissingValueFiles: true
-            valueFiles:
-              - values.yaml
-              - values-dev.yaml
-        destination:
-          server: https://kubernetes.default.svc
-          namespace: apps
-        syncPolicy:
-          automated:
-            prune: true
-            selfHeal: false
-          syncOptions:
-            - CreateNamespace=true
-            - RespectIgnoreDifferences=true
+    repoUrl: https://github.com/aeternity/gitops-apps.git
+    # targetRevision: master #see defaultTargetRevision
+    include: ['*']
+    exclude:
+      - app-secrets
+      - scaffold
+      - scripts
+    project: apps
+    appNamespace: apps
     syncPolicy:
       # Set Application finalizer
       preserveResourcesOnDeletion: true
+
+additionalApplicationsets: []
 
 applications:
   - name: argocd
