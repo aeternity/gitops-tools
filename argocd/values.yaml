@@ -115,7 +115,6 @@ applicationsets:
     repoUrl: https://github.com/aeternity/gitops-tools.git
     # targetRevision: master #see defaultTargetRevision
     include:
-      - kube-prometheus-stack
       - kube-prometheus-blackbox-exporter
       - fluent-bit
       - kubernetes-event-exporter
