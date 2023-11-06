@@ -105,6 +105,7 @@ applicationsets:
       - external-secrets
       - cluster-autoscaler
       - metrics-server
+      - traefik
       - velero
       - vpa
     project: tools
