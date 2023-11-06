@@ -136,12 +136,6 @@ applications:
   - name: argocd
     project: tools
     namespace: argocd
-  - name: aws-load-balancer-controller
-    project: tools
-    namespace: kube-system
-  - name: metrics-server
-    project: tools
-    namespace: kube-system
   - name: traefik
     project: tools
     namespace: traefik
