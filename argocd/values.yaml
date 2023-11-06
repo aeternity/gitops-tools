@@ -144,15 +144,6 @@ applications:
     project: tools
     namespace: monitoring
     serverSideApply: true
-  - name: kube-prometheus-blackbox-exporter
-    project: tools
-    namespace: monitoring
-  - name: fluent-bit
-    project: tools
-    namespace: monitoring
-  - name: kubernetes-event-exporter
-    project: tools
-    namespace: monitoring
 
 additionalApplications: []
 
