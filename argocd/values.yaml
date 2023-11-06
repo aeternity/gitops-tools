@@ -100,9 +100,11 @@ applicationsets:
   - name: tools
     repoUrl: https://github.com/aeternity/gitops-tools.git
     include:
+      - aws-load-balancer-controller
       - cert-manager
       - external-secrets
       - cluster-autoscaler
+      - metrics-server
       - velero
       - vpa
     project: tools
@@ -117,15 +119,6 @@ applicationsets:
       - kubernetes-event-exporter
     project: tools
     appNamespace: monitoring
-    syncPolicy:
-      preserveResourcesOnDeletion: true
-  - name: system-tools
-    repoUrl: https://github.com/aeternity/gitops-tools.git
-    include:
-      - aws-load-balancer-controller
-      - metrics-server
-    project: tools
-    appNamespace: kube-system
     syncPolicy:
       preserveResourcesOnDeletion: true
 
