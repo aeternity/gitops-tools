@@ -130,9 +130,6 @@ applications:
   - name: argocd
     project: tools
     namespace: argocd
-  - name: traefik
-    project: tools
-    namespace: traefik
 
   # Explicit application because of SS apply
   - name: kube-prometheus-stack
