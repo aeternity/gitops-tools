@@ -99,7 +99,6 @@ applicationsets:
       preserveResourcesOnDeletion: true
   - name: tools
     repoUrl: https://github.com/aeternity/gitops-tools.git
-    # targetRevision: master #see defaultTargetRevision
     include:
       - cert-manager
       - external-secrets
@@ -109,11 +108,9 @@ applicationsets:
     project: tools
     appNamespace: tools
     syncPolicy:
-      # Set Application finalizer
       preserveResourcesOnDeletion: true
   - name: monitoring-tools
     repoUrl: https://github.com/aeternity/gitops-tools.git
-    # targetRevision: master #see defaultTargetRevision
     include:
       - kube-prometheus-blackbox-exporter
       - fluent-bit
@@ -121,12 +118,21 @@ applicationsets:
     project: tools
     appNamespace: monitoring
     syncPolicy:
-      # Set Application finalizer
+      preserveResourcesOnDeletion: true
+  - name: system-tools
+    repoUrl: https://github.com/aeternity/gitops-tools.git
+    include:
+      - aws-load-balancer-controller
+      - metrics-server
+    project: tools
+    appNamespace: kube-system
+    syncPolicy:
       preserveResourcesOnDeletion: true
 
 additionalApplicationsets: []
 
 applications:
+  # Explicit application so a messedup applicationset won't bring it down
   - name: argocd
     project: tools
     namespace: argocd
@@ -140,6 +146,7 @@ applications:
     project: tools
     namespace: traefik
 
+  # Explicit application because of SS apply
   - name: kube-prometheus-stack
     project: tools
     namespace: monitoring
