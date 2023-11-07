@@ -222,7 +222,7 @@ argo-cd:
         memory: 512Mi
       limits:
         cpu: 900m
-        memory: 768Mi
+        memory: 1024Mi
     extraArgs:
       - --repo-server-timeout-seconds
       - "360"
