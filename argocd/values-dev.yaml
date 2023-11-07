@@ -27,6 +27,7 @@ additionalApplicationsets:
     repoUrl: https://github.com/aeternity/gitops-apps.git
     # targetRevision: master #see defaultTargetRevision
     include:
+      - aepp-test
       - aepp-hc-ui
       - aepp-base-hc
     project: apps
