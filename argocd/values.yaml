@@ -218,10 +218,10 @@ argo-cd:
   controller:
     resources:
       requests:
-        cpu: 500m
+        cpu: 600m
         memory: 512Mi
       limits:
-        cpu: 750m
+        cpu: 900m
         memory: 768Mi
     extraArgs:
       - --repo-server-timeout-seconds
