@@ -92,6 +92,7 @@ applicationsets:
       - scripts
       - aepp-hc-ui
       - aepp-base-hc
+      - aepp-test
     project: apps
     appNamespace: apps
     syncPolicy:
