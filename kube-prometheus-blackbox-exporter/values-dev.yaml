@@ -34,10 +34,6 @@ prometheus-blackbox-exporter:
         url: https://faucet.dev.aepps.com
         additionalMetricsRelabels:
           job: core-apps
-      - name: faucet-nodejs
-        url: https://faucet-nodejs.dev.aepps.com
-        additionalMetricsRelabels:
-          job: core-apps
       - name: repl
         url: https://repl.dev.aepps.com
         additionalMetricsRelabels:
