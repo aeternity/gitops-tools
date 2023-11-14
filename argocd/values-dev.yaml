@@ -28,7 +28,7 @@ additionalApplicationsets:
     # targetRevision: master #see defaultTargetRevision
     include:
       - aepp-test
-      - aepp-hc-ui
+      - aepp-hyperchain
       - aepp-base-hc
     project: apps
     appNamespace: apps

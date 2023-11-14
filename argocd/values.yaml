@@ -90,7 +90,7 @@ applicationsets:
       - app
       - scaffold
       - scripts
-      - aepp-hc-ui
+      - aepp-hyperchain
       - aepp-base-hc
       - aepp-test
     project: apps
