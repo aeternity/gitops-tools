@@ -93,6 +93,8 @@ applicationsets:
       - aepp-hyperchain
       - aepp-base-hc
       - aepp-test
+      - state-channel-demo-backend
+      - state-channel-demo-frontend
     project: apps
     appNamespace: apps
     syncPolicy:
