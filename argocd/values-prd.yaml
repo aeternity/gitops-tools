@@ -35,27 +35,6 @@ additionalApplications:
     project: apps
     namespace: apps
     repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-
-  - name: aescan
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: aescan-testnet
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: superhero-ui
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: superhero-wallet
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: superhero-backend
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
   - name: dex-ui
     project: apps
     namespace: apps
@@ -81,14 +60,6 @@ additionalApplications:
     namespace: apps
     repoUrl: 'https://github.com/aeternity/gitops-apps.git'
   - name: graffiti-server-testnet
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: state-channel-demo-frontend
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: state-channel-demo-backend
     project: apps
     namespace: apps
     repoUrl: 'https://github.com/aeternity/gitops-apps.git'
