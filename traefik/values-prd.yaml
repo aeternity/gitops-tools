@@ -1,8 +1,0 @@
-defaultCertificateDmains:
-  - "*.prd.aeternity.io"
-  - "*.prd.aepps.com"
-
-traefik:
-  service:
-    annotations:
-      service.beta.kubernetes.io/aws-load-balancer-name: prd-0e9c-traefik-ingress

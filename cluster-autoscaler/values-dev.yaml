@@ -1,3 +1,0 @@
-cluster-autoscaler:
-  autoDiscovery:
-    clusterName: dev-wgt7
