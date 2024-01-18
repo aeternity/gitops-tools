@@ -1,25 +1,28 @@
 external-secrets:
   priorityClassName: system-cluster-critical
   resources:
-    limits:
-      memory: 42Mi
     requests:
-      cpu: 10m
+      cpu: 20m
+      memory: 42Mi
+    limits:
+      cpu: 25m
       memory: 42Mi
 
   webhook:
     create: true
     resources:
-      limits:
-        memory: 32Mi
       requests:
-        cpu: 10m
+        cpu: 20m
+        memory: 32Mi
+      limits:
+        cpu: 25m
         memory: 32Mi
 
   certController:
     resources:
-      limits:
-        memory: 90Mi
       requests:
-        cpu: 10m
-        memory: 90Mi
+        cpu: 20m
+        memory: 128Mi
+      limits:
+        cpu: 25m
+        memory: 192Mi
