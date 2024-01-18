@@ -64,12 +64,3 @@ prometheus-blackbox-exporter:
         url: https://aepp-grafitti.dev.aepps.com
       - name: aepp-grafitti
         url: https://graffiti-server.dev.aepps.com/health
-      ## State Channel Demo
-      - name: state-channel-demo
-        url: https://state-channel-demo.dev.aepps.com
-      - name: state-channel-demo-backend
-        url: https://state-channel-demo-backend.dev.aepps.com
-      - name: develop-state-channel-demo
-        url: https://develop-state-channel-demo.dev.aepps.com
-      - name: develop-state-channel-demo-backend
-        url: https://develop-state-channel-demo-backend.dev.aepps.com
