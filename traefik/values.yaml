@@ -1,13 +1,15 @@
 defaultCertificateDmains: []
 traefik:
   image:
-    name: mirror.gcr.io/library/traefik
+    registry: public.ecr.aws
+    repository: docker/library/traefik
   resources:
-    limits:
-      memory: 256Mi
     requests:
-      cpu: 500m
-      memory: 256Mi
+      cpu: 100m
+      memory: 64Mi
+    limits:
+      cpu: 150m
+      memory: 96Mi
 
   topologySpreadConstraints:
   # This forces the scheduler to put traefik pods on nodes where no other traefik pods are scheduled.
@@ -25,10 +27,10 @@ traefik:
      whenUnsatisfiable: ScheduleAnyway
 
   deployment:
-    replicas: 3
+    replicas: 2
 
   autoscaling:
-    enabled: true
+    enabled: false
     minReplicas: 3
     maxReplicas: 15
     metrics:
