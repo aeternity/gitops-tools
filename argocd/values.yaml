@@ -31,9 +31,10 @@ projects:
         server: https://kubernetes.default.svc
       - namespace: tools
         server: https://kubernetes.default.svc
-      - namespace: argocd
+        # allow configuration of LimitRanges and other globals
+      - namespace: apps
         server: https://kubernetes.default.svc
-      - namespace: sealed-secrets
+      - namespace: argocd
         server: https://kubernetes.default.svc
       - namespace: kube-system
         server: https://kubernetes.default.svc
@@ -41,21 +42,9 @@ projects:
         server: https://kubernetes.default.svc
       - namespace: monitoring
         server: https://kubernetes.default.svc
-      - namespace: logging
-        server: https://kubernetes.default.svc
-      - namespace: cluster-autoscaler
-        server: https://kubernetes.default.svc
-      - namespace: kubernetes-event-exporter
-        server: https://kubernetes.default.svc
-      - namespace: velero
-        server: https://kubernetes.default.svc
-      - namespace: aenodes
-        server: https://kubernetes.default.svc
       - namespace: external-secrets
         server: https://kubernetes.default.svc
       - namespace: cert-manager
-        server: https://kubernetes.default.svc
-      - namespace: redis
         server: https://kubernetes.default.svc
     clusterResourceWhitelist:
       - group: '*'
@@ -72,8 +61,6 @@ projects:
       - 'https://github.com/aeternity/gitops-apps-aelabs.git'
     destinations:
       - namespace: apps
-        server: https://kubernetes.default.svc
-      - namespace: velero
         server: https://kubernetes.default.svc
     clusterResourceWhitelist:
       - group: '*'
@@ -94,106 +81,62 @@ projects:
       - group: '*'
         kind: '*'
 
+applicationsets:
+  - name: apps
+    repoUrl: https://github.com/aeternity/gitops-apps.git
+    # targetRevision: master #see defaultTargetRevision
+    include: ['*']
+    exclude:
+      - app
+      - scaffold
+      - scripts
+      - aepp-hyperchain
+      - aepp-base-hc
+      - aepp-test
+    project: apps
+    appNamespace: apps
+    syncPolicy:
+      # Set Application finalizer
+      preserveResourcesOnDeletion: true
+  - name: tools
+    repoUrl: https://github.com/aeternity/gitops-tools.git
+    include:
+      - aws-load-balancer-controller
+      - cert-manager
+      - external-secrets
+      - cluster-autoscaler
+      - metrics-server
+      - traefik
+      - velero
+      - vpa
+    project: tools
+    appNamespace: tools
+    syncPolicy:
+      preserveResourcesOnDeletion: true
+  - name: monitoring-tools
+    repoUrl: https://github.com/aeternity/gitops-tools.git
+    include:
+      - kube-prometheus-blackbox-exporter
+      - fluent-bit
+      - kubernetes-event-exporter
+    project: tools
+    appNamespace: monitoring
+    syncPolicy:
+      preserveResourcesOnDeletion: true
+
+additionalApplicationsets: []
+
 applications:
+  # Explicit application so a messedup applicationset won't bring it down
   - name: argocd
     project: tools
     namespace: argocd
-  - name: sealed-secrets
-    project: tools
-    namespace: sealed-secrets
-  - name: external-secrets
-    project: tools
-    namespace: external-secrets
-  - name: aws-load-balancer-controller
-    project: tools
-    namespace: kube-system
-  - name: metrics-server
-    project: tools
-    namespace: kube-system
-  - name: traefik
-    project: tools
-    namespace: traefik
+
+  # Explicit application because of SS apply
   - name: kube-prometheus-stack
     project: tools
     namespace: monitoring
     serverSideApply: true
-  - name: kube-prometheus-blackbox-exporter
-    project: tools
-    namespace: monitoring
-  - name: fluent-bit
-    project: tools
-    namespace: logging
-  - name: cluster-autoscaler
-    project: tools
-    namespace: cluster-autoscaler
-  - name: kubernetes-event-exporter
-    project: tools
-    namespace: kubernetes-event-exporter
-  - name: velero
-    project: tools
-    namespace: velero
-  - name: cert-manager
-    project: tools
-    namespace: cert-manager
-  - name: aemon-testnet
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: aemon-mainnet
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: aerepl-web
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: aesophia-http
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: aepp-faucet
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: aepp-faucet-nodejs
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: aepp-contracts
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: mdw-frontend-testnet
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: mdw-frontend-mainnet
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: aepp-base
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: aepp-base-backend
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: governance-server-mainnet
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: governance-server-testnet
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: governance-aepp
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: redis
-    project: tools
-    namespace: redis
 
 additionalApplications: []
 
@@ -201,6 +144,9 @@ argo-cd:
   configs:
     secret:
       createSecret: false
+    params:
+      applicationsetcontroller.policy: create-update
+      # applicationsetcontroller.policy: sync
     cm:
       users.anonymous.enabled: "false"
       dex.config: |
@@ -248,69 +194,36 @@ argo-cd:
     repositories:
       tools:
         url: https://github.com/aeternity/gitops-tools.git
+        name: tools
       apps:
         url: https://github.com/aeternity/gitops-apps.git
+        name: apps
       apps-aelabs:
         url: https://github.com/aeternity/gitops-apps-aelabs.git
+        name: apps-aelabs
       nodes:
         url: https://github.com/aeternity/gitops-nodes.git
-      argo-helm:
-        type: helm
-        url: https://argoproj.github.io/argo-helm
-        name: argo
-      sealed-secrets-helm:
-        type: helm
-        url: https://bitnami-labs.github.io/sealed-secrets
-        name: sealed-secrets
-      traefik-helm:
-        type: helm
-        url: https://helm.traefik.io/traefik
-        name: traefik
-      prometheus-helm:
-        type: helm
-        url: https://prometheus-community.github.io/helm-charts
-        name: prometheus-community
-      backube-helm:
-        type: helm
-        url: https://backube.github.io/helm-charts/
-        name: backube
-      eks-helm:
-        type: helm
-        url: https://aws.github.io/eks-charts
-        name: eks
-      bitnami-helm:
-        type: helm
-        url: https://charts.bitnami.com/bitnami
-        name: bitnami
-      fluent-helm:
-        type: helm
-        url: https://fluent.github.io/helm-charts
-        name: fluent
-      autoscaler-helm:
-        type: helm
-        url: https://kubernetes.github.io/autoscaler
-        name: cluster-autoscaler
-      valero-helm:
-        type: helm
-        url: https://vmware-tanzu.github.io/helm-charts
-        name: velero
-      external-secrets-helm:
-        type: helm
-        url: https://charts.external-secrets.io
-        name: external-secrets
-      cert-manager-helm:
-        type: helm
-        url: https://charts.jetstack.io
-        name: cert-manager
+        name: nodes
+
 
   applicationSet:
-    enabled: false
+    enabled: true
+    resources:
+      requests:
+        cpu: 50m
+        memory: 48Mi
+      limits:
+        cpu: 75m
+        memory: 72Mi
 
   controller:
     resources:
       requests:
-        cpu: 200m
-        memory: 768Mi
+        cpu: 600m
+        memory: 512Mi
+      limits:
+        cpu: 900m
+        memory: 1024Mi
     extraArgs:
       - --repo-server-timeout-seconds
       - "360"
@@ -322,7 +235,10 @@ argo-cd:
   repoServer:
     resources:
       requests:
-        cpu: 100m
+        cpu: 500m
+        memory: 160Mi
+      limits:
+        cpu: 750m
         memory: 512Mi
     env:
       - name: "ARGOCD_EXEC_TIMEOUT"
@@ -334,11 +250,12 @@ argo-cd:
 
   dex:
     resources:
-      limits:
-        memory: 64Mi
       requests:
-        cpu: 100m
+        cpu: 50m
         memory: 64Mi
+      limits:
+        cpu: 75m
+        memory: 96Mi
     metrics:
       enabled: true
       serviceMonitor:
@@ -346,11 +263,12 @@ argo-cd:
 
   server:
     resources:
-      limits:
-        memory: 256Mi
       requests:
-        cpu: 100m
-        memory: 256Mi
+        cpu: 250m
+        memory: 148Mi
+      limits:
+        cpu: 350m
+        memory: 220Mi
     metrics:
       enabled: true
       serviceMonitor:
@@ -367,11 +285,12 @@ argo-cd:
 
   redis:
     resources:
-      limits:
-        memory: 128Mi
       requests:
-        cpu: 100m
-        memory: 128Mi
+        cpu: 50m
+        memory: 64Mi
+      limits:
+        cpu: 75m
+        memory: 96Mi
 
   notifications:
     enabled: false
