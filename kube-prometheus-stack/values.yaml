@@ -9,41 +9,125 @@ app-secrets:
 
 
 kube-prometheus-stack:
+  ## Disable scrapping unused metrics: https://medium.com/gumgum-tech/how-to-reduce-your-prometheus-cost-6c7cc685e347
+  ## Component scraping the kube api server
+  ##
+  kubeApiServer:
+   enabled: false
+
+  ## Component scraping etcd
+  ##
+  kubeEtcd:
+   enabled: false
+
+  kubelet:
+   serviceMonitor:
+     cAdvisorMetricRelabelings:
+     - sourceLabels: [__name__]
+       separator: ;
+       regex: "container_(tasks_state|memory_fail.*)"
+       action: drop
+     metricRelabelings:
+     - sourceLabels: [__name__]
+       separator: ;
+       regex: (storage_operation.+|kubelet.+|)
+       action: drop
+
   prometheusOperator:
     resources:
-      limits:
-        memory: 64Mi
       requests:
         cpu: 10m
-        memory: 64Mi
+        memory: 32Mi
+      limits:
+        cpu: 15m
+        memory: 48Mi
 
   kube-state-metrics:
     resources:
-      limits:
-        memory: 64Mi
       requests:
         cpu: 10m
         memory: 64Mi
+      limits:
+        cpu: 15m
+        memory: 96Mi
+    prometheus:
+      monitor:
+        enabled: true
+    selfMonitor:
+      enabled: true
+    rbac:
+      extraRules:
+        - apiGroups: ["autoscaling.k8s.io"]
+          resources: ["verticalpodautoscalers"]
+          verbs: ["list", "watch"]
+    customResourceState:
+      enabled: true
+      config:
+        kind: CustomResourceStateMetrics
+        spec:
+          resources:
+            - groupVersionKind:
+                group: autoscaling.k8s.io
+                kind: "VerticalPodAutoscaler"
+                version: "v1"
+              labelsFromPath:
+                verticalpodautoscaler: [metadata, name]
+                namespace: [metadata, namespace]
+                target_api_version: [apiVersion]
+                target_kind: [spec, targetRef, kind]
+                target_name: [spec, targetRef, name]
+              metrics:
+                - name: "vpa_containerrecommendations_target"
+                  help: "VPA container recommendations for memory."
+                  each:
+                    type: Gauge
+                    gauge:
+                      path: [status, recommendation, containerRecommendations, "0", target, memory]
+                  labelsFromPath:
+                    container: [status, recommendation, containerRecommendations, "0", containerName]
+                  commonLabels:
+                    resource: "memory"
+                    unit: "byte"
+                - name: "vpa_containerrecommendations_target"
+                  help: "VPA container recommendations for cpu."
+                  each:
+                    type: Gauge
+                    gauge:
+                      path: [status, recommendation, containerRecommendations, "0", target, cpu]
+                  labelsFromPath:
+                    container: [status, recommendation, containerRecommendations, "0", containerName]
+                  commonLabels:
+                    resource: "cpu"
+                    unit: "core"
 
   prometheus-node-exporter:
     resources:
-      limits:
-        memory: 24Mi
       requests:
-        cpu: 100m
+        cpu: 50m
+        memory: 16Mi
+      limits:
+        cpu: 75m
         memory: 24Mi
 
   prometheus:
     serviceMonitorSelector: {}
     prometheusSpec:
       resources:
-        limits:
-          memory: 1500Mi
         requests:
-          cpu: 300m
-          memory: 1500Mi
+          cpu: 100m
+          memory: 1.3Gi
+        limits:
+          cpu: 150m
+          memory: 1.8Gi
       serviceMonitorSelectorNilUsesHelmValues: false
       ruleSelectorNilUsesHelmValues: false
+      storageSpec:
+        volumeClaimTemplate:
+          spec:
+            accessModes: ["ReadWriteOnce"]
+            resources:
+              requests:
+                storage: 5Gi
     ingress:
       enabled: true
       annotations:
@@ -52,19 +136,25 @@ kube-prometheus-stack:
       pathType: ImplementationSpecific
 
   grafana:
-    image:
-      repository: mirror.gcr.io/grafana/grafana
     resources:
-      limits:
-        memory: 284Mi
       requests:
         cpu: 100m
-        memory: 284Mi
+        memory: 128Mi
+      limits:
+        cpu: 150m
+        memory: 192Mi
     admin:
       existingSecret: kube-prometheus-stack-app-secrets
       userKey: GRAFANA_ADMIN_USER
       passwordKey: GRAFANA_ADMIN_PASSWORD
     sidecar:
+      resources:
+        requests:
+          cpu: 20m
+          memory: 100Mi
+        limits:
+          cpu: 25m
+          memory: 130Mi
       dashboards:
         enabled: true
         folderAnnotation: grafana-dashboard-dir
@@ -133,6 +223,10 @@ kube-prometheus-stack:
         hpa:
           gnetId: 10257
           revision: 1
+          datasource: Prometheus
+        vpa:
+          gnetId: 14588
+          revision: 5
           datasource: Prometheus
     extraSecretMounts:
     - name: secrets-mount
