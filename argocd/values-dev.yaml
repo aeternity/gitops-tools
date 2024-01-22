@@ -1,13 +1,5 @@
 defaultTargetRevision: dev
 
-external:
-  secretName: argocd-aelabs-repo-creds
-  remotePrefix: /k8s/dev-wgt7
-  values:
-    "password": /argocd/GITHUB_TOKEN
-    "url": /argocd/GITOPS_AELABS_URL
-    "username": /argocd/GITOPS_AELABS_USER
-
 app-secrets:
   external:
     remotePrefix: /k8s/dev-wgt7
