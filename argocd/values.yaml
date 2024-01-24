@@ -106,7 +106,7 @@ applications:
     namespace: external-secrets
   - name: aws-load-balancer-controller
     project: tools
-    namespace: kube-system
+    namespace: tools
   - name: metrics-server
     project: tools
     namespace: kube-system
