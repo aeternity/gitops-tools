@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-ALWAYS_EXCLUDE=('external-snapshotter' 'aws-ebs-csi-driver' 'nginx' 'signoz' 'wikijs' 'sentry' 'plausible' 'hedgedoc' 'hedgedoc-2' 'hedgedoc-chart' 'postgresql' 'postgresql-hedgedoc' 'matomo' 'app')
+ALWAYS_EXCLUDE=('external-snapshotter' 'nginx' 'postgresql' 'app')
 ENV_EXCLUDE=('values-dev.yaml' 'values-stg.yaml' 'values-prd.yaml')
 function usage {
     echo "Usage:"
