@@ -13,6 +13,7 @@ metadata:
   annotations:
     # keep the resource during migration
     "helm.sh/resource-policy": keep
+    argocd.argoproj.io/manifest-generate-paths: .;../app;../app-secrets
 spec:
   project: {{ .project }}
   source:

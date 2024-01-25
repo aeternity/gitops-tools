@@ -1,0 +1,71 @@
+{{- $root := . -}}
+{{- range (concat .Values.applicationsets .Values.additionalApplicationsets) }}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  {{- with .additionalAnnotations }}
+  annotations:
+    {{- range $key, $value := . }}
+    {{ $key }}: {{ $value | quote }}
+    {{- end }}
+  {{- end }}
+  {{- with .additionalLabels }}
+  labels:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  name: {{ .name }}
+  {{- with .namespace }}
+  namespace: {{ . }}
+  {{- end }}
+spec:
+  {{- if hasKey . "goTemplate" }}
+  goTemplate: {{ .goTemplate }}
+  {{- end }}
+  generators:
+    - git:
+        repoURL: {{ .repoUrl }}
+        revision: {{ .targetRevision | default $root.Values.defaultTargetRevision }}
+        directories:
+          {{- range .include }}
+          - path: {{ . | squote }}
+          {{- end }}
+          {{- range .exclude }}
+          - path: {{ . | squote }}
+            exclude: true
+          {{- end }}
+  {{- with .strategy }}
+  strategy:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  {{- with .syncPolicy }}
+  syncPolicy:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  template:
+    metadata:
+      name: {{` "{{ path.basename }}" `}}
+      annotations:
+        argocd.argoproj.io/manifest-generate-paths: .;../app;../app-secrets
+    spec:
+      project: {{ .project }}
+      source:
+        repoURL: {{ .repoUrl }}
+        targetRevision: {{ .targetRevision | default $root.Values.defaultTargetRevision }}
+        path: {{` "{{ path }}" `}}
+        helm:
+          ignoreMissingValueFiles: true
+          valueFiles:
+            - values.yaml
+            - values-{{ .targetRevision | default $root.Values.defaultTargetRevision }}.yaml
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: {{ .appNamespace }}
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: false
+        syncOptions:
+          - CreateNamespace=true
+          - RespectIgnoreDifferences=true
+{{- end }}

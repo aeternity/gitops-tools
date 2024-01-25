@@ -313,7 +313,10 @@ argo-cd:
   repoServer:
     resources:
       requests:
-        cpu: 100m
+        cpu: 500m
+        memory: 160Mi
+      limits:
+        cpu: 750m
         memory: 512Mi
     env:
       - name: "ARGOCD_EXEC_TIMEOUT"
@@ -325,11 +328,12 @@ argo-cd:
 
   dex:
     resources:
-      limits:
-        memory: 64Mi
       requests:
-        cpu: 100m
+        cpu: 50m
         memory: 64Mi
+      limits:
+        cpu: 75m
+        memory: 96Mi
     metrics:
       enabled: true
       serviceMonitor:
@@ -337,11 +341,12 @@ argo-cd:
 
   server:
     resources:
-      limits:
-        memory: 256Mi
       requests:
-        cpu: 100m
-        memory: 256Mi
+        cpu: 250m
+        memory: 148Mi
+      limits:
+        cpu: 350m
+        memory: 220Mi
     metrics:
       enabled: true
       serviceMonitor:
@@ -358,11 +363,12 @@ argo-cd:
 
   redis:
     resources:
-      limits:
-        memory: 128Mi
       requests:
-        cpu: 100m
-        memory: 128Mi
+        cpu: 50m
+        memory: 64Mi
+      limits:
+        cpu: 75m
+        memory: 96Mi
 
   notifications:
     enabled: false
