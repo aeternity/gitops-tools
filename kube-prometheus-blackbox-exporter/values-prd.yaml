@@ -26,20 +26,6 @@ prometheus-blackbox-exporter:
         url: https://dex-backend-testnet.prd.aepps.com
       - name: ga-multisig-ui
         url: https://ga-multisig-ui.prd.aepps.com
-      - name: statechannel
-        url: https://statechannel.aepps.com
-      - name: state-channel-demo
-        url: https://state-channel-demo.prd.aepps.com
-      - name: state-channel-demo-backend
-        url: https://state-channel-demo-backend.prd.aepps.com
-      - name: superhero
-        url: https://superhero.prd.aepps.com
-      - name: superhero-wallet
-        url: https://superhero-wallet.prd.aepps.com
-      - name: testnet-node
-        url: https://testnet.prd.aepps.com/v3/status
-      - name: governance-superhero
-        url: https://governance-server-mainnet.prd.aepps.com/pollOrdering?closed=false
       - name: governance-mainnet
         url: https://governance.aeternity.com
       - name: graffiti
@@ -48,11 +34,3 @@ prometheus-blackbox-exporter:
         url: https://graffiti-server-mainnet.prd.aepps.com/health
       - name: graffiti-server-testnet
         url: https://graffiti-server-testnet.prd.aepps.com/health
-      - name: aescan-io
-        url: https://aescan.io
-      - name: aescan-io-testnet
-        url: https://testnet.aescan.io
-      - name: token-migration.aeternity.io
-        url: https://token-migration.aeternity.io
-
-        

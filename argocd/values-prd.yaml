@@ -15,10 +15,6 @@ argo-cd:
         - "argocd.prd.aeternity.io"
 
 additionalApplications:
-  - name: governance-aepp-superhero
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
   - name: dex-ui
     project: apps
     namespace: apps
@@ -56,10 +52,6 @@ additionalApplications:
     namespace: apps
     repoUrl: 'https://github.com/aeternity/gitops-apps.git'
   - name: ga-multisig-ui
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: token-sale-aepp
     project: apps
     namespace: apps
     repoUrl: 'https://github.com/aeternity/gitops-apps.git'
