@@ -67,7 +67,6 @@ projects:
     description: Applications deployed on EKS
     sourceRepos:
       - 'https://github.com/aeternity/gitops-apps.git'
-      - 'https://github.com/aeternity/gitops-apps-aelabs.git'
     destinations:
       - namespace: apps
         server: https://kubernetes.default.svc
@@ -293,10 +292,6 @@ argo-cd:
         url: https://github.com/aeternity/gitops-tools.git
       apps:
         url: https://github.com/aeternity/gitops-apps.git
-      apps-aelabs:
-        url: https://github.com/aeternity/gitops-apps-aelabs.git
-      nodes:
-        url: https://github.com/aeternity/gitops-nodes.git
       argo-helm:
         type: helm
         url: https://argoproj.github.io/argo-helm
