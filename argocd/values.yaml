@@ -92,6 +92,51 @@ projects:
       - group: '*'
         kind: '*'
 
+applicationsets:
+  - name: apps
+    repoUrl: https://github.com/aeternity/gitops-apps.git
+    # targetRevision: master #see defaultTargetRevision
+    include: ['*']
+    exclude:
+      - app
+      - scaffold
+      - scripts
+      - aepp-hyperchain
+      - aepp-base-hc
+      - aepp-test
+    project: apps
+    appNamespace: apps
+    syncPolicy:
+      # Set Application finalizer
+      preserveResourcesOnDeletion: true
+  - name: tools
+    repoUrl: https://github.com/aeternity/gitops-tools.git
+    include:
+      - aws-load-balancer-controller
+      - cert-manager
+      - external-secrets
+      - cluster-autoscaler
+      - metrics-server
+      - traefik
+      - velero
+      - vpa
+    project: tools
+    appNamespace: tools
+    syncPolicy:
+      preserveResourcesOnDeletion: true
+  - name: monitoring-tools
+    repoUrl: https://github.com/aeternity/gitops-tools.git
+    include:
+      - kube-prometheus-blackbox-exporter
+      - fluent-bit
+      - kubernetes-event-exporter
+    project: tools
+    appNamespace: monitoring
+    syncPolicy:
+      preserveResourcesOnDeletion: true
+
+additionalApplicationsets: []
+
 applications:
   - name: argocd
     project: tools
@@ -196,6 +241,9 @@ argo-cd:
   configs:
     secret:
       createSecret: false
+    params:
+      applicationsetcontroller.policy: create-update
+      # applicationsetcontroller.policy: sync
     cm:
       users.anonymous.enabled: "false"
       dex.config: |
@@ -296,12 +344,22 @@ argo-cd:
 
   applicationSet:
     enabled: false
+    resources:
+      requests:
+        cpu: 50m
+        memory: 48Mi
+      limits:
+        cpu: 75m
+        memory: 72Mi
 
   controller:
     resources:
       requests:
-        cpu: 200m
-        memory: 768Mi
+        cpu: 600m
+        memory: 512Mi
+      limits:
+        cpu: 900m
+        memory: 1024Mi
     extraArgs:
       - --repo-server-timeout-seconds
       - "360"
