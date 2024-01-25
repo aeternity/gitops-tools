@@ -12,10 +12,6 @@ kube-prometheus-stack:
     ingress:
       hosts:
         - "prometheus.prd.aeternity.io"
-      tls:
-        - hosts:
-          - "prometheus.prd.aeternity.io"
-          secretName: prometheus-cert
 
   grafana:
     grafana.ini:
@@ -25,10 +21,6 @@ kube-prometheus-stack:
     ingress:
       hosts:
         - "grafana.prd.aeternity.io"
-      tls:
-        - hosts:
-          - "grafana.prd.aeternity.io"
-          secretName: grafana-cert
 
   alertmanager:
     alertmanagerSpec:
@@ -36,7 +28,3 @@ kube-prometheus-stack:
     ingress:
       hosts:
         - "alertmanager.prd.aeternity.io"
-      tls:
-        - hosts:
-          - "alertmanager.prd.aeternity.io"
-          secretName: alertmanager-cert
