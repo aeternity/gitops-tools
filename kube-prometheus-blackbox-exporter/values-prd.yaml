@@ -1,36 +1,95 @@
 prometheus-blackbox-exporter:
   serviceMonitor:
     targets:
-      # Infrastructure
+      # Tools
+      - name: argocd
+        url: https://argocd.prd.aeternity.io
+        additionalMetricsRelabels:
+          job: tools
+      - name: prometheus
+        url: https://prometheus.prd.aeternity.io
+        additionalMetricsRelabels:
+          job: tools
+      - name: grafana
+        url: https://grafana.prd.aeternity.io
+        additionalMetricsRelabels:
+          job: tools
+
+      # Infrastructure/Core apps
       - name: base
-        url: https://base.prd.aepps.com
+        url: https://base.aepps.com
+        additionalMetricsRelabels:
+          job: core-apps
+      - name: base-backend
+        url: https://base-backend.prd.aepps.com/version
+        additionalMetricsRelabels:
+          job: core-apps
       - name: contracts
-        url: https://contracts.prd.aepps.com
+        url: https://contracts.aepps.com
+        additionalMetricsRelabels:
+          job: core-apps
       - name: faucet
-        url: https://faucet.prd.aepps.com
-      - name: faucet-nodejs
-        url: https://faucet-nodejs.prd.aepps.com
+        url: https://faucet.aepps.com
+        additionalMetricsRelabels:
+          job: core-apps
       - name: repl
         url: https://repl.prd.aepps.com
+        additionalMetricsRelabels:
+          job: core-apps
+      - name: compiler
+        url: https://compiler.aepps.com/version
+        additionalMetricsRelabels:
+          job: core-apps
+      - name: compiler-v7
+        url: https://v7.compiler.aepps.com/version
+        additionalMetricsRelabels:
+          job: core-apps
+      - name: compiler-v6
+        url: https://v6.compiler.aepps.com/version
+        additionalMetricsRelabels:
+          job: core-apps
       - name: mdw-explorer
         url: https://mdw-explorer.prd.aepps.com
+        additionalMetricsRelabels:
+          job: core-apps
       - name: mdw-explorer-testnet
         url: https://mdw-explorer-testnet.prd.aepps.com
+        additionalMetricsRelabels:
+          job: core-apps
 
       # Applications
+      ## Hyperchains Demo
+      - name: aehc-demo-base
+        url: https://wallet.demo.hyperchains.aepps.com
+      - name: aehc-demo-faucet
+        url: https://faucet.demo.hyperchains.aepps.com
+      - name: aehc-demo-ui
+        url: https://demo.hyperchains.aepps.com
+      - name: aehc-demo-mdw-parent
+        url: https://parent-explorer.demo.hyperchains.aepps.com
+      - name: aehc-demo-mdw
+        url: https://explorer.demo.hyperchains.aepps.com
+      ## Governance
+      - name: governance
+        url: https://governance.prd.aepps.com
+      - name: governance-mainnet
+        url: https://governance-server-mainnet.prd.aepps.com/version
+      - name: governance-testnet
+        url: https://governance-server-testnet.prd.aepps.com/version
+      ## Graffiti
+      - name: aepp-graffiti
+        url: https://graffiti.aeternity.com
+      - name: graffiti-server-mainnet
+        url: https://graffiti-server-mainnet.prd.aepps.com/health
+      - name: graffiti-server-testnet
+        url: https://graffiti-server-testnet.prd.aepps.com/health
+      ## DEX
       - name: dex
         url: https://dex.prd.aepps.com
       - name: dex-backend-mainnet
         url: https://dex-backend-mainnet.prd.aepps.com
       - name: dex-backend-testnet
         url: https://dex-backend-testnet.prd.aepps.com
+      ## GA Multisig
       - name: ga-multisig-ui
         url: https://ga-multisig-ui.prd.aepps.com
-      - name: governance-mainnet
-        url: https://governance.aeternity.com
-      - name: graffiti
-        url: https://graffiti.aeternity.com
-      - name: graffiti-server-mainnet
-        url: https://graffiti-server-mainnet.prd.aepps.com/health
-      - name: graffiti-server-testnet
-        url: https://graffiti-server-testnet.prd.aepps.com/health
