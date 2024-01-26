@@ -78,6 +78,6 @@ prometheus-blackbox-exporter:
         url: https://governance-server-testnet.stg.aepps.com/version
       ## Graffiti
       - name: aepp-graffiti
-        url: https://aepp-graffiti.stg.aepps.com
+        url: https://graffiti.stg.aepps.com
       - name: graffiti-server
         url: https://graffiti-server.stg.aepps.com/health
