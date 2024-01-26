@@ -26,10 +26,10 @@ prometheus-blackbox-exporter:
         url: https://base.dev.aepps.com
         additionalMetricsRelabels:
           job: core-apps
-      # - name: base-backend
-      #   url: https://base-backend.dev.aepps.com
-      #   additionalMetricsRelabels:
-      #     job: core-apps
+      - name: base-backend
+        url: https://base-backend.dev.aepps.com/version
+        additionalMetricsRelabels:
+          job: core-apps
       - name: contracts
         url: https://contracts.dev.aepps.com
         additionalMetricsRelabels:
