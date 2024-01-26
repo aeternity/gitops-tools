@@ -286,8 +286,10 @@ argo-cd:
     repositories:
       tools:
         url: https://github.com/aeternity/gitops-tools.git
+        name: tools
       apps:
         url: https://github.com/aeternity/gitops-apps.git
+        name: apps
       argo-helm:
         type: helm
         url: https://argoproj.github.io/argo-helm
