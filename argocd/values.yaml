@@ -194,10 +194,6 @@ applications:
     project: apps
     namespace: apps
     repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: aepp-faucet-nodejs
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
   - name: aepp-contracts
     project: apps
     namespace: apps
