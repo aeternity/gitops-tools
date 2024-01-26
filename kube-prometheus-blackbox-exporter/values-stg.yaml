@@ -1,57 +1,89 @@
 prometheus-blackbox-exporter:
   serviceMonitor:
     targets:
+      # Environment specific
+      - name: base-hc
+        url: https://base-hc.stg.aepps.com
+      - name: hyperchain
+        url: https://hyperchain.stg.aepps.com
+
       # Tools
       - name: argocd
         url: https://argocd.stg.aeternity.io
+        additionalMetricsRelabels:
+          job: tools
       - name: prometheus
         url: https://prometheus.stg.aeternity.io
+        additionalMetricsRelabels:
+          job: tools
       - name: grafana
         url: https://grafana.stg.aeternity.io
+        additionalMetricsRelabels:
+          job: tools
 
-      # Infrastructure
+      # Infrastructure/Core apps
       - name: base
         url: https://base.stg.aepps.com
+        additionalMetricsRelabels:
+          job: core-apps
+      - name: base-backend
+        url: https://base-backend.stg.aepps.com/version
+        additionalMetricsRelabels:
+          job: core-apps
       - name: contracts
         url: https://contracts.stg.aepps.com
+        additionalMetricsRelabels:
+          job: core-apps
       - name: faucet
         url: https://faucet.stg.aepps.com
-      - name: faucet-nodejs
-        url: https://faucet-nodejs.stg.aepps.com
+        additionalMetricsRelabels:
+          job: core-apps
       - name: repl
         url: https://repl.stg.aepps.com
+        additionalMetricsRelabels:
+          job: core-apps
       - name: compiler
         url: https://compiler.stg.aepps.com/version
-      - name: mdw-explorer
-        url: https://mdw-explorer.stg.aepps.com
+        additionalMetricsRelabels:
+          job: core-apps
+      - name: compiler-v7
+        url: https://v7.compiler.stg.aepps.com/version
+        additionalMetricsRelabels:
+          job: core-apps
+      - name: compiler-v6
+        url: https://v6.compiler.stg.aepps.com/version
+        additionalMetricsRelabels:
+          job: core-apps
+      - name: mdw-explorer-mainnet
+        url: https://mdw-explorer-mainnet.stg.aepps.com
+        additionalMetricsRelabels:
+          job: core-apps
       - name: mdw-explorer-testnet
         url: https://mdw-explorer-testnet.stg.aepps.com
+        additionalMetricsRelabels:
+          job: core-apps
 
       # Applications
-      - name: explorer-frontend
-        url: https://explorer-frontend.stg.aepps.com
-      - name: aepp-grafitti
-        url: https://aepp-grafitti.stg.aepps.com
+      ## Hyperchains Demo
+      - name: aehc-demo-base
+        url: https://base-aehc-demo.stg.aepps.com
+      - name: aehc-demo-faucet
+        url: https://faucet-aehc-demo.stg.aepps.com
+      - name: aehc-demo-ui
+        url: https://hyperchain-aehc-demo.stg.aepps.com
+      - name: aehc-demo-mdw-parent
+        url: https://explorer-aehc-demo-parent.stg.aepps.com
+      - name: aehc-demo-mdw
+        url: https://explorer-aehc-demo.stg.aepps.com
+      ## Governance
+      - name: governance
+        url: https://governance.stg.aepps.com
+      - name: governance-mainnet
+        url: https://governance-server-mainnet.stg.aepps.com/version
+      - name: governance-testnet
+        url: https://governance-server-testnet.stg.aepps.com/version
+      ## Graffiti
+      - name: aepp-graffiti
+        url: https://aepp-graffiti.stg.aepps.com
       - name: graffiti-server
-        url: https://graffiti-server.stg.aepps.com
-      - name: dex
-        url: https://dex.stg.aepps.com
-      - name: dex-backend-mainnet
-        url: https://dex-backend-mainnet.stg.aepps.com
-      - name: dex-backend-testnet
-        url: https://dex-backend-testnet.stg.aepps.com
-      - name: ga-multisig-ui
-        url: https://ga-multisig-ui.stg.aepps.com
-      - name: ga-multisig-backend
-        url: https://ga-multisig-backend.stg.aepps.com
-      - name: state-channel-demo
-        url: https://state-channel-demo.stg.aepps.com
-      - name: state-channel-demo-backend
-        url: https://state-channel-demo-backend.stg.aepps.com
-      - name: superhero
-        url: https://superhero.stg.aepps.com
-      - name: superhero-backend
-        url: https://superhero-backend.stg.aepps.com/health/backend
-        module: http_backend
-      - name: superhero-wallet
-        url: https://superhero-wallet.stg.aepps.com
+        url: https://graffiti-server.stg.aepps.com/health
