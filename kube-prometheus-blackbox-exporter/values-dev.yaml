@@ -26,6 +26,10 @@ prometheus-blackbox-exporter:
         url: https://base.dev.aepps.com
         additionalMetricsRelabels:
           job: core-apps
+      # - name: base-backend
+      #   url: https://base-backend.dev.aepps.com
+      #   additionalMetricsRelabels:
+      #     job: core-apps
       - name: contracts
         url: https://contracts.dev.aepps.com
         additionalMetricsRelabels:
@@ -42,6 +46,14 @@ prometheus-blackbox-exporter:
         url: https://compiler.dev.aepps.com/version
         additionalMetricsRelabels:
           job: core-apps
+      - name: compiler-v7
+        url: https://v7.compiler.dev.aepps.com/version
+        additionalMetricsRelabels:
+          job: core-apps
+      - name: compiler-v6
+        url: https://v6.compiler.dev.aepps.com/version
+        additionalMetricsRelabels:
+          job: core-apps
       - name: mdw-explorer-mainnet
         url: https://mdw-explorer-mainnet.dev.aepps.com
         additionalMetricsRelabels:
@@ -52,6 +64,17 @@ prometheus-blackbox-exporter:
           job: core-apps
 
       # Applications
+      ## Hyperchains Demo
+      - name: aehc-demo-base
+        url: https://base-aehc-demo.dev.aepps.com
+      - name: aehc-demo-faucet
+        url: https://faucet-aehc-demo.dev.aepps.com
+      - name: aehc-demo-ui
+        url: https://hyperchain-aehc-demo.dev.aepps.com
+      - name: aehc-demo-mdw-parent
+        url: https://explorer-aehc-demo-parent.dev.aepps.com
+      - name: aehc-demo-mdw
+        url: https://explorer-aehc-demo.dev.aepps.com
       ## Governance
       - name: governance
         url: https://governance.dev.aepps.com
@@ -59,8 +82,8 @@ prometheus-blackbox-exporter:
         url: https://governance-server-mainnet.dev.aepps.com/version
       - name: governance-testnet
         url: https://governance-server-testnet.dev.aepps.com/version
-      ## Grafitti
-      - name: aepp-grafitti
-        url: https://aepp-grafitti.dev.aepps.com
-      - name: aepp-grafitti
+      ## Graffiti
+      - name: aepp-graffiti
+        url: https://aepp-graffiti.dev.aepps.com
+      - name: graffiti-server
         url: https://graffiti-server.dev.aepps.com/health
