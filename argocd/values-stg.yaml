@@ -25,3 +25,15 @@ argo-cd:
     ingress:
       hosts:
         - "argocd.stg.aeternity.io"
+
+additionalApplicationsets:
+  - name: apps-stg
+    repoUrl: https://github.com/aeternity/gitops-apps.git
+    # targetRevision: master #see defaultTargetRevision
+    include:
+      - aepp-test
+    project: apps
+    appNamespace: apps
+    syncPolicy:
+      # Set Application finalizer
+      preserveResourcesOnDeletion: true
