@@ -26,13 +26,4 @@ argo-cd:
       hosts:
         - "argocd.stg.aeternity.io"
 
-additionalApplicationsets:
-  - name: apps-stg
-    repoUrl: https://github.com/aeternity/gitops-apps.git
-    # targetRevision: master #see defaultTargetRevision
-    include: []
-    project: apps
-    appNamespace: apps
-    syncPolicy:
-      # Set Application finalizer
-      preserveResourcesOnDeletion: true
+additionalApplicationsets: []
