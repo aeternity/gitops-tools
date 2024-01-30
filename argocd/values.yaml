@@ -140,95 +140,16 @@ applicationsets:
 additionalApplicationsets: []
 
 applications:
+  # Explicit application so a messedup applicationset won't bring it down
   - name: argocd
     project: tools
     namespace: argocd
-  - name: external-secrets
-    project: tools
-    namespace: external-secrets
-  - name: aws-load-balancer-controller
-    project: tools
-    namespace: tools
-  - name: metrics-server
-    project: tools
-    namespace: kube-system
-  - name: traefik
-    project: tools
-    namespace: traefik
+
+  # Explicit application because of SS apply
   - name: kube-prometheus-stack
     project: tools
     namespace: monitoring
     serverSideApply: true
-  - name: kube-prometheus-blackbox-exporter
-    project: tools
-    namespace: monitoring
-  - name: fluent-bit
-    project: tools
-    namespace: logging
-  - name: cluster-autoscaler
-    project: tools
-    namespace: cluster-autoscaler
-  - name: kubernetes-event-exporter
-    project: tools
-    namespace: kubernetes-event-exporter
-  - name: velero
-    project: tools
-    namespace: velero
-  - name: cert-manager
-    project: tools
-    namespace: cert-manager
-  - name: aemon-testnet
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: aemon-mainnet
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: aerepl-web
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: aesophia-http
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: aepp-faucet
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: aepp-contracts
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: mdw-frontend-testnet
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: mdw-frontend-mainnet
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: aepp-base
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: aepp-base-backend
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: governance-server-mainnet
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: governance-server-testnet
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: governance-aepp
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
 
 additionalApplications: []
 
