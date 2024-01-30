@@ -30,8 +30,7 @@ additionalApplicationsets:
   - name: apps-stg
     repoUrl: https://github.com/aeternity/gitops-apps.git
     # targetRevision: master #see defaultTargetRevision
-    include:
-      - aepp-test
+    include: []
     project: apps
     appNamespace: apps
     syncPolicy:
