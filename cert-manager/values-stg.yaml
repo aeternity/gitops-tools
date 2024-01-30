@@ -2,8 +2,3 @@ cert-manager:
   serviceAccount:
     annotations:
       eks.amazonaws.com/role-arn: "arn:aws:iam::106102538874:role/cert-manager-stg"
-  extraArgs:
-    - --acme-http01-solver-resource-request-cpu=70m
-    - --acme-http01-solver-resource-limits-cpu=100m
-    - --acme-http01-solver-resource-request-memory=64Mi
-    - --acme-http01-solver-resource-limits-memory=64Mi

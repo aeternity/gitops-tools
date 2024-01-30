@@ -3,6 +3,11 @@ dnsSolverDomains:
   - 'aepps.com'
 cert-manager:
   installCRDs: true
+  extraArgs:
+    - --acme-http01-solver-resource-request-cpu=70m
+    - --acme-http01-solver-resource-limits-cpu=100m
+    - --acme-http01-solver-resource-request-memory=64Mi
+    - --acme-http01-solver-resource-limits-memory=64Mi
   resources:
     requests:
       cpu: 50m
