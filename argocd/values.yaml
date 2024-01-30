@@ -336,7 +336,7 @@ argo-cd:
         name: cert-manager
 
   applicationSet:
-    enabled: false
+    enabled: true
     resources:
       requests:
         cpu: 50m
