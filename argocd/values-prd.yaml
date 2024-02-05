@@ -15,18 +15,6 @@ argo-cd:
         - "argocd.prd.aeternity.io"
 
 additionalApplications:
-  - name: dex-ui
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: dex-backend-mainnet
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: dex-backend-testnet
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
   - name: aepp-graffiti
     project: apps
     namespace: apps
