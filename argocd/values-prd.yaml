@@ -15,18 +15,6 @@ argo-cd:
         - "argocd.prd.aeternity.io"
 
 additionalApplications:
-  - name: aepp-graffiti
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: graffiti-server-mainnet
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: graffiti-server-testnet
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
   - name: ga-multisig-backend-mainnet
     project: apps
     namespace: apps
@@ -36,26 +24,6 @@ additionalApplications:
     namespace: apps
     repoUrl: 'https://github.com/aeternity/gitops-apps.git'
   - name: ga-multisig-ui
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: mdw-frontend-aehc-demo-parent
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: aepp-base-aehc-demo
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: aepp-faucet-aehc-demo
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: mdw-frontend-aehc-demo
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: aepp-hyperchain-aehc-demo
     project: apps
     namespace: apps
     repoUrl: 'https://github.com/aeternity/gitops-apps.git'
