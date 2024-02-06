@@ -5,6 +5,12 @@ app-secrets:
 kube-prometheus-stack:
   prometheus:
     prometheusSpec:
+      storageSpec:
+        volumeClaimTemplate:
+          spec:
+            resources:
+              requests:
+                storage: 10Gi
       additionalScrapeConfigs:
         - job_name: node_exporter
           static_configs:
