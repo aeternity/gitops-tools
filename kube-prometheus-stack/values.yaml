@@ -27,11 +27,11 @@ kube-prometheus-stack:
        separator: ;
        regex: "container_(tasks_state|memory_fail.*)"
        action: drop
-     metricRelabelings:
-     - sourceLabels: [__name__]
-       separator: ;
-       regex: (storage_operation.+|kubelet.+|)
-       action: drop
+     # metricRelabelings:
+     # - sourceLabels: [__name__]
+     #   separator: ;
+     #   regex: (storage_operation.+|kubelet.+|)
+     #   action: drop
 
   prometheusOperator:
     resources:
