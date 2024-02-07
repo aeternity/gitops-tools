@@ -150,14 +150,13 @@ kube-prometheus-stack:
     sidecar:
       resources:
         requests:
-          cpu: 20m
+          cpu: 60m
           memory: 100Mi
         limits:
-          cpu: 25m
+          cpu: 90m
           memory: 130Mi
       dashboards:
         enabled: true
-        watchMethod: SLEEP
         folderAnnotation: grafana-dashboard-dir
     grafana.ini:
       analytics:
