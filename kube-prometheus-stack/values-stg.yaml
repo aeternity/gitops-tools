@@ -4,8 +4,6 @@ app-secrets:
 
 kube-prometheus-stack:
   prometheus:
-    prometheusSpec:
-      additionalScrapeConfigs: []
     ingress:
       hosts:
         - "prometheus.stg.aeternity.io"
