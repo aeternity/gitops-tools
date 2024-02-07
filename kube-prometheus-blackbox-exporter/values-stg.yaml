@@ -6,10 +6,6 @@ prometheus-blackbox-exporter:
         url: https://argocd.stg.aeternity.io
         additionalMetricsRelabels:
           job: tools
-      - name: prometheus
-        url: https://prometheus.stg.aeternity.io
-        additionalMetricsRelabels:
-          job: tools
       - name: grafana
         url: https://grafana.stg.aeternity.io
         additionalMetricsRelabels:
