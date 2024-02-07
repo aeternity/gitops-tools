@@ -103,10 +103,10 @@ kube-prometheus-stack:
   prometheus-node-exporter:
     resources:
       requests:
-        cpu: 80m
+        cpu: 100m
         memory: 16Mi
       limits:
-        cpu: 120m
+        cpu: 150m
         memory: 24Mi
 
   prometheus:
@@ -150,10 +150,10 @@ kube-prometheus-stack:
     sidecar:
       resources:
         requests:
-          cpu: 50m
+          cpu: 60m
           memory: 100Mi
         limits:
-          cpu: 75m
+          cpu: 90m
           memory: 130Mi
       dashboards:
         enabled: true
