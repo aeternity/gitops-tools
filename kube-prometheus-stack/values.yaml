@@ -138,10 +138,10 @@ kube-prometheus-stack:
   grafana:
     resources:
       requests:
-        cpu: 200m
+        cpu: 300m
         memory: 128Mi
       limits:
-        cpu: 300m
+        cpu: 450m
         memory: 192Mi
     admin:
       existingSecret: kube-prometheus-stack-app-secrets
