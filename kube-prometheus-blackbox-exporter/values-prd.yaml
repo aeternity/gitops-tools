@@ -6,10 +6,6 @@ prometheus-blackbox-exporter:
         url: https://argocd.prd.aeternity.io
         additionalMetricsRelabels:
           job: tools
-      - name: prometheus
-        url: https://prometheus.prd.aeternity.io
-        additionalMetricsRelabels:
-          job: tools
       - name: grafana
         url: https://grafana.prd.aeternity.io
         additionalMetricsRelabels:
