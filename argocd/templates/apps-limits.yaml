@@ -5,6 +5,7 @@ metadata:
   namespace: apps
 spec:
   limits:
+    # defaults set to 1.5 ratio
   - default: # this section defines default limits
       cpu: 25m
       memory: 24Mi
@@ -17,7 +18,8 @@ spec:
     min:
       cpu: 10m
       memory: 10Mi
+    # this basically means overcommitment ratio
     maxLimitRequestRatio:
-      cpu: "1.5"
-      memory: "1.5"
+      cpu: {{ .Values.limits.apps.cpu }}
+      memory: {{ .Values.limits.apps.memory }}
     type: Container
