@@ -11,7 +11,7 @@ kube-prometheus-stack:
             - targets: ['51.20.2.29:9102']
         - job_name: sd_statsd_exporter
           ec2_sd_configs:
-            - region: eu-central-1
+            - region: eu-north-1
               port: 9102
               filters:
                 - name: tag:role
