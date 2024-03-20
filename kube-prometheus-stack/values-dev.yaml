@@ -5,7 +5,10 @@ app-secrets:
 kube-prometheus-stack:
   prometheus:
     prometheusSpec:
-      additionalScrapeConfigs: []
+      additionalScrapeConfigs:
+        - job_name: statsd_exporter
+          static_configs:
+            - targets: ['13.60.2.139:9102']
     ingress:
       hosts:
         - "prometheus.dev.aeternity.io"
