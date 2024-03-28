@@ -6,6 +6,39 @@ kube-prometheus-stack:
   prometheus:
     prometheusSpec:
       additionalScrapeConfigs:
+        - job_name: sd_node_exporter
+          ec2_sd_configs:
+            - region: eu-north-1
+              port: 9100
+              filters:
+                - name: tag:role
+                  values: [aenode]
+                - name: tag:env
+                  values: [dev1]
+          relabel_configs:
+            - source_labels: [__meta_ec2_public_ip]
+              replacement: '${1}:9100'
+              target_label: __address__
+            - source_labels: [__meta_ec2_instance_id]
+              target_label: instance
+            - source_labels: [__meta_ec2_public_ip]
+              target_label: public_ip
+            - source_labels: [__meta_ec2_instance_type]
+              target_label: instance_type
+            - source_labels: [__meta_ec2_instance_lifecycle]
+              target_label: lifecycle
+            - source_labels: [__meta_ec2_ami]
+              target_label: ami
+            - source_labels: [__meta_ec2_region]
+              target_label: region
+            - source_labels: [__meta_ec2_tag_role]
+              target_label: role
+            - source_labels: [__meta_ec2_tag_env]
+              target_label: env
+            - source_labels: [__meta_ec2_tag_kind]
+              target_label: kind
+            - source_labels: [__meta_ec2_tag_Name]
+              target_label: name
         - job_name: sd_statsd_exporter
           ec2_sd_configs:
             - region: eu-north-1
