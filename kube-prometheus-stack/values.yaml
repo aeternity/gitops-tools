@@ -281,8 +281,66 @@ kube-prometheus-stack:
       kubeControllerManager: false
 
   additionalPrometheusRulesMap:
+
   - name: blackbox
     groups:
+    - name: sd-node-exporter.rules
+      rules:
+      - expr: |
+          count without (cpu) (
+            count without (mode) (
+              node_cpu_seconds_total{job="sd_node_exporter"}
+            )
+          )
+        record: instance:node_num_cpu:sum
+      - expr: |
+          1 - avg without (cpu, mode) (
+            rate(node_cpu_seconds_total{job="sd_node_exporter", mode="idle"}[1m])
+          )
+        record: instance:node_cpu_utilisation:rate1m
+      - expr: |
+          (
+            node_load1{job="sd_node_exporter"}
+          /
+            instance:node_num_cpu:sum{job="sd_node_exporter"}
+          )
+        record: instance:node_load1_per_cpu:ratio
+      - expr: |
+          1 - (
+            node_memory_MemAvailable_bytes{job="sd_node_exporter"}
+          /
+            node_memory_MemTotal_bytes{job="sd_node_exporter"}
+          )
+        record: instance:node_memory_utilisation:ratio
+      - expr: |
+          rate(node_vmstat_pgmajfault{job="sd_node_exporter"}[1m])
+        record: instance:node_vmstat_pgmajfault:rate1m
+      - expr: |
+          rate(node_disk_io_time_seconds_total{job="sd_node_exporter", device!=""}[1m])
+        record: instance_device:node_disk_io_time_seconds:rate1m
+      - expr: |
+          rate(node_disk_io_time_weighted_seconds_total{job="sd_node_exporter", device!=""}[1m])
+        record: instance_device:node_disk_io_time_weighted_seconds:rate1m
+      - expr: |
+          sum without (device) (
+            rate(node_network_receive_bytes_total{job="sd_node_exporter", device!="lo"}[1m])
+          )
+        record: instance:node_network_receive_bytes_excluding_lo:rate1m
+      - expr: |
+          sum without (device) (
+            rate(node_network_transmit_bytes_total{job="sd_node_exporter", device!="lo"}[1m])
+          )
+        record: instance:node_network_transmit_bytes_excluding_lo:rate1m
+      - expr: |
+          sum without (device) (
+            rate(node_network_receive_drop_total{job="sd_node_exporter", device!="lo"}[1m])
+          )
+        record: instance:node_network_receive_drop_excluding_lo:rate1m
+      - expr: |
+          sum without (device) (
+            rate(node_network_transmit_drop_total{job="sd_node_exporter", device!="lo"}[1m])
+          )
+        record: instance:node_network_transmit_drop_excluding_lo:rate1m
     - name: blackbox
       rules:
         - alert: BlackboxProbeHttpFailure
