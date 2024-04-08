@@ -198,6 +198,14 @@ kube-prometheus-stack:
          editable: true
          options:
            path: /var/lib/grafana/dashboards/tools
+       - name: 'aeternity'
+         orgId: 1
+         folder: 'Aeternity'
+         type: file
+         disableDeletion: true
+         editable: true
+         options:
+           path: /var/lib/grafana/dashboards/aeternity
     dashboards:
       tools:
         traefik2:
@@ -228,6 +236,15 @@ kube-prometheus-stack:
           gnetId: 14588
           revision: 5
           datasource: Prometheus
+      aeternity:
+        node-exporter-node:
+          file: dashboards/aeternity/node-exporter-node.json
+        node-exporter-group:
+          file: dashboards/aeternity/node-exporter-group.json
+        blockchain:
+          file: dashboards/aeternity/blockchain.json
+        protocol:
+          file: dashboards/aeternity/protocol.json
     extraSecretMounts:
     - name: secrets-mount
       secretName: kube-prometheus-stack-app-secrets
