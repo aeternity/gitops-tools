@@ -206,14 +206,14 @@ kube-prometheus-stack:
          editable: true
          options:
            path: /var/lib/grafana/dashboards/tools
-       - name: 'aeternity'
-         orgId: 1
-         folder: 'Aeternity'
-         type: file
-         disableDeletion: true
-         editable: true
-         options:
-           path: /var/lib/grafana/dashboards/aeternity
+       # - name: 'aeternity'
+       #   orgId: 1
+       #   folder: 'Aeternity'
+       #   type: file
+       #   disableDeletion: true
+       #   editable: true
+       #   options:
+       #     path: /var/lib/grafana/dashboards/aeternity
     dashboards:
       tools:
         traefik2:
