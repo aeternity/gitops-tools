@@ -1,14 +1,21 @@
 {{- $files := .Files }}
 {{- $release := .Release }}
-{{ range $path, $bytes := .Files.Glob "dashboards/**" }}
+{{- range $provider, $dashboards := .Values.grafanaDashboards }}
 ---
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: grafana-dashboard-{{ base $path }}-configmap
+  name: grafana-dashboards-{{ $provider }}
   labels:
     grafana_dashboard: "1"
+    dashboard-provider: {{ $provider }}
+{{- if $dashboards }}
 data:
-  {{base $path}}: |-
-{{ $files.Get $path | indent 4 }}
+{{- range $value := $dashboards }}
+  {{- print (base $value) | nindent 2 }}:
+    {{- toYaml ( $files.Get $value ) | nindent 4}}
+{{- end }}
+---
+{{- end }}
+
 {{- end }}

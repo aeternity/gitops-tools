@@ -7,6 +7,12 @@ app-secrets:
       GRAFANA_ADMIN_PASSWORD: /monitoring/GRAFANA_ADMIN_PASSWORD
       SLACK_HOOK_URL: /monitoring/SLACK_HOOK_URL
 
+grafanaDashboards:
+  aeternity:
+    - dashboards/aeternity/aeternity-node-exporter-node.json
+    - dashboards/aeternity/aeternity-node-exporter-group.json
+    - dashboards/aeternity/aeternity-blockchain.json
+    - dashboards/aeternity/aeternity-protocol.json
 
 kube-prometheus-stack:
   ## Disable scrapping unused metrics: https://medium.com/gumgum-tech/how-to-reduce-your-prometheus-cost-6c7cc685e347
