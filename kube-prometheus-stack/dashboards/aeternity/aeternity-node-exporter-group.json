@@ -1180,7 +1180,7 @@
         "current": {},
         "datasource": {
           "type": "prometheus",
-          "uid": "${DS_PROMETHEUS}"
+          "uid": "prometheus"
         },
         "definition": "label_values(up{job=\"$job\"},region)",
         "hide": 0,
