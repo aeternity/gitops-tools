@@ -195,8 +195,8 @@ kube-prometheus-stack:
       pathType: ImplementationSpecific
     plugins:
       - grafana-piechart-panel
-    # dashboardsConfigMaps:
-    #   aeternity: grafana-dashboards-aeternity
+    dashboardsConfigMaps:
+      aeternity: grafana-dashboards-aeternity
     dashboardProviders:
      dashboardproviders.yaml:
        apiVersion: 1
