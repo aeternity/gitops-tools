@@ -8,6 +8,7 @@ metadata:
   name: grafana-dashboards-{{ $provider }}
   labels:
     grafana_dashboard: "1"
+    # grafana-dashboard-folder: "{{ $provider }}"
 {{- if $dashboards }}
 data:
 {{- range $value := $dashboards }}

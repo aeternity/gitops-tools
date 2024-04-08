@@ -163,7 +163,10 @@ kube-prometheus-stack:
           memory: 130Mi
       dashboards:
         enabled: true
-        folderAnnotation: grafana-dashboard-dir
+        folderAnnotation: grafana-dashboard-folder
+        # defaultFolderName: General
+        provider:
+          foldersFromFilesStrcuture: true
     grafana.ini:
       analytics:
         reporting_enabled: false
