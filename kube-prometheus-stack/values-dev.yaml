@@ -14,7 +14,7 @@ kube-prometheus-stack:
                 - name: tag:role
                   values: [aenode]
                 - name: tag:env
-                  values: [dev1]
+                  values: [dev1, integration]
           relabel_configs:
             - source_labels: [__meta_ec2_public_ip]
               replacement: '${1}:9100'
