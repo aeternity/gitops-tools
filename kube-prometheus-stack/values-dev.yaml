@@ -15,6 +15,34 @@ kube-prometheus-stack:
                   values: [aenode]
                 - name: tag:env
                   values: [dev1, integration, uat, uat_mon, api_uat, uat_backup, main, main_mon, main_backup]
+            - region: eu-central-1
+              port: 9100
+              filters:
+                - name: tag:role
+                  values: [aenode]
+                - name: tag:env
+                  values: [dev1, integration, uat, uat_mon, api_uat, uat_backup, main, main_mon, main_backup]
+            - region: us-west-2
+              port: 9100
+              filters:
+                - name: tag:role
+                  values: [aenode]
+                - name: tag:env
+                  values: [dev1, integration, uat, uat_mon, api_uat, uat_backup, main, main_mon, main_backup]
+            - region: us-east-2
+              port: 9100
+              filters:
+                - name: tag:role
+                  values: [aenode]
+                - name: tag:env
+                  values: [dev1, integration, uat, uat_mon, api_uat, uat_backup, main, main_mon, main_backup]
+            - region: ap-southeast-1
+              port: 9100
+              filters:
+                - name: tag:role
+                  values: [aenode]
+                - name: tag:env
+                  values: [dev1, integration, uat, uat_mon, api_uat, uat_backup, main, main_mon, main_backup]
           relabel_configs:
             - source_labels: [__meta_ec2_public_ip]
               replacement: '${1}:9100'
@@ -42,6 +70,34 @@ kube-prometheus-stack:
         - job_name: sd_statsd_exporter
           ec2_sd_configs:
             - region: eu-north-1
+              port: 9102
+              filters:
+                - name: tag:role
+                  values: [aenode]
+                - name: tag:env
+                  values: [dev1, integration, uat, uat_mon, api_uat, uat_backup, main, main_mon, main_backup]
+            - region: eu-central-1
+              port: 9102
+              filters:
+                - name: tag:role
+                  values: [aenode]
+                - name: tag:env
+                  values: [dev1, integration, uat, uat_mon, api_uat, uat_backup, main, main_mon, main_backup]
+            - region: us-west-2
+              port: 9102
+              filters:
+                - name: tag:role
+                  values: [aenode]
+                - name: tag:env
+                  values: [dev1, integration, uat, uat_mon, api_uat, uat_backup, main, main_mon, main_backup]
+            - region: us-east-2
+              port: 9102
+              filters:
+                - name: tag:role
+                  values: [aenode]
+                - name: tag:env
+                  values: [dev1, integration, uat, uat_mon, api_uat, uat_backup, main, main_mon, main_backup]
+            - region: ap-southeast-1
               port: 9102
               filters:
                 - name: tag:role
