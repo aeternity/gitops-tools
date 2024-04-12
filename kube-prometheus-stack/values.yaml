@@ -9,6 +9,7 @@ app-secrets:
 
 grafanaDashboards:
   aeternity:
+    - dashboards/aeternity/aeternity-instances.json
     - dashboards/aeternity/aeternity-node-exporter-node.json
     - dashboards/aeternity/aeternity-node-exporter-group.json
     - dashboards/aeternity/aeternity-blockchain.json
