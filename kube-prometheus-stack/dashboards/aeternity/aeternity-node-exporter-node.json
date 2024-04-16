@@ -20,7 +20,6 @@
   "fiscalYearStartMonth": 0,
   "gnetId": 13977,
   "graphTooltip": 0,
-  "id": 12,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -1137,8 +1136,8 @@
       {
         "current": {
           "selected": false,
-          "text": "No data sources found",
-          "value": ""
+          "text": "Prometheus",
+          "value": "Prometheus"
         },
         "hide": 0,
         "includeAll": false,
@@ -1146,6 +1145,7 @@
         "name": "datasource",
         "options": [],
         "query": "prometheus",
+        "queryValue": "",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -1154,17 +1154,71 @@
       {
         "hide": 2,
         "name": "job",
-        "query": "${VAR_JOB}",
+        "query": "sd_node_exporter",
         "skipUrlSync": false,
         "type": "constant"
       },
       {
-        "current": {},
+        "current": {
+          "selected": true,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
+        "definition": "label_values(up{job=\"$job\"},env)",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Environment",
+        "multi": true,
+        "name": "env",
+        "options": [],
+        "query": {
+          "query": "label_values(up{job=\"$job\"},env)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 2,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 5,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "All",
+          "value": "$__all"
+        },
+        "definition": "label_values(up{job=\"$job\"},region)",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Region",
+        "multi": true,
+        "name": "region",
+        "options": [],
+        "query": {
+          "query": "label_values(up{job=\"$job\"},region)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 2,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 5,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "i-0e571519dcfa22fc6",
+          "value": "i-0e571519dcfa22fc6"
+        },
         "datasource": {
           "type": "prometheus",
           "uid": "$datasource"
         },
-        "definition": "label_values(up{job=\"$job\"},instance)",
+        "definition": "label_values(up{job=\"$job\", env=~\"$env\", region=~\"$region\"},instance)",
         "hide": 0,
         "includeAll": false,
         "label": "instance",
@@ -1172,7 +1226,7 @@
         "name": "instance",
         "options": [],
         "query": {
-          "query": "label_values(up{job=\"$job\"},instance)",
+          "query": "label_values(up{job=\"$job\", env=~\"$env\", region=~\"$region\"},instance)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
@@ -1187,7 +1241,7 @@
     ]
   },
   "time": {
-    "from": "now-1h",
+    "from": "now-24h",
     "to": "now"
   },
   "timepicker": {

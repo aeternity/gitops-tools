@@ -18,7 +18,6 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 40,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -632,13 +631,13 @@
     ]
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-24h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Aeternity / Erlang",
   "uid": "dd1001ff-7c3a-4e56-bbe1-1a98f8e51c7b",
-  "version": 4,
+  "version": 5,
   "weekStart": ""
 }

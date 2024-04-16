@@ -18,7 +18,6 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 10,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -92,7 +91,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "max by (env) (aecore_chain_height)",
+          "expr": "max by (env) (aecore_chain_height{job=\"$job\", env=\"$env\"})",
           "format": "table",
           "instant": true,
           "legendFormat": "__auto",
@@ -160,7 +159,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "max by (env) (aecore_chain_total_difficulty)",
+          "expr": "max by (env) (aecore_chain_total_difficulty{job=\"$job\", env=\"$env\"})",
           "format": "table",
           "instant": true,
           "legendFormat": "__auto",
@@ -228,7 +227,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "max by (env) (aecore_txpool_size)",
+          "expr": "max by (env) (aecore_txpool_size{job=\"$job\", env=\"$env\"})",
           "format": "heatmap",
           "instant": false,
           "legendFormat": "__auto",
@@ -296,7 +295,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "max by (env) (aecore_peers_bucket{bucket=\"verified\"})",
+          "expr": "max by (env) (aecore_peers_bucket{job=\"$job\", env=\"$env\", bucket=\"verified\"})",
           "format": "heatmap",
           "instant": false,
           "legendFormat": "__auto",
@@ -403,7 +402,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "max by (env) (aecore_chain_height)",
+          "expr": "max by (env) (aecore_chain_height{job=\"$job\", env=~\"$env\"})",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -497,7 +496,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "max by (env) (aecore_chain_total_difficulty)",
+          "expr": "max by (env) (aecore_chain_total_difficulty{job=\"$job\", env=~\"$env\"})",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -573,13 +572,15 @@
       "id": 3,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
+          "calcs": [
+            "lastNotNull"
+          ],
+          "displayMode": "table",
+          "placement": "right",
           "showLegend": true
         },
         "tooltip": {
-          "mode": "single",
+          "mode": "multi",
           "sort": "none"
         }
       },
@@ -590,7 +591,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "max by (instance) (aecore_sync_progress)",
+          "expr": "max by (instance) (aecore_sync_progress{job=\"$job\", env=\"$env\"})",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -661,7 +662,8 @@
                 "value": null
               }
             ]
-          }
+          },
+          "unit": "TPS"
         },
         "overrides": [
           {
@@ -752,13 +754,13 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "avg by (env, status) (aecore_txpool_push_total)",
+          "expr": "avg by (status) (rate(aecore_txpool_push_total{job=\"$job\", env=~\"$env\"}[$__rate_interval]))",
           "legendFormat": "{{status}}",
           "range": true,
           "refId": "A"
         }
       ],
-      "title": "Transaction Status",
+      "title": "Transactions",
       "type": "timeseries"
     },
     {
@@ -901,8 +903,8 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "avg by (env) (aecore_txpool_size)",
-          "legendFormat": "{{status}}",
+          "expr": "avg by (env) (aecore_txpool_size{job=\"$job\", env=\"$env\"})",
+          "legendFormat": "transactions",
           "range": true,
           "refId": "A"
         }
@@ -927,7 +929,7 @@
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
-            "fillOpacity": 0,
+            "fillOpacity": 60,
             "gradientMode": "none",
             "hideFrom": {
               "legend": false,
@@ -944,7 +946,7 @@
             "spanNulls": false,
             "stacking": {
               "group": "A",
-              "mode": "none"
+              "mode": "normal"
             },
             "thresholdsStyle": {
               "mode": "off"
@@ -955,10 +957,12 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
-          }
+          },
+          "unit": "TPS"
         },
         "overrides": [
           {
@@ -1038,7 +1042,7 @@
           "showLegend": true
         },
         "tooltip": {
-          "mode": "single",
+          "mode": "multi",
           "sort": "none"
         }
       },
@@ -1049,7 +1053,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "avg by (env, bucket) (aecore_txpool_gc_total)",
+          "expr": "avg by (bucket) (rate(aecore_txpool_gc_total{job=\"$job\", env=~\"$env\"}[$__rate_interval]))",
           "legendFormat": "{{bucket}}",
           "range": true,
           "refId": "A"
@@ -1116,7 +1120,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           }
@@ -1270,7 +1275,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "avg by (env, bucket) (aecore_peers_bucket)",
+          "expr": "avg by (bucket) (aecore_peers_bucket{job=\"$job\", env=~\"$env\"})",
           "legendFormat": "{{bucket}}",
           "range": true,
           "refId": "A"
@@ -1296,7 +1301,7 @@
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
-            "fillOpacity": 0,
+            "fillOpacity": 60,
             "gradientMode": "none",
             "hideFrom": {
               "legend": false,
@@ -1304,6 +1309,9 @@
               "viz": false
             },
             "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
             "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
@@ -1313,7 +1321,7 @@
             "spanNulls": false,
             "stacking": {
               "group": "A",
-              "mode": "none"
+              "mode": "normal"
             },
             "thresholdsStyle": {
               "mode": "off"
@@ -1324,7 +1332,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           }
@@ -1467,7 +1476,7 @@
           "showLegend": true
         },
         "tooltip": {
-          "mode": "single",
+          "mode": "multi",
           "sort": "none"
         }
       },
@@ -1478,10 +1487,22 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "avg by (env, direction) (aecore_peers_connection)",
+          "expr": "avg by (direction) (aecore_peers_connection{job=\"$job\", env=~\"$env\", direction=\"inbound\"})",
           "legendFormat": "{{direction}}",
           "range": true,
           "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "avg by (direction) (aecore_peers_connection{job=\"$job\", env=~\"$env\", direction=\"outbound\"})",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "B"
         }
       ],
       "title": "Connections",
@@ -1532,10 +1553,12 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
-          }
+          },
+          "unit": "pps"
         },
         "overrides": [
           {
@@ -1701,7 +1724,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "avg by (env, status) (aecore_peers_ping)",
+          "expr": "avg by (status) (rate(aecore_peers_ping{job=\"$job\", env=\"$env\"}[$__rate_interval]))",
           "legendFormat": "{{status}}",
           "range": true,
           "refId": "A"
@@ -1768,7 +1791,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           }
@@ -1967,7 +1991,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "avg by (env) (rate(aecore_mining_retries_total[$__rate_interval]) * 60)",
+          "expr": "avg by (env) (rate(aecore_mining_retries_total{job=\"$job\", env=\"$env\"}[$__rate_interval]) * 60)",
           "legendFormat": "retries",
           "range": true,
           "refId": "A"
@@ -1978,7 +2002,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "avg by (env) (rate(aecore_mining_blocks_total[$__rate_interval]) * 60)",
+          "expr": "avg by (env) (rate(aecore_mining_blocks_total{job=\"$job\", env=\"$env\"}[$__rate_interval]) * 60)",
           "hide": false,
           "legendFormat": "blocks",
           "range": true,
@@ -1996,17 +2020,19 @@
   "templating": {
     "list": [
       {
+        "hide": 2,
+        "name": "job",
+        "query": "sd_statsd_exporter",
+        "skipUrlSync": false,
+        "type": "constant"
+      },
+      {
         "current": {
-          "isNone": true,
           "selected": false,
-          "text": "None",
-          "value": ""
+          "text": "uat",
+          "value": "uat"
         },
-        "datasource": {
-          "type": "datasource",
-          "uid": "grafana"
-        },
-        "definition": "label_values(aecore_chain_height,env)",
+        "definition": "label_values(up{job=\"$job\"},env)",
         "hide": 0,
         "includeAll": false,
         "label": "Environment",
@@ -2014,19 +2040,19 @@
         "name": "env",
         "options": [],
         "query": {
-          "query": "label_values(aecore_chain_height,env)",
+          "query": "label_values(up{job=\"$job\"},env)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
-        "refresh": 1,
+        "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 0,
+        "sort": 5,
         "type": "query"
       }
     ]
   },
   "time": {
-    "from": "now-12h",
+    "from": "now-24h",
     "to": "now"
   },
   "timepicker": {},

@@ -20,7 +20,6 @@
   "fiscalYearStartMonth": 0,
   "gnetId": 13971,
   "graphTooltip": 0,
-  "id": 11,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -137,7 +136,7 @@
             "uid": "$datasource"
           },
           "editorMode": "code",
-          "expr": "(\n  instance:node_cpu_utilisation:rate1m{job=\"$job\"}\n*\n  instance:node_num_cpu:sum{job=\"$job\"}\n)\n/ scalar(sum(instance:node_num_cpu:sum{job=\"$job\"}))\n",
+          "expr": "(\n  instance:node_cpu_utilisation:rate1m{job=\"$job\", region=~\"$region\", env=~\"$env\"}\n*\n  instance:node_num_cpu:sum{job=\"$job\", region=~\"$region\", env=~\"$env\"}\n)\n/ scalar(sum(instance:node_num_cpu:sum{job=\"$job\", region=~\"$region\", env=~\"$env\"}))\n",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{instance}}",
@@ -237,7 +236,7 @@
             "uid": "$datasource"
           },
           "editorMode": "code",
-          "expr": "instance:node_load1_per_cpu:ratio{job=\"$job\"}\n/ scalar(count(instance:node_load1_per_cpu:ratio{job=\"$job\"}))\n",
+          "expr": "instance:node_load1_per_cpu:ratio{job=\"$job\", region=~\"$region\", env=~\"$env\"}\n/ scalar(count(instance:node_load1_per_cpu:ratio{job=\"$job\", region=~\"$region\", env=~\"$env\"}))\n",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{instance}}",
@@ -363,7 +362,7 @@
             "uid": "$datasource"
           },
           "editorMode": "code",
-          "expr": "instance:node_memory_utilisation:ratio{job=\"$job\"}\n/ scalar(count(instance:node_memory_utilisation:ratio{job=\"$job\"}))\n",
+          "expr": "instance:node_memory_utilisation:ratio{job=\"$job\", region=~\"$region\", env=~\"$env\"}\n/ scalar(count(instance:node_memory_utilisation:ratio{job=\"$job\", region=~\"$region\", env=~\"$env\"}))\n",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{instance}}",
@@ -462,7 +461,7 @@
             "uid": "$datasource"
           },
           "editorMode": "code",
-          "expr": "instance:node_vmstat_pgmajfault:rate1m{job=\"$job\"}",
+          "expr": "instance:node_vmstat_pgmajfault:rate1m{job=\"$job\", region=~\"$region\", env=~\"$env\"}",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{instance}}",
@@ -621,7 +620,7 @@
             "uid": "$datasource"
           },
           "editorMode": "code",
-          "expr": "instance:node_network_receive_bytes_excluding_lo:rate1m{job=\"$job\"}",
+          "expr": "instance:node_network_receive_bytes_excluding_lo:rate1m{job=\"$job\", region=~\"$region\", env=~\"$env\"}",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{instance}} Receive",
@@ -635,7 +634,7 @@
             "uid": "$datasource"
           },
           "editorMode": "code",
-          "expr": "instance:node_network_transmit_bytes_excluding_lo:rate1m{job=\"$job\"}",
+          "expr": "instance:node_network_transmit_bytes_excluding_lo:rate1m{job=\"$job\", region=~\"$region\", env=~\"$env\"}",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{instance}} Transmit",
@@ -768,7 +767,7 @@
             "uid": "$datasource"
           },
           "editorMode": "code",
-          "expr": "instance:node_network_receive_drop_excluding_lo:rate1m{job=\"$job\"}",
+          "expr": "instance:node_network_receive_drop_excluding_lo:rate1m{job=\"$job\", region=~\"$region\", env=~\"$env\"}",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{instance}} Receive",
@@ -782,7 +781,7 @@
             "uid": "$datasource"
           },
           "editorMode": "code",
-          "expr": "instance:node_network_transmit_drop_excluding_lo:rate1m{job=\"$job\"}",
+          "expr": "instance:node_network_transmit_drop_excluding_lo:rate1m{job=\"$job\", region=~\"$region\", env=~\"$env\"}",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{instance}} Transmit",
@@ -868,7 +867,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -907,7 +907,7 @@
             "uid": "$datasource"
           },
           "editorMode": "code",
-          "expr": "instance_device:node_disk_io_time_seconds:rate1m{job=\"$job\"}\n/ scalar(count(instance_device:node_disk_io_time_seconds:rate1m{job=\"$job\"}))\n",
+          "expr": "instance_device:node_disk_io_time_seconds:rate1m{job=\"$job\", region=~\"$region\", env=~\"$env\"}\n/ scalar(count(instance_device:node_disk_io_time_seconds:rate1m{job=\"$job\", region=~\"$region\", env=~\"$env\"}))\n",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{instance}} {{device}}",
@@ -967,7 +967,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1006,7 +1007,7 @@
             "uid": "$datasource"
           },
           "editorMode": "code",
-          "expr": "instance_device:node_disk_io_time_weighted_seconds:rate1m{job=\"$job\"}\n/ scalar(count(instance_device:node_disk_io_time_weighted_seconds:rate1m{job=\"$job\"}))\n",
+          "expr": "instance_device:node_disk_io_time_weighted_seconds:rate1m{job=\"$job\", region=~\"$region\", env=~\"$env\"}\n/ scalar(count(instance_device:node_disk_io_time_weighted_seconds:rate1m{job=\"$job\", region=~\"$region\", env=~\"$env\"}))\n",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{instance}} {{device}}",
@@ -1092,7 +1093,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1131,7 +1133,7 @@
             "uid": "$datasource"
           },
           "editorMode": "code",
-          "expr": "sum without (device) (\n  max without (fstype, mountpoint) (\n    node_filesystem_size_bytes{job=\"$job\", fstype!=\"\"} - node_filesystem_avail_bytes{job=\"$job\", fstype!=\"\"}\n  )\n) \n/ scalar(sum(max without (fstype, mountpoint) (node_filesystem_size_bytes{job=\"$job\", fstype!=\"\"})))\n",
+          "expr": "sum without (device) (\n  max without (fstype, mountpoint) (\n    node_filesystem_size_bytes{job=\"$job\", region=~\"$region\", env=~\"$env\", fstype!=\"\"} - node_filesystem_avail_bytes{job=\"$job\", region=~\"$region\", env=~\"$env\", fstype!=\"\"}\n  )\n) \n/ scalar(sum(max without (fstype, mountpoint) (node_filesystem_size_bytes{job=\"$job\", region=~\"$region\", env=~\"$env\", fstype!=\"\"})))\n",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{instance}}",
@@ -1154,8 +1156,8 @@
       {
         "current": {
           "selected": false,
-          "text": "No data sources found",
-          "value": ""
+          "text": "Prometheus",
+          "value": "Prometheus"
         },
         "hide": 0,
         "includeAll": false,
@@ -1171,13 +1173,21 @@
       {
         "hide": 2,
         "name": "job",
-        "query": "${VAR_JOB}",
+        "query": "sd_node_exporter",
         "skipUrlSync": false,
         "type": "constant"
       },
       {
         "allValue": "",
-        "current": {},
+        "current": {
+          "selected": true,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
         "datasource": {
           "type": "prometheus",
           "uid": "prometheus"
@@ -1193,21 +1203,17 @@
           "query": "label_values(up{job=\"$job\"},region)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
-        "refresh": 1,
+        "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 0,
+        "sort": 5,
         "type": "query"
       },
       {
         "current": {
           "selected": false,
-          "text": "All",
-          "value": "$__all"
-        },
-        "datasource": {
-          "type": "datasource",
-          "uid": "grafana"
+          "text": "api_uat",
+          "value": "api_uat"
         },
         "definition": "label_values(up{job=\"$job\"},env)",
         "hide": 0,
@@ -1220,16 +1226,16 @@
           "query": "label_values(up{job=\"$job\"},env)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
-        "refresh": 1,
+        "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 0,
+        "sort": 5,
         "type": "query"
       }
     ]
   },
   "time": {
-    "from": "now-1h",
+    "from": "now-24h",
     "to": "now"
   },
   "timepicker": {
@@ -1257,7 +1263,7 @@
       "30d"
     ]
   },
-  "timezone": "utc",
+  "timezone": "",
   "title": "Aeternity / Node Exporter / USE Method / Group",
   "uid": "b8940af6-2c96-4fe3-9ccc-829df9742bc7",
   "version": 1,
