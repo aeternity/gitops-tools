@@ -14,6 +14,7 @@ grafanaDashboards:
     - dashboards/aeternity/aeternity-node-exporter-group.json
     - dashboards/aeternity/aeternity-blockchain.json
     - dashboards/aeternity/aeternity-protocol.json
+    - dashboards/aeternity/aeternity-erlang.json
 
 kube-prometheus-stack:
   ## Disable scrapping unused metrics: https://medium.com/gumgum-tech/how-to-reduce-your-prometheus-cost-6c7cc685e347
