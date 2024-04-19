@@ -37,18 +37,18 @@ spec:
           channel: '#monitoring'
           title: {{`"{{ template \"slack.ae.title\" . }}"`}}
           text: {{`"{{ template \"slack.ae.text\" . }}"`}}
-    {{ if .Values.alerts.plaformSlackChannel }}
+    {{- if .Values.alerts.platformSlackChannel }}
     - name: platform-slack
       slackConfigs:
         - sendResolved: true
           apiURL:
             name: kube-prometheus-stack-app-secrets
             key: {{ .Values.alerts.plaformSlackHookUrlKey }}
-          channel: {{ .Values.alerts.plaformSlackChannel }}
+          channel: {{ .Values.alerts.platformSlackChannel }}
           title: {{`"{{ template \"slack.ae.title\" . }}"`}}
           text: {{`"{{ template \"slack.ae.text\" . }}"`}}
-    {{ end }}
-    {{ if .Values.alerts.blockchainSlackChannel }}
+    {{- end }}
+    {{- if .Values.alerts.blockchainSlackChannel }}
     - name: blockchain-slack
       slackConfigs:
         - sendResolved: true
@@ -58,8 +58,8 @@ spec:
           channel: {{ .Values.alerts.blockchainSlackChannel }}
           title: {{`"{{ template \"slack.ae.title\" . }}"`}}
           text: {{`"{{ template \"slack.ae.text\" . }}"`}}
-    {{ end }}
-    {{ if .Values.alerts.appsSlackChannel }}
+    {{- end }}
+    {{- if .Values.alerts.appsSlackChannel }}
     - name: apps-slack
       slackConfigs:
         - sendResolved: true
@@ -69,4 +69,4 @@ spec:
           channel: {{ .Values.alerts.appsSlackChannel }}
           title: {{`"{{ template \"slack.ae.title\" . }}"`}}
           text: {{`"{{ template \"slack.ae.text\" . }}"`}}
-    {{ end }}
+    {{- end }}
