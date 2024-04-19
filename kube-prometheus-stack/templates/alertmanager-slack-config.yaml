@@ -14,6 +14,10 @@ spec:
     repeatInterval: 12h
     receiver: default-slack
     routes:
+      - receiver: apps-slack
+        matchers:
+          - service="kube-prometheus-blackbox-exporter"
+        groupBy: ['job']
       - receiver: platform-slack
         matchers:
           - namespace=~"kube-system|monitoring|tools|argocd"
