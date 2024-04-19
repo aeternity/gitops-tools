@@ -8,7 +8,7 @@ metadata:
   namespace: {{ .Release.Namespace }}
 spec:
   route:
-    groupBy: ['alertname', 'job']
+    groupBy: ['alertname']
     groupWait: 30s
     groupInterval: 5m
     repeatInterval: 12h
@@ -16,13 +16,13 @@ spec:
     routes:
       - receiver: platform-slack
         matchers:
-          - scope="platform"
+          - namespace=~"kube-system|monitoring|tools|argocd"
       - receiver: blockchain-slack
         matchers:
-          - scope="blockchain"
+          - namespace="aenodes"
       - receiver: apps-slack
         matchers:
-          - scope="apps"
+          - namespace="apps"
   receivers:
     - name: default-slack
       slackConfigs:

@@ -312,11 +312,7 @@ kube-prometheus-stack:
       kubeSchedulerAlerting: false
       kubeSchedulerRecording: false
       kubeControllerManager: false
-    ## Labels for default rules
-    labels:
-      scope: platform
-    ## Annotations for default rules
-    annotations: {}
+    additionalRuleLabels: {}
 
   additionalPrometheusRulesMap:
     - name: additional

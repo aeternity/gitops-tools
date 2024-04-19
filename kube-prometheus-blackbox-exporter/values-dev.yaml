@@ -7,14 +7,6 @@ prometheus-blackbox-exporter:
       - name: hyperchain
         url: https://hyperchain.dev.aepps.com
 
-      - name: fail-test-1
-        url: https://fail.test1.com
-
-      - name: fail-test-core
-        url: https://fail.test-core.com
-        additionalMetricsRelabels:
-          job: core-apps
-
       # Tools
       - name: argocd
         url: https://argocd.dev.aeternity.io
