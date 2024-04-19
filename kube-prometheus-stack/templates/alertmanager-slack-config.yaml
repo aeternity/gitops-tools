@@ -43,7 +43,7 @@ spec:
         - sendResolved: true
           apiURL:
             name: kube-prometheus-stack-app-secrets
-            key: {{ .Values.alerts.plaformSlackHookUrlKey }}
+            key: {{ .Values.alerts.platformSlackHookUrlKey }}
           channel: {{ .Values.alerts.platformSlackChannel }}
           title: {{`"{{ template \"slack.ae.title\" . }}"`}}
           text: {{`"{{ template \"slack.ae.text\" . }}"`}}
