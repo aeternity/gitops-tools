@@ -138,13 +138,14 @@ kube-prometheus-stack:
           memory: 1.8Gi
       serviceMonitorSelectorNilUsesHelmValues: false
       ruleSelectorNilUsesHelmValues: false
+      retention: 10d
       storageSpec:
         volumeClaimTemplate:
           spec:
             accessModes: ["ReadWriteOnce"]
             resources:
               requests:
-                storage: 5Gi
+                storage: 20Gi
     ingress:
       enabled: false
       annotations:
