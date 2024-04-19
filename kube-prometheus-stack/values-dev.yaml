@@ -2,6 +2,11 @@ app-secrets:
   external:
     remotePrefix: /k8s/dev-wgt7
 
+alerts:
+  platformSlackChannel: 'alerts-platform-dev'
+  blockchainSlackChannel: 'alerts-blockchain-dev'
+  appsSlackChannel: 'alerts-apps-dev'
+
 kube-prometheus-stack:
   prometheus:
     prometheusSpec:
