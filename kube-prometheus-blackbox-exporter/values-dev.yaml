@@ -1,12 +1,6 @@
 prometheus-blackbox-exporter:
   serviceMonitor:
     targets:
-      # Environment specific
-      - name: base-hc
-        url: https://base-hc.dev.aepps.com
-      - name: hyperchain
-        url: https://hyperchain.dev.aepps.com
-
       # Tools
       - name: argocd
         url: https://argocd.dev.aeternity.io
