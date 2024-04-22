@@ -33,3 +33,8 @@ cert-manager:
       requests:
         cpu: 10m
         memory: 164Mi
+
+  prometheus:
+    enabled: true
+    servicemonitor:
+      enabled: true
