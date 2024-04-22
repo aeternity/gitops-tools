@@ -14,19 +14,21 @@ spec:
     repeatInterval: 12h
     receiver: default-slack
     routes:
-      - receiver: apps-slack
-        matchers:
-          - service="kube-prometheus-blackbox-exporter"
+      - matchers:
+        - name: service
+          value: kube-prometheus-blackbox-exporter
+          matchType: "="
         groupBy: ['job']
-      - receiver: platform-slack
-        matchers:
-          - namespace=~"kube-system|monitoring|tools|argocd"
-      - receiver: blockchain-slack
-        matchers:
-          - namespace="aenodes"
-      - receiver: apps-slack
-        matchers:
-          - namespace="apps"
+        receiver: apps-slack
+      # - receiver: platform-slack
+      #   matchers:
+      #     - namespace=~"kube-system|monitoring|tools|argocd"
+      # - receiver: blockchain-slack
+      #   matchers:
+      #     - namespace="aenodes"
+      # - receiver: apps-slack
+      #   matchers:
+      #     - namespace="apps"
   receivers:
     - name: default-slack
       slackConfigs:
