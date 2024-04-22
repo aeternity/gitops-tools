@@ -20,15 +20,21 @@ spec:
           matchType: "="
         groupBy: ['job']
         receiver: apps-slack
-      # - receiver: platform-slack
-      #   matchers:
-      #     - namespace=~"kube-system|monitoring|tools|argocd"
-      # - receiver: blockchain-slack
-      #   matchers:
-      #     - namespace="aenodes"
-      # - receiver: apps-slack
-      #   matchers:
-      #     - namespace="apps"
+      - matchers:
+        - name: namespace
+          value: kube-system|monitoring|tools|argocd
+          matchType: "=~"
+        receiver: platform-slack
+      - matchers:
+        - name: namespace
+          value: aenodes
+          matchType: "="
+        receiver: blockchain-slack
+      - matchers:
+        - name: namespace
+          value: apps
+          matchType: "="
+        receiver: apps-slack
   receivers:
     - name: default-slack
       slackConfigs:
