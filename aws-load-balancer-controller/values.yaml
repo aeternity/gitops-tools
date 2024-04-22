@@ -14,3 +14,5 @@ aws-load-balancer-controller:
     create: true
   serviceAccount:
     create: true
+  serviceMonitor:
+    enabled: true
