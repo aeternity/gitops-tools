@@ -15,6 +15,11 @@ spec:
     receiver: default-slack
     routes:
       - matchers:
+        - name: alertname
+          value: InfoInhibitor
+          matchType: "="
+        receiver: 'null'
+      - matchers:
         - name: service
           value: kube-prometheus-blackbox-exporter
           matchType: "="
@@ -36,6 +41,7 @@ spec:
           matchType: "="
         receiver: apps-slack
   receivers:
+    - name: 'null'
     - name: default-slack
       slackConfigs:
         - sendResolved: true
