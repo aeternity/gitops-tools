@@ -20,7 +20,7 @@ spec:
           matchType: "="
         receiver: 'null'
       - matchers:
-        - name: service
+        - name: job
           value: kube-prometheus-blackbox-exporter
           matchType: "="
         groupBy: ['scope']
