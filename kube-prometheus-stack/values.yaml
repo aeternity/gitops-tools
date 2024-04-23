@@ -712,7 +712,7 @@ kube-prometheus-stack:
         rules:
           - alert: BlackboxProbeHttpFailure
             expr: probe_http_status_code <= 199 OR probe_http_status_code >= 400
-            for: 0m
+            for: 10m
             labels:
               severity: critical
             annotations:
