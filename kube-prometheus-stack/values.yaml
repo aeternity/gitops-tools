@@ -711,7 +711,7 @@ kube-prometheus-stack:
       - name: blackbox
         rules:
           - alert: BlackboxProbeFailing
-            expr: up{job="blackbox"} == 0 or probe_success{job="blackbox"} == 0
+            expr: up{job="kube-prometheus-blackbox-exporter"} == 0 or probe_success{job="kube-prometheus-blackbox-exporter"} == 0
             for: 10m
             labels:
               severity: critical
