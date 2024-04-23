@@ -710,8 +710,8 @@ kube-prometheus-stack:
             description: "{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 10 minutes."
       - name: blackbox
         rules:
-          - alert: BlackboxProbeHttpFailure
-            expr: probe_http_status_code <= 199 OR probe_http_status_code >= 400
+          - alert: BlackboxProbeFailing
+            expr: up{job="blackbox"} == 0 or probe_success{job="blackbox"} == 0
             for: 10m
             labels:
               severity: critical
