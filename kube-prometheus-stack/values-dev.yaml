@@ -80,28 +80,28 @@ kube-prometheus-stack:
                 - name: tag:role
                   values: [aenode]
                 - name: tag:env
-                  values: [dev1, integration, uat, uat_mon, api_uat, uat_backup, main, main_mon, main_backup]
+                  values: [dev1, integration, next, uat, uat_mon, api_uat, uat_backup, main, main_mon, main_backup]
             - region: eu-central-1
               port: 9102
               filters:
                 - name: tag:role
                   values: [aenode]
                 - name: tag:env
-                  values: [dev1, integration, uat, uat_mon, api_uat, uat_backup, main, main_mon, main_backup]
+                  values: [dev1, integration, next, uat, uat_mon, api_uat, uat_backup, main, main_mon, main_backup]
             - region: us-west-2
               port: 9102
               filters:
                 - name: tag:role
                   values: [aenode]
                 - name: tag:env
-                  values: [dev1, integration, uat, uat_mon, api_uat, uat_backup, main, main_mon, main_backup]
+                  values: [dev1, integration, next, uat, uat_mon, api_uat, uat_backup, main, main_mon, main_backup]
             - region: us-east-2
               port: 9102
               filters:
                 - name: tag:role
                   values: [aenode]
                 - name: tag:env
-                  values: [dev1, integration, uat, uat_mon, api_uat, uat_backup, main, main_mon, main_backup]
+                  values: [dev1, integration, next, uat, uat_mon, api_uat, uat_backup, main, main_mon, main_backup]
             - region: ap-southeast-1
               port: 9102
               filters:
