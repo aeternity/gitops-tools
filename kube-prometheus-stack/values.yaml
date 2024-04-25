@@ -690,7 +690,7 @@ kube-prometheus-stack:
           for: 5m
           labels:
             severity: warning
-      - name: aenode-alerts
+      - name: aenode-instance-alerts
         rules:
         - alert: InstanceDown
           expr: up{job="sd_node_exporter"} == 0
@@ -708,6 +708,56 @@ kube-prometheus-stack:
           annotations:
             summary: "[{{ $labels.env }}] Aeternity node {{ $labels.public_ip }} is down."
             description: "{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 10 minutes."
+        - alert: AeMonDownTestnet
+          expr: absent(up{job="sd_statsd_exporter", env="uat_mon"})
+          for: 10m
+          labels:
+            severity: critical
+          annotations:
+            summary: "[{{ $labels.env }}] Aeternity Testnet monitor is down."
+            description: "{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 10 minutes."
+        - alert: AeMonDownMainnet
+          expr: absent(up{job="sd_statsd_exporter", env="main_mon"})
+          for: 10m
+          labels:
+            severity: critical
+          annotations:
+            summary: "[{{ $labels.env }}] Aeternity Mainnet monitor is down."
+            description: "{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 10 minutes."
+      - name: aenode-p2p-alerts
+        rules:
+        - alert: AeNodeOutOfSync
+          expr: aecore_sync_progress < 100
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "[{{ $labels.env }}] Aeternity node {{ $labels.public_ip }} is out of sync."
+            description: "{{ $labels.instance }} of job {{ $labels.job }} has been out of sync for more than 10 minutes."
+        - alert: AeNodeNoOutboundConnections
+          expr: aecore_peers_connection{direction="outbound", env!~"dev1"} == 0
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "[{{ $labels.env }}] Aeternity node {{ $labels.public_ip }} have no outbound connections."
+            description: "{{ $labels.instance }} of job {{ $labels.job }} have no outbound connections for more than 10 minutes."
+        - alert: AeNodeNoInboundConnections
+          expr: aecore_peers_connection{direction="inbound", env!~"dev1"} == 0
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "[{{ $labels.env }}] Aeternity node {{ $labels.public_ip }} have no inbound connections."
+            description: "{{ $labels.instance }} of job {{ $labels.job }} have no inbound connections for more than 10 minutes."
+        - alert: AeNodeLowPingRate
+          expr: rate(aecore_peers_ping{status="success", env!~"dev1"}[5m]) == 0
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "[{{ $labels.env }}] Aeternity node {{ $labels.public_ip }} low ping rate."
+            description: "{{ $labels.instance }} of job {{ $labels.job }} have low ping rate for more than 10 minutes."
       - name: blackbox
         rules:
           - alert: BlackboxProbeFailing
