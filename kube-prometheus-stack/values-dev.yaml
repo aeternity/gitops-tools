@@ -19,35 +19,35 @@ kube-prometheus-stack:
                 - name: tag:role
                   values: [aenode]
                 - name: tag:env
-                  values: [dev1, integration, uat, uat_mon, api_uat, uat_backup, main, main_mon, main_backup, api_main]
+                  values: [dev1, integration, next, uat, uat_mon, api_uat, uat_backup, main, main_mon, main_backup, api_main]
             - region: eu-central-1
               port: 9100
               filters:
                 - name: tag:role
                   values: [aenode]
                 - name: tag:env
-                  values: [dev1, integration, uat, uat_mon, api_uat, uat_backup, main, main_mon, main_backup, api_main]
+                  values: [dev1, integration, next, uat, uat_mon, api_uat, uat_backup, main, main_mon, main_backup, api_main]
             - region: us-west-2
               port: 9100
               filters:
                 - name: tag:role
                   values: [aenode]
                 - name: tag:env
-                  values: [dev1, integration, uat, uat_mon, api_uat, uat_backup, main, main_mon, main_backup, api_main]
+                  values: [dev1, integration, next, uat, uat_mon, api_uat, uat_backup, main, main_mon, main_backup, api_main]
             - region: us-east-2
               port: 9100
               filters:
                 - name: tag:role
                   values: [aenode]
                 - name: tag:env
-                  values: [dev1, integration, uat, uat_mon, api_uat, uat_backup, main, main_mon, main_backup, api_main]
+                  values: [dev1, integration, next, uat, uat_mon, api_uat, uat_backup, main, main_mon, main_backup, api_main]
             - region: ap-southeast-1
               port: 9100
               filters:
                 - name: tag:role
                   values: [aenode]
                 - name: tag:env
-                  values: [dev1, integration, uat, uat_mon, api_uat, uat_backup, main, main_mon, main_backup, api_main]
+                  values: [dev1, integration, next, uat, uat_mon, api_uat, uat_backup, main, main_mon, main_backup, api_main]
           relabel_configs:
             - source_labels: [__meta_ec2_public_ip]
               replacement: '${1}:9100'
