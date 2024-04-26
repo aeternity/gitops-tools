@@ -326,6 +326,44 @@ kube-prometheus-stack:
   additionalPrometheusRulesMap:
     - name: additional
       groups:
+      - name: test-rules
+        rules:
+        - alert: AeTestRule1
+          expr: vector(1)
+          for: 1m
+          labels:
+            severity: critical
+            namespace: apps
+          annotations:
+            summary: "Test rule 1 - apps"
+            description: "Test rule 1"
+        - alert: AeTestRule2
+          expr: vector(1)
+          for: 1m
+          labels:
+            severity: critical
+            namespace: aenodes
+          annotations:
+            summary: "Test rule 2 - aenodes"
+            description: "Test rule 2"
+        - alert: AeTestRule3
+          expr: vector(1)
+          for: 1m
+          labels:
+            severity: critical
+            role: aenode
+          annotations:
+            summary: "Test rule 3 - aenode role"
+            description: "Test rule 3"
+        - alert: AeTestRule4
+          expr: vector(1)
+          for: 1m
+          labels:
+            severity: warning
+            role: aenode
+          annotations:
+            summary: "Test rule 4 - aenode role warning"
+            description: "Test rule 4"
       - name: sd-node-exporter-rules
         rules:
         - expr: |
