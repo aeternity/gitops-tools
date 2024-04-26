@@ -730,7 +730,7 @@ kube-prometheus-stack:
           expr: aecore_sync_progress < 100
           for: 10m
           labels:
-            severity: warning
+            severity: critical
           annotations:
             summary: "[{{ $labels.env }}] Aeternity node {{ $labels.public_ip }} is out of sync."
             description: "{{ $labels.instance }} of job {{ $labels.job }} has been out of sync for more than 10 minutes."
