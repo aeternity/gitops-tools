@@ -8,7 +8,7 @@ metadata:
   namespace: {{ .Release.Namespace }}
 spec:
   route:
-    groupBy: ['alertname']
+    groupBy: ['namespace', 'alertname']
     groupWait: 30s
     groupInterval: 5m
     repeatInterval: 12h
