@@ -766,8 +766,8 @@ kube-prometheus-stack:
             labels:
               severity: critical
             annotations:
-              summary: "Probe failed (URL: {{ $labels.instance }})"
-              description: "Probe failed\n STATUS_CODE = {{ $value }})"
+              summary: "[{{ $labels.scope }}] Probe failed for target {{ $labels.target }})"
+              description: "Probe URL: {{ $labels.instance }}"
       - name: cert-manager
         rules:
         - alert: CertManagerAbsent
