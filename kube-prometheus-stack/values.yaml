@@ -283,7 +283,7 @@ kube-prometheus-stack:
         requests:
           cpu: 10m
           memory: 32Mi
-    logLevel: debug
+      logLevel: debug
     ingress:
       enabled: true
       annotations:
