@@ -8,8 +8,8 @@ metadata:
   namespace: {{ .Release.Namespace }}
 spec:
   route:
-    groupBy: ['namespace', 'alertname']
-    groupWait: 30s
+    groupBy: ['alertname']
+    groupWait: 1m
     groupInterval: 5m
     repeatInterval: 12h
     receiver: default-slack
