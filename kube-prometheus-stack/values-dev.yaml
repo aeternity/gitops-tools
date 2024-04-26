@@ -49,7 +49,7 @@ kube-prometheus-stack:
                 - name: tag:env
                   values: [dev1, integration, next, uat, uat_mon, api_uat, uat_backup, main, main_mon, main_backup, api_main]
           relabel_configs:
-            - sourceLabels: [namespace]
+            - source_labels: [namespace]
               target_label: namespace
               replacement: 'aenodes'
             - source_labels: [__meta_ec2_public_ip]
@@ -113,7 +113,7 @@ kube-prometheus-stack:
                 - name: tag:env
                   values: [dev1, integration, uat, uat_mon, api_uat, uat_backup, main, main_mon, main_backup]
           relabel_configs:
-            - sourceLabels: [namespace]
+            - source_labels: [namespace]
               target_label: namespace
               replacement: 'aenodes'
             - source_labels: [__meta_ec2_public_ip]
