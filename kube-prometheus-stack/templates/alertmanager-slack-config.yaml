@@ -15,17 +15,6 @@ spec:
     receiver: default-slack
     routes:
       - matchers:
-        - name: alertname
-          value: InfoInhibitor
-          matchType: "="
-        receiver: 'null'
-      - matchers:
-        - name: job
-          value: kube-prometheus-blackbox-exporter
-          matchType: "="
-        groupBy: ['scope']
-        receiver: apps-slack
-      - matchers:
         - name: namespace
           value: apps
           matchType: "="
@@ -46,7 +35,6 @@ spec:
           matchType: "="
         receiver: blockchain-slack
   receivers:
-    - name: 'null'
     - name: default-slack
       slackConfigs:
         - sendResolved: true

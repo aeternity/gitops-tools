@@ -284,6 +284,9 @@ kube-prometheus-stack:
           cpu: 10m
           memory: 32Mi
       logLevel: debug
+      # don't filter alter routing on namespace
+      alertmanagerConfigMatcherStrategy:
+        type: None
     ingress:
       enabled: true
       annotations:

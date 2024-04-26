@@ -22,7 +22,7 @@ prometheus-blackbox-exporter:
     enabled: true
     defaults:
       additionalMetricsRelabels:
-          scope: apps
+          namespace: apps
       additionalRelabeling: []
       labels: {}
       interval: 60s

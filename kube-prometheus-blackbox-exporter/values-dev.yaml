@@ -5,53 +5,33 @@ prometheus-blackbox-exporter:
       - name: argocd
         url: https://argocd.dev.aeternity.io
         additionalMetricsRelabels:
-          scope: tools
+          namespace: tools
       - name: grafana
         url: https://grafana.dev.aeternity.io
         additionalMetricsRelabels:
-          scope: tools
+          namespace: tools
 
       # Infrastructure/Core apps
       - name: base
         url: https://base.dev.aepps.com
-        additionalMetricsRelabels:
-          scope: core-apps
       - name: base-backend
         url: https://base-backend.dev.aepps.com/version
-        additionalMetricsRelabels:
-          scope: core-apps
       - name: contracts
         url: https://contracts.dev.aepps.com
-        additionalMetricsRelabels:
-          scope: core-apps
       - name: faucet
         url: https://faucet.dev.aepps.com
-        additionalMetricsRelabels:
-          scope: core-apps
       - name: repl
         url: https://repl.dev.aepps.com
-        additionalMetricsRelabels:
-          scope: core-apps
       - name: compiler
         url: https://compiler.dev.aepps.com/version
-        additionalMetricsRelabels:
-          scope: core-apps
       - name: compiler-v7
         url: https://v7.compiler.dev.aepps.com/version
-        additionalMetricsRelabels:
-          scope: core-apps
       - name: compiler-v6
         url: https://v6.compiler.dev.aepps.com/version
-        additionalMetricsRelabels:
-          scope: core-apps
       - name: mdw-explorer-mainnet
         url: https://mdw-explorer-mainnet.dev.aepps.com
-        additionalMetricsRelabels:
-          scope: core-apps
       - name: mdw-explorer-testnet
         url: https://mdw-explorer-testnet.dev.aepps.com
-        additionalMetricsRelabels:
-          scope: core-apps
 
       # Applications
       ## Hyperchains Demo
