@@ -9,7 +9,7 @@ metadata:
 spec:
   route:
     groupBy: ['alertname']
-    groupWait: 1m
+    groupWait: 60s
     groupInterval: 5m
     repeatInterval: 12h
     receiver: default-slack
