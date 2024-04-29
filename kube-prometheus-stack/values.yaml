@@ -762,6 +762,60 @@ kube-prometheus-stack:
           annotations:
             summary: "[{{ $labels.env }}] Aeternity node {{ $labels.public_ip }} low ping rate."
             description: "{{ $labels.instance }} of job {{ $labels.job }} have low ping rate for more than 10 minutes."
+      - name: aenode-txpool-alerts
+        rules:
+        - alert: AeNodeLargeTxPool
+          expr: avg by (env) (aecore_txpool_size) > 200
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "[{{ $labels.env }}] Transaction pool is too large."
+            description: "Transaction pool size on {{ $labels.env }} is {{ $value }}."
+      - name: aenode-mining-alerts
+        rules:
+        - alert: AeNodeMining
+          expr: avg by (env) (rate(aecore_mining_retries_total{env!~"uat|dev1"}[3m])) > 0
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "[{{ $labels.env }}] Unexpected mining."
+            description: "Nodes on {{ $labels.env }} are not expected to mine."
+        - alert: AeNodeNotMining
+          expr: avg by (env) (rate(aecore_mining_retries_total{env="uat"}[3m])) == 0
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "[{{ $labels.env }}] Mining stopped."
+            description: "Nodes on {{ $labels.env }} are not mining for more than 10 minutes."
+        - alert: AeNodeMiningNoBlocks
+          expr: avg by (env) (rate(aecore_mining_blocks_total{env="uat"}[3m])) == 0
+          for: 30m
+          labels:
+            severity: warning
+          annotations:
+            summary: "[{{ $labels.env }}] Blocks not found."
+            description: "No blocks mined for more than 30 minutes on {{ $labels.env }}."
+      - name: aenode-protocol-alerts
+        rules:
+        - alert: AeNodeSlowBlocks
+          expr: avg by (env) (avg_over_time(aecore_aemon_keyblock_interval_ms[6h])) / 1000 / 60 > 3.50
+          for: 60m
+          labels:
+            severity: warning
+          annotations:
+            summary: "[{{ $labels.env }}] Slow blocks."
+            description: "Slow blocks for last 60m with average of {{ $value }} over last 6h."
+        - alert: AeNodeFastBlocks
+          expr: avg by (env) (avg_over_time(aecore_aemon_keyblock_interval_ms[6h])) / 1000 / 60 < 2.50
+          for: 60m
+          labels:
+            severity: warning
+          annotations:
+            summary: "[{{ $labels.env }}] Fast blocks."
+            description: "Fast blocks for last 60m with average of {{ $value }} over last 6h."
       - name: blackbox
         rules:
           - alert: BlackboxProbeFailing
