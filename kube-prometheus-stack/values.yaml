@@ -800,22 +800,136 @@ kube-prometheus-stack:
             description: "No blocks mined for more than 30 minutes on {{ $labels.env }}."
       - name: aenode-protocol-alerts
         rules:
-        - alert: AeNodeSlowBlocks
+        - alert: AeCoreMonSlowKeyBlocks
           expr: avg by (env) (avg_over_time(aecore_aemon_keyblock_interval_ms[6h])) / 1000 / 60 > 3.50
           for: 60m
           labels:
             severity: warning
           annotations:
-            summary: "[{{ $labels.env }}] Slow blocks."
-            description: "Slow blocks for last 60m with average of {{ $value }} over last 6h."
-        - alert: AeNodeFastBlocks
+            summary: "[{{ $labels.env }}] Slow keyblocks."
+            description: "Slow keyblocks for last 60m with average of {{ $value }} over last 6h."
+        - alert: AeCoreMonFastKeyBlocks
           expr: avg by (env) (avg_over_time(aecore_aemon_keyblock_interval_ms[6h])) / 1000 / 60 < 2.50
           for: 60m
           labels:
             severity: warning
           annotations:
-            summary: "[{{ $labels.env }}] Fast blocks."
-            description: "Fast blocks for last 60m with average of {{ $value }} over last 6h."
+            summary: "[{{ $labels.env }}] Fast keyblocks."
+            description: "Fast keyblocks for last 60m with average of {{ $value }} over last 6h."
+        - alert: AeCoreMonHighKeyBlockPropagationLatency
+          expr: avg by (env) (aecore_aemon_keyblock_propagation_ms) / 1000 > 25.0
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "[{{ $labels.env }}] High keyblock propagation latency."
+            description: "Average keyblock propagation latency ({{ $value }}) is more than 25s for last 10m."
+        - alert: AeCoreMonHighMicroblocks
+          expr: avg by (env) (avg_over_time(aecore_aemon_generation_microblocks[30m])) > 60
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "[{{ $labels.env }}] High number of microblocks per generation."
+            description: "Average number of microblocks for last 10 generations is {{ $value }} with protocol soft limit of 60."
+        - alert: AeCoreMonSlowMicroBlocks
+          expr: avg by (env) (avg_over_time(aecore_aemon_microblock_interval_ms[15m])) / 1000 > 15.0
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "[{{ $labels.env }}] Slow microblocks."
+            description: "Slow microblocks for last 10m with average of {{ $value }} over last 15m."
+        - alert: AeCoreMonFastMicroBlocks
+          expr: avg by (env) (avg_over_time(aecore_aemon_keyblock_interval_ms[6h])) / 1000 / 60 < 2.50
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "[{{ $labels.env }}] Fast microblocks."
+            description: "Fast microblocks for last 10m with average of {{ $value }} over last 15m."
+        - alert: AeCoreMonHighMicroBlockPropagationLatency
+          expr: avg by (env) (aecore_aemon_microblock_propagation_ms) / 1000 > 12.0
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "[{{ $labels.env }}] High microblock propagation latency."
+            description: "Average microblock propagation latency ({{ $value }}) is more than 12s for last 10m."
+        - alert: AeCoreMonHighMicroForks
+          expr: avg by (env) (rate(aecore_aemon_microforks_total[30m])) * 180 > 2
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "[{{ $labels.env }}] High number of microforks."
+            description: "Average number of microforks over 30m ({{ $value }}) is high for last 10m."
+        - alert: AeCoreHighNumberOfMicroBlockTransactions
+          expr: avg by (env) (aecore_aemon_microblock_transactions) > 350
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "[{{ $labels.env }}] High number of microblock transactions."
+            description: "Average number of microblock transactions ({{ $value }}) is more than 350 protocol limit for last 10m."
+        - alert: AeCoreHighMicroBlockGasUsage
+          expr: avg by (env) (aecore_aemon_microblock_gas) > 6000000
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "[{{ $labels.env }}] High microblock gas usage."
+            description: "Average microblock gas usage ({{ $value }}) is more than 6M protocol limit for last 10m."
+        - alert: AeCoreMonLowTransactions
+          expr: avg by (env) (aecore_aemon_generation_transactions) == 0
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "[{{ $labels.env }}] Low number of transactions."
+            description: "No transactions in the last 10 minutes."
+        - alert: AeCoreLargeTransactionsSize
+          expr: avg by (env) (aecore_aemon_transaction_size_bytes) > 270000
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "[{{ $labels.env }}] Large transactions size."
+            description: "Average transactions size ({{ $value | humanize }}) is close to 299.25k protocol limit for last 10m."
+        - alert: AeCoreMonHighConfirmationDelay
+          expr: avg by (env) (aecore_aemon_confirmation_delay) > 1.0
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "[{{ $labels.env }}] High confirmation delay."
+            description: "More than 1 block confirmation delay ({{ $value }}) in the last 10 minutes."
+      - name: aenode-aecore-aemon-self-alerts
+        rules:
+        - alert: AeCoreMonLowMonitorTransactions
+          expr: avg by (env) (aecore_aemon_generation_mon_transactions) == 0
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "[{{ $labels.env }}] Low number of monitoring transactions in a generation."
+            description: "No monitoring transactions in a generation in the last 10 minutes."
+        - alert: AeCoreMonLargeMonitorPublisherQueue
+          expr: avg by (env) (aecore_aemon_publisher_queue_size) > 5
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "[{{ $labels.env }}] Large monitoroing transactions queue size."
+            description: "Queue size is {{ $value }} but should be less than 5 usualy 3."
+        - alert: AeCoreMonMonitorManyExpiredTransactions
+          expr: avg by (env) (aecore_aemon_publisher_queue_expired) > 1
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "[{{ $labels.env }}] Large number of expired transactions."
+            description: "Large number of expired monitoring transactions ({{ $value }})."
       - name: blackbox
         rules:
           - alert: BlackboxProbeFailing
