@@ -56,4 +56,4 @@ prometheus-blackbox-exporter:
       - name: aepp-graffiti
         url: https://aepp-graffiti.dev.aepps.com
       - name: graffiti-server
-        url: https://graffiti-server.dev.aepps.com/health
+        url: https://graffiti-server-testnet.dev.aepps.com/health
