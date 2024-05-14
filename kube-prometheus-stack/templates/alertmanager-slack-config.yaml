@@ -7,6 +7,13 @@ metadata:
     alertmanagerConfig: {{- include "kube-prometheus-stack.labels" . | nindent 4 }}
   namespace: {{ .Release.Namespace }}
 spec:
+  inhibit_rules:
+    - source_matchers:
+        - 'alertname = InstanceDown'
+      target_matchers:
+        - 'alertname = AeNodeDown'
+      equal:
+        - 'instance'
   route:
     groupBy: ['alertname']
     groupWait: 60s
