@@ -7,25 +7,31 @@ metadata:
     alertmanagerConfig: {{- include "kube-prometheus-stack.labels" . | nindent 4 }}
   namespace: {{ .Release.Namespace }}
 spec:
-  inhibit_rules:
-    - source_matchers:
-        - 'alertname = InstanceDown'
-      target_matchers:
-        - 'job = sd_statsd_exporter'
+  inhibitRules:
+    - sourceMatch:
+        - name: alertname
+          value: InstanceDown
+      targetMatch:
+        - name: job
+          value: sd_statsd_exporter
       equal:
-        - 'instance'
-    - source_matchers:
-        - 'alertname = StatsdExporterDown'
-      target_matchers:
-        - 'job = sd_statsd_exporter'
+        - instance
+    - sourceMatch:
+        - name: alertname
+          value: StatsdExporterDown
+      targetMatch:
+        - name: job
+          value: sd_statsd_exporter
       equal:
-        - 'instance'
-    - source_matchers:
-        - 'alertname = StatsdExporterBrokenIntegration'
-      target_matchers:
-        - 'job = sd_statsd_exporter'
+        - instance
+    - sourceMatch:
+        - name: alertname
+          value: StatsdExporterBrokenIntegration
+      targetMatch:
+        - name: job
+          value: sd_statsd_exporter
       equal:
-        - 'instance'
+        - instance
   route:
     groupBy: ['alertname']
     groupWait: 60s
