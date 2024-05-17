@@ -704,13 +704,21 @@ kube-prometheus-stack:
           annotations:
             summary: "Instance {{ $labels.instance }} down"
             description: "{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 10 minutes."
-        - alert: AeNodeDown
+        - alert: StatsdExporterBrokenIntegration
+          expr: rate(statsd_exporter_samples_total{job="sd_statsd_exporter"}[5m]) < 10
+          for: 10m
+          labels:
+            severity: critical
+          annotations:
+            summary: "[{{ $labels.env }}] StatsD Exporter integration on {{ $labels.instance }} not working"
+            description: "{{ $labels.instance }} of job {{ $labels.job }} is not receiving metric samples for more than 10 minutes."
+        - alert: StatsdExporterDown
           expr: up{job="sd_statsd_exporter"} == 0
           for: 10m
           labels:
             severity: critical
           annotations:
-            summary: "[{{ $labels.env }}] Aeternity node {{ $labels.public_ip }} is down."
+            summary: "[{{ $labels.env }}] StatsD Exporter on {{ $labels.instance }} is down."
             description: "{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 10 minutes."
         - alert: AeMonDownTestnet
           expr: absent(up{job="sd_statsd_exporter", env="uat_mon"})

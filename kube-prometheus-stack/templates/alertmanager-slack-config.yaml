@@ -11,7 +11,19 @@ spec:
     - source_matchers:
         - 'alertname = InstanceDown'
       target_matchers:
-        - 'alertname = AeNodeDown'
+        - 'job = sd_statsd_exporter'
+      equal:
+        - 'instance'
+    - source_matchers:
+        - 'alertname = StatsdExporterDown'
+      target_matchers:
+        - 'job = sd_statsd_exporter'
+      equal:
+        - 'instance'
+    - source_matchers:
+        - 'alertname = StatsdExporterBrokenIntegration'
+      target_matchers:
+        - 'job = sd_statsd_exporter'
       equal:
         - 'instance'
   route:
