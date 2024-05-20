@@ -16,6 +16,8 @@ kube-prometheus-stack:
             - region: eu-north-1
               port: 9100
               filters:
+                - name: __meta_ec2_instance_state
+                  values: [running]
                 - name: tag:role
                   values: [aenode]
                 - name: tag:env
@@ -23,6 +25,8 @@ kube-prometheus-stack:
             - region: eu-central-1
               port: 9100
               filters:
+                - name: __meta_ec2_instance_state
+                  values: [running]
                 - name: tag:role
                   values: [aenode]
                 - name: tag:env
@@ -30,6 +34,8 @@ kube-prometheus-stack:
             - region: us-west-2
               port: 9100
               filters:
+                - name: __meta_ec2_instance_state
+                  values: [running]
                 - name: tag:role
                   values: [aenode]
                 - name: tag:env
@@ -37,6 +43,8 @@ kube-prometheus-stack:
             - region: us-east-2
               port: 9100
               filters:
+                - name: __meta_ec2_instance_state
+                  values: [running]
                 - name: tag:role
                   values: [aenode]
                 - name: tag:env
@@ -44,6 +52,8 @@ kube-prometheus-stack:
             - region: ap-southeast-1
               port: 9100
               filters:
+                - name: __meta_ec2_instance_state
+                  values: [running]
                 - name: tag:role
                   values: [aenode]
                 - name: tag:env
@@ -80,6 +90,8 @@ kube-prometheus-stack:
             - region: eu-north-1
               port: 9102
               filters:
+                - name: __meta_ec2_instance_state
+                  values: [running]
                 - name: tag:role
                   values: [aenode]
                 - name: tag:env
@@ -87,6 +99,8 @@ kube-prometheus-stack:
             - region: eu-central-1
               port: 9102
               filters:
+                - name: __meta_ec2_instance_state
+                  values: [running]
                 - name: tag:role
                   values: [aenode]
                 - name: tag:env
@@ -94,6 +108,8 @@ kube-prometheus-stack:
             - region: us-west-2
               port: 9102
               filters:
+                - name: __meta_ec2_instance_state
+                  values: [running]
                 - name: tag:role
                   values: [aenode]
                 - name: tag:env
@@ -101,6 +117,8 @@ kube-prometheus-stack:
             - region: us-east-2
               port: 9102
               filters:
+                - name: __meta_ec2_instance_state
+                  values: [running]
                 - name: tag:role
                   values: [aenode]
                 - name: tag:env
@@ -108,6 +126,8 @@ kube-prometheus-stack:
             - region: ap-southeast-1
               port: 9102
               filters:
+                - name: __meta_ec2_instance_state
+                  values: [running]
                 - name: tag:role
                   values: [aenode]
                 - name: tag:env
