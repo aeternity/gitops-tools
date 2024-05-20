@@ -168,10 +168,10 @@ kube-prometheus-stack:
     sidecar:
       resources:
         requests:
-          cpu: 60m
+          cpu: 100m
           memory: 100Mi
         limits:
-          cpu: 90m
+          cpu: 150m
           memory: 130Mi
       dashboards:
         enabled: true
