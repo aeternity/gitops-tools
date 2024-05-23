@@ -4,6 +4,12 @@ app-secrets:
   external:
     remotePrefix: /k8s/dev-wgt7
 
+# overcommitment ratio
+limits:
+  apps:
+    cpu: "3.0"
+    memory: "1.5"
+
 argo-cd:
   configs:
     cm:
