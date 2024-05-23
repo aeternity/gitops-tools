@@ -1,4 +1,7 @@
 fluent-bit:
+  resources:
+    requests:
+      cpu: 50m
   config:
     ## https://docs.fluentbit.io/manual/pipeline/outputs
     outputs: |

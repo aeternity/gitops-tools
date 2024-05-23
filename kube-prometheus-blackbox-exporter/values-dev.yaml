@@ -1,4 +1,7 @@
 prometheus-blackbox-exporter:
+  resources:
+    requests:
+      cpu: 50m
   serviceMonitor:
     targets:
       # Tools
