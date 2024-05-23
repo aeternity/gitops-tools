@@ -637,7 +637,7 @@ kube-prometheus-stack:
             summary: High CPU usage.
           expr: |
             sum without(mode) (avg without (cpu) (rate(node_cpu_seconds_total{job="sd_node_exporter", mode!="idle"}[2m]))) * 100 > 90
-          for: 15m
+          for: 30m
           labels:
             severity: info
         - alert: NodeSystemSaturation
