@@ -633,11 +633,11 @@ kube-prometheus-stack:
         - alert: NodeCPUHighUsage
           annotations:
             description: |
-              CPU usage at {{ $labels.instance }} has been above 90% for the last 15 minutes, is currently at {{ printf "%.2f" $value }}%.
+              CPU usage at {{ $labels.instance }} has been above 90% for the last 45 minutes, is currently at {{ printf "%.2f" $value }}%.
             summary: High CPU usage.
           expr: |
             sum without(mode) (avg without (cpu) (rate(node_cpu_seconds_total{job="sd_node_exporter", mode!="idle"}[2m]))) * 100 > 90
-          for: 30m
+          for: 45m
           labels:
             severity: info
         - alert: NodeSystemSaturation
