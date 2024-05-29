@@ -5,11 +5,11 @@ fluent-bit:
     tag: "1.9.9"
     pullPolicy: Always
   resources:
-    limits:
-      memory: 32Mi
     requests:
-      cpu: 100m
-      memory: 32Mi
+      cpu: 10m
+      memory: 10Mi
+    limits:
+      memory: 60Mi
   config:
     service: |
       [SERVICE]

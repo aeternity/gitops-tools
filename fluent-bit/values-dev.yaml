@@ -1,7 +1,4 @@
 fluent-bit:
-  resources:
-    requests:
-      cpu: 50m
   config:
     ## https://docs.fluentbit.io/manual/pipeline/outputs
     outputs: |
@@ -15,5 +12,3 @@ fluent-bit:
           tls             On
           Replace_Dots    On
           Index fluentbit
-
-
