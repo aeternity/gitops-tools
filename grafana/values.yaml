@@ -14,3 +14,12 @@ loki:
       enabled: false
     ingress:
       enabled: false
+  schemaConfig:
+    configs:
+      - from: 2024-04-01
+        object_store: s3
+        store: tsdb
+        schema: v13
+        index:
+          prefix: index_
+          period: 24h
