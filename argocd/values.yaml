@@ -119,7 +119,7 @@ applicationsets:
       - kube-prometheus-blackbox-exporter
       - fluent-bit
       - kubernetes-event-exporter
-      - grafana
+      - loki
     project: tools
     appNamespace: monitoring
     syncPolicy:

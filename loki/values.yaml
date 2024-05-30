@@ -1,24 +1,24 @@
 loki:
+  test:
+    enabled: false
+  lokiCanary:
+    enabled: false
   deploymentMode: SingleBinary
+  singleBinary:
+    replicas: 1
+  read:
+    replicas: 0
+  backend:
+    replicas: 0
+  write:
+    replicas: 0
+  gateway:
+    enabled: false
+  ingress:
+    enabled: false
   loki:
-    singleBinary:
-      replicas: 1
-    read:
-      replicas: 0
-    backend:
-      replicas: 0
-    write:
-      replicas: 0
     storage:
       type: s3
-    test:
-      enabled: false
-    lokiCanary:
-      enabled: false
-    gateway:
-      enabled: false
-    ingress:
-      enabled: false
     schemaConfig:
       configs:
         - from: 2024-04-01
