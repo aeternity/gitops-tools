@@ -19,6 +19,8 @@ loki:
   loki:
     storage:
       type: s3
+      s3:
+        region: eu-central-1
     schemaConfig:
       configs:
         - from: 2024-04-01
@@ -28,6 +30,8 @@ loki:
           index:
             prefix: index_
             period: 24h
+  # loki needs explicit configuration
+  # https://grafana.com/docs/loki/latest/operations/caching/
   chunksCache:
     enabled: false
     allocatedMemory: 256
