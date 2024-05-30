@@ -1,0 +1,16 @@
+loki:
+  global:
+    deploymentMode: SingleBinary
+  loki:
+    singleBinary:
+      replicas: 0
+    storage:
+      type: s3
+    test:
+      enabled: false
+    lokiCanary:
+      enabled: false
+    gateway:
+      enabled: false
+    ingress:
+      enabled: false

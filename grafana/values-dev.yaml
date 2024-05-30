@@ -1,0 +1,7 @@
+loki:
+  loki:
+    storage:
+      bucketNames:
+        chunks: aeternity-loki-chunks-dev
+        ruler: aeternity-loki-ruler-dev
+        admin: aeternity-loki-admin-dev
