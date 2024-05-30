@@ -1,4 +1,7 @@
 loki:
+  serviceAccount:
+    annotations:
+      eks.amazonaws.com/role-arn: "arn:aws:iam::106102538874:role/loki-dev"
   loki:
     storage:
       bucketNames:

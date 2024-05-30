@@ -16,6 +16,8 @@ loki:
     enabled: false
   ingress:
     enabled: false
+  serviceAccount:
+    create: true
   loki:
     storage:
       type: s3
