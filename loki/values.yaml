@@ -54,3 +54,8 @@ loki:
       limits:
         cpu: 300m
         memory: 40Mi
+  # prevent startup errors in SingleBinary mode
+  # https://github.com/grafana/loki/issues/7907
+  memberlist:
+    service:
+      publishNotReadyAddresses: true
