@@ -1,6 +1,5 @@
 loki:
-  global:
-    deploymentMode: SingleBinary
+  deploymentMode: SingleBinary
   loki:
     singleBinary:
       replicas: 1
