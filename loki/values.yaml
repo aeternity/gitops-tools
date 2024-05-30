@@ -29,6 +29,7 @@ loki:
             prefix: index_
             period: 24h
   chunksCache:
+    enabled: true
     allocatedMemory: 256
     resources:
       requests:
@@ -37,3 +38,13 @@ loki:
       limits:
         cpu: 300m
         memory: 320Mi
+  resultsCache:
+    enabled: true
+    allocatedMemory: 32
+    resources:
+      requests:
+        cpu: 100m
+        memory: 40Mi
+      limits:
+        cpu: 300m
+        memory: 40Mi
