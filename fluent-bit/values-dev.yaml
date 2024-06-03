@@ -1,8 +1,4 @@
 fluent-bit:
-  env:
-    # Note that for security reasons you should fetch the credentials through a Kubernetes Secret https://kubernetes.io/docs/concepts/configuration/secret/ . You may use the envFrom for this.
-    - name: FLUENT_LOKI_URL
-      value: http://loki-headless:3100/loki/api/v1/push
   config:
     ## https://docs.fluentbit.io/manual/pipeline/outputs
     outputs: |
