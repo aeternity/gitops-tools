@@ -10,6 +10,8 @@ fluent-bit:
       memory: 60Mi
   serviceMonitor:
     enabled: true
+  dashboards:
+    enabled: true
   config:
     service: |
       [SERVICE]

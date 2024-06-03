@@ -16,8 +16,6 @@ alerts:
   appsSlackHookUrlKey: SLACK_HOOK_URL_APPS
 
 grafanaDashboards:
-  tools:
-    - dashboards/tools/fluent-bit.json
   aeternity:
     - dashboards/aeternity/aeternity-instances.json
     - dashboards/aeternity/aeternity-node-exporter-node.json
@@ -219,7 +217,6 @@ kube-prometheus-stack:
           access: proxy
     dashboardsConfigMaps:
       aeternity: grafana-dashboards-aeternity
-      tools: grafana-dashboards-tools
     dashboardProviders:
      dashboardproviders.yaml:
        apiVersion: 1
