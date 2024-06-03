@@ -207,6 +207,14 @@ kube-prometheus-stack:
       pathType: ImplementationSpecific
     plugins:
       - grafana-piechart-panel
+    datasources: {}
+      datasources.yaml:
+        apiVersion: 1
+        datasources:
+        - name: Loki
+          type: loki
+          url: http://loki-headless:3100
+          access: proxy
     dashboardsConfigMaps:
       aeternity: grafana-dashboards-aeternity
     dashboardProviders:
