@@ -207,7 +207,7 @@ kube-prometheus-stack:
       pathType: ImplementationSpecific
     plugins:
       - grafana-piechart-panel
-    datasources: {}
+    datasources:
       datasources.yaml:
         apiVersion: 1
         datasources:
