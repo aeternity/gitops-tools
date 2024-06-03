@@ -32,6 +32,7 @@ loki:
           index:
             prefix: index_
             period: 24h
+    auth_enabled: false
   # loki needs explicit configuration
   # https://grafana.com/docs/loki/latest/operations/caching/
   chunksCache:
