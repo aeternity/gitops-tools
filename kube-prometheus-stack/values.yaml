@@ -219,6 +219,7 @@ kube-prometheus-stack:
           access: proxy
     dashboardsConfigMaps:
       aeternity: grafana-dashboards-aeternity
+      tools: grafana-dashboards-tools
     dashboardProviders:
      dashboardproviders.yaml:
        apiVersion: 1
