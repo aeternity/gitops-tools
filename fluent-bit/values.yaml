@@ -1,8 +1,6 @@
 fluent-bit:
   image:
     repository: cr.fluentbit.io/fluent/fluent-bit
-    # Overrides the image tag whose default is {{ .Chart.AppVersion }}
-    tag: "1.9.9"
     pullPolicy: Always
   resources:
     requests:
