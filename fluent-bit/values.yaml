@@ -8,6 +8,8 @@ fluent-bit:
       memory: 10Mi
     limits:
       memory: 60Mi
+  serviceMonitor:
+    enabled: true
   config:
     service: |
       [SERVICE]
