@@ -16,3 +16,10 @@ fluent-bit:
           tls             On
           Replace_Dots    On
           Index fluentbit
+      [OUTPUT]
+          name                   loki
+          match                  *
+          host                   loki-headless
+          port                   3100
+          labels                 job=fluentbit
+          auto_kubernetes_labels on
