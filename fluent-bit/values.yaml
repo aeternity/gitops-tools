@@ -33,10 +33,17 @@ fluent-bit:
       [INPUT]
           Name tail
           Path /var/log/containers/*.log
+          multiline.parser docker, cri
           Tag kube.*
           DB /var/log/ds/flb_kube.db
-          Mem_Buf_Limit      20MB
+          Mem_Buf_Limit 5MB
+          Skip_Long_Lines On
 
+      [INPUT]
+          Name systemd
+          Tag host.*
+          Systemd_Filter _SYSTEMD_UNIT=kubelet.service
+          Read_From_Tail On
     ## https://docs.fluentbit.io/manual/pipeline/filters
     # filters: |
     #   [FILTER]
