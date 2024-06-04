@@ -33,7 +33,7 @@ fluent-bit:
       [INPUT]
           Name tail
           Path /var/log/containers/*.log
-          multiline.parser docker, cri
+          multiline.parser docker_no_time, cri
           Tag kube.*
           DB /var/log/ds/flb_kube.db
           Mem_Buf_Limit 5MB
