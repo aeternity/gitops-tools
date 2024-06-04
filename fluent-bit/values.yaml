@@ -45,6 +45,17 @@ fluent-bit:
           Systemd_Filter _SYSTEMD_UNIT=kubelet.service
           Read_From_Tail On
     ## https://docs.fluentbit.io/manual/pipeline/filters
+    filters: |
+      [FILTER]
+          Name kubernetes
+          Match kube.*
+          Merge_Log On
+          Merge_Log_Key log_json
+          Keep_Log Off
+          K8S-Logging.Parser On
+          K8S-Logging.Exclude On
+
+    ## https://docs.fluentbit.io/manual/pipeline/filters
     # filters: |
     #   [FILTER]
     #       Name kubernetes
