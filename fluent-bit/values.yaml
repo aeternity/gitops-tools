@@ -57,7 +57,7 @@ fluent-bit:
           Match *
           Operation lift
           Nested_under kubernetes
-          Prefix_with kubernetes_
+          Add_prefix kubernetes_
 
     ## https://docs.fluentbit.io/manual/pipeline/filters
     # filters: |
