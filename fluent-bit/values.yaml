@@ -25,7 +25,7 @@ fluent-bit:
           HTTP_Server On
           HTTP_Listen 0.0.0.0
           HTTP_Port {{ .Values.metricsPort }}
-          storage.path              /var/log/ds/flb-storage/
+          storage.path              /var/log/flb-storage/
           storage.sync              normal
           storage.checksum          off
           storage.backlog.mem_limit 60M
@@ -39,7 +39,6 @@ fluent-bit:
           Parser              docker_no_time
           Skip_Long_Lines     on
           Skip_Empty_Lines    on
-          DB                  DB /var/log/ds/flb_kube.db
           Mem_Buf_Limit       5M
 
       [INPUT]
