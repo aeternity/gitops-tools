@@ -12,6 +12,8 @@ fluent-bit:
     enabled: true
   dashboards:
     enabled: true
+  podAnnotations:
+    fluentbit.io/parser: logfmt
   config:
     service: |
       [SERVICE]
@@ -50,10 +52,7 @@ fluent-bit:
       [FILTER]
           Name                kubernetes
           Match               kube.*
-          # Try this parser if the information from the file name seems off
-          # Regex_Parser     kube-custom
-          # Enable after testing
-          Labels              off
+          Labels              on
           # Safe some space until it's usefull to collect
           Annotations         off
           Merge_Log           on

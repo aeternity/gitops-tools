@@ -17,5 +17,5 @@ fluent-bit:
           match                  *
           host                   loki-headless
           port                   3100
-          labels                 job=fluentbit
+          labels                 job=fluentbit-k8s
           # auto_kubernetes_labels on
