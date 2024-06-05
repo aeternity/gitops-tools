@@ -46,10 +46,7 @@ fluent-bit:
           Systemd_Filter _SYSTEMD_UNIT=kubelet.service
           Read_From_Tail On
     ## https://docs.fluentbit.io/manual/pipeline/filters
-    filters: |
-      [FILTER]
-          Name kubernetes
-          Match kube.*
+    filters: ""
     # filters: |
     #   [FILTER]
     #       Name kubernetes
