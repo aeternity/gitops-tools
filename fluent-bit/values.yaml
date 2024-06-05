@@ -31,14 +31,14 @@ fluent-bit:
     ## https://docs.fluentbit.io/manual/pipeline/inputs
     inputs: |
       [INPUT]
-          Name tail
-          Path /var/log/containers/*.log
-          Parser docker
-          # multiline.parser docker, cri
-          Tag kube.*
-          DB /var/log/ds/flb_kube.db
-          Mem_Buf_Limit 5MB
-          Skip_Long_Lines On
+          Name                tail
+          Path                /var/log/containers/*.log
+          Tag                 kube.*
+          Parser              docker_no_time
+          Skip_Long_Lines     on
+          Skip_Empty_Lines    on
+          DB                  DB /var/log/ds/flb_kube.db
+          Mem_Buf_Limit       5M
 
       [INPUT]
           Name systemd
@@ -46,17 +46,19 @@ fluent-bit:
           Systemd_Filter _SYSTEMD_UNIT=kubelet.service
           Read_From_Tail On
     ## https://docs.fluentbit.io/manual/pipeline/filters
-    filters: ""
-    # filters: |
-    #   [FILTER]
-    #       Name kubernetes
-    #       Match kube.*
-    #       Merge_Log On
-    #       Merge_Log_Key log_json
-    #       Keep_Log Off
-    #       K8S-Logging.Parser On
-    #       K8S-Logging.Exclude On
-
+    filters: |
+      [FILTER]
+          Name                kubernetes
+          Match               kube.*
+          # Try this parser if the information from the file name seems off
+          # Regex_Parser     kube-custom
+          # Enable after testing
+          Labels              off
+          # Safe some space until it's usefull to collect
+          Annotations         off
+          Merge_Log           on
+          Keep_Log            off
+          K8S-Logging.Parser  on
     ## https://docs.fluentbit.io/manual/pipeline/filters
     # filters: |
     #   [FILTER]
