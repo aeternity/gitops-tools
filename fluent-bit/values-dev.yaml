@@ -3,16 +3,6 @@ fluent-bit:
     ## https://docs.fluentbit.io/manual/pipeline/outputs
     outputs: |
       [OUTPUT]
-          Name            es
-          Match           *
-          Host            opensearch-dev.aepps.com
-          Port            443
-          AWS_Auth        On
-          AWS_Region      eu-central-1
-          tls             On
-          Replace_Dots    On
-          Index fluentbit
-      [OUTPUT]
           name                   loki
           match                  *
           host                   loki-headless
