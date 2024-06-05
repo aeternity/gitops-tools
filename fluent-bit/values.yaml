@@ -19,7 +19,7 @@ fluent-bit:
       [SERVICE]
           Daemon Off
           Flush 1
-          Log_Level {{ .Values.logLevel }}
+          Log_Level debug
           Parsers_File parsers.conf
           Parsers_File custom_parsers.conf
           HTTP_Server On
