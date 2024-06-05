@@ -25,7 +25,7 @@ fluent-bit:
           HTTP_Server On
           HTTP_Listen 0.0.0.0
           HTTP_Port {{ .Values.metricsPort }}
-          storage.path              /var/log/flb-storage/
+          storage.path              /var/log/ds/flb-storage/
           storage.sync              normal
           storage.checksum          off
           storage.backlog.mem_limit 60M
