@@ -19,7 +19,7 @@ fluent-bit:
       [SERVICE]
           Daemon Off
           Flush 1
-          Log_Level debug
+          Log_Level info
           Parsers_File parsers.conf
           Parsers_File custom_parsers.conf
           HTTP_Server On
@@ -98,6 +98,3 @@ fluent-bit:
     #       Wildcard app_*
     #       Nest_under app
     #       Remove_prefix app_
-    
-    logLevel: debug
-
