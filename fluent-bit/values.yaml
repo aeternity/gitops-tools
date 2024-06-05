@@ -45,7 +45,7 @@ fluent-bit:
       [FILTER]
           Name                kubernetes
           Match               kube.*
-          Labels              on
+          Labels              off
           # Safe some space until it's usefull to collect
           Annotations         off
           Merge_Log           on
