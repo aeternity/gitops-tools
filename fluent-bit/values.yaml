@@ -52,13 +52,6 @@ fluent-bit:
           Keep_Log            off
           K8S-Logging.Parser  on
 
-      [FILTER]
-          Name nest
-          Match *
-          Operation lift
-          Nested_under kubernetes
-          Add_prefix kubernetes_
-
     ## https://docs.fluentbit.io/manual/pipeline/filters
     # filters: |
     #   [FILTER]

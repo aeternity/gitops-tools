@@ -8,5 +8,5 @@ fluent-bit:
           host                   loki-headless
           port                   3100
           labels                 job=fluentbit-k8s
-          label_keys             level, kubernetes_namespace_name, kubernetes_pod_name, kubernetes_container_name
+          label_keys             $kubernetes['namespace_name'], $kubernetes['pod_name'], $kubernetes['container_name']
           line_format            json
