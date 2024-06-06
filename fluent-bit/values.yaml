@@ -62,11 +62,11 @@ fluent-bit:
       [FILTER]
           name        modify
           match       kube.*
-          remove      pod_id
-          remove      docker_id
-          remove      container_hash
-          remove      container_image
-          remove      host
+          remove      kubernetes_pod_id
+          remove      kubernetes_docker_id
+          remove      kubernetes_container_hash
+          remove      kubernetes_container_image
+          remove      kubernetes_host
 
       [FILTER]
           name            nest
