@@ -5,9 +5,9 @@ fluent-bit:
   resources:
     requests:
       cpu: 10m
-      memory: 10Mi
+      memory: 30Mi
     limits:
-      memory: 60Mi
+      memory: 45Mi
   serviceMonitor:
     enabled: true
   dashboards:
