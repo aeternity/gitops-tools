@@ -20,6 +20,6 @@ spec:
       apiURL:
         name: kube-prometheus-stack-app-secrets
         key: SLACK_HOOK_URL
-      channel: '#monitoring'
+      channel: '#hetzner-monitoring'
       title: {{`"{{ template \"slack.ae.title\" . }}"`}}
       text: {{`"{{ template \"slack.ae.text\" . }}"`}}
