@@ -62,3 +62,8 @@ loki:
   memberlist:
     service:
       publishNotReadyAddresses: true
+  monitoring:
+    dashboards:
+      enabled: true
+    serviceMonitor:
+      enabled: true
