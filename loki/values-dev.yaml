@@ -8,3 +8,5 @@ loki:
         chunks: aeternity-loki-chunks-dev
         ruler: aeternity-loki-ruler-dev
         admin: aeternity-loki-admin-dev
+    limits_config:
+      retention_period: 72h

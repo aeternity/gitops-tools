@@ -34,6 +34,13 @@ loki:
           index:
             prefix: index_
             period: 24h
+    compactor:
+      compaction_interval: 6h
+      retention_enabled: true
+      retention_delete_delay: 2h
+      delete_request_store: s3
+    limits_config:
+      retention_period: 30d
     auth_enabled: false
   # loki needs explicit configuration
   # https://grafana.com/docs/loki/latest/operations/caching/
