@@ -35,7 +35,7 @@ loki:
             prefix: index_
             period: 24h
     compactor:
-      compaction_interval: 6h
+      compaction_interval: 10m
       retention_enabled: true
       retention_delete_delay: 2h
       delete_request_store: s3
