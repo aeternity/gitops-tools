@@ -237,7 +237,7 @@
             "steppedLine": false,
             "targets": [
                {
-                  "expr": "sum(rate(container_cpu_usage_seconds_total{namespace=\"$namespace\", pod=~\"$deployment.*\", pod=~\"$pod\", kubernetes_container_name=~\"$container\"}[5m]))",
+                  "expr": "sum(rate(container_cpu_usage_seconds_total{namespace=\"$namespace\", pod=~\"$deployment.*\", pod=~\"$pod\", container=~\"$container\"}[5m]))",
                   "refId": "A"
                }
             ],
@@ -323,7 +323,7 @@
             "steppedLine": false,
             "targets": [
                {
-                  "expr": "sum(container_memory_working_set_bytes{namespace=\"$namespace\", pod=~\"$deployment.*\", pod=~\"$pod\", kubernetes_container_name=~\"$container\"})",
+                  "expr": "sum(container_memory_working_set_bytes{namespace=\"$namespace\", pod=~\"$deployment.*\", pod=~\"$pod\", container=~\"$container\"})",
                   "refId": "A"
                }
             ],
@@ -581,7 +581,7 @@
             "steppedLine": false,
             "targets": [
                {
-                  "expr": "increase(kube_pod_container_status_last_terminated_reason{namespace=\"$namespace\", pod=~\"$deployment.*\", pod=~\"$pod\", kubernetes_container_name=~\"$container\"}[30m]) > 0",
+                  "expr": "increase(kube_pod_container_status_last_terminated_reason{namespace=\"$namespace\", pod=~\"$deployment.*\", pod=~\"$pod\", container=~\"$container\"}[30m]) > 0",
                   "legendFormat": "{{reason}}",
                   "refId": "A"
                }
