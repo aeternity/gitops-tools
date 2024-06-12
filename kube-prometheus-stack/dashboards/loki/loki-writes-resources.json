@@ -59,7 +59,7 @@
                   "steppedLine": false,
                   "targets": [
                      {
-                        "expr": "sum by(pod) (loki_ingester_memory_streams{ job=~\"($namespace)/loki-write\"})",
+                        "expr": "sum by(pod) (loki_ingester_memory_streams{ job=~\"$namespace/loki\"})",
                         "format": "time_series",
                         "intervalFactor": 2,
                         "legendFormat": "{{pod}}",
@@ -312,7 +312,7 @@
                   "steppedLine": false,
                   "targets": [
                      {
-                        "expr": "sum by(pod) (go_memstats_heap_inuse_bytes{ job=~\"($namespace)/loki-write\"})",
+                        "expr": "sum by(pod) (go_memstats_heap_inuse_bytes{ job=~\"$namespace/loki\"})",
                         "format": "time_series",
                         "intervalFactor": 2,
                         "legendFormat": "{{pod}}",
