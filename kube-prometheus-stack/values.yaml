@@ -24,6 +24,16 @@ grafanaDashboards:
     - dashboards/aeternity/aeternity-protocol.json
     - dashboards/aeternity/aeternity-erlang.json
     - dashboards/aeternity/aeternity-job-queues.json
+  loki:
+    - dashboards/loki/loki-chunks.json
+    - dashboards/loki/loki-deletion.json
+    - dashboards/loki/loki-logs.json
+    - dashboards/loki/loki-operational.json
+    - dashboards/loki/loki-reads-resources.json
+    - dashboards/loki/loki-reads.json
+    - dashboards/loki/loki-retention.json
+    - dashboards/loki/loki-writes-resources.json
+    - dashboards/loki/loki-writes.json
 
 kube-prometheus-stack:
   ## Disable scrapping unused metrics: https://medium.com/gumgum-tech/how-to-reduce-your-prometheus-cost-6c7cc685e347
@@ -217,6 +227,7 @@ kube-prometheus-stack:
           access: proxy
     dashboardsConfigMaps:
       aeternity: grafana-dashboards-aeternity
+      loki: grafana-dashboards-loki
     dashboardProviders:
      dashboardproviders.yaml:
        apiVersion: 1
@@ -237,6 +248,14 @@ kube-prometheus-stack:
          editable: true
          options:
            path: /var/lib/grafana/dashboards/aeternity
+       - name: 'loki'
+         orgId: 1
+         folder: 'Loki'
+         type: file
+         disableDeletion: true
+         editable: true
+         options:
+           path: /var/lib/grafana/dashboards/loki
     dashboards:
       tools:
         traefik2:
