@@ -474,7 +474,7 @@
                   "steppedLine": false,
                   "targets": [
                      {
-                        "expr": "sum(rate(loki_compactor_deleted_lines{job=~\"$namespace/loki-read\"}[$__rate_interval])) by (user)",
+                        "expr": "sum(rate(loki_compactor_deleted_lines{job=~\"$namespace/loki\"}[$__rate_interval])) by (user)",
                         "format": "time_series",
                         "intervalFactor": 2,
                         "legendFormat": "{{user}}",
