@@ -42,10 +42,10 @@ fluent-bit:
           Mem_Buf_Limit       5M
 
       [INPUT]
-        name                kubernetes_events
-        tag                 kube_events
-        interval_sec        30
-        kube_request_limit  250
+          name                kubernetes_events
+          tag                 kube_events
+          interval_sec        30
+          kube_request_limit  250
     ## https://docs.fluentbit.io/manual/pipeline/filters
     filters: |
       [FILTER]
