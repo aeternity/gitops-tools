@@ -8,6 +8,9 @@ fluent-bit:
       memory: 30Mi
     limits:
       memory: 45Mi
+  rbac:
+    create: true
+    eventsAccess: true
   serviceMonitor:
     enabled: true
   dashboards:
