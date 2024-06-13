@@ -16,3 +16,4 @@ fluent-bit:
           host                   loki-headless
           port                   3100
           labels                 source=k8s-events
+          line_format            json
