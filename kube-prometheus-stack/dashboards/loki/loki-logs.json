@@ -1248,7 +1248,32 @@
             ]
           }
         },
-        "overrides": []
+        "overrides": [
+          {
+            "__systemRef": "hideSeriesFrom",
+            "matcher": {
+              "id": "byNames",
+              "options": {
+                "mode": "exclude",
+                "names": [
+                  "error"
+                ],
+                "prefix": "All except:",
+                "readOnly": true
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": true
+                }
+              }
+            ]
+          }
+        ]
       },
       "fill": 1,
       "fillGradient": 0,
@@ -1396,7 +1421,7 @@
     "list": [
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "Loki",
           "value": "Loki"
         },
@@ -1413,8 +1438,9 @@
         "type": "datasource"
       },
       {
+        "allValue": ".+",
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "tools",
           "value": "tools"
         },
@@ -1424,7 +1450,7 @@
         },
         "definition": "",
         "hide": 0,
-        "includeAll": true,
+        "includeAll": false,
         "label": "namespace",
         "multi": false,
         "name": "namespace",
@@ -1445,6 +1471,7 @@
         "useTags": false
       },
       {
+        "allValue": ".",
         "current": {
           "selected": false,
           "text": "All",
@@ -1471,6 +1498,7 @@
         "useTags": false
       },
       {
+        "allValue": ".+",
         "current": {
           "selected": false,
           "text": "All",
@@ -1497,6 +1525,7 @@
         "useTags": false
       },
       {
+        "allValue": ".+",
         "current": {
           "selected": false,
           "text": "All",
@@ -1523,6 +1552,7 @@
         "useTags": false
       },
       {
+        "allValue": ".+",
         "current": {
           "selected": false,
           "text": [
@@ -1565,6 +1595,7 @@
           }
         ],
         "query": "debug,info,warn,error",
+        "queryValue": "",
         "refresh": 0,
         "skipUrlSync": false,
         "type": "custom"
@@ -1617,6 +1648,6 @@
   "timezone": "utc",
   "title": "Loki / Logs",
   "uid": "logs",
-  "version": 3,
+  "version": 4,
   "weekStart": ""
 }
