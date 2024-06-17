@@ -15,7 +15,15 @@ loki:
   gateway:
     enabled: false
   ingress:
-    enabled: false
+    enabled: true
+    annotations:
+      traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      cert-manager.io/cluster-issuer: letsencrypt
+    paths:
+      distributor:
+        - /loki/api/v1/push
+      queryFrontend: []
+      ruler: []
   serviceAccount:
     create: true
   loki:

@@ -2,6 +2,9 @@ loki:
   serviceAccount:
     annotations:
       eks.amazonaws.com/role-arn: "arn:aws:iam::106102538874:role/loki-dev"
+  ingress:
+    hosts:
+      - "loki.dev.aeternity.io"
   loki:
     storage:
       bucketNames:
