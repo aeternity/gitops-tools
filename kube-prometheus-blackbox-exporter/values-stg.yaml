@@ -57,8 +57,8 @@ prometheus-blackbox-exporter:
       ## Hyperchains Demo
       - name: aehc-demo-base
         url: https://base-aehc-demo.stg.aepps.com
-      - name: aehc-demo-faucet
-        url: https://faucet-aehc-demo.stg.aepps.com
+      # - name: aehc-demo-faucet
+      #   url: https://faucet-aehc-demo.stg.aepps.com
       - name: aehc-demo-ui
         url: https://hyperchain-aehc-demo.stg.aepps.com
       - name: aehc-demo-mdw-parent
