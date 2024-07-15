@@ -105,10 +105,10 @@ kube-prometheus-stack:
       resources:
         requests:
           cpu: 500m
-          memory: 1.3Gi
+          memory: 2Gi
         limits:
           cpu: 750m
-          memory: 1.8Gi
+          memory: 3Gi
       serviceMonitorSelectorNilUsesHelmValues: false
       ruleSelectorNilUsesHelmValues: false
       storageSpec:
