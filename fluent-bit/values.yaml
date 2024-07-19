@@ -7,7 +7,6 @@ fluent-bit:
       cpu: 20m
       memory: 30Mi
     limits:
-      cpu: 60m
       memory: 45Mi
   rbac:
     create: true

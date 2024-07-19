@@ -13,25 +13,24 @@ cert-manager:
       cpu: 50m
       memory: 56Mi
     limits:
-      cpu: 75m
       memory: 56Mi
   securityContext:
     fsGroup: 1001
 
   webhook:
     resources:
-      limits:
-        memory: 24Mi
       requests:
         cpu: 10m
+        memory: 24Mi
+      limits:
         memory: 24Mi
 
   cainjector:
     resources:
-      limits:
-        memory: 164Mi
       requests:
         cpu: 10m
+        memory: 164Mi
+      limits:
         memory: 164Mi
 
   prometheus:

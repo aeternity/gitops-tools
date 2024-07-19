@@ -66,7 +66,6 @@ kube-prometheus-stack:
         cpu: 10m
         memory: 32Mi
       limits:
-        cpu: 15m
         memory: 48Mi
 
   kube-state-metrics:
@@ -133,7 +132,6 @@ kube-prometheus-stack:
         cpu: 100m
         memory: 16Mi
       limits:
-        cpu: 150m
         memory: 24Mi
 
   prometheus:
@@ -169,7 +167,6 @@ kube-prometheus-stack:
         cpu: 150m
         memory: 128Mi
       limits:
-        cpu: 300m
         memory: 192Mi
     admin:
       existingSecret: kube-prometheus-stack-app-secrets
@@ -181,7 +178,6 @@ kube-prometheus-stack:
           cpu: 200m
           memory: 100Mi
         limits:
-          cpu: 300m
           memory: 130Mi
       dashboards:
         enabled: true
@@ -305,10 +301,10 @@ kube-prometheus-stack:
   alertmanager:
     alertmanagerSpec:
       resources:
-        limits:
-          memory: 32Mi
         requests:
           cpu: 10m
+          memory: 32Mi
+        limits:
           memory: 32Mi
       logLevel: debug
       # don't filter alter routing on namespace

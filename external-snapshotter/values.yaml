@@ -1,7 +1,7 @@
 snapscheduler:
   resources:
-    limits:
-      memory: 48Mi
     requests:
       cpu: 10m
+      memory: 48Mi
+    limits:
       memory: 48Mi

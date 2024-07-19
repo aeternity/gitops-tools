@@ -10,7 +10,6 @@ kubernetes-event-exporter:
       cpu: 10m
       memory: 24Mi
     limits:
-      cpu: 50m
       memory: 32Mi
 
   serviceAccount:

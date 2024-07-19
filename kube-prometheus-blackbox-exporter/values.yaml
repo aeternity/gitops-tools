@@ -6,7 +6,6 @@ prometheus-blackbox-exporter:
       cpu: 30m
       memory: 16Mi
     limits:
-      cpu: 60m
       memory: 24Mi
 
   config:

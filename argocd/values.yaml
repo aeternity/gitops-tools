@@ -210,7 +210,6 @@ argo-cd:
         cpu: 50m
         memory: 48Mi
       limits:
-        cpu: 75m
         memory: 72Mi
 
   controller:
@@ -219,7 +218,6 @@ argo-cd:
         cpu: 600m
         memory: 512Mi
       limits:
-        cpu: 900m
         memory: 1024Mi
     extraArgs:
       - --repo-server-timeout-seconds
@@ -235,7 +233,6 @@ argo-cd:
         cpu: 500m
         memory: 160Mi
       limits:
-        cpu: 750m
         memory: 512Mi
     env:
       - name: "ARGOCD_EXEC_TIMEOUT"
@@ -251,7 +248,6 @@ argo-cd:
         cpu: 50m
         memory: 64Mi
       limits:
-        cpu: 75m
         memory: 96Mi
     metrics:
       enabled: true
@@ -264,7 +260,6 @@ argo-cd:
         cpu: 250m
         memory: 148Mi
       limits:
-        cpu: 350m
         memory: 220Mi
     metrics:
       enabled: true
@@ -286,7 +281,6 @@ argo-cd:
         cpu: 50m
         memory: 64Mi
       limits:
-        cpu: 75m
         memory: 96Mi
 
   notifications:

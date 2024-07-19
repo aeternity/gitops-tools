@@ -5,10 +5,10 @@ aws-load-balancer-controller:
   keepTLSSecret: true
   enableCertManager: true
   resources:
-    limits:
-      memory: 72Mi
     requests:
       cpu: 10m
+      memory: 72Mi
+    limits:
       memory: 72Mi
   rbac:
     create: true
