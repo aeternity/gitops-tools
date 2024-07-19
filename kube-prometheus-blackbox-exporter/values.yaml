@@ -3,7 +3,7 @@ prometheus-blackbox-exporter:
     repository: quay.io/prometheus/blackbox-exporter
   resources:
     requests:
-      cpu: 10m
+      cpu: 30m
       memory: 16Mi
     limits:
       cpu: 60m
