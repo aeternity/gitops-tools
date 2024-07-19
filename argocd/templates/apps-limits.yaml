@@ -18,6 +18,5 @@ spec:
       memory: 10Mi
     # this basically means overcommitment ratio
     maxLimitRequestRatio:
-      cpu: {{ .Values.limits.apps.cpu }}
       memory: {{ .Values.limits.apps.memory }}
     type: Container
