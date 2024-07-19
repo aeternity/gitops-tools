@@ -8,11 +8,11 @@ loki:
     replicas: 1
     resources:
       requests:
-        cpu: 150m
-        memory: 200Mi
+        cpu: 250m
+        memory: 300Mi
       limits:
         cpu: 450m
-        memory: 300Mi
+        memory: 400Mi
   read:
     replicas: 0
   backend:

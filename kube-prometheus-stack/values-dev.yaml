@@ -175,7 +175,7 @@ kube-prometheus-stack:
   grafana:
     resources:
       requests:
-        cpu: 150m
+        cpu: 200m
     sidecar:
       resources:
         requests:
