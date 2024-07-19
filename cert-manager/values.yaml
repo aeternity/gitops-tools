@@ -10,7 +10,7 @@ cert-manager:
     - --acme-http01-solver-resource-limits-memory=64Mi
   resources:
     requests:
-      cpu: 50m
+      cpu: 10m
       memory: 56Mi
     limits:
       memory: 56Mi
