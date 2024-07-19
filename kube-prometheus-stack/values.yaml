@@ -148,6 +148,7 @@ kube-prometheus-stack:
           cpu: 40m
           memory: 1.3Gi
         limits:
+          cpu: null
           memory: 1.8Gi
       serviceMonitorSelectorNilUsesHelmValues: false
       ruleSelectorNilUsesHelmValues: false
@@ -310,6 +311,7 @@ kube-prometheus-stack:
           cpu: 10m
           memory: 32Mi
         limits:
+          cpu: null
           memory: 32Mi
       logLevel: debug
       # don't filter alter routing on namespace
