@@ -108,7 +108,6 @@ applicationsets:
       - metrics-server
       - traefik
       - velero
-      - vpa
     project: tools
     appNamespace: tools
     syncPolicy:
