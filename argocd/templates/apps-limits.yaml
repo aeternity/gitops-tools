@@ -7,13 +7,11 @@ spec:
   limits:
     # defaults set to 1.5 ratio
   - default: # this section defines default limits
-      cpu: null
       memory: 24Mi
     defaultRequest: # this section defines default requests
       cpu: 10m
       memory: 16Mi
     max: # max and min define the limit range
-      cpu: "1"
       memory: 1000Mi
     min:
       cpu: 10m
