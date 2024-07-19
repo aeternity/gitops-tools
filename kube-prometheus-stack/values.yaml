@@ -67,6 +67,13 @@ kube-prometheus-stack:
         memory: 32Mi
       limits:
         memory: 48Mi
+    prometheusConfigReloader:
+      resources:
+        requests:
+          cpu: 10m
+          memory: 16Mi
+        limits:
+          memory: 20Mi      
 
   kube-state-metrics:
     resources:
@@ -74,7 +81,6 @@ kube-prometheus-stack:
         cpu: 10m
         memory: 64Mi
       limits:
-        cpu: 15m
         memory: 96Mi
     prometheus:
       monitor:
@@ -129,20 +135,19 @@ kube-prometheus-stack:
   prometheus-node-exporter:
     resources:
       requests:
-        cpu: 100m
+        cpu: 10m
         memory: 16Mi
       limits:
-        memory: 24Mi
+        memory: 20Mi
 
   prometheus:
     serviceMonitorSelector: {}
     prometheusSpec:
       resources:
         requests:
-          cpu: 100m
+          cpu: 40m
           memory: 1.3Gi
         limits:
-          cpu: 150m
           memory: 1.8Gi
       serviceMonitorSelectorNilUsesHelmValues: false
       ruleSelectorNilUsesHelmValues: false
@@ -164,7 +169,7 @@ kube-prometheus-stack:
   grafana:
     resources:
       requests:
-        cpu: 150m
+        cpu: 90m
         memory: 128Mi
       limits:
         memory: 192Mi
@@ -175,7 +180,7 @@ kube-prometheus-stack:
     sidecar:
       resources:
         requests:
-          cpu: 200m
+          cpu: 30m
           memory: 100Mi
         limits:
           memory: 130Mi

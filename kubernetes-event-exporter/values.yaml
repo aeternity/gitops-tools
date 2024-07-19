@@ -7,7 +7,7 @@ app-secrets:
 kubernetes-event-exporter:
   resources:
     requests:
-      cpu: 10m
+      cpu: 50m
       memory: 24Mi
     limits:
       memory: 32Mi

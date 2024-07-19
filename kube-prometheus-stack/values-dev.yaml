@@ -8,16 +8,9 @@ alerts:
   appsSlackChannel: 'alerts-apps-dev'
 
 kube-prometheus-stack:
-  prometheus-node-exporter:
-    resources:
-      requests:
-        cpu: 50m
 
   prometheus:
     prometheusSpec:
-      resources:
-        requests:
-          cpu: 50m
       additionalScrapeConfigs:
         - job_name: sd_node_exporter
           ec2_sd_configs:
@@ -173,13 +166,6 @@ kube-prometheus-stack:
         - "prometheus.dev.aeternity.io"
 
   grafana:
-    resources:
-      requests:
-        cpu: 100m
-    sidecar:
-      resources:
-        requests:
-          cpu: 100m
     grafana.ini:
       server:
         domain: grafana.dev.aeternity.io
