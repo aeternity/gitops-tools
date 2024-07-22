@@ -20,7 +20,6 @@ namespaces:
 # the default of 50% should be pretty fine even for high load productions
 limits:
   apps:
-    cpu: "1.5"
     memory: "1.5"
 
 projects:
