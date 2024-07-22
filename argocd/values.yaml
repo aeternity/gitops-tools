@@ -16,6 +16,12 @@ namespaces:
   - apps
   - aenodes
 
+# this basically means overcommitment ratio
+# the default of 50% should be pretty fine even for high load productions
+limits:
+  apps:
+    memory: "1.5"
+
 projects:
   - name: tools
     namespace: argocd
@@ -38,13 +44,7 @@ projects:
         server: https://kubernetes.default.svc
       - namespace: kube-system
         server: https://kubernetes.default.svc
-      - namespace: traefik
-        server: https://kubernetes.default.svc
       - namespace: monitoring
-        server: https://kubernetes.default.svc
-      - namespace: external-secrets
-        server: https://kubernetes.default.svc
-      - namespace: cert-manager
         server: https://kubernetes.default.svc
     clusterResourceWhitelist:
       - group: '*'
@@ -107,7 +107,6 @@ applicationsets:
       - metrics-server
       - traefik
       - velero
-      - vpa
     project: tools
     appNamespace: tools
     syncPolicy:
@@ -118,6 +117,7 @@ applicationsets:
       - kube-prometheus-blackbox-exporter
       - fluent-bit
       - kubernetes-event-exporter
+      - loki
     project: tools
     appNamespace: monitoring
     syncPolicy:
@@ -209,7 +209,6 @@ argo-cd:
         cpu: 50m
         memory: 48Mi
       limits:
-        cpu: 75m
         memory: 72Mi
 
   controller:
@@ -218,7 +217,6 @@ argo-cd:
         cpu: 600m
         memory: 512Mi
       limits:
-        cpu: 900m
         memory: 1024Mi
     extraArgs:
       - --repo-server-timeout-seconds
@@ -234,7 +232,6 @@ argo-cd:
         cpu: 500m
         memory: 160Mi
       limits:
-        cpu: 750m
         memory: 512Mi
     env:
       - name: "ARGOCD_EXEC_TIMEOUT"
@@ -250,7 +247,6 @@ argo-cd:
         cpu: 50m
         memory: 64Mi
       limits:
-        cpu: 75m
         memory: 96Mi
     metrics:
       enabled: true
@@ -263,7 +259,6 @@ argo-cd:
         cpu: 250m
         memory: 148Mi
       limits:
-        cpu: 350m
         memory: 220Mi
     metrics:
       enabled: true
@@ -285,7 +280,6 @@ argo-cd:
         cpu: 50m
         memory: 64Mi
       limits:
-        cpu: 75m
         memory: 96Mi
 
   notifications:

@@ -1,0 +1,18 @@
+{{- $files := .Files }}
+{{- $release := .Release }}
+{{- range $provider, $dashboards := .Values.grafanaDashboards }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-dashboards-{{ $provider }}
+{{- if $dashboards }}
+data:
+{{- range $value := $dashboards }}
+  {{- print (base $value) | nindent 2 }}:
+    {{- toYaml ( $files.Get $value ) | nindent 4}}
+{{- end }}
+---
+{{- end }}
+
+{{- end }}

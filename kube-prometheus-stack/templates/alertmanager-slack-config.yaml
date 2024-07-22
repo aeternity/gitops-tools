@@ -7,19 +7,104 @@ metadata:
     alertmanagerConfig: {{- include "kube-prometheus-stack.labels" . | nindent 4 }}
   namespace: {{ .Release.Namespace }}
 spec:
+  inhibitRules:
+    - sourceMatch:
+        - name: alertname
+          value: InstanceDown
+      targetMatch:
+        - name: job
+          value: sd_statsd_exporter
+      equal:
+        - instance
+    - sourceMatch:
+        - name: alertname
+          value: StatsdExporterDown
+      targetMatch:
+        - name: job
+          value: sd_statsd_exporter
+      equal:
+        - instance
+    - sourceMatch:
+        - name: alertname
+          value: StatsdExporterBrokenIntegration
+      targetMatch:
+        - name: job
+          value: sd_statsd_exporter
+      equal:
+        - instance
   route:
-    groupBy: ['job']
-    groupWait: 30s
+    groupBy: ['alertname']
+    groupWait: 60s
     groupInterval: 5m
     repeatInterval: 12h
-    receiver: alertmanager-slack
+    receiver: default-slack
+    routes:
+      - matchers:
+        - name: alertname
+          value: InfoInhibitor
+          matchType: "="
+        receiver: 'null'
+      - matchers:
+        - name: namespace
+          value: apps
+          matchType: "="
+        receiver: apps-slack
+      - matchers:
+        - name: namespace
+          value: kube-system|monitoring|tools|argocd
+          matchType: "=~"
+        receiver: platform-slack
+      - matchers:
+        - name: namespace
+          value: aenodes
+          matchType: "="
+        receiver: blockchain-slack
+      - matchers:
+        - name: role
+          value: aenode
+          matchType: "="
+        receiver: blockchain-slack
   receivers:
-  - name: alertmanager-slack
-    slackConfigs:
-    - sendResolved: true
-      apiURL:
-        name: kube-prometheus-stack-app-secrets
-        key: SLACK_HOOK_URL
-      channel: '#monitoring'
-      title: {{`"{{ template \"slack.ae.title\" . }}"`}}
-      text: {{`"{{ template \"slack.ae.text\" . }}"`}}
+    - name: 'null'
+    - name: default-slack
+      slackConfigs:
+        - sendResolved: true
+          apiURL:
+            name: kube-prometheus-stack-app-secrets
+            key: SLACK_HOOK_URL
+          channel: '#monitoring'
+          title: {{`"{{ template \"slack.ae.title\" . }}"`}}
+          text: {{`"{{ template \"slack.ae.text\" . }}"`}}
+    {{- if .Values.alerts.platformSlackChannel }}
+    - name: platform-slack
+      slackConfigs:
+        - sendResolved: true
+          apiURL:
+            name: kube-prometheus-stack-app-secrets
+            key: {{ .Values.alerts.platformSlackHookUrlKey }}
+          channel: {{ .Values.alerts.platformSlackChannel }}
+          title: {{`"{{ template \"slack.ae.title\" . }}"`}}
+          text: {{`"{{ template \"slack.ae.text\" . }}"`}}
+    {{- end }}
+    {{- if .Values.alerts.blockchainSlackChannel }}
+    - name: blockchain-slack
+      slackConfigs:
+        - sendResolved: true
+          apiURL:
+            name: kube-prometheus-stack-app-secrets
+            key: {{ .Values.alerts.blockchainSlackHookUrlKey }}
+          channel: {{ .Values.alerts.blockchainSlackChannel }}
+          title: {{`"{{ template \"slack.ae.title\" . }}"`}}
+          text: {{`"{{ template \"slack.ae.text\" . }}"`}}
+    {{- end }}
+    {{- if .Values.alerts.appsSlackChannel }}
+    - name: apps-slack
+      slackConfigs:
+        - sendResolved: true
+          apiURL:
+            name: kube-prometheus-stack-app-secrets
+            key: {{ .Values.alerts.appsSlackHookUrlKey }}
+          channel: {{ .Values.alerts.appsSlackChannel }}
+          title: {{`"{{ template \"slack.ae.title\" . }}"`}}
+          text: {{`"{{ template \"slack.ae.text\" . }}"`}}
+    {{- end }}

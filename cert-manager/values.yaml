@@ -10,26 +10,30 @@ cert-manager:
     - --acme-http01-solver-resource-limits-memory=64Mi
   resources:
     requests:
-      cpu: 50m
+      cpu: 10m
       memory: 56Mi
     limits:
-      cpu: 75m
       memory: 56Mi
   securityContext:
     fsGroup: 1001
 
   webhook:
     resources:
-      limits:
-        memory: 24Mi
       requests:
         cpu: 10m
+        memory: 24Mi
+      limits:
         memory: 24Mi
 
   cainjector:
     resources:
-      limits:
-        memory: 164Mi
       requests:
         cpu: 10m
         memory: 164Mi
+      limits:
+        memory: 164Mi
+
+  prometheus:
+    enabled: true
+    servicemonitor:
+      enabled: true
