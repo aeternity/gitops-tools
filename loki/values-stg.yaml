@@ -1,0 +1,15 @@
+loki:
+  serviceAccount:
+    annotations:
+      eks.amazonaws.com/role-arn: "arn:aws:iam::106102538874:role/loki-stg"
+  ingress:
+    hosts:
+      - "loki.stg.aeternity.io"
+  loki:
+    storage:
+      bucketNames:
+        chunks: aeternity-loki-chunks-stg
+        ruler: aeternity-loki-ruler-stg
+        admin: aeternity-loki-admin-stg
+    limits_config:
+      retention_period: 10d
