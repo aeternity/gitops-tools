@@ -185,6 +185,13 @@ argo-cd:
             ignoreDifferences: |
               managedFieldsManagers:
               - external-secrets
+      resource.exclusions: |
+        - apiGroups:
+          - policy
+          kinds:
+          - PodSecurityPolicy
+          clusters:
+          - "*"
     rbac:
       policy.default: role:readonly
       policy.csv: |
