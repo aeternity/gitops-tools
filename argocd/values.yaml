@@ -116,7 +116,6 @@ applicationsets:
     include:
       - kube-prometheus-blackbox-exporter
       - fluent-bit
-      - kubernetes-event-exporter
       - loki
     project: tools
     appNamespace: monitoring
