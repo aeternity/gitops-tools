@@ -84,43 +84,20 @@ fluent-bit:
           wildcard        kubernetes_*
           nest_under      kubernetes
           remove_prefix   kubernetes_
-
-    ## https://docs.fluentbit.io/manual/pipeline/filters
-    # filters: |
-    #   [FILTER]
-    #       Name kubernetes
-    #       Match *
-    #       Merge_Log On
-    #       Keep_Log Off
-    #       K8S-Logging.Parser On
-    #       K8S-Logging.Exclude On
-    #   [FILTER]
-    #       Name     grep
-    #       Match    *
-    #       Exclude  log \"GET \/ HTTP\/1\.1\" 200
-    #   [FILTER]
-    #       Name        parser
-    #       Match       nginx.*
-    #       Key_Name    log
-    #       Parser      nginx
-    #       Preserve_Key  True
-    #       Reserve_Data  True
-    #   [FILTER]
-    #       Name modify
-    #       Match nginx.*
-    #       Remove stream
-    #       Rename method app_method
-    #       Rename path app_path
-    #       Rename remote app_remote
-    #       Rename size app_size
-    #       Rename host app_host
-    #       Rename user app_user
-    #       Rename code app_code
-    #       Rename referer app_referer
-    #   [FILTER]
-    #       Name nest
-    #       Match nginx.*
-    #       Operation nest
-    #       Wildcard app_*
-    #       Nest_under app
-    #       Remove_prefix app_
+    ## https://docs.fluentbit.io/manual/pipeline/outputs
+    outputs: |
+      [OUTPUT]
+          name                   loki
+          match                  kube.*
+          host                   loki-headless
+          port                   3100
+          labels                 source=k8s-apps
+          label_keys             $kubernetes['namespace_name'], $kubernetes['pod_name'], $kubernetes['container_name']
+          line_format            json
+      [OUTPUT]
+          name                   loki
+          match                  kube_events
+          host                   loki-headless
+          port                   3100
+          labels                 source=k8s-events
+          line_format            json
