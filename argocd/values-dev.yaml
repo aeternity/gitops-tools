@@ -19,18 +19,6 @@ argo-cd:
     ingress:
       hosts:
         - "argocd.dev.aeternity.io"
-  applicationSet:
-    resources:
-      requests:
-        cpu: 25m
-  controller:
-    resources:
-      requests:
-        cpu: 300m
-  repoServer:
-    resources:
-      requests:
-        cpu: 250m
 
 additionalApplicationsets:
   - name: apps-dev
