@@ -185,6 +185,13 @@ argo-cd:
             ignoreDifferences: |
               managedFieldsManagers:
               - external-secrets
+      resource.exclusions: |
+        - apiGroups:
+          - policy
+          kinds:
+          - PodSecurityPolicy
+          clusters:
+          - "*"
     rbac:
       policy.default: role:readonly
       policy.csv: |
@@ -205,7 +212,7 @@ argo-cd:
     enabled: true
     resources:
       requests:
-        cpu: 50m
+        cpu: 20m
         memory: 48Mi
       limits:
         memory: 72Mi
@@ -213,7 +220,7 @@ argo-cd:
   controller:
     resources:
       requests:
-        cpu: 600m
+        cpu: 210m
         memory: 512Mi
       limits:
         memory: 1024Mi
@@ -243,7 +250,7 @@ argo-cd:
   dex:
     resources:
       requests:
-        cpu: 50m
+        cpu: 10m
         memory: 64Mi
       limits:
         memory: 96Mi
@@ -255,7 +262,7 @@ argo-cd:
   server:
     resources:
       requests:
-        cpu: 250m
+        cpu: 10m
         memory: 148Mi
       limits:
         memory: 220Mi
