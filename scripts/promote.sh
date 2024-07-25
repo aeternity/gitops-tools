@@ -63,7 +63,7 @@ function app {
         ignore_path $source $destination $chart/$e
     done
 
-    git checkout $destination $chart/values-$destination.yaml
+    git checkout $destination $chart/values-$destination.yaml > /dev/null 2>&1 || true
 
     echo "---------------------------------------------------------------"
     echo "Review your promote with:"
