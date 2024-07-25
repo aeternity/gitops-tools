@@ -185,6 +185,13 @@ argo-cd:
             ignoreDifferences: |
               managedFieldsManagers:
               - external-secrets
+      resource.exclusions: |
+        - apiGroups:
+          - policy
+          kinds:
+          - PodSecurityPolicy
+          clusters:
+          - "*"
     rbac:
       policy.default: role:readonly
       policy.csv: |
@@ -205,7 +212,7 @@ argo-cd:
     enabled: true
     resources:
       requests:
-        cpu: 50m
+        cpu: 20m
         memory: 48Mi
       limits:
         memory: 72Mi
@@ -213,10 +220,10 @@ argo-cd:
   controller:
     resources:
       requests:
-        cpu: 600m
-        memory: 512Mi
+        cpu: 210m
+        memory: 700Mi
       limits:
-        memory: 1024Mi
+        memory: 1000Mi
     extraArgs:
       - --repo-server-timeout-seconds
       - "360"
@@ -229,9 +236,9 @@ argo-cd:
     resources:
       requests:
         cpu: 500m
-        memory: 160Mi
+        memory: 400Mi
       limits:
-        memory: 512Mi
+        memory: 600Mi
     env:
       - name: "ARGOCD_EXEC_TIMEOUT"
         value: "3m"
@@ -243,7 +250,7 @@ argo-cd:
   dex:
     resources:
       requests:
-        cpu: 50m
+        cpu: 10m
         memory: 64Mi
       limits:
         memory: 96Mi
@@ -255,7 +262,7 @@ argo-cd:
   server:
     resources:
       requests:
-        cpu: 250m
+        cpu: 10m
         memory: 148Mi
       limits:
         memory: 220Mi
