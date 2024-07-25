@@ -1,21 +1,28 @@
 fluent-bit:
   image:
     repository: cr.fluentbit.io/fluent/fluent-bit
-    # Overrides the image tag whose default is {{ .Chart.AppVersion }}
-    tag: "1.9.9"
     pullPolicy: Always
   resources:
-    limits:
-      memory: 32Mi
     requests:
-      cpu: 100m
-      memory: 32Mi
+      cpu: 20m
+      memory: 30Mi
+    limits:
+      memory: 45Mi
+  rbac:
+    create: true
+    eventsAccess: true
+  serviceMonitor:
+    enabled: true
+  dashboards:
+    enabled: true
+  podAnnotations:
+    fluentbit.io/parser: logfmt
   config:
     service: |
       [SERVICE]
           Daemon Off
           Flush 1
-          Log_Level {{ .Values.logLevel }}
+          Log_Level info
           Parsers_File parsers.conf
           Parsers_File custom_parsers.conf
           HTTP_Server On
@@ -24,73 +31,73 @@ fluent-bit:
           storage.path              /var/log/ds/flb-storage/
           storage.sync              normal
           storage.checksum          off
-          storage.backlog.mem_limit 100M
+          storage.backlog.mem_limit 60M
 
     ## https://docs.fluentbit.io/manual/pipeline/inputs
     inputs: |
       [INPUT]
-          Name tail
-          Path /var/log/containers/*.log
-          Tag kube.*
-          DB /var/log/ds/flb_kube.db
-          DB.Sync            Normal
-          Mem_Buf_Limit      50MB
-          Skip_Long_Lines    Off
-          Refresh_Interval   10
-          Buffer_Chunk_Size  2MB
-          Buffer_Max_Size    4MB
-          Exclude_Path /var/log/containers/dex*.log,/var/log/containers/mdw-frontend*.log,/var/log/containers/superhero*.log
-      [INPUT]
-          Name tail
-          Path /var/log/containers/dex*.log,/var/log/containers/mdw-frontend*.log,/var/log/containers/superhero*.log
-          Tag nginx.*
-          DB /var/log/ds/flb_kube_nginx.db
-          DB.Sync            Normal
-          Mem_Buf_Limit      50MB
-          Skip_Long_Lines    Off
-          Refresh_Interval   10
-          Buffer_Chunk_Size  2MB
-          Buffer_Max_Size    4MB
+          Name                tail
+          Path                /var/log/containers/*.log
+          Tag                 kube.*
+          Parser              docker_no_time
+          Skip_Long_Lines     on
+          Skip_Empty_Lines    on
+          Mem_Buf_Limit       5M
 
+      [INPUT]
+          name                kubernetes_events
+          tag                 kube_events
+          interval_sec        30
+          kube_request_limit  250
     ## https://docs.fluentbit.io/manual/pipeline/filters
     filters: |
       [FILTER]
-          Name kubernetes
-          Match *
-          Merge_Log On
-          Keep_Log Off
-          K8S-Logging.Parser On
-          K8S-Logging.Exclude On
-      [FILTER]
-          Name     grep
-          Match    *
-          Exclude  log \"GET \/ HTTP\/1\.1\" 200
-      [FILTER]
-          Name        parser
-          Match       nginx.*
-          Key_Name    log
-          Parser      nginx
-          Preserve_Key  True
-          Reserve_Data  True
-      [FILTER]
-          Name modify
-          Match nginx.*
-          Remove stream
-          Rename method app_method
-          Rename path app_path
-          Rename remote app_remote
-          Rename size app_size
-          Rename host app_host
-          Rename user app_user
-          Rename code app_code
-          Rename referer app_referer
-      [FILTER]
-          Name nest
-          Match nginx.*
-          Operation nest
-          Wildcard app_*
-          Nest_under app
-          Remove_prefix app_
-    
-    logLevel: info
+          Name                kubernetes
+          Match               kube.*
+          Labels              off
+          # Safe some space until it's usefull to collect
+          Annotations         off
+          Merge_Log           on
+          Keep_Log            off
+          K8S-Logging.Parser  on
 
+      [FILTER]
+          name            nest
+          match           kube.*
+          operation       lift
+          nested_under    kubernetes
+          add_prefix      kubernetes_
+
+      [FILTER]
+          name        modify
+          match       kube.*
+          remove      kubernetes_pod_id
+          remove      kubernetes_docker_id
+          remove      kubernetes_container_hash
+          remove      kubernetes_container_image
+          remove      kubernetes_host
+
+      [FILTER]
+          name            nest
+          match           kube.*
+          operation       nest
+          wildcard        kubernetes_*
+          nest_under      kubernetes
+          remove_prefix   kubernetes_
+    ## https://docs.fluentbit.io/manual/pipeline/outputs
+    outputs: |
+      [OUTPUT]
+          name                   loki
+          match                  kube.*
+          host                   loki-headless
+          port                   3100
+          labels                 source=k8s-apps
+          label_keys             $kubernetes['namespace_name'], $kubernetes['pod_name'], $kubernetes['container_name']
+          line_format            json
+      [OUTPUT]
+          name                   loki
+          match                  kube_events
+          host                   loki-headless
+          port                   3100
+          labels                 source=k8s-events
+          line_format            json

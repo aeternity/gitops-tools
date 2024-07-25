@@ -6,7 +6,34 @@ app-secrets:
       GRAFANA_ADMIN_USER: /monitoring/GRAFANA_ADMIN_USER
       GRAFANA_ADMIN_PASSWORD: /monitoring/GRAFANA_ADMIN_PASSWORD
       SLACK_HOOK_URL: /monitoring/SLACK_HOOK_URL
+      SLACK_HOOK_URL_PLATFORM: /monitoring/SLACK_HOOK_URL_PLATFORM
+      SLACK_HOOK_URL_BLOCKCHAIN: /monitoring/SLACK_HOOK_URL_BLOCKCHAIN
+      SLACK_HOOK_URL_APPS: /monitoring/SLACK_HOOK_URL_APPS
 
+alerts:
+  platformSlackHookUrlKey: SLACK_HOOK_URL_PLATFORM
+  blockchainSlackHookUrlKey: SLACK_HOOK_URL_BLOCKCHAIN
+  appsSlackHookUrlKey: SLACK_HOOK_URL_APPS
+
+grafanaDashboards:
+  aeternity:
+    - dashboards/aeternity/aeternity-instances.json
+    - dashboards/aeternity/aeternity-node-exporter-node.json
+    - dashboards/aeternity/aeternity-node-exporter-group.json
+    - dashboards/aeternity/aeternity-blockchain.json
+    - dashboards/aeternity/aeternity-protocol.json
+    - dashboards/aeternity/aeternity-erlang.json
+    - dashboards/aeternity/aeternity-job-queues.json
+  loki:
+    - dashboards/loki/loki-chunks.json
+    - dashboards/loki/loki-deletion.json
+    - dashboards/loki/loki-logs.json
+    - dashboards/loki/loki-operational.json
+    - dashboards/loki/loki-reads-resources.json
+    - dashboards/loki/loki-reads.json
+    - dashboards/loki/loki-retention.json
+    - dashboards/loki/loki-writes-resources.json
+    - dashboards/loki/loki-writes.json
 
 kube-prometheus-stack:
   ## Disable scrapping unused metrics: https://medium.com/gumgum-tech/how-to-reduce-your-prometheus-cost-6c7cc685e347
@@ -39,8 +66,14 @@ kube-prometheus-stack:
         cpu: 10m
         memory: 32Mi
       limits:
-        cpu: 15m
         memory: 48Mi
+    prometheusConfigReloader:
+      resources:
+        requests:
+          cpu: 10m
+          memory: 16Mi
+        limits:
+          memory: 20Mi
 
   kube-state-metrics:
     resources:
@@ -48,7 +81,6 @@ kube-prometheus-stack:
         cpu: 10m
         memory: 64Mi
       limits:
-        cpu: 15m
         memory: 96Mi
     prometheus:
       monitor:
@@ -103,31 +135,31 @@ kube-prometheus-stack:
   prometheus-node-exporter:
     resources:
       requests:
-        cpu: 100m
+        cpu: 10m
         memory: 16Mi
       limits:
-        cpu: 150m
-        memory: 24Mi
+        memory: 20Mi
 
   prometheus:
     serviceMonitorSelector: {}
     prometheusSpec:
       resources:
         requests:
-          cpu: 100m
+          cpu: 40m
           memory: 1.3Gi
         limits:
-          cpu: 150m
+          cpu: null
           memory: 1.8Gi
       serviceMonitorSelectorNilUsesHelmValues: false
       ruleSelectorNilUsesHelmValues: false
+      retention: 10d
       storageSpec:
         volumeClaimTemplate:
           spec:
             accessModes: ["ReadWriteOnce"]
             resources:
               requests:
-                storage: 5Gi
+                storage: 20Gi
     ingress:
       enabled: false
       annotations:
@@ -138,10 +170,9 @@ kube-prometheus-stack:
   grafana:
     resources:
       requests:
-        cpu: 100m
+        cpu: 90m
         memory: 128Mi
       limits:
-        cpu: 150m
         memory: 192Mi
     admin:
       existingSecret: kube-prometheus-stack-app-secrets
@@ -150,14 +181,16 @@ kube-prometheus-stack:
     sidecar:
       resources:
         requests:
-          cpu: 60m
+          cpu: 30m
           memory: 100Mi
         limits:
-          cpu: 90m
           memory: 130Mi
       dashboards:
         enabled: true
-        folderAnnotation: grafana-dashboard-dir
+        folderAnnotation: grafana_dashboard_folder
+        defaultFolderName: General
+        provider:
+          foldersFromFilesStrcuture: true
     grafana.ini:
       analytics:
         reporting_enabled: false
@@ -186,6 +219,17 @@ kube-prometheus-stack:
       pathType: ImplementationSpecific
     plugins:
       - grafana-piechart-panel
+    datasources:
+      datasources.yaml:
+        apiVersion: 1
+        datasources:
+        - name: Loki
+          type: loki
+          url: http://loki-headless:3100
+          access: proxy
+    dashboardsConfigMaps:
+      aeternity: grafana-dashboards-aeternity
+      loki: grafana-dashboards-loki
     dashboardProviders:
      dashboardproviders.yaml:
        apiVersion: 1
@@ -198,6 +242,22 @@ kube-prometheus-stack:
          editable: true
          options:
            path: /var/lib/grafana/dashboards/tools
+       - name: 'aeternity'
+         orgId: 1
+         folder: 'Aeternity'
+         type: file
+         disableDeletion: true
+         editable: true
+         options:
+           path: /var/lib/grafana/dashboards/aeternity
+       - name: 'loki'
+         orgId: 1
+         folder: 'Loki'
+         type: file
+         disableDeletion: true
+         editable: true
+         options:
+           path: /var/lib/grafana/dashboards/loki
     dashboards:
       tools:
         traefik2:
@@ -228,6 +288,15 @@ kube-prometheus-stack:
           gnetId: 14588
           revision: 5
           datasource: Prometheus
+        cert-manager:
+          gnetId: 20842
+          revision: 2
+          datasource: Prometheus
+        aws-lb-controller:
+          gnetId: 18319
+          revision: 2
+          datasource: Prometheus
+
     extraSecretMounts:
     - name: secrets-mount
       secretName: kube-prometheus-stack-app-secrets
@@ -238,11 +307,15 @@ kube-prometheus-stack:
   alertmanager:
     alertmanagerSpec:
       resources:
-        limits:
-          memory: 32Mi
         requests:
           cpu: 10m
           memory: 32Mi
+        limits:
+          cpu: null
+          memory: 32Mi
+      # don't filter alter routing on namespace
+      alertmanagerConfigMatcherStrategy:
+        type: None
     ingress:
       enabled: true
       annotations:
@@ -276,146 +349,691 @@ kube-prometheus-stack:
 
   defaultRules:
     rules:
+      kubelet: false
+      kubeProxy: false
       kubeSchedulerAlerting: false
       kubeSchedulerRecording: false
       kubeControllerManager: false
+    additionalRuleLabels: {}
 
   additionalPrometheusRulesMap:
-  - name: blackbox
-    groups:
-    - name: blackbox
-      rules:
-        - alert: BlackboxProbeHttpFailure
-          expr: probe_http_status_code <= 199 OR probe_http_status_code >= 400
-          for: 0m
-          labels:
-            severity: critical
-            namespace: monitoring
+    - name: additional
+      groups:
+      - name: sd-node-exporter-rules
+        rules:
+        - expr: |
+            count without (cpu) (
+              count without (mode) (
+                node_cpu_seconds_total{job="sd_node_exporter"}
+              )
+            )
+          record: instance:node_num_cpu:sum
+        - expr: |
+            1 - avg without (cpu, mode) (
+              rate(node_cpu_seconds_total{job="sd_node_exporter", mode="idle"}[1m])
+            )
+          record: instance:node_cpu_utilisation:rate1m
+        - expr: |
+            (
+              node_load1{job="sd_node_exporter"}
+            /
+              instance:node_num_cpu:sum{job="sd_node_exporter"}
+            )
+          record: instance:node_load1_per_cpu:ratio
+        - expr: |
+            1 - (
+              node_memory_MemAvailable_bytes{job="sd_node_exporter"}
+            /
+              node_memory_MemTotal_bytes{job="sd_node_exporter"}
+            )
+          record: instance:node_memory_utilisation:ratio
+        - expr: |
+            rate(node_vmstat_pgmajfault{job="sd_node_exporter"}[1m])
+          record: instance:node_vmstat_pgmajfault:rate1m
+        - expr: |
+            rate(node_disk_io_time_seconds_total{job="sd_node_exporter", device!=""}[1m])
+          record: instance_device:node_disk_io_time_seconds:rate1m
+        - expr: |
+            rate(node_disk_io_time_weighted_seconds_total{job="sd_node_exporter", device!=""}[1m])
+          record: instance_device:node_disk_io_time_weighted_seconds:rate1m
+        - expr: |
+            sum without (device) (
+              rate(node_network_receive_bytes_total{job="sd_node_exporter", device!="lo"}[1m])
+            )
+          record: instance:node_network_receive_bytes_excluding_lo:rate1m
+        - expr: |
+            sum without (device) (
+              rate(node_network_transmit_bytes_total{job="sd_node_exporter", device!="lo"}[1m])
+            )
+          record: instance:node_network_transmit_bytes_excluding_lo:rate1m
+        - expr: |
+            sum without (device) (
+              rate(node_network_receive_drop_total{job="sd_node_exporter", device!="lo"}[1m])
+            )
+          record: instance:node_network_receive_drop_excluding_lo:rate1m
+        - expr: |
+            sum without (device) (
+              rate(node_network_transmit_drop_total{job="sd_node_exporter", device!="lo"}[1m])
+            )
+          record: instance:node_network_transmit_drop_excluding_lo:rate1m
+      - name: sd-node-exporter-alerts
+        rules:
+        - alert: NodeFilesystemSpaceFillingUp
           annotations:
-            summary: "Probe failed (URL: {{ $labels.instance }})"
-            description: "Probe failed\n STATUS_CODE = {{ $value }})"
-        - alert: BlackboxProbeBackend
-          expr: probe_failed_due_to_regex{target="superhero-backend"} > 0
-          for: 0m
-          labels:
-            severity: critical
-            namespace: monitoring
-          annotations:
-            summary: "Probe failed (URL: {{ $labels.instance }})"
-            description: "Probe failed\n STATUS_CODE = {{ $value }})"
-    - name: elasticsearch
-      rules:
-        - record: elasticsearch_filesystem_data_used_percent
-          expr: 100 * (elasticsearch_filesystem_data_size_bytes - elasticsearch_filesystem_data_free_bytes)
-            / elasticsearch_filesystem_data_size_bytes
-        - record: elasticsearch_filesystem_data_free_percent
-          expr: 100 - elasticsearch_filesystem_data_used_percent
-        - alert: OpensearchTooFewNodesRunning
-          expr: elasticsearch_cluster_health_number_of_nodes < 1
-          for: 5m
-          labels:
-            severity: critical
-          annotations:
-            description: There are only {{$value}} < 3 Opensearch nodes running
-            summary: Opensearch running on less than 3 nodes
-        - alert: OpensearchHeapTooHigh
-          expr: elasticsearch_jvm_memory_used_bytes{area="heap"} / elasticsearch_jvm_memory_max_bytes{area="heap"}
-            > 0.9
-          for: 15m
-          labels:
-            severity: critical
-          annotations:
-            description: The heap usage is over 90% for 15m
-            summary: Opensearch node {{$labels.node}} heap usage is high
-        - alert: OpensearchClusterStatus
-          expr: elasticsearch_cluster_health_status{color="red"}==1
-          for: 5m
-          labels:
-            severity: critical
-          annotations:
-            description: Cluster Status is Red!
-            summary: Opensearch Cluster Status is Red!
-    - name: pods
-      rules:
-        - alert: ContainerCpuUsage
-          expr: (sum(rate(container_cpu_usage_seconds_total{name!=""}[5m])) BY (instance, name) * 100) > 80
-          for: 5m
-          labels:
-            severity: critical
-            namespace: monitoring
-          annotations:
-            summary: "Container CPU usage"
-            description: "Container CPU usage is above 80%\n VALUE = {{ $value }}"
-        - alert: RedisDown
-          expr: redis_up == 0
-          for: 0m
-          labels:
-            severity: critical
-            namespace: monitoring
-          annotations:
-            summary: Redis down (instance {{ $labels.instance }})
-            description: "Redis instance is down"
-        - alert: HostHighCpuLoad
-          expr: 100 - (avg by(instance) (rate(node_cpu_seconds_total{mode="idle"}[2m])) * 100) > 90
-          for: 0m
-          labels:
-            severity: warning
-            namespace: monitoring
-          annotations:
-            summary: Host high CPU load (instance {{ $labels.instance }})
-            description: "CPU load is > 80%\n  VALUE = {{ $value }}"
-        - alert: HostOutOfMemory
-          expr: node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes * 100 < 10
-          for: 2m
-          labels:
-            severity: warning
-          annotations:
-            summary: Host out of memory (instance {{ $labels.instance }})
-            description: "Node memory is filling up (< 10% left)\n  VALUE = {{ $value }}"
-        - alert: KubePersistentVolumeFillingUp
-          annotations:
-            description: The PersistentVolume claimed by {{ $labels.persistentvolumeclaim }}
-              in Namespace {{ $labels.namespace }} is only {{ $value | humanizePercentage }}
-              free.
-            summary: PersistentVolume is filling up.
+            description: Filesystem on {{ $labels.device }}, mounted on {{ $labels.mountpoint
+              }}, at {{ $labels.instance }} has only {{ printf "%.2f" $value }}% available
+              space left and is filling up.
+            summary: Filesystem is predicted to run out of space within the next 24 hours.
           expr: |
             (
-              kubelet_volume_stats_available_bytes{job="kubelet"}
-                /
-              kubelet_volume_stats_capacity_bytes{job="kubelet"}
-            ) < 0.03
+              node_filesystem_avail_bytes{job="sd_node_exporter",fstype!="",mountpoint!=""} / node_filesystem_size_bytes{job="sd_node_exporter",fstype!="",mountpoint!=""} * 100 < 40
             and
-            kubelet_volume_stats_used_bytes{job="kubelet"} > 0
-            unless on(namespace, persistentvolumeclaim)
-            kube_persistentvolumeclaim_access_mode{ access_mode="ReadOnlyMany"} == 1
-            unless on(namespace, persistentvolumeclaim)
-            kube_persistentvolumeclaim_labels{label_excluded_from_alerts="true"} == 1
-          for: 1m
+              predict_linear(node_filesystem_avail_bytes{job="sd_node_exporter",fstype!="",mountpoint!=""}[6h], 24*60*60) < 0
+            and
+              node_filesystem_readonly{job="sd_node_exporter",fstype!="",mountpoint!=""} == 0
+            )
+          for: 1h
+          labels:
+            severity: warning
+        - alert: NodeFilesystemSpaceFillingUp
+          annotations:
+            description: Filesystem on {{ $labels.device }}, mounted on {{ $labels.mountpoint
+              }}, at {{ $labels.instance }} has only {{ printf "%.2f" $value }}% available
+              space left and is filling up fast.
+            summary: Filesystem is predicted to run out of space within the next 4 hours.
+          expr: |
+            (
+              node_filesystem_avail_bytes{job="sd_node_exporter",fstype!="",mountpoint!=""} / node_filesystem_size_bytes{job="sd_node_exporter",fstype!="",mountpoint!=""} * 100 < 20
+            and
+              predict_linear(node_filesystem_avail_bytes{job="sd_node_exporter",fstype!="",mountpoint!=""}[6h], 4*60*60) < 0
+            and
+              node_filesystem_readonly{job="sd_node_exporter",fstype!="",mountpoint!=""} == 0
+            )
+          for: 1h
           labels:
             severity: critical
-        - alert: KubePodCrashLooping
+        - alert: NodeFilesystemAlmostOutOfSpace
           annotations:
-            description: 'Pod {{ $labels.namespace }}/{{ $labels.pod }} ({{ $labels.container
-              }}) is in waiting state (reason: "CrashLoopBackOff").'
-            summary: Pod is crash looping.
+            description: Filesystem on {{ $labels.device }}, mounted on {{ $labels.mountpoint
+              }}, at {{ $labels.instance }} has only {{ printf "%.2f" $value }}% available
+              space left.
+            summary: Filesystem has less than 5% space left.
           expr: |
-            max_over_time(kube_pod_container_status_waiting_reason{reason="CrashLoopBackOff", job="kube-state-metrics"}[5m]) >= 1
+            (
+              node_filesystem_avail_bytes{job="sd_node_exporter",fstype!="",mountpoint!=""} / node_filesystem_size_bytes{job="sd_node_exporter",fstype!="",mountpoint!=""} * 100 < 5
+            and
+              node_filesystem_readonly{job="sd_node_exporter",fstype!="",mountpoint!=""} == 0
+            )
+          for: 30m
+          labels:
+            severity: warning
+        - alert: NodeFilesystemAlmostOutOfSpace
+          annotations:
+            description: Filesystem on {{ $labels.device }}, mounted on {{ $labels.mountpoint
+              }}, at {{ $labels.instance }} has only {{ printf "%.2f" $value }}% available
+              space left.
+            summary: Filesystem has less than 3% space left.
+          expr: |
+            (
+              node_filesystem_avail_bytes{job="sd_node_exporter",fstype!="",mountpoint!=""} / node_filesystem_size_bytes{job="sd_node_exporter",fstype!="",mountpoint!=""} * 100 < 3
+            and
+              node_filesystem_readonly{job="sd_node_exporter",fstype!="",mountpoint!=""} == 0
+            )
+          for: 30m
+          labels:
+            severity: critical
+        - alert: NodeFilesystemFilesFillingUp
+          annotations:
+            description: Filesystem on {{ $labels.device }}, mounted on {{ $labels.mountpoint
+              }}, at {{ $labels.instance }} has only {{ printf "%.2f" $value }}% available
+              inodes left and is filling up.
+            summary: Filesystem is predicted to run out of inodes within the next 24 hours.
+          expr: |
+            (
+              node_filesystem_files_free{job="sd_node_exporter",fstype!="",mountpoint!=""} / node_filesystem_files{job="sd_node_exporter",fstype!="",mountpoint!=""} * 100 < 40
+            and
+              predict_linear(node_filesystem_files_free{job="sd_node_exporter",fstype!="",mountpoint!=""}[6h], 24*60*60) < 0
+            and
+              node_filesystem_readonly{job="sd_node_exporter",fstype!="",mountpoint!=""} == 0
+            )
+          for: 1h
+          labels:
+            severity: warning
+        - alert: NodeFilesystemFilesFillingUp
+          annotations:
+            description: Filesystem on {{ $labels.device }}, mounted on {{ $labels.mountpoint
+              }}, at {{ $labels.instance }} has only {{ printf "%.2f" $value }}% available
+              inodes left and is filling up fast.
+            summary: Filesystem is predicted to run out of inodes within the next 4 hours.
+          expr: |
+            (
+              node_filesystem_files_free{job="sd_node_exporter",fstype!="",mountpoint!=""} / node_filesystem_files{job="sd_node_exporter",fstype!="",mountpoint!=""} * 100 < 20
+            and
+              predict_linear(node_filesystem_files_free{job="sd_node_exporter",fstype!="",mountpoint!=""}[6h], 4*60*60) < 0
+            and
+              node_filesystem_readonly{job="sd_node_exporter",fstype!="",mountpoint!=""} == 0
+            )
+          for: 1h
+          labels:
+            severity: critical
+        - alert: NodeFilesystemAlmostOutOfFiles
+          annotations:
+            description: Filesystem on {{ $labels.device }}, mounted on {{ $labels.mountpoint
+              }}, at {{ $labels.instance }} has only {{ printf "%.2f" $value }}% available
+              inodes left.
+            summary: Filesystem has less than 5% inodes left.
+          expr: |
+            (
+              node_filesystem_files_free{job="sd_node_exporter",fstype!="",mountpoint!=""} / node_filesystem_files{job="sd_node_exporter",fstype!="",mountpoint!=""} * 100 < 5
+            and
+              node_filesystem_readonly{job="sd_node_exporter",fstype!="",mountpoint!=""} == 0
+            )
+          for: 1h
+          labels:
+            severity: warning
+        - alert: NodeFilesystemAlmostOutOfFiles
+          annotations:
+            description: Filesystem on {{ $labels.device }}, mounted on {{ $labels.mountpoint
+              }}, at {{ $labels.instance }} has only {{ printf "%.2f" $value }}% available
+              inodes left.
+            summary: Filesystem has less than 3% inodes left.
+          expr: |
+            (
+              node_filesystem_files_free{job="sd_node_exporter",fstype!="",mountpoint!=""} / node_filesystem_files{job="sd_node_exporter",fstype!="",mountpoint!=""} * 100 < 3
+            and
+              node_filesystem_readonly{job="sd_node_exporter",fstype!="",mountpoint!=""} == 0
+            )
+          for: 1h
+          labels:
+            severity: critical
+        - alert: NodeNetworkReceiveErrs
+          annotations:
+            description: '{{ $labels.instance }} interface {{ $labels.device }} has encountered
+              {{ printf "%.0f" $value }} receive errors in the last two minutes.'
+            summary: Network interface is reporting many receive errors.
+          expr: |
+            rate(node_network_receive_errs_total{job="sd_node_exporter"}[2m]) / rate(node_network_receive_packets_total{job="sd_node_exporter"}[2m]) > 0.01
+          for: 1h
+          labels:
+            severity: warning
+        - alert: NodeNetworkTransmitErrs
+          annotations:
+            description: '{{ $labels.instance }} interface {{ $labels.device }} has encountered
+              {{ printf "%.0f" $value }} transmit errors in the last two minutes.'
+            summary: Network interface is reporting many transmit errors.
+          expr: |
+            rate(node_network_transmit_errs_total{job="sd_node_exporter"}[2m]) / rate(node_network_transmit_packets_total{job="sd_node_exporter"}[2m]) > 0.01
+          for: 1h
+          labels:
+            severity: warning
+        - alert: NodeHighNumberConntrackEntriesUsed
+          annotations:
+            description: '{{ $value | humanizePercentage }} of conntrack entries are used.'
+            summary: Number of conntrack are getting close to the limit.
+          expr: |
+            (node_nf_conntrack_entries{job="sd_node_exporter"} / node_nf_conntrack_entries_limit) > 0.75
+          labels:
+            severity: warning
+        - alert: NodeTextFileCollectorScrapeError
+          annotations:
+            description: Node Exporter text file collector on {{ $labels.instance }} failed
+              to scrape.
+            summary: Node Exporter text file collector failed to scrape.
+          expr: |
+            node_textfile_scrape_error{job="sd_node_exporter"} == 1
+          labels:
+            severity: warning
+        - alert: NodeClockSkewDetected
+          annotations:
+            description: Clock at {{ $labels.instance }} is out of sync by more than 0.05s.
+              Ensure NTP is configured correctly on this host.
+            summary: Clock skew detected.
+          expr: |
+            (
+              node_timex_offset_seconds{job="sd_node_exporter"} > 0.05
+            and
+              deriv(node_timex_offset_seconds{job="sd_node_exporter"}[5m]) >= 0
+            )
+            or
+            (
+              node_timex_offset_seconds{job="sd_node_exporter"} < -0.05
+            and
+              deriv(node_timex_offset_seconds{job="sd_node_exporter"}[5m]) <= 0
+            )
+          for: 10m
+          labels:
+            severity: warning
+        - alert: NodeClockNotSynchronising
+          annotations:
+            description: Clock at {{ $labels.instance }} is not synchronising. Ensure NTP
+              is configured on this host.
+            summary: Clock not synchronising.
+          expr: |
+            min_over_time(node_timex_sync_status{job="sd_node_exporter"}[5m]) == 0
+            and
+            node_timex_maxerror_seconds{job="sd_node_exporter"} >= 16
+          for: 10m
+          labels:
+            severity: warning
+        - alert: NodeRAIDDegraded
+          annotations:
+            description: RAID array '{{ $labels.device }}' at {{ $labels.instance }} is
+              in degraded state due to one or more disks failures. Number of spare drives
+              is insufficient to fix issue automatically.
+            summary: RAID Array is degraded.
+          expr: |
+            node_md_disks_required{job="sd_node_exporter",device!=""} - ignoring (state) (node_md_disks{state="active",job="sd_node_exporter",device!=""}) > 0
+          for: 15m
+          labels:
+            severity: critical
+        - alert: NodeRAIDDiskFailure
+          annotations:
+            description: At least one device in RAID array at {{ $labels.instance }} failed.
+              Array '{{ $labels.device }}' needs attention and possibly a disk swap.
+            summary: Failed device in RAID array.
+          expr: |
+            node_md_disks{state="failed",job="sd_node_exporter",device!=""} > 0
+          labels:
+            severity: warning
+        - alert: NodeFileDescriptorLimit
+          annotations:
+            description: File descriptors limit at {{ $labels.instance }} is currently at
+              {{ printf "%.2f" $value }}%.
+            summary: Kernel is predicted to exhaust file descriptors limit soon.
+          expr: |
+            (
+              node_filefd_allocated{job="sd_node_exporter"} * 100 / node_filefd_maximum{job="sd_node_exporter"} > 70
+            )
           for: 15m
           labels:
             severity: warning
-        - alert: KubePodNotReady
+        - alert: NodeFileDescriptorLimit
           annotations:
-            description: Pod {{ $labels.namespace }}/{{ $labels.pod }} has been in a non-ready
-              state for longer than 15 minutes.
-            summary: Pod has been in a non-ready state for more than 15 minutes.
+            description: File descriptors limit at {{ $labels.instance }} is currently at
+              {{ printf "%.2f" $value }}%.
+            summary: Kernel is predicted to exhaust file descriptors limit soon.
           expr: |
-            sum by (namespace, pod) (
-              max by(namespace, pod) (
-                kube_pod_status_phase{job="kube-state-metrics", phase=~"Pending|Unknown"}
-              ) * on(namespace, pod) group_left(owner_kind) topk by(namespace, pod) (
-                1, max by(namespace, pod, owner_kind) (kube_pod_owner{owner_kind!="Job"})
-              )
+            (
+              node_filefd_allocated{job="sd_node_exporter"} * 100 / node_filefd_maximum{job="sd_node_exporter"} > 90
+            )
+          for: 15m
+          labels:
+            severity: critical
+        - alert: NodeCPUHighUsage
+          annotations:
+            description: |
+              CPU usage at {{ $labels.instance }} has been above 90% for the last 45 minutes, is currently at {{ printf "%.2f" $value }}%.
+            summary: High CPU usage.
+          expr: |
+            sum without(mode) (avg without (cpu) (rate(node_cpu_seconds_total{job="sd_node_exporter", mode!="idle"}[2m]))) * 100 > 90
+          for: 45m
+          labels:
+            severity: info
+        - alert: NodeSystemSaturation
+          annotations:
+            description: |
+              System load per core at {{ $labels.instance }} has been above 2 for the last 15 minutes, is currently at {{ printf "%.2f" $value }}.
+              This might indicate this instance resources saturation and can cause it becoming unresponsive.
+            summary: System saturated, load per core is very high.
+          expr: |
+            node_load1{job="sd_node_exporter"}
+            / count without (cpu, mode) (node_cpu_seconds_total{job="sd_node_exporter", mode="idle"}) > 2
+          for: 15m
+          labels:
+            severity: warning
+        - alert: NodeMemoryMajorPagesFaults
+          annotations:
+            description: |
+              Memory major pages are occurring at very high rate at {{ $labels.instance }}, 500 major page faults per second for the last 15 minutes, is currently at {{ printf "%.2f" $value }}.
+              Please check that there is enough memory available at this instance.
+            summary: Memory major page faults are occurring at very high rate.
+          expr: |
+            rate(node_vmstat_pgmajfault{job="sd_node_exporter"}[5m]) > 500
+          for: 15m
+          labels:
+            severity: warning
+        - alert: NodeMemoryHighUtilization
+          annotations:
+            description: |
+              Memory is filling up at {{ $labels.instance }}, has been above 90% for the last 15 minutes, is currently at {{ printf "%.2f" $value }}%.
+            summary: Host is running out of memory.
+          expr: |
+            100 - (node_memory_MemAvailable_bytes{job="sd_node_exporter"} / node_memory_MemTotal_bytes{job="sd_node_exporter"} * 100) > 90
+          for: 15m
+          labels:
+            severity: warning
+        - alert: NodeDiskIOSaturation
+          annotations:
+            description: |
+              Disk IO queue (aqu-sq) is high on {{ $labels.device }} at {{ $labels.instance }}, has been above 10 for the last 15 minutes, is currently at {{ printf "%.2f" $value }}.
+              This symptom might indicate disk saturation.
+            summary: Disk IO queue is high.
+          expr: |
+            rate(node_disk_io_time_weighted_seconds_total{job="sd_node_exporter", device!=""}[5m]) > 10
+          for: 30m
+          labels:
+            severity: warning
+        - alert: NodeSystemdServiceFailed
+          annotations:
+            description: Systemd service {{ $labels.name }} has entered failed state at
+              {{ $labels.instance }}
+            summary: Systemd service has entered failed state.
+          expr: |
+            node_systemd_unit_state{job="sd_node_exporter", state="failed"} == 1
+          for: 5m
+          labels:
+            severity: warning
+      - name: aenode-instance-alerts
+        rules:
+        - alert: InstanceDown
+          expr: up{job="sd_node_exporter"} == 0
+          for: 30m
+          labels:
+            severity: critical
+          annotations:
+            summary: "Instance {{ $labels.instance }} down"
+            description: "{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 30 minutes."
+        - alert: StatsdExporterBrokenIntegration
+          expr: rate(statsd_exporter_samples_total{job="sd_statsd_exporter"}[5m]) < 10
+          for: 10m
+          labels:
+            severity: critical
+          annotations:
+            summary: "[{{ $labels.env }}] StatsD Exporter integration on {{ $labels.instance }} not working"
+            description: "{{ $labels.instance }} of job {{ $labels.job }} is not receiving metric samples for more than 10 minutes."
+        - alert: StatsdExporterDown
+          expr: up{job="sd_statsd_exporter"} == 0
+          for: 30m
+          labels:
+            severity: critical
+          annotations:
+            summary: "[{{ $labels.env }}] StatsD Exporter on {{ $labels.instance }} is down."
+            description: "{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 30 minutes."
+        - alert: AeMonDownTestnet
+          expr: absent(up{job="sd_statsd_exporter", env="uat_mon"})
+          for: 10m
+          labels:
+            severity: critical
+          annotations:
+            summary: "[{{ $labels.env }}] Aeternity Testnet monitor is down."
+            description: "{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 10 minutes."
+        - alert: AeMonDownMainnet
+          expr: absent(up{job="sd_statsd_exporter", env="main_mon"})
+          for: 10m
+          labels:
+            severity: critical
+          annotations:
+            summary: "[{{ $labels.env }}] Aeternity Mainnet monitor is down."
+            description: "{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 10 minutes."
+      - name: aenode-p2p-alerts
+        rules:
+        - alert: AeNodeOutOfSync
+          expr: aecore_sync_progress < 100
+          for: 10m
+          labels:
+            severity: critical
+          annotations:
+            summary: "[{{ $labels.env }}] Aeternity node {{ $labels.public_ip }} is out of sync."
+            description: "{{ $labels.instance }} of job {{ $labels.job }} has been out of sync for more than 10 minutes."
+        - alert: AeNodeNoOutboundConnections
+          expr: aecore_peers_connection{direction="outbound", env!~"dev1"} == 0
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "[{{ $labels.env }}] Aeternity node {{ $labels.public_ip }} have no outbound connections."
+            description: "{{ $labels.instance }} of job {{ $labels.job }} have no outbound connections for more than 10 minutes."
+        - alert: AeNodeNoInboundConnections
+          expr: aecore_peers_connection{direction="inbound", env!~"dev1"} == 0
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "[{{ $labels.env }}] Aeternity node {{ $labels.public_ip }} have no inbound connections."
+            description: "{{ $labels.instance }} of job {{ $labels.job }} have no inbound connections for more than 10 minutes."
+        - alert: AeNodeLowPingRate
+          expr: rate(aecore_peers_ping{status="success", env!~"dev1"}[5m]) == 0
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "[{{ $labels.env }}] Aeternity node {{ $labels.public_ip }} low ping rate."
+            description: "{{ $labels.instance }} of job {{ $labels.job }} have low ping rate for more than 10 minutes."
+      - name: aenode-txpool-alerts
+        rules:
+        - alert: AeNodeLargeTxPool
+          expr: avg by (env) (aecore_txpool_size) > 200
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "[{{ $labels.env }}] Transaction pool is too large."
+            description: "Transaction pool size on {{ $labels.env }} is {{ $value }}."
+      - name: aenode-mining-alerts
+        rules:
+        - alert: AeNodeMining
+          expr: avg by (env) (rate(aecore_mining_retries_total{env!~"uat|dev1|integration"}[3m])) > 0
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "[{{ $labels.env }}] Unexpected mining."
+            description: "Nodes on {{ $labels.env }} are not expected to mine."
+        - alert: AeNodeNotMining
+          expr: avg by (env) (rate(aecore_mining_retries_total{env="uat"}[3m])) == 0
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "[{{ $labels.env }}] Mining stopped."
+            description: "Nodes on {{ $labels.env }} are not mining for more than 10 minutes."
+        - alert: AeNodeMiningNoBlocks
+          expr: avg by (env) (rate(aecore_mining_blocks_total{env="uat"}[3m])) == 0
+          for: 30m
+          labels:
+            severity: warning
+          annotations:
+            summary: "[{{ $labels.env }}] Blocks not found."
+            description: "No blocks mined for more than 30 minutes on {{ $labels.env }}."
+      - name: aenode-protocol-alerts
+        rules:
+        - alert: AeCoreMonSlowKeyBlocks
+          expr: avg by (env) (avg_over_time(aecore_aemon_keyblock_interval_ms[6h])) / 1000 / 60 > 3.50
+          for: 60m
+          labels:
+            severity: warning
+          annotations:
+            summary: "[{{ $labels.env }}] Slow keyblocks."
+            description: "Slow keyblocks for last 60m with average of {{ $value }} over last 6h."
+        - alert: AeCoreMonFastKeyBlocks
+          expr: avg by (env) (avg_over_time(aecore_aemon_keyblock_interval_ms[6h])) / 1000 / 60 < 2.50
+          for: 60m
+          labels:
+            severity: warning
+          annotations:
+            summary: "[{{ $labels.env }}] Fast keyblocks."
+            description: "Fast keyblocks for last 60m with average of {{ $value }} over last 6h."
+        - alert: AeCoreMonHighKeyBlockPropagationLatency
+          expr: avg by (env) (aecore_aemon_keyblock_propagation_ms) / 1000 > 25.0
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "[{{ $labels.env }}] High keyblock propagation latency."
+            description: "Average keyblock propagation latency ({{ $value }}) is more than 25s for last 10m."
+        - alert: AeCoreMonHighMicroblocks
+          expr: avg by (env) (avg_over_time(aecore_aemon_generation_microblocks[30m])) > 60
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "[{{ $labels.env }}] High number of microblocks per generation."
+            description: "Average number of microblocks for last 10 generations is {{ $value }} with protocol soft limit of 60."
+        - alert: AeCoreMonSlowMicroBlocks
+          expr: avg by (env) (avg_over_time(aecore_aemon_microblock_interval_ms[15m])) / 1000 > 15.0
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "[{{ $labels.env }}] Slow microblocks."
+            description: "Slow microblocks for last 10m with average of {{ $value }} over last 15m."
+        - alert: AeCoreMonFastMicroBlocks
+          expr: avg by (env) (avg_over_time(aecore_aemon_keyblock_interval_ms[6h])) / 1000 / 60 < 2.50
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "[{{ $labels.env }}] Fast microblocks."
+            description: "Fast microblocks for last 10m with average of {{ $value }} over last 15m."
+        - alert: AeCoreMonHighMicroBlockPropagationLatency
+          expr: avg by (env) (aecore_aemon_microblock_propagation_ms) / 1000 > 12.0
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "[{{ $labels.env }}] High microblock propagation latency."
+            description: "Average microblock propagation latency ({{ $value }}) is more than 12s for last 10m."
+        - alert: AeCoreMonHighMicroForks
+          expr: avg by (env) (rate(aecore_aemon_microforks_total[30m])) * 180 > 2
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "[{{ $labels.env }}] High number of microforks."
+            description: "Average number of microforks over 30m ({{ $value }}) is high for last 10m."
+        - alert: AeCoreHighNumberOfMicroBlockTransactions
+          expr: avg by (env) (aecore_aemon_microblock_transactions) > 350
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "[{{ $labels.env }}] High number of microblock transactions."
+            description: "Average number of microblock transactions ({{ $value }}) is more than 350 protocol limit for last 10m."
+        - alert: AeCoreHighMicroBlockGasUsage
+          expr: avg by (env) (aecore_aemon_microblock_gas) > 6000000
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "[{{ $labels.env }}] High microblock gas usage."
+            description: "Average microblock gas usage ({{ $value }}) is more than 6M protocol limit for last 10m."
+        - alert: AeCoreMonLowTransactions
+          expr: avg by (env) (aecore_aemon_generation_transactions) == 0
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "[{{ $labels.env }}] Low number of transactions."
+            description: "No transactions in the last 10 minutes."
+        - alert: AeCoreLargeTransactionsSize
+          expr: avg by (env) (aecore_aemon_transaction_size_bytes) > 270000
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "[{{ $labels.env }}] Large transactions size."
+            description: "Average transactions size ({{ $value | humanize }}) is close to 299.25k protocol limit for last 10m."
+        - alert: AeCoreMonHighConfirmationDelay
+          expr: avg by (env) (aecore_aemon_confirmation_delay) > 1.0
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "[{{ $labels.env }}] High confirmation delay."
+            description: "More than 1 block confirmation delay ({{ $value }}) in the last 10 minutes."
+      - name: aenode-aecore-aemon-self-alerts
+        rules:
+        - alert: AeCoreMonLowMonitorTransactions
+          expr: avg by (env) (aecore_aemon_generation_mon_transactions) == 0
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "[{{ $labels.env }}] Low number of monitoring transactions in a generation."
+            description: "No monitoring transactions in a generation in the last 10 minutes."
+        - alert: AeCoreMonLargeMonitorPublisherQueue
+          expr: avg by (env) (aecore_aemon_publisher_queue_size) > 5
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "[{{ $labels.env }}] Large monitoroing transactions queue size."
+            description: "Queue size is {{ $value }} but should be less than 5 usualy 3."
+        - alert: AeCoreMonMonitorManyExpiredTransactions
+          expr: avg by (env) (aecore_aemon_publisher_queue_expired) > 1
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "[{{ $labels.env }}] Large number of expired transactions."
+            description: "Large number of expired monitoring transactions ({{ $value }})."
+      - name: blackbox
+        rules:
+          - alert: BlackboxProbeFailing
+            expr: up{job="kube-prometheus-blackbox-exporter"} == 0 or probe_success{job="kube-prometheus-blackbox-exporter"} == 0
+            for: 10m
+            labels:
+              severity: critical
+            annotations:
+              summary: "[{{ $labels.scope }}] Probe failed for target {{ $labels.target }})"
+              description: "Probe URL: {{ $labels.instance }}"
+      - name: cert-manager
+        rules:
+        - alert: CertManagerAbsent
+          annotations:
+            description: New certificates will not be able to be minted, and existing ones
+              can't be renewed until cert-manager is back.
+            runbook_url: https://github.com/imusmanmalik/cert-manager-mixin/blob/main/RUNBOOK.md#certmanagerabsent
+            summary: Cert Manager has disappeared from Prometheus service discovery.
+          expr: absent(up{job="cert-manager"})
+          for: 10m
+          labels:
+            severity: critical
+      - name: certificates
+        rules:
+        - alert: CertManagerCertExpirySoon
+          annotations:
+            dashboard_url: https://grafana.example.com/d/TvuRo2iMk/cert-manager
+            description: The domain that this cert covers will be unavailable after {{ $value| humanizeDuration }}. 
+              Clients using endpoints that this cert protects will start to fail in {{ $value | humanizeDuration }}.
+            runbook_url: https://github.com/imusmanmalik/cert-manager-mixin/blob/main/RUNBOOK.md#certmanagercertexpirysoon
+            summary: The cert `{{ $labels.name }}` is {{ $value | humanizeDuration }} from
+              expiry, it should have renewed over a week ago.
+          expr: |
+            avg by (exported_namespace, namespace, name) (
+              certmanager_certificate_expiration_timestamp_seconds - time()
+            ) < (21 * 24 * 3600) # 21 days in seconds
+          for: 1h
+          labels:
+            severity: warning
+        - alert: CertManagerCertNotReady
+          annotations:
+            dashboard_url: https://grafana.example.com/d/TvuRo2iMk/cert-manager
+            description: This certificate has not been ready to serve traffic for at least
+              10m. If the cert is being renewed or there is another valid cert, the ingress
+              controller _may_ be able to serve that instead.
+            runbook_url: https://github.com/imusmanmalik/cert-manager-mixin/blob/main/RUNBOOK.md#certmanagercertnotready
+            summary: The cert `{{ $labels.name }}` is not ready to serve traffic.
+          expr: |
+            max by (name, exported_namespace, namespace, condition) (
+              certmanager_certificate_ready_status{condition!="True"} == 1
+            )
+          for: 10m
+          labels:
+            severity: critical
+        - alert: CertManagerHittingRateLimits
+          annotations:
+            dashboard_url: https://grafana.example.com/d/TvuRo2iMk/cert-manager
+            description: Depending on the rate limit, cert-manager may be unable to generate
+              certificates for up to a week.
+            runbook_url: https://github.com/imusmanmalik/cert-manager-mixin/blob/main/RUNBOOK.md#certmanagerhittingratelimits
+            summary: Cert manager hitting LetsEncrypt rate limits.
+          expr: |
+            sum by (host) (
+              rate(certmanager_http_acme_client_request_count{status="429"}[5m])
             ) > 0
-          for: 15m
+          for: 5m
           labels:
-            severity: warning
+            severity: critical
+
+

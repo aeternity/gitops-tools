@@ -2,10 +2,10 @@ prometheus-blackbox-exporter:
   image:
     repository: quay.io/prometheus/blackbox-exporter
   resources:
-    limits:
-      memory: 24Mi
     requests:
-      cpu: 100m
+      cpu: 30m
+      memory: 16Mi
+    limits:
       memory: 24Mi
 
   config:
@@ -17,21 +17,12 @@ prometheus-blackbox-exporter:
           valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
           follow_redirects: true
           preferred_ip_protocol: "ip4"
-      http_backend:
-        prober: http
-        timeout: 15s
-        http:
-          valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
-          follow_redirects: true
-          preferred_ip_protocol: "ip4"
-          fail_if_body_not_matches_regexp:
-            - '"allHealthy":true'
 
   serviceMonitor:
     enabled: true
     defaults:
       additionalMetricsRelabels:
-          job: apps
+          namespace: apps
       additionalRelabeling: []
       labels: {}
       interval: 60s
