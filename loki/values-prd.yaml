@@ -1,0 +1,15 @@
+loki:
+  serviceAccount:
+    annotations:
+      eks.amazonaws.com/role-arn: "arn:aws:iam::106102538874:role/loki-prd"
+  ingress:
+    hosts:
+      - "loki.prd.aeternity.io"
+  loki:
+    storage:
+      bucketNames:
+        chunks: aeternity-loki-chunks-prd
+        ruler: aeternity-loki-ruler-prd
+        admin: aeternity-loki-admin-prd
+    limits_config:
+      retention_period: 10d
