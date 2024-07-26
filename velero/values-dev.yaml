@@ -1,7 +1,13 @@
 velero:
+
   configuration:
     backupStorageLocation:
-      bucket: aeternity-velero-backup-dev
+      - name: s3
+        provider: aws
+        bucket: aeternity-velero-backup-dev
+        default: true
+        config:
+          region: eu-central-1
 
   serviceAccount:
     server:

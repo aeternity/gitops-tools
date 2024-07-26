@@ -30,14 +30,11 @@ velero:
           name: plugins
 
   configuration:
-    provider: aws
-    backupStorageLocation:
-      default: true
-      config:
-        region: eu-central-1
     volumeSnapshotLocation:
-      config: 
-        region: eu-central-1
+      - name: s3
+        provider: aws
+        config:
+          region: eu-central-1
 
   serviceAccount:
     server:
