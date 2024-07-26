@@ -57,6 +57,7 @@ traefik:
   additionalArguments:
     - "--entrypoints.web.http.redirections.entrypoint.to=:443"
     - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
+    - "--entrypoints.web.http.redirections.entrypoint.priority=10"
     - "--metrics.prometheus.addServicesLabels=true"
   logs:
     access:
@@ -76,13 +77,16 @@ traefik:
         enabled: true
     https:
       port: 10443
-      expose: true
+      expose:
+        default: true
       exposedPort: 8443
       protocol: TCP
       tls:
         enabled: true
     metrics:
-      expose: true
+      expose:
+        default: false
+        internal: true
   tlsStore:
     default:
       defaultCertificate:
