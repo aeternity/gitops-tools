@@ -11,14 +11,12 @@ limits:
     memory: "1.5"
 
 argo-cd:
+  global:
+    domain: argocd.dev.aeternity.io
   configs:
     cm:
       # Argo CD's externally facing base URL (optional). Required when configuring SSO
       url: https://argocd.dev.aeternity.io
-  server:
-    ingress:
-      hosts:
-        - "argocd.dev.aeternity.io"
 
 additionalApplicationsets:
   - name: apps-dev
@@ -36,3 +34,4 @@ additionalApplications:
   - name: external-snapshotter
     project: tools
     namespace: kube-system
+
