@@ -1,5 +1,4 @@
 velero:
-
   configuration:
     backupStorageLocation:
       - name: s3
@@ -8,7 +7,6 @@ velero:
         default: true
         config:
           region: eu-central-1
-
   serviceAccount:
     server:
       annotations: 
