@@ -11,3 +11,4 @@ argo-cd:
     cm:
       # Argo CD's externally facing base URL (optional). Required when configuring SSO
       url: https://argocd.stg.aeternity.io
+
