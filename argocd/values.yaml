@@ -143,6 +143,7 @@ argo-cd:
     secret:
       createSecret: false
     params:
+      server.insecure: true
       applicationsetcontroller.policy: create-update
       # applicationsetcontroller.policy: sync
     cm:
@@ -276,8 +277,8 @@ argo-cd:
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
         cert-manager.io/cluster-issuer: letsencrypt
       pathType: ImplementationSpecific
+      tls: false
     extraArgs:
-      - --insecure=true
       - --repo-server-timeout-seconds=180
 
   redis:
