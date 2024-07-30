@@ -12,16 +12,4 @@ argo-cd:
       # Argo CD's externally facing base URL (optional). Required when configuring SSO
       url: https://argocd.prd.aeternity.io
 
-additionalApplications:
-  - name: ga-multisig-backend-mainnet
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: ga-multisig-backend-testnet
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
-  - name: ga-multisig-ui
-    project: apps
-    namespace: apps
-    repoUrl: 'https://github.com/aeternity/gitops-apps.git'
+additionalApplications: []
