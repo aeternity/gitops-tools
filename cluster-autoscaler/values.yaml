@@ -11,3 +11,5 @@ cluster-autoscaler:
     enabled: true
   extraArgs:
     balance-similar-node-groups: true
+    scale-down-utilization-threshold: 0.8
+    skip-nodes-with-local-storage: false
