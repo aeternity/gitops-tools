@@ -5,6 +5,8 @@ app-secrets:
     remotePrefix: /k8s/prd-0e9c
 
 argo-cd:
+  global:
+    domain: argocd.prd.aeternity.io
   configs:
     cm:
       # Argo CD's externally facing base URL (optional). Required when configuring SSO
