@@ -1,10 +1,12 @@
 velero:
-  image:
-    repository: velero/velero
-
   configuration:
     backupStorageLocation:
-      bucket: aeternity-velero-backup-prd
+      - name: s3
+        provider: aws
+        bucket: aeternity-velero-backup-prd
+        default: true
+        config:
+          region: eu-central-1
 
   serviceAccount:
     server:

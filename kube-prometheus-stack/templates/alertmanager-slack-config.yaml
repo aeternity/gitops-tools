@@ -3,8 +3,6 @@ apiVersion: monitoring.coreos.com/v1alpha1
 kind: AlertmanagerConfig
 metadata:
   name: alertmanager-slack-config
-  labels:
-    alertmanagerConfig: {{- include "kube-prometheus-stack.labels" . | nindent 4 }}
   namespace: {{ .Release.Namespace }}
 spec:
   inhibitRules:

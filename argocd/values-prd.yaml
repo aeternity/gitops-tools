@@ -11,10 +11,6 @@ argo-cd:
     cm:
       # Argo CD's externally facing base URL (optional). Required when configuring SSO
       url: https://argocd.prd.aeternity.io
-  server:
-    ingress:
-      hosts:
-        - "argocd.prd.aeternity.io"
 
 additionalApplications:
   - name: ga-multisig-backend-mainnet

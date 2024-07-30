@@ -23,21 +23,18 @@ velero:
 
   initContainers:
     - name: velero-plugin-for-aws
-      image: velero/velero-plugin-for-aws:v1.4.1
+      image: velero/velero-plugin-for-aws:v1.10.0
       imagePullPolicy: IfNotPresent
       volumeMounts:
         - mountPath: /target
           name: plugins
 
   configuration:
-    provider: aws
-    backupStorageLocation:
-      default: true
-      config:
-        region: eu-central-1
     volumeSnapshotLocation:
-      config: 
-        region: eu-central-1
+      - name: s3
+        provider: aws
+        config:
+          region: eu-central-1
 
   serviceAccount:
     server:
