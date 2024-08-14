@@ -1,3 +1,7 @@
+app-secrets:
+  external:
+    remotePrefix: /k8s/dev-wgt7
+
 loki:
   serviceAccount:
     annotations:
