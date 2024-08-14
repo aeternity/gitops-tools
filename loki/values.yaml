@@ -1,3 +1,9 @@
+app-secrets:
+  external:
+    secretName: loki-auth-secret
+    values:
+      "users": /loki/HTTP_AUTH_USERS
+
 loki:
   test:
     enabled: false
