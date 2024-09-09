@@ -136,9 +136,9 @@ kube-prometheus-stack:
     resources:
       requests:
         cpu: 10m
-        memory: 18Mi
+        memory: 35Mi
       limits:
-        memory: 25Mi
+        memory: 50Mi
 
   prometheus:
     serviceMonitorSelector: {}
