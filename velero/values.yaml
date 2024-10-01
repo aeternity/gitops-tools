@@ -12,13 +12,13 @@ velero:
     apps-ns:
       schedule: "0 1 * * *"
       labels:
-        velero.io/storage-location: default
+        velero.io/storage-location: s3
       template:
         includedNamespaces:
           - apps
         includedResources: 
           - "*"
-        storageLocation: default
+        storageLocation: s3
         ttl: "720h0m0s"
 
   initContainers:
