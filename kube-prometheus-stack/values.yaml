@@ -869,6 +869,14 @@ kube-prometheus-stack:
           annotations:
             summary: "[{{ $labels.env }}] Unexpected mining."
             description: "Nodes on {{ $labels.env }} are not expected to mine."
+        - alert: AeNodeMiningChildHC
+          expr: avg by (env) (rate(aecore_mining_retries_total{env="aehc_demo", kind="child"}[3m])) > 0
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "[{{ $labels.env }} - child] Unexpected mining."
+            description: "Child nodes on {{ $labels.env }} are not expected to mine."
         - alert: AeNodeNotMining
           expr: avg by (env) (rate(aecore_mining_retries_total{env="uat|integration"}[3m])) == 0
           for: 10m
@@ -879,6 +887,22 @@ kube-prometheus-stack:
             description: "Nodes on {{ $labels.env }} are not mining for more than 10 minutes."
         - alert: AeNodeMiningNoBlocks
           expr: avg by (env) (rate(aecore_mining_blocks_total{env="uat|integration"}[3m])) == 0
+          for: 30m
+          labels:
+            severity: warning
+          annotations:
+            summary: "[{{ $labels.env }} - parent] Blocks not found."
+            description: "No blocks mined for more than 30 minutes on {{ $labels.env }}."
+        - alert: AeNodeNotMiningHC
+          expr: avg by (env) (rate(aecore_mining_retries_total{env="aehc_demo", kind="parent"}[3m])) == 0
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "[{{ $labels.env }} - parent] Mining stopped."
+            description: "Nodes on {{ $labels.env }} are not mining for more than 10 minutes."
+        - alert: AeNodeMiningNoBlocksHC
+          expr: avg by (env) (rate(aecore_mining_blocks_total{env="aehc_demo", kind="parent"}[3m])) == 0
           for: 30m
           labels:
             severity: warning
