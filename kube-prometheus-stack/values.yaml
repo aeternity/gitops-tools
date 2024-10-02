@@ -826,7 +826,7 @@ kube-prometheus-stack:
             summary: "[{{ $labels.env }}] Aeternity node {{ $labels.public_ip }} is out of sync."
             description: "{{ $labels.instance }} of job {{ $labels.job }} has been out of sync for more than 10 minutes."
         - alert: AeNodeNoOutboundConnections
-          expr: aecore_peers_connection{direction="outbound", env!~"dev1"} == 0
+          expr: aecore_peers_connection{direction="outbound", env!~"dev1|aehc_demo"} == 0
           for: 10m
           labels:
             severity: warning
