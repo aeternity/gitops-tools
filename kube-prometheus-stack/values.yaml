@@ -862,7 +862,7 @@ kube-prometheus-stack:
       - name: aenode-mining-alerts
         rules:
         - alert: AeNodeMining
-          expr: avg by (env) (rate(aecore_mining_retries_total{env!~"uat|dev1|integration"}[3m])) > 0
+          expr: avg by (env) (rate(aecore_mining_retries_total{env!~"uat|dev1|integration|aehc_demo"}[3m])) > 0
           for: 10m
           labels:
             severity: warning
