@@ -842,7 +842,7 @@ kube-prometheus-stack:
             summary: "[{{ $labels.env }}] Aeternity node {{ $labels.public_ip }} have no inbound connections."
             description: "{{ $labels.instance }} of job {{ $labels.job }} have no inbound connections for more than 10 minutes."
         - alert: AeNodeLowPingRate
-          expr: rate(aecore_peers_ping{status="success", env!~"dev1"}[5m]) == 0
+          expr: rate(aecore_peers_ping{status="success", env!~"dev1|aehc_demo"}[5m]) == 0
           for: 10m
           labels:
             severity: warning
