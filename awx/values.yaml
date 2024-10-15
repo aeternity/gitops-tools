@@ -9,6 +9,8 @@ awx-operator:
         enabled: true
         storageClassName: gp3
     spec:
+      postgres_storage_class: gp3
+      postgres_data_volume_init: true
       ingress_type: ingress
       ingress_annotations: |
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
