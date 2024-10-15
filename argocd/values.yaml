@@ -101,6 +101,7 @@ applicationsets:
     repoUrl: https://github.com/aeternity/gitops-tools.git
     include:
       - aws-load-balancer-controller
+      - awx
       - cert-manager
       - external-secrets
       - cluster-autoscaler

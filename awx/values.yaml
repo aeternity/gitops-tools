@@ -1,0 +1,4 @@
+awx-operator:
+  AWX:
+    enabled: true
+    spec: {}
