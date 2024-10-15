@@ -1,0 +1,5 @@
+awx-operator:
+  AWX:
+    spec:
+      ingress_hosts:
+        - hostname: awx.dev.aeternity.io

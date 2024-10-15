@@ -1,4 +1,16 @@
 awx-operator:
   AWX:
     enabled: true
-    spec: {}
+    customVolumes:
+      postgres:
+        enabled: true
+        storageClassName: gp3
+      projects:
+        enabled: true
+        storageClassName: gp3
+    spec:
+      ingress_type: ingress
+      ingress_annotations: |
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        cert-manager.io/cluster-issuer: letsencrypt
+      ingress_path_type: ImplementationSpecific
