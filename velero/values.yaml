@@ -13,6 +13,9 @@ velero:
       schedule: "0 1 * * *"
       labels:
         velero.io/storage-location: s3
+      annotations:
+        argocd.argoproj.io/compare-options: IgnoreExtraneous
+        argocd.argoproj.io/sync-options: Delete=false,Prune=false
       template:
         includedNamespaces:
           - apps
@@ -20,7 +23,6 @@ velero:
           - "*"
         storageLocation: s3
         ttl: "720h0m0s"
-      useOwnerReferencesInBackup: true
 
   initContainers:
     - name: velero-plugin-for-aws
