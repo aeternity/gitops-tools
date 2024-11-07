@@ -22,7 +22,7 @@ kube-prometheus-stack:
                 - name: tag:role
                   values: [aenode]
                 - name: tag:env
-                  values: [dev1, aehc_demo, integration, next, uat, uat_mon, api_uat, uat_backup, main, main_mon, main_backup, api_main]
+                  values: [dev1, aehc_demo, integration, next, loadtest, uat, uat_mon, api_uat, uat_backup, main, main_mon, main_backup, api_main]
             - region: eu-central-1
               port: 9100
               filters:
@@ -96,7 +96,7 @@ kube-prometheus-stack:
                 - name: tag:role
                   values: [aenode]
                 - name: tag:env
-                  values: [dev1, aehc_demo, integration, next, uat, uat_mon, api_uat, uat_backup, main, main_mon, main_backup, api_main]
+                  values: [dev1, aehc_demo, integration, next, loadtest, uat, uat_mon, api_uat, uat_backup, main, main_mon, main_backup, api_main]
             - region: eu-central-1
               port: 9102
               filters:
