@@ -32,14 +32,22 @@ fluent-bit:
           storage.sync              normal
           storage.checksum          off
           storage.backlog.mem_limit 60M
-
+    ## https://docs.fluentbit.io/manual/pipeline/parsers
+    customParsers: |
+      [PARSER]
+          Name docker_no_time
+          Format json
+          Time_Keep Off
+          Time_Key time
+          Time_Format %Y-%m-%dT%H:%M:%S.%L
     ## https://docs.fluentbit.io/manual/pipeline/inputs
     inputs: |
       [INPUT]
           Name                tail
           Path                /var/log/containers/*.log
           Tag                 kube.*
-          Parser              docker_no_time
+          # Parser              docker_no_time
+          multiline.parser    docker, cri
           Skip_Long_Lines     on
           Skip_Empty_Lines    on
           Mem_Buf_Limit       5M
