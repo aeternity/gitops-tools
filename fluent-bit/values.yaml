@@ -100,4 +100,5 @@ fluent-bit:
           host                   loki-headless
           port                   3100
           labels                 job=fluentbit.k8s.events
+          label_keys             $kind, $type, $reason, $metadata['namespace']
           line_format            json
