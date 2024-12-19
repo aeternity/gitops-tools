@@ -84,6 +84,7 @@ fluent-bit:
           remove      kubernetes_container_hash
           remove      kubernetes_container_image
           remove      kubernetes_host
+          remove      time
 
       [FILTER]
           name            nest
@@ -100,7 +101,7 @@ fluent-bit:
           host                   loki-headless
           port                   3100
           labels                 job=fluentbit.k8s.containers
-          label_keys             $kubernetes['namespace_name'], $kubernetes['pod_name'], $kubernetes['container_name']
+          label_keys             $stream, $kubernetes['namespace_name'], $kubernetes['pod_name'], $kubernetes['container_name']
           line_format            json
       [OUTPUT]
           name                   loki
