@@ -1209,18 +1209,18 @@
       {
         "hide": 2,
         "name": "job",
-        "query": "${VAR_JOB}",
+        "query": "fluentbit.k8s.events",
         "skipUrlSync": false,
         "type": "constant",
         "current": {
-          "value": "${VAR_JOB}",
-          "text": "${VAR_JOB}",
+          "value": "fluentbit.k8s.events",
+          "text": "fluentbit.k8s.events",
           "selected": false
         },
         "options": [
           {
-            "value": "${VAR_JOB}",
-            "text": "${VAR_JOB}",
+            "value": "fluentbit.k8s.events",
+            "text": "fluentbit.k8s.events",
             "selected": false
           }
         ]
