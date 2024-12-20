@@ -34,6 +34,8 @@ grafanaDashboards:
     - dashboards/loki/loki-retention.json
     - dashboards/loki/loki-writes-resources.json
     - dashboards/loki/loki-writes.json
+  logs:
+    - dashboards/logs/kubernetes-event-logs.json
 
 kube-prometheus-stack:
   ## Disable scrapping unused metrics: https://medium.com/gumgum-tech/how-to-reduce-your-prometheus-cost-6c7cc685e347
@@ -227,9 +229,12 @@ kube-prometheus-stack:
           type: loki
           url: http://loki-headless:3100
           access: proxy
+        - inputName: DS_LOKI
+          datasourceName: Loki
     dashboardsConfigMaps:
       aeternity: grafana-dashboards-aeternity
       loki: grafana-dashboards-loki
+      logs: grafana-dashboards-logs
     dashboardProviders:
      dashboardproviders.yaml:
        apiVersion: 1
@@ -258,6 +263,14 @@ kube-prometheus-stack:
          editable: true
          options:
            path: /var/lib/grafana/dashboards/loki
+       - name: 'logs'
+         orgId: 1
+         folder: 'Logs'
+         type: file
+         disableDeletion: true
+         editable: true
+         options:
+           path: /var/lib/grafana/dashboards/logs
     dashboards:
       tools:
         traefik2:
