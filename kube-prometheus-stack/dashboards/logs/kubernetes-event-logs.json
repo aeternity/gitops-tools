@@ -102,7 +102,7 @@
     {
       "datasource": {
         "type": "loki",
-        "uid": "${DS_LOKI}"
+        "uid": "loki"
       },
       "fieldConfig": {
         "defaults": {
@@ -182,7 +182,7 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "${DS_LOKI}"
+            "uid": "Loki"
           },
           "editorMode": "code",
           "expr": "sum by(cluster_name, namespace, pod, type) (count_over_time({job=\"$job\", cluster_name=~\"$cluster_name\", namespace=~\"$namespace\", kind=~\"$kind\", reason=~\"$reason\", type=~\"$type\"} |= `` [$__interval]))",
@@ -196,7 +196,7 @@
     {
       "datasource": {
         "type": "loki",
-        "uid": "${DS_LOKI}"
+        "uid": "Loki"
       },
       "description": "",
       "fieldConfig": {
@@ -316,7 +316,7 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "${DS_LOKI}"
+            "uid": "Loki"
           },
           "editorMode": "code",
           "expr": "sum by (type) (count_over_time({job=\"$job\"} | __error__=\"\" [$__interval]))",
@@ -334,7 +334,7 @@
     {
       "datasource": {
         "type": "loki",
-        "uid": "${DS_LOKI}"
+        "uid": "Loki"
       },
       "description": "",
       "fieldConfig": {
@@ -441,7 +441,7 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "${DS_LOKI}"
+            "uid": "Loki"
           },
           "editorMode": "code",
           "expr": "sum(count_over_time({job=\"$job\"} | type = \"Warning\" | __error__=\"\" [$__interval]))",
@@ -472,7 +472,7 @@
     {
       "datasource": {
         "type": "loki",
-        "uid": "${DS_LOKI}"
+        "uid": "Loki"
       },
       "description": "",
       "fieldConfig": {
@@ -523,7 +523,7 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "${DS_LOKI}"
+            "uid": "Loki"
           },
           "editorMode": "code",
           "expr": "sum(count_over_time({job=\"$job\"}| __error__=\"\"[$__interval])) by (kind)",
@@ -541,7 +541,7 @@
     {
       "datasource": {
         "type": "loki",
-        "uid": "${DS_LOKI}"
+        "uid": "Loki"
       },
       "description": "",
       "fieldConfig": {
@@ -592,7 +592,7 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "${DS_LOKI}"
+            "uid": "Loki"
           },
           "editorMode": "code",
           "expr": "sum(count_over_time({job=\"$job\"}| __error__=\"\"[$__interval])) by (namespace)",
@@ -610,7 +610,7 @@
     {
       "datasource": {
         "type": "loki",
-        "uid": "${DS_LOKI}"
+        "uid": "Loki"
       },
       "description": "",
       "fieldConfig": {
@@ -692,7 +692,7 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "${DS_LOKI}"
+            "uid": "Loki"
           },
           "editorMode": "code",
           "expr": "sum(count_over_time({job=\"$job\"}| __error__=\"\"[$__interval])) by (type)",
@@ -710,7 +710,7 @@
     {
       "datasource": {
         "type": "loki",
-        "uid": "${DS_LOKI}"
+        "uid": "Loki"
       },
       "description": "",
       "fieldConfig": {
@@ -761,7 +761,7 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "${DS_LOKI}"
+            "uid": "Loki"
           },
           "editorMode": "code",
           "expr": "sum(count_over_time({job=\"$job\"}| __error__=\"\"[$__interval])) by (cluster_name)",
@@ -779,7 +779,7 @@
     {
       "datasource": {
         "type": "loki",
-        "uid": "${DS_LOKI}"
+        "uid": "Loki"
       },
       "description": "",
       "fieldConfig": {
@@ -910,7 +910,7 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "${DS_LOKI}"
+            "uid": "Loki"
           },
           "editorMode": "code",
           "expr": "topk(10,sum by (reason) (count_over_time({job=\"$job\"} | __error__=\"\"[$__interval])))",
@@ -938,7 +938,7 @@
     {
       "datasource": {
         "type": "loki",
-        "uid": "${DS_LOKI}"
+        "uid": "Loki"
       },
       "description": "",
       "fieldConfig": {
@@ -1069,7 +1069,7 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "${DS_LOKI}"
+            "uid": "Loki"
           },
           "editorMode": "code",
           "expr": "topk(10,sum by (namespace) (count_over_time({job=\"$job\"} | __error__=\"\"[$__interval])))",
@@ -1110,7 +1110,7 @@
     {
       "datasource": {
         "type": "loki",
-        "uid": "${DS_LOKI}"
+        "uid": "Loki"
       },
       "gridPos": {
         "h": 8,
@@ -1133,7 +1133,7 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "${DS_LOKI}"
+            "uid": "Loki"
           },
           "editorMode": "code",
           "expr": "{job=\"$job\", namespace=~\"$namespace\", kind=~\"$kind\", reason=~\"$reason\", type=~\"$type\"}",
@@ -1160,7 +1160,7 @@
     {
       "datasource": {
         "type": "loki",
-        "uid": "${DS_LOKI}"
+        "uid": "Loki"
       },
       "gridPos": {
         "h": 8,
@@ -1183,7 +1183,7 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "${DS_LOKI}"
+            "uid": "Loki"
           },
           "editorMode": "code",
           "expr": "{stream=~\".+\", kubernetes_namespace_name=~\"$namespace\"} |= ``",
@@ -1229,7 +1229,7 @@
         "current": {},
         "datasource": {
           "type": "loki",
-          "uid": "${DS_LOKI}"
+          "uid": "Loki"
         },
         "definition": "",
         "hide": 0,
@@ -1254,7 +1254,7 @@
         "current": {},
         "datasource": {
           "type": "loki",
-          "uid": "${DS_LOKI}"
+          "uid": "Loki"
         },
         "definition": "",
         "hide": 0,
@@ -1279,7 +1279,7 @@
         "current": {},
         "datasource": {
           "type": "loki",
-          "uid": "${DS_LOKI}"
+          "uid": "Loki"
         },
         "definition": "",
         "hide": 0,
@@ -1304,7 +1304,7 @@
         "current": {},
         "datasource": {
           "type": "loki",
-          "uid": "${DS_LOKI}"
+          "uid": "Loki"
         },
         "definition": "",
         "hide": 0,
@@ -1329,7 +1329,7 @@
         "current": {},
         "datasource": {
           "type": "loki",
-          "uid": "${DS_LOKI}"
+          "uid": "Loki"
         },
         "definition": "",
         "hide": 0,
