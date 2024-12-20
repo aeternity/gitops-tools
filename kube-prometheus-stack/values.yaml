@@ -226,11 +226,10 @@ kube-prometheus-stack:
         apiVersion: 1
         datasources:
         - name: Loki
+          uid: loki
           type: loki
           url: http://loki-headless:3100
           access: proxy
-        - inputName: DS_LOKI
-          datasourceName: Loki
     dashboardsConfigMaps:
       aeternity: grafana-dashboards-aeternity
       loki: grafana-dashboards-loki
