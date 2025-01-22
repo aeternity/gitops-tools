@@ -59,12 +59,8 @@ prometheus-blackbox-exporter:
         url: https://wallet.demo.hyperchains.aepps.com
       - name: aehc-demo-faucet
         url: https://faucet.demo.hyperchains.aepps.com
-      - name: aehc-demo-ui
-        url: https://demo.hyperchains.aepps.com
-      - name: aehc-demo-mdw-parent
-        url: https://parent-explorer.demo.hyperchains.aepps.com
-      - name: aehc-demo-mdw
-        url: https://explorer.demo.hyperchains.aepps.com
+      - name: aehc-demo-aescan
+        url: https://aescan.demo.hyperchains.aepps.com
       ## Governance
       - name: governance
         url: https://governance.prd.aepps.com
