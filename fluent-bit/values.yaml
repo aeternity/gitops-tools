@@ -32,14 +32,22 @@ fluent-bit:
           storage.sync              normal
           storage.checksum          off
           storage.backlog.mem_limit 60M
-
+    ## https://docs.fluentbit.io/manual/pipeline/parsers
+    customParsers: |
+      [PARSER]
+          Name docker_no_time
+          Format json
+          Time_Keep Off
+          Time_Key time
+          Time_Format %Y-%m-%dT%H:%M:%S.%L
     ## https://docs.fluentbit.io/manual/pipeline/inputs
     inputs: |
       [INPUT]
           Name                tail
           Path                /var/log/containers/*.log
           Tag                 kube.*
-          Parser              docker_no_time
+          # Parser              docker_no_time
+          multiline.parser    docker, cri
           Skip_Long_Lines     on
           Skip_Empty_Lines    on
           Mem_Buf_Limit       5M
@@ -76,6 +84,7 @@ fluent-bit:
           remove      kubernetes_container_hash
           remove      kubernetes_container_image
           remove      kubernetes_host
+          remove      time
 
       [FILTER]
           name            nest
@@ -91,13 +100,14 @@ fluent-bit:
           match                  kube.*
           host                   loki-headless
           port                   3100
-          labels                 source=k8s-apps
-          label_keys             $kubernetes['namespace_name'], $kubernetes['pod_name'], $kubernetes['container_name']
+          labels                 job=fluentbit.k8s.containers
+          label_keys             $stream, $kubernetes['namespace_name'], $kubernetes['pod_name'], $kubernetes['container_name']
           line_format            json
       [OUTPUT]
           name                   loki
           match                  kube_events
           host                   loki-headless
           port                   3100
-          labels                 source=k8s-events
+          labels                 job=fluentbit.k8s.events, namespace=$metadata['namespace'], container=$source['component']
+          label_keys             $kind, $type, $reason
           line_format            json

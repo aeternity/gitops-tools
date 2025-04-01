@@ -3,9 +3,9 @@ name: cert-manager
 # This version is LTS with EOL May 19, 2025 and k8s 1.30 support
 # k8s 1.30 EOL is July 23, 2025 and extended EOL July 23, 2026
 # Seems like a good idea to keep it until next LTS (if ever)
-version: 1.12.7
+version: 1.15.3
 
 dependencies:
   - name: cert-manager
-    version: 1.12.7
+    version: 1.15.3
     repository: https://charts.jetstack.io

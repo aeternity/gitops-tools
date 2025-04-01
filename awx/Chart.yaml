@@ -1,0 +1,11 @@
+apiVersion: v2
+name: awx
+description: A Helm chart for the AWX Operator
+
+version: 2.19.1
+
+dependencies:
+  - name: awx-operator
+    version: 2.19.1
+    appVersion: "2.19.1"
+    repository: https://ansible-community.github.io/awx-operator-helm/

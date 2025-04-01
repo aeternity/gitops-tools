@@ -12,13 +12,16 @@ velero:
     apps-ns:
       schedule: "0 1 * * *"
       labels:
-        velero.io/storage-location: default
+        velero.io/storage-location: s3
+      annotations:
+        argocd.argoproj.io/compare-options: IgnoreExtraneous
+        argocd.argoproj.io/sync-options: Delete=false,Prune=false
       template:
         includedNamespaces:
           - apps
         includedResources: 
           - "*"
-        storageLocation: default
+        storageLocation: s3
         ttl: "720h0m0s"
 
   initContainers:

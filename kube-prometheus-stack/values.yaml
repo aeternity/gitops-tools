@@ -34,6 +34,8 @@ grafanaDashboards:
     - dashboards/loki/loki-retention.json
     - dashboards/loki/loki-writes-resources.json
     - dashboards/loki/loki-writes.json
+  logs:
+    - dashboards/logs/kubernetes-event-logs.json
 
 kube-prometheus-stack:
   ## Disable scrapping unused metrics: https://medium.com/gumgum-tech/how-to-reduce-your-prometheus-cost-6c7cc685e347
@@ -136,9 +138,9 @@ kube-prometheus-stack:
     resources:
       requests:
         cpu: 10m
-        memory: 16Mi
+        memory: 35Mi
       limits:
-        memory: 20Mi
+        memory: 50Mi
 
   prometheus:
     serviceMonitorSelector: {}
@@ -224,12 +226,14 @@ kube-prometheus-stack:
         apiVersion: 1
         datasources:
         - name: Loki
+          uid: loki
           type: loki
           url: http://loki-headless:3100
           access: proxy
     dashboardsConfigMaps:
       aeternity: grafana-dashboards-aeternity
       loki: grafana-dashboards-loki
+      logs: grafana-dashboards-logs
     dashboardProviders:
      dashboardproviders.yaml:
        apiVersion: 1
@@ -258,6 +262,14 @@ kube-prometheus-stack:
          editable: true
          options:
            path: /var/lib/grafana/dashboards/loki
+       - name: 'logs'
+         orgId: 1
+         folder: 'Logs'
+         type: file
+         disableDeletion: true
+         editable: true
+         options:
+           path: /var/lib/grafana/dashboards/logs
     dashboards:
       tools:
         traefik2:
@@ -359,6 +371,56 @@ kube-prometheus-stack:
   additionalPrometheusRulesMap:
     - name: additional
       groups:
+      - name: kubernetes
+        rules:
+        - alert: KubernetesNodeNotReady
+          expr: kube_node_status_condition{condition="Ready",status="true"} == 0
+          for: 10m
+          labels:
+            severity: critical
+          annotations:
+            summary: Kubernetes Node not ready (instance {{ $labels.instance }})
+            description: "Node {{ $labels.node }} has been unready for a long time\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+        - alert: KubernetesNodeMemoryPressure
+          expr: kube_node_status_condition{condition="MemoryPressure",status="true"} == 1
+          for: 2m
+          labels:
+            severity: critical
+          annotations:
+            summary: Kubernetes Node memory pressure (instance {{ $labels.instance }})
+            description: "Node {{ $labels.node }} has MemoryPressure condition\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+        - alert: KubernetesNodeDiskPressure
+          expr: kube_node_status_condition{condition="DiskPressure",status="true"} == 1
+          for: 2m
+          labels:
+            severity: critical
+          annotations:
+            summary: Kubernetes Node disk pressure (instance {{ $labels.instance }})
+            description: "Node {{ $labels.node }} has DiskPressure condition\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+        - alert: KubernetesNodeNetworkUnavailable
+          expr: kube_node_status_condition{condition="NetworkUnavailable",status="true"} == 1
+          for: 2m
+          labels:
+            severity: critical
+          annotations:
+            summary: Kubernetes Node network unavailable (instance {{ $labels.instance }})
+            description: "Node {{ $labels.node }} has NetworkUnavailable condition\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+        - alert: KubernetesNodeOutOfPodCapacity
+          expr: sum by (node) ((kube_pod_status_phase{phase="Running"} == 1) + on(uid) group_left(node) (0 * kube_pod_info{pod_template_hash=""})) / sum by (node) (kube_node_status_allocatable{resource="pods"}) * 100 > 90
+          for: 2m
+          labels:
+            severity: warning
+          annotations:
+            summary: Kubernetes Node out of pod capacity (instance {{ $labels.instance }})
+            description: "Node {{ $labels.node }} is out of pod capacity\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+        - alert: KubernetesContainerOomKiller
+          expr: (kube_pod_container_status_restarts_total - kube_pod_container_status_restarts_total offset 10m >= 1) and ignoring (reason) min_over_time(kube_pod_container_status_last_terminated_reason{reason="OOMKilled"}[10m]) == 1
+          for: 0m
+          labels:
+            severity: warning
+          annotations:
+            summary: Kubernetes Container oom killer (instance {{ $labels.instance }})
+            description: "Container {{ $labels.container }} in pod {{ $labels.namespace }}/{{ $labels.pod }} has been OOMKilled {{ $value }} times in the last 10 minutes.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
       - name: sd-node-exporter-rules
         rules:
         - expr: |
@@ -735,12 +797,12 @@ kube-prometheus-stack:
             description: "{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 30 minutes."
         - alert: StatsdExporterBrokenIntegration
           expr: rate(statsd_exporter_samples_total{job="sd_statsd_exporter"}[5m]) < 10
-          for: 10m
+          for: 30m
           labels:
             severity: critical
           annotations:
             summary: "[{{ $labels.env }}] StatsD Exporter integration on {{ $labels.instance }} not working"
-            description: "{{ $labels.instance }} of job {{ $labels.job }} is not receiving metric samples for more than 10 minutes."
+            description: "{{ $labels.instance }} of job {{ $labels.job }} is not receiving metric samples for more than 30 minutes."
         - alert: StatsdExporterDown
           expr: up{job="sd_statsd_exporter"} == 0
           for: 30m
@@ -776,7 +838,7 @@ kube-prometheus-stack:
             summary: "[{{ $labels.env }}] Aeternity node {{ $labels.public_ip }} is out of sync."
             description: "{{ $labels.instance }} of job {{ $labels.job }} has been out of sync for more than 10 minutes."
         - alert: AeNodeNoOutboundConnections
-          expr: aecore_peers_connection{direction="outbound", env!~"dev1"} == 0
+          expr: aecore_peers_connection{direction="outbound", env!~"dev1|aehc_demo"} == 0
           for: 10m
           labels:
             severity: warning
@@ -792,7 +854,7 @@ kube-prometheus-stack:
             summary: "[{{ $labels.env }}] Aeternity node {{ $labels.public_ip }} have no inbound connections."
             description: "{{ $labels.instance }} of job {{ $labels.job }} have no inbound connections for more than 10 minutes."
         - alert: AeNodeLowPingRate
-          expr: rate(aecore_peers_ping{status="success", env!~"dev1"}[5m]) == 0
+          expr: rate(aecore_peers_ping{status="success", env!~"dev1|aehc_demo"}[5m]) == 0
           for: 10m
           labels:
             severity: warning
@@ -812,15 +874,23 @@ kube-prometheus-stack:
       - name: aenode-mining-alerts
         rules:
         - alert: AeNodeMining
-          expr: avg by (env) (rate(aecore_mining_retries_total{env!~"uat|dev1|integration"}[3m])) > 0
+          expr: avg by (env) (rate(aecore_mining_retries_total{env!~"uat|dev1|integration|aehc_demo"}[3m])) > 0
           for: 10m
           labels:
             severity: warning
           annotations:
             summary: "[{{ $labels.env }}] Unexpected mining."
             description: "Nodes on {{ $labels.env }} are not expected to mine."
+        - alert: AeNodeMiningChildHC
+          expr: avg by (env) (rate(aecore_mining_retries_total{env="aehc_demo", kind="child"}[3m])) > 0
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "[{{ $labels.env }} - child] Unexpected mining."
+            description: "Child nodes on {{ $labels.env }} are not expected to mine."
         - alert: AeNodeNotMining
-          expr: avg by (env) (rate(aecore_mining_retries_total{env="uat"}[3m])) == 0
+          expr: avg by (env) (rate(aecore_mining_retries_total{env="uat|integration"}[3m])) == 0
           for: 10m
           labels:
             severity: warning
@@ -828,7 +898,23 @@ kube-prometheus-stack:
             summary: "[{{ $labels.env }}] Mining stopped."
             description: "Nodes on {{ $labels.env }} are not mining for more than 10 minutes."
         - alert: AeNodeMiningNoBlocks
-          expr: avg by (env) (rate(aecore_mining_blocks_total{env="uat"}[3m])) == 0
+          expr: avg by (env) (rate(aecore_mining_blocks_total{env="uat|integration"}[3m])) == 0
+          for: 30m
+          labels:
+            severity: warning
+          annotations:
+            summary: "[{{ $labels.env }} - parent] Blocks not found."
+            description: "No blocks mined for more than 30 minutes on {{ $labels.env }}."
+        - alert: AeNodeNotMiningHC
+          expr: avg by (env) (rate(aecore_mining_retries_total{env="aehc_demo", kind="parent"}[3m])) == 0
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "[{{ $labels.env }} - parent] Mining stopped."
+            description: "Nodes on {{ $labels.env }} are not mining for more than 10 minutes."
+        - alert: AeNodeMiningNoBlocksHC
+          expr: avg by (env) (rate(aecore_mining_blocks_total{env="aehc_demo", kind="parent"}[3m])) == 0
           for: 30m
           labels:
             severity: warning
@@ -1035,5 +1121,6 @@ kube-prometheus-stack:
           for: 5m
           labels:
             severity: critical
+
 
 

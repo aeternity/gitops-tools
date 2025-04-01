@@ -1,3 +1,9 @@
+app-secrets:
+  external:
+    secretName: loki-auth-secret
+    values:
+      "users": /loki/HTTP_AUTH_USERS
+
 loki:
   test:
     enabled: false
@@ -9,9 +15,9 @@ loki:
     resources:
       requests:
         cpu: 150m
-        memory: 200Mi
+        memory: 250Mi
       limits:
-        memory: 300Mi
+        memory: 375Mi
   read:
     replicas: 0
   backend:
@@ -24,6 +30,7 @@ loki:
     enabled: true
     annotations:
       traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      traefik.ingress.kubernetes.io/router.middlewares: monitoring-loki-auth@kubernetescrd
       cert-manager.io/cluster-issuer: letsencrypt
     paths:
       distributor:
