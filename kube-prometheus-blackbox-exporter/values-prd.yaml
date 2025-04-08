@@ -54,13 +54,6 @@ prometheus-blackbox-exporter:
           job: core-apps
 
       # Applications
-      ## Hyperchains Demo
-      - name: aehc-demo-base
-        url: https://wallet.demo.hyperchains.aepps.com
-      - name: aehc-demo-faucet
-        url: https://faucet.demo.hyperchains.aepps.com
-      - name: aehc-demo-aescan
-        url: https://aescan.demo.hyperchains.aepps.com
       ## Governance
       - name: governance
         url: https://governance.prd.aepps.com
@@ -68,13 +61,4 @@ prometheus-blackbox-exporter:
         url: https://governance-server-mainnet.prd.aepps.com/version
       - name: governance-testnet
         url: https://governance-server-testnet.prd.aepps.com/version
-      ## Graffiti
-      - name: aepp-graffiti
-        url: https://graffiti.aeternity.com
-      - name: graffiti-server-mainnet
-        url: https://graffiti-server-mainnet.prd.aepps.com/health
-      - name: graffiti-server-testnet
-        url: https://graffiti-server-testnet.prd.aepps.com/health
-      ## GA Multisig
-      - name: ga-multisig-ui
-        url: https://ga-multisig-ui.prd.aepps.com
+
