@@ -32,33 +32,7 @@ prometheus-blackbox-exporter:
         url: https://repl.prd.aepps.com
         additionalMetricsRelabels:
           job: core-apps
-      - name: compiler
-        url: https://compiler.aepps.com/version
+      - name: compiler-v8
+        url: https://v8.compiler.aepps.com/version
         additionalMetricsRelabels:
           job: core-apps
-      - name: compiler-v7
-        url: https://v7.compiler.aepps.com/version
-        additionalMetricsRelabels:
-          job: core-apps
-      - name: compiler-v6
-        url: https://v6.compiler.aepps.com/version
-        additionalMetricsRelabels:
-          job: core-apps
-      - name: mdw-explorer
-        url: https://mdw-explorer.prd.aepps.com
-        additionalMetricsRelabels:
-          job: core-apps
-      - name: mdw-explorer-testnet
-        url: https://mdw-explorer-testnet.prd.aepps.com
-        additionalMetricsRelabels:
-          job: core-apps
-
-      # Applications
-      ## Governance
-      - name: governance
-        url: https://governance.prd.aepps.com
-      - name: governance-mainnet
-        url: https://governance-server-mainnet.prd.aepps.com/version
-      - name: governance-testnet
-        url: https://governance-server-testnet.prd.aepps.com/version
-
