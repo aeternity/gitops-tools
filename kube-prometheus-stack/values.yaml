@@ -1121,6 +1121,13 @@ kube-prometheus-stack:
           for: 5m
           labels:
             severity: critical
-
+        - alert: MdwNotSynced
+          expr: probe_success{job="core-apps", instance="https://mainnet.aeternity.io/mdw/status"} == 0
+          for: 1m
+          labels:
+            severity: critical
+          annotations:
+            summary: "MDW is not synced"
+            description: "Probing failed for https://mainnet.aeternity.io/mdw/status — mdw_synced is likely not true."
 
 
