@@ -36,3 +36,8 @@ prometheus-blackbox-exporter:
         url: https://v8.compiler.aepps.com/version
         additionalMetricsRelabels:
           job: core-apps
+      - name: mainnet-mdw
+        url: https://mainnet.aeternity.io/mdw/status
+        module: http_mdw_match
+        additionalMetricsRelabels:
+          job: core-apps
