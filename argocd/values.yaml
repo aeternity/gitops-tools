@@ -32,6 +32,17 @@ projects:
     description: Tools used to run the environment
     sourceRepos:
       - 'https://github.com/aeternity/gitops-tools.git'
+      - 'https://argoproj.github.io/argo-helm'
+      - 'https://helm.traefik.io/traefik'
+      - 'https://fluent.github.io/helm-charts'
+      - 'https://grafana.github.io/helm-charts'
+      - 'https://charts.jetstack.io'
+      - 'https://charts.external-secrets.io'
+      - 'https://prometheus-community.github.io/helm-charts'
+      - 'https://kubernetes.github.io/autoscaler'
+      - 'https://kubernetes-sigs.github.io/metrics-server/'
+      - 'https://aws.github.io/eks-charts'
+      - 'https://vmware-tanzu.github.io/helm-charts'
     destinations:
       - namespace: default
         server: https://kubernetes.default.svc
